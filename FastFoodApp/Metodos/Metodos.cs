@@ -1,4 +1,5 @@
 ﻿using FastFoodApp.Configuracion;
+using FastFoodApp.Entidad;
 using FastFoodApp.Modelo;
 using System;
 using System.Collections.Generic;
@@ -16,13 +17,13 @@ namespace FastFoodApp.Metodos
             // constructor
         }
 
-        //public async Task<List<EVerbos>> GetListadoVerbos()
-        //{
-        //    var result = await herramientas.EjecutarSentenciaEnApiLibre($"Verbs/ObtenerVerbos");
-        //    var listado_verbos = Newtonsoft.Json.JsonConvert.DeserializeObject<List<EVerbos>>(result);
+        public async Task<List<EMenu>> ObtenerMenu()
+        {
+            var result = await herramientas.EjecutarSentenciaEnApiLibre($"FastFood/ObtenerMenu");
+            var lista_menu = Newtonsoft.Json.JsonConvert.DeserializeObject<List<EMenu>>(result);
 
-        //    return listado_verbos;
-        //} // Fin del método ObtenerVerbos
+            return lista_menu;
+        } // Fin del método ObtenerVerbos
 
         //public async Task<List<EPosiciones>> GetListadoDePosiciones()
         //{

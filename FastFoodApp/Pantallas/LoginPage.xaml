@@ -1,11 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:customcontrol="clr-namespace:FastFoodApp.ControlesPersonalizados"
              x:Class="FastFoodApp.Pantallas.LoginPage" BackgroundColor="#18356F">
     <ContentPage.Content>
         <StackLayout>
-
-            <!--<Label HorizontalOptions="Center" FontSize="24" TextColor="White" Margin="0,15,0,0" FontAttributes="Bold" Text="Fast Food App"/>-->
 
             <StackLayout HorizontalOptions="Center" Margin="0,20,0,0">
                 <Image WidthRequest="254" Source="Fast_Food_Logo.png"></Image>
@@ -15,15 +13,26 @@
 
                 <Label Margin="0,0,0,10" Text="Login" FontSize="22" FontAttributes="Bold" TextColor="White"></Label>
 
+                <Frame Padding="0" BorderColor="White" HasShadow="False" CornerRadius="8" Margin="0,0,0,15" x:Name="FrEmail" >
+                    <StackLayout Orientation="Horizontal" Margin="4" >
+                        <Image Source="Email.png" WidthRequest="25" Margin="5"></Image>
+                        <customcontrol:CustomEntry MaxLength="11" HorizontalOptions="FillAndExpand" x:Name="TxtEmail"  Keyboard="Email"  Placeholder="Email"/>
+                    </StackLayout>
+                </Frame>
 
+                <Frame Padding="0" BorderColor="White" HasShadow="False" CornerRadius="8" Margin="0,0,0,15" x:Name="FrPassword" >
+                    <StackLayout Orientation="Horizontal" Margin="4" >
+                        <Image Source="Password.png" WidthRequest="25" Margin="5"></Image>
+                        <customcontrol:CustomEntry MaxLength="11" HorizontalOptions="FillAndExpand" IsPassword="True" x:Name="TxtPassword"  Keyboard="Default"  Placeholder="Contraseña"/>
+                    </StackLayout>
+                </Frame>
 
+                <Button Clicked="BtnLogin_Clicked" VerticalOptions="Center" x:Name="BtnLogin" Text="Ingresar" FontAttributes="Bold" CornerRadius="4" TextColor="White" BackgroundColor="#FFCC00"/>
 
-                <Entry Placeholder="Email" PlaceholderColor="White" TextColor="White"></Entry>
-                <Entry Placeholder="Contraseña" IsPassword="True" PlaceholderColor="White" TextColor="White"></Entry>
-                <Button VerticalOptions="Center" Text="Ingresar" CornerRadius="4" TextColor="#333" BackgroundColor="White"/>
-
-                <Label HorizontalOptions="Center" TextColor="White" Margin="0,8,0,0" Text="¿No tienes una cuenta? Registrate aqui"></Label>
-                <Label HorizontalOptions="Center" FontAttributes="Bold" VerticalOptions="EndAndExpand" TextColor="White" Margin="0,8,0,0" Text="Versión 1.0"></Label>
+                <StackLayout x:Name="LayoutRegistrate">
+                    <Label HorizontalOptions="Center" TextColor="White" Margin="0,8,0,0" Text="¿No tienes una cuenta? Registrate aqui"></Label>
+                    <Label HorizontalOptions="Center" FontAttributes="Bold" VerticalOptions="EndAndExpand" TextColor="White" Margin="0,8,0,0" Text="Versión 1.0"></Label>
+                </StackLayout>
             </StackLayout>
 
         </StackLayout>
