@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FastFoodApp.Pantallas.LoginPage">
+    <ContentPage.Content>
+        <StackLayout>
+
+            <StackLayout HorizontalOptions="Center">
+                <Image WidthRequest="254" Source="Logo.png"></Image>
+            </StackLayout>
+
+            <StackLayout Margin="0,50,0,0" VerticalOptions="Center">
+
+                <Label Text="Login" FontSize="22" FontAttributes="Bold" TextColor="#333"></Label>
+
+            </StackLayout>
+            <StackLayout>
+                <Entry Placeholder="Usuario" TextColor="Black" PlaceholderColor="Gray"></Entry>
+                <Entry Placeholder="contraseña" IsPassword="True" TextColor="DarkGray" PlaceholderColor="Gray"></Entry>
+                <Button VerticalOptions="Center" Text="Ingresar" TextColor="Green" CornerRadius="70">
+
+                </Button>
+            </StackLayout>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
