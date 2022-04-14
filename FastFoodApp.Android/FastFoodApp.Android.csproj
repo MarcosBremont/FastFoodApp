@@ -83,7 +83,9 @@
     <AndroidResource Include="Resources\mipmap-xxxhdpi\icon.png" />
     <AndroidResource Include="Resources\mipmap-xxxhdpi\launcher_foreground.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\Fast_Food_Logo.png" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\FastFoodApp\FastFoodApp.csproj">
       <Project>{61B611C8-EF43-4133-87A5-2FF552F82F59}</Project>
