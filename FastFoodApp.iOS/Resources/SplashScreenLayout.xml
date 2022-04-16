@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+	<item>
+		<color android:color="#18356F"/>
+	</item>
+	<item android:gravity="center" android:width="180dp" android:height="190dp">
+		<bitmap android:src="@drawable/FastFood"/>
+	</item>
+</layer-list>

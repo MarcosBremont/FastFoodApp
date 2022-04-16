@@ -129,8 +129,26 @@
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
     <ProjectReference Include="..\FastFoodApp\FastFoodApp.csproj">
-      <Project>{61B611C8-EF43-4133-87A5-2FF552F82F59}</Project>
+      <Project>{4AE9FD7F-B3B7-4402-956C-83A5CB00A524}</Project>
       <Name>FastFoodApp</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\buy1.png" />
+    <BundleResource Include="Resources\buy2.png" />
+    <BundleResource Include="Resources\Email.png" />
+    <BundleResource Include="Resources\Fast_Food_Logo.png" />
+    <BundleResource Include="Resources\FastFood.png" />
+    <BundleResource Include="Resources\FastFood500.png" />
+    <BundleResource Include="Resources\hamburger1.png" />
+    <BundleResource Include="Resources\hamburger2.png" />
+    <BundleResource Include="Resources\hamburger3.png" />
+    <BundleResource Include="Resources\Logo.jpg" />
+    <BundleResource Include="Resources\Password.png" />
+    <BundleResource Include="Resources\settings1.png" />
+    <BundleResource Include="Resources\settings2.png" />
+    <BundleResource Include="Resources\SplashScreenLayout.xml" />
+    <BundleResource Include="Resources\user1.png" />
+    <BundleResource Include="Resources\user2.png" />
   </ItemGroup>
 </Project>
