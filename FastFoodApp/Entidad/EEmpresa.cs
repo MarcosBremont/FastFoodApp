@@ -18,6 +18,6 @@ namespace FastFoodApp.Entidad
         public string instagram { get; set; }
         public string facebook { get; set; }
         public string encargado_empresa { get; set; }
-        public string envio { get; set; }
+        public int envio { get; set; }
     }
 }

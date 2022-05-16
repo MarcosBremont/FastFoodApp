@@ -16,7 +16,7 @@ namespace FastFoodApp.Pantallas
         public LoginPage()
         {
             InitializeComponent();
-
+            LlenarEmpresa();
 
         }
 
@@ -26,6 +26,7 @@ namespace FastFoodApp.Pantallas
             {
                 FastFoodApp.Metodos.Metodos metodos = new FastFoodApp.Metodos.Metodos();
                 var datos = await metodos.ObtenerEmpresa();
+                App.envio = datos[0].envio;
             }
             catch (Exception ex)
             {
