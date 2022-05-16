@@ -31,6 +31,7 @@
                         </StackLayout>
                     </Frame>
 
+
                     <Frame Padding="0" BorderColor="White" HasShadow="False" CornerRadius="8" Margin="0,0,0,15" x:Name="FrConCuantoPagaras" >
                         <StackLayout Orientation="Horizontal" Margin="4" >
                             <Image Source="Dollar.png" WidthRequest="25" Margin="5"></Image>

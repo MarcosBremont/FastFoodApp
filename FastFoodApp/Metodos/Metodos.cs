@@ -25,6 +25,15 @@ namespace FastFoodApp.Metodos
             return lista_menu;
         } // Fin del método ObtenerVerbos
 
+
+        public async Task<List<EEmpresa>> ObtenerEmpresa()
+        {
+            var result = await herramientas.EjecutarSentenciaEnApiLibre($"FastFood/ObtenerEmpresa");
+            var lista_empresa = Newtonsoft.Json.JsonConvert.DeserializeObject<List<EEmpresa>>(result);
+
+            return lista_empresa;
+        } // Fin del método ObtenerVerbos
+
         //public async Task<List<EPosiciones>> GetListadoDePosiciones()
         //{
         //    var result = await herramientas.EjecutarSentenciaEnApiLibre($"Verbs/Posiciones");

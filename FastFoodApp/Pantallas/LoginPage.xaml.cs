@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FastFoodApp.Entidad;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,6 +16,21 @@ namespace FastFoodApp.Pantallas
         public LoginPage()
         {
             InitializeComponent();
+
+
+        }
+
+        public async Task LlenarEmpresa()
+        {
+            try
+            {
+                FastFoodApp.Metodos.Metodos metodos = new FastFoodApp.Metodos.Metodos();
+                var datos = await metodos.ObtenerEmpresa();
+            }
+            catch (Exception ex)
+            {
+
+            }
         }
 
         private async void BtnLogin_Clicked(object sender, EventArgs e)

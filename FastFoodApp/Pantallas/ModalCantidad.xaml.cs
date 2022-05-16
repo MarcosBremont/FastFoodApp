@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Rg.Plugins.Popup.Services;
+using System;
 using System.Collections.Generic;
 
 using Xamarin.Forms;
@@ -21,8 +22,11 @@ namespace FastFoodApp.Pantallas
         {
         }
 
-        void BtnCancelar_Clicked(System.Object sender, System.EventArgs e)
+        async void BtnCancelar_Clicked(System.Object sender, System.EventArgs e)
         {
+            await PopupNavigation.PopAsync();
+            TxtCantidad.Text = "";
+            TxtDinero.Text = "";
         }
 
         void TxtCantidad_TextChanged(System.Object sender, Xamarin.Forms.TextChangedEventArgs e)
