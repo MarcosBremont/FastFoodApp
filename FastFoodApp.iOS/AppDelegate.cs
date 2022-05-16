@@ -24,6 +24,8 @@ namespace FastFoodApp.iOS
         {
             global::Xamarin.Forms.Forms.Init();
             LoadApplication(new App());
+            Rg.Plugins.Popup.Popup.Init();
+
 
             return base.FinishedLaunching(app, options);
         }

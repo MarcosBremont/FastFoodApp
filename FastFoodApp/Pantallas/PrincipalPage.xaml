@@ -3,20 +3,20 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="FastFoodApp.Pantallas.PrincipalPage"
              NavigationPage.HasNavigationBar="False"
-             BackgroundColor="#18356F"
+             BackgroundColor="#EEEEEE"
              xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
              ios:Page.UseSafeArea="true">
     <ContentPage.Content>
-        <StackLayout IsVisible="true" Margin="0,0,0,-35" x:Name="StackLayoutEquipo1" BackgroundColor="#18356F">
+        <StackLayout IsVisible="true" Margin="0,0,0,-35" x:Name="StackLayoutEquipo1" BackgroundColor="#EEEEEE">
 
             <!--Layout Principal-->
 
-            <StackLayout IsVisible="true" VerticalOptions="StartAndExpand" x:Name="StackLayoutPaginaPrincipal" BackgroundColor="#18356F">
+            <StackLayout IsVisible="true" VerticalOptions="StartAndExpand" x:Name="StackLayoutPaginaPrincipal" BackgroundColor="#EEEEEE">
 
-                <Grid RowSpacing="0" BackgroundColor="#18356F">
+                <Grid RowSpacing="0" BackgroundColor="#EEEEEE">
 
                     <StackLayout VerticalOptions="FillAndExpand" Grid.Row="0" Grid.Column="0" Orientation="Vertical" Margin="0,0,0,0">
-                        <ListView VerticalOptions="FillAndExpand" x:Name="lsv_menu" Grid.Row="0" BackgroundColor="Transparent" HorizontalOptions="CenterAndExpand" SeparatorVisibility="Default"  SeparatorColor="White" HasUnevenRows="True" >
+                        <ListView VerticalOptions="FillAndExpand" ItemSelected="lsv_menu_ItemSelected" x:Name="lsv_menu" Grid.Row="0" BackgroundColor="Transparent" HorizontalOptions="CenterAndExpand" SeparatorVisibility="Default"  SeparatorColor="White" HasUnevenRows="True" >
                             <ListView.ItemTemplate>
 
                                 <DataTemplate>
@@ -42,21 +42,24 @@
                                                         <StackLayout Orientation="Horizontal" VerticalOptions="Center" Margin="0,5,0,10">
 
                                                             <Label Text="{Binding nombre}" VerticalOptions="Center"  FontSize="14" FontAttributes="Bold" TextColor="#1E2021" />
-                                                            <Frame HasShadow="False" Padding="10" VerticalOptions="Center"  CornerRadius="4" BackgroundColor="#1E2021" HorizontalOptions="EndAndExpand">
+                                                            <Frame HasShadow="False" Padding="10" VerticalOptions="Center"  CornerRadius="4" BackgroundColor="#FFCC00" HorizontalOptions="EndAndExpand">
                                                                 <StackLayout Orientation="Horizontal">
 
-                                                                    <Label VerticalOptions="Center" Text="{Binding precio}" FontAttributes="Bold" FontSize="12" TextColor="#F7F7FA" />
+                                                                    <Label VerticalOptions="Center" Text="RD$" FontAttributes="Bold" FontSize="12" TextColor="#333" />
+                                                                    <Label VerticalOptions="Center" Text="{Binding precio}" FontAttributes="Bold" FontSize="12" TextColor="#333" />
                                                                 </StackLayout>
                                                             </Frame>
 
-
-                                                            <ImageButton WidthRequest="25" Source="buy1.png"></ImageButton>
                                                         </StackLayout>
+
 
                                                         <StackLayout Orientation="Horizontal" VerticalOptions="Center" Margin="0,5,0,10">
 
-                                                            <Label Text="{Binding descripcion}" VerticalOptions="Center"  FontSize="14" FontAttributes="Bold" TextColor="#F7F7FA" />
+                                                            <Label Text="{Binding descripcion}" VerticalOptions="Center"  FontSize="14" FontAttributes="Bold" TextColor="#333" />
                                                         </StackLayout>
+
+                                                        <Button Text="Agregar" x:Name="BtnAgregar" CommandParameter="{Binding .}" Clicked="BtnAgregar_Clicked" BackgroundColor="#18356F" TextColor="White" FontAttributes="Bold" />
+
 
 
                                                     </StackLayout>
@@ -84,17 +87,88 @@
 
             </StackLayout>
 
+
+               <!--Layout Pedidos-->
+
+            <StackLayout IsVisible="false" VerticalOptions="StartAndExpand" x:Name="StackLayoutPedidos" BackgroundColor="#EEEEEE">
+
+                <Grid RowSpacing="0" BackgroundColor="#EEEEEE">
+
+                    <StackLayout VerticalOptions="FillAndExpand" Grid.Row="0" Grid.Column="0" Orientation="Vertical" Margin="0,0,0,0">
+                        <ListView VerticalOptions="FillAndExpand" x:Name="lsv_pedidos" Grid.Row="0" BackgroundColor="Transparent" HorizontalOptions="CenterAndExpand" SeparatorVisibility="Default"  SeparatorColor="White" HasUnevenRows="True" >
+                            <ListView.ItemTemplate>
+
+                                <DataTemplate>
+
+                                    <ViewCell>
+
+
+                                        <!--ITEM-->
+                                        <StackLayout Margin="0,0,0,5" VerticalOptions="FillAndExpand">
+                                            <Frame HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" HasShadow="False" Margin="10" CornerRadius="4" BackgroundColor="#FFFFFF">
+                                                <StackLayout BackgroundColor="#FFFFFF" Padding="10,0,5,5" Spacing="0">
+
+
+
+                                                    <StackLayout Orientation="Vertical" >
+
+                                                        <StackLayout Orientation="Horizontal"  HorizontalOptions="Center" >
+                                                            <Frame CornerRadius="4" HasShadow="False"  Padding="0" IsClippedToBounds="True">
+                                                                <Image Aspect="AspectFill"  HeightRequest="200" WidthRequest="250" Source="{Binding foto}" />
+                                                            </Frame>
+                                                        </StackLayout>
+
+                                                        <StackLayout Orientation="Horizontal" VerticalOptions="Center" Margin="0,5,0,10">
+
+                                                            <Label Text="{Binding nombre}" VerticalOptions="Center"  FontSize="14" FontAttributes="Bold" TextColor="#1E2021" />
+                                                            <Frame HasShadow="False" Padding="10" VerticalOptions="Center"  CornerRadius="4" BackgroundColor="#FFCC00" HorizontalOptions="EndAndExpand">
+                                                                <StackLayout Orientation="Horizontal">
+
+                                                                    <Label VerticalOptions="Center" Text="RD$" FontAttributes="Bold" FontSize="12" TextColor="#333" />
+                                                                    <Label VerticalOptions="Center" Text="{Binding precio}" FontAttributes="Bold" FontSize="12" TextColor="#333" />
+                                                                </StackLayout>
+                                                            </Frame>
+
+                                                        </StackLayout>
+
+
+                                                        <StackLayout Orientation="Horizontal" VerticalOptions="Center" Margin="0,5,0,10">
+
+                                                            <Label Text="{Binding descripcion}" VerticalOptions="Center"  FontSize="14" FontAttributes="Bold" TextColor="#333" />
+                                                        </StackLayout>
+
+                                                        <Button Text="Agregar" BackgroundColor="#18356F" TextColor="White" FontAttributes="Bold" />
+
+
+
+                                                    </StackLayout>
+
+
+
+                                                </StackLayout>
+                                            </Frame>
+                                            <!--<BoxView BackgroundColor="Black" HeightRequest="2"/>-->
+                                        </StackLayout>
+                                    </ViewCell>
+
+                                </DataTemplate>
+
+
+                            </ListView.ItemTemplate>
+                        </ListView>
+
+                    </StackLayout>
+
+
+
+                </Grid>
+
+
+            </StackLayout>
+
+
             <!--Apartado del menu de abajo-->
             <StackLayout  Spacing="0" VerticalOptions="End" HeightRequest="90"  Margin="0,0,0,0" BackgroundColor="White">
-
-                <!--<StackLayout Orientation="Horizontal">
-                    <Label  TextColor="#333"  Margin="15,0,0,0" Text="Inicio"/>
-                    <Label  TextColor="#333"  Margin="40,0,0,0" Text="Ajustes"/>
-                    <Label  TextColor="#333"  Margin="36,0,0,0" Text="Historial"/>
-                    <Label  TextColor="#333"  Margin="35,0,0,0" Text="Ayuda"/>
-                    <Label  TextColor="#333"  Margin="48,0,0,0" Text="Info"/>
-                </StackLayout>-->
-
 
                 <StackLayout Grid.Row="1" Spacing="0" VerticalOptions="End" HeightRequest="70" Margin="0,0,0,0" BackgroundColor="White">
 
@@ -103,7 +177,7 @@
                     <StackLayout Orientation="Horizontal" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Spacing="0" Margin="0,1,0,18" >
 
                         <StackLayout Orientation="Horizontal" BackgroundColor="White" HorizontalOptions="FillAndExpand" x:Name="gridInicio" Spacing="0">
-                            <Image Source="hamburger1.png"  VerticalOptions="CenterAndExpand" HorizontalOptions="EndAndExpand" Margin="0,0,12,0" HeightRequest="30" x:Name="btnImgInicio"/>
+                            <Image Source="hamburger1.png"  VerticalOptions="CenterAndExpand" HorizontalOptions="EndAndExpand" Margin="0,0,12,0" HeightRequest="30" x:Name="btnMenu"/>
                         </StackLayout>
 
                         <BoxView HeightRequest="40" WidthRequest="1" BackgroundColor="#818285" VerticalOptions="Center" HorizontalOptions="Start" Opacity="0.7" />
@@ -114,8 +188,8 @@
 
                         <BoxView HeightRequest="40" WidthRequest="1" BackgroundColor="#818285" VerticalOptions="Center" Opacity="0.7"/>
 
-                        <StackLayout  Margin="10,0,10,0" BackgroundColor="White" x:Name="gridHistorialPartidas">
-                            <Image Source="buy2.png" Margin="12,0,12,0" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" HeightRequest="30" x:Name="btnImgHistorial"/>
+                        <StackLayout  Margin="10,0,10,0" BackgroundColor="White" x:Name="gridPedidos">
+                            <Image Source="buy2.png" Margin="12,0,12,0" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" HeightRequest="30" x:Name="btnPedidos"/>
                         </StackLayout>
 
                         <BoxView HeightRequest="40" WidthRequest="1" BackgroundColor="#818285" VerticalOptions="Center" Opacity="0.7"/>
