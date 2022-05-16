@@ -33,54 +33,68 @@ namespace FastFoodApp.Pantallas
 
         void TxtCantidad_TextChanged(System.Object sender, Xamarin.Forms.TextChangedEventArgs e)
         {
-            int Dinerotxt = Convert.ToInt32(TxtDinero.Text);
-
-            int TotalTxt = Convert.ToInt32(LblTotal.Text.Replace("RD$ ", ""));
-
-            if (Dinerotxt < TotalTxt)
+            if (!string.IsNullOrEmpty(TxtDinero.Text))
             {
-                TxtDinero_TextChanged(sender, e);
+                int Dinerotxt = Convert.ToInt32(TxtDinero.Text);
 
-            }
+                int TotalTxt = Convert.ToInt32(LblTotal.Text.Replace("RD$ ", ""));
 
-            if (string.IsNullOrEmpty(TxtCantidad.Text))
-            {
-                LblTotal.Text = App.Precio.ToString();
-            }
-            else
-            {
-                int totalcantidad = Convert.ToInt32(TxtCantidad.Text);
-                LblTotal.Text = (App.Precio * totalcantidad + App.envio).ToString();
-            }
-        }
-
-        private void TxtDinero_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-            int Dinerotxt = Convert.ToInt32(TxtDinero.Text);
-            int TotalTxt = Convert.ToInt32(LblTotal.Text.Replace("RD$ ", ""));
-
-            if (Dinerotxt < TotalTxt)
-            {
-                int total = Convert.ToInt32(LblTotal.Text.Replace("RD$ ", ""));
-                int dinero = Convert.ToInt32(TxtDinero.Text);
-                int devuelta = dinero - total;
-                lbldevuelta.Text = devuelta.ToString();
-            }
-            else
-            {
-                if (string.IsNullOrEmpty(TxtDinero.Text))
+                if (Dinerotxt < TotalTxt)
                 {
+                    TxtDinero_TextChanged(sender, e);
+
+                }
+
+                if (string.IsNullOrEmpty(TxtCantidad.Text))
+                {
+                    LblTotal.Text = App.Precio.ToString();
                     lbldevuelta.Text = "0";
                 }
                 else
                 {
+                    int totalcantidad = Convert.ToInt32(TxtCantidad.Text);
+                    LblTotal.Text = (App.Precio * totalcantidad + App.envio).ToString();
                     int total = Convert.ToInt32(LblTotal.Text.Replace("RD$ ", ""));
                     int dinero = Convert.ToInt32(TxtDinero.Text);
                     int devuelta = dinero - total;
                     lbldevuelta.Text = devuelta.ToString();
                 }
             }
+           
+        }
+
+        private void TxtDinero_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (!string.IsNullOrEmpty(TxtDinero.Text))
+            {
+                int Dinerotxt = Convert.ToInt32(TxtDinero.Text);
+                int TotalTxt = Convert.ToInt32(LblTotal.Text.Replace("RD$ ", ""));
+
+                if (Dinerotxt < TotalTxt)
+                {
+                    //int total = Convert.ToInt32(LblTotal.Text.Replace("RD$ ", ""));
+                    //int dinero = Convert.ToInt32(TxtDinero.Text);
+                    //int devuelta = dinero - total;
+                    //lbldevuelta.Text = devuelta.ToString();
+                }
+                else
+                {
+                    if (string.IsNullOrEmpty(TxtDinero.Text))
+                    {
+                        lbldevuelta.Text = "0";
+                    }
+                    else
+                    {
+                        int total = Convert.ToInt32(LblTotal.Text.Replace("RD$ ", ""));
+                        int dinero = Convert.ToInt32(TxtDinero.Text);
+                        int devuelta = dinero - total;
+                        lbldevuelta.Text = devuelta.ToString();
+                    }
+                }
+
+            }
+
+           
 
         }
     }
