@@ -105,6 +105,7 @@ namespace FastFoodApp.Pantallas
 
             }
             App.Precio = ob.precio;
+            App.producto = ob.nombre;
             modalCantidad = new ModalCantidad();
             modalCantidad.Disappearing += ModalCantidad_Disappearing;
             await PopupNavigation.PushAsync(modalCantidad);
@@ -114,6 +115,7 @@ namespace FastFoodApp.Pantallas
 
         private void ModalCantidad_Disappearing(object sender, EventArgs e)
         {
+            App.producto = "";
         }
 
       

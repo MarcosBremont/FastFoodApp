@@ -21,6 +21,7 @@ namespace FastFoodApp
         public static string facebook { get; set; }
         public static string encargado_empresa { get; set; }
         public static int envio { get; set; }
+        public static string producto { get; set; }
 
         public App()
         {

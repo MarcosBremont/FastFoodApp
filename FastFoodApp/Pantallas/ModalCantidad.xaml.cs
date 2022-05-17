@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -11,7 +12,7 @@ namespace FastFoodApp.Pantallas
     public partial class ModalCantidad : Rg.Plugins.Popup.Pages.PopupPage
     {
         public event EventHandler OnLLamarOtraPantalla;
-
+        string totaldeproductos = "";
         public ModalCantidad()
         {
             InitializeComponent();
@@ -21,7 +22,20 @@ namespace FastFoodApp.Pantallas
             TxtCantidad.Text = "1";
         }
 
-        void BtnagregarCantidad_Clicked(System.Object sender, System.EventArgs e)
+        public async Task EnviarPedido(string usuario, string email, string telefono, int concuantopagara, int devuelta, string direccion, string producto, string latitud, string longitud)
+        {
+            try
+            {
+                FastFoodApp.Metodos.Metodos metodos = new FastFoodApp.Metodos.Metodos();
+                var datos = await metodos.AgregarPedido(usuario, email, telefono, concuantopagara, devuelta, direccion, producto, latitud, longitud);
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
+
+        async void BtnagregarCantidad_Clicked(System.Object sender, System.EventArgs e)
         {
             if (string.IsNullOrEmpty(TxtCantidad.Text) || string.IsNullOrEmpty(TxtDinero.Text))
             {
@@ -132,9 +146,15 @@ namespace FastFoodApp.Pantallas
                 }
 
             }
+        }
 
-
-
+        private async void BtnHacerPedido_Clicked(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(TxtCantidad.Text) || string.IsNullOrEmpty(TxtDinero.Text))
+            {
+                Acr.UserDialogs.UserDialogs.Instance.Alert("Por favor rellene todos los campos");
+            }
+            EnviarPedido(App.nombre, App.correo, App.whatsapp, Convert.ToInt32(TxtDinero.Text), Convert.ToInt32(lbldevuelta.Text), App.direccion, "1 Hamburguesa Clasica", App.latitud, App.longitud);
         }
     }
 }
