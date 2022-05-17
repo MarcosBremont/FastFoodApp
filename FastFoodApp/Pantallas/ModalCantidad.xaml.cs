@@ -1,7 +1,7 @@
 ﻿using Rg.Plugins.Popup.Services;
 using System;
 using System.Collections.Generic;
-
+using System.Text.RegularExpressions;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -38,21 +38,19 @@ namespace FastFoodApp.Pantallas
 
         void TxtCantidad_TextChanged(System.Object sender, Xamarin.Forms.TextChangedEventArgs e)
         {
-            TxtCantidad.Text.Replace(".", " ");
-            TxtCantidad.Text.Replace("#", "");
-            TxtCantidad.Text.Replace("$", "");
-            TxtCantidad.Text.Replace(",", "");
-            TxtCantidad.Text.Replace(" ", "");
-            if (!string.IsNullOrEmpty(TxtCantidad.Text.Replace(".","")))
+
+            double.TryParse(TxtCantidad.Text, out double cantidad);
+
+            if (!string.IsNullOrEmpty(cantidad.ToString()))
             {
-                if (TxtCantidad.Text == "0")
+                if (cantidad == 0)
                 {
                     LblTotal.Text = "0";
                 }
                 else
                 {
 
-                    int totalcantidad = Convert.ToInt32(TxtCantidad.Text);
+                    int totalcantidad = Convert.ToInt32(cantidad);
                     LblTotal.Text = (App.Precio * totalcantidad + App.envio).ToString();
 
                     if (!string.IsNullOrEmpty(TxtDinero.Text))
@@ -63,7 +61,7 @@ namespace FastFoodApp.Pantallas
 
 
 
-                        if (string.IsNullOrEmpty(TxtCantidad.Text))
+                        if (string.IsNullOrEmpty(cantidad.ToString()))
                         {
                             LblTotal.Text = App.Precio.ToString();
                             lbldevuelta.Text = "0";
@@ -74,7 +72,7 @@ namespace FastFoodApp.Pantallas
                             int total = Convert.ToInt32(LblTotal.Text.Replace("RD$ ", ""));
                             int dinero = Convert.ToInt32(TxtDinero.Text);
                             int devuelta = dinero - total;
-                            if (TxtCantidad.Text != "0")
+                            if (cantidad != 0)
                             {
                                 lbldevuelta.Text = devuelta.ToString();
                             }
@@ -104,28 +102,30 @@ namespace FastFoodApp.Pantallas
 
         private void TxtDinero_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (!string.IsNullOrEmpty(TxtDinero.Text))
+            double.TryParse(TxtDinero.Text, out double dineroConvertido);
+
+            if (!string.IsNullOrEmpty(dineroConvertido.ToString()))
             {
-                int Dinerotxt = Convert.ToInt32(TxtDinero.Text);
+                int Dinerotxt = Convert.ToInt32(dineroConvertido);
                 int TotalTxt = Convert.ToInt32(LblTotal.Text.Replace("RD$ ", ""));
 
                 if (Dinerotxt < TotalTxt)
                 {
                     //int total = Convert.ToInt32(LblTotal.Text.Replace("RD$ ", ""));
-                    //int dinero = Convert.ToInt32(TxtDinero.Text);
+                    //int dinero = Convert.ToInt32(dineroConvertido);
                     //int devuelta = dinero - total;
                     lbldevuelta.Text = "0";
                 }
                 else
                 {
-                    if (string.IsNullOrEmpty(TxtDinero.Text))
+                    if (string.IsNullOrEmpty(dineroConvertido.ToString()))
                     {
                         lbldevuelta.Text = "0";
                     }
                     else
                     {
                         int total = Convert.ToInt32(LblTotal.Text.Replace("RD$ ", ""));
-                        int dinero = Convert.ToInt32(TxtDinero.Text);
+                        int dinero = Convert.ToInt32(dineroConvertido);
                         int devuelta = dinero - total;
                         lbldevuelta.Text = devuelta.ToString();
                     }
