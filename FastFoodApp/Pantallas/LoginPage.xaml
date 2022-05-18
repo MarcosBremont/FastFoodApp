@@ -19,14 +19,14 @@
                 <Frame Padding="0" BorderColor="White" HasShadow="False" CornerRadius="8" Margin="0,0,0,15" x:Name="FrEmail" >
                     <StackLayout Orientation="Horizontal" Margin="4" >
                         <Image Source="Email.png" WidthRequest="25" Margin="5"></Image>
-                        <customcontrol:CustomEntry MaxLength="11" HorizontalOptions="FillAndExpand" x:Name="TxtEmail"  Keyboard="Email"  Placeholder="Email"/>
+                        <customcontrol:CustomEntry HorizontalOptions="FillAndExpand" x:Name="TxtEmail"  Keyboard="Email"  Placeholder="Email"/>
                     </StackLayout>
                 </Frame>
 
                 <Frame Padding="0" BorderColor="White" HasShadow="False" CornerRadius="8" Margin="0,0,0,15" x:Name="FrPassword" >
                     <StackLayout Orientation="Horizontal" Margin="4" >
                         <Image Source="Password.png" WidthRequest="25" Margin="5"></Image>
-                        <customcontrol:CustomEntry MaxLength="11" HorizontalOptions="FillAndExpand" IsPassword="True" x:Name="TxtPassword"  Keyboard="Default"  Placeholder="Contraseña"/>
+                        <customcontrol:CustomEntry HorizontalOptions="FillAndExpand" IsPassword="True" x:Name="TxtPassword"  Keyboard="Default"  Placeholder="Contraseña"/>
                     </StackLayout>
                 </Frame>
 

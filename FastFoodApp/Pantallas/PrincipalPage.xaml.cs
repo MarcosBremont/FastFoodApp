@@ -48,6 +48,21 @@ namespace FastFoodApp.Pantallas
                 }),
                 NumberOfTapsRequired = 1
             });
+
+            gridMiPerfil.GestureRecognizers.Add(new TapGestureRecognizer
+            {
+                Command = new Command(async () =>
+                {
+                    StackLayoutPaginaPrincipal.IsVisible = false;
+                    StackLayoutPedidos.IsVisible = false;
+                    StackLayoutMiPerfil.IsVisible = false;
+                    btnPedidos.Source = "user1";
+                    btnMenu.Source = "hamburger1";
+                    btnPedidos.Source = "buy1";
+
+                }),
+                NumberOfTapsRequired = 1
+            });
         }
 
         public async Task LlenarMenu()

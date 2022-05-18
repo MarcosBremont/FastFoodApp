@@ -10,7 +10,6 @@
         <StackLayout IsVisible="true" Margin="0,0,0,-35" x:Name="StackLayoutEquipo1" BackgroundColor="#EEEEEE">
 
             <!--Layout Principal-->
-
             <StackLayout IsVisible="true" VerticalOptions="StartAndExpand" x:Name="StackLayoutPaginaPrincipal" BackgroundColor="#EEEEEE">
 
                 <Grid RowSpacing="0" BackgroundColor="#EEEEEE">
@@ -87,9 +86,7 @@
 
             </StackLayout>
 
-
-               <!--Layout Pedidos-->
-
+            <!--Layout Pedidos-->
             <StackLayout IsVisible="false" VerticalOptions="StartAndExpand" x:Name="StackLayoutPedidos" BackgroundColor="#EEEEEE">
 
                 <Grid RowSpacing="0" BackgroundColor="#EEEEEE">
@@ -166,6 +163,56 @@
 
             </StackLayout>
 
+            <!--Layout Mi Perfil-->
+            <StackLayout IsVisible="false" VerticalOptions="StartAndExpand" x:Name="StackLayoutMiPerfil" BackgroundColor="#EEEEEE">
+
+                <Grid RowSpacing="0" BackgroundColor="#EEEEEE">
+
+                    <StackLayout VerticalOptions="FillAndExpand" Grid.Row="0" Grid.Column="0" Orientation="Vertical" Margin="0,0,0,0">
+                        <ListView VerticalOptions="FillAndExpand" x:Name="lsv_miperfil" Grid.Row="0" BackgroundColor="Transparent" HorizontalOptions="CenterAndExpand" SeparatorVisibility="Default"  SeparatorColor="White" HasUnevenRows="True" >
+                            <ListView.ItemTemplate>
+
+                                <DataTemplate>
+
+                                    <ViewCell>
+
+
+                                        <!--ITEM-->
+                                        <StackLayout Margin="0,0,0,5" VerticalOptions="FillAndExpand">
+                                            <Frame HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" HasShadow="False" Margin="10" CornerRadius="4" BackgroundColor="#FFFFFF">
+                                                <StackLayout BackgroundColor="#FFFFFF" Padding="10,0,5,5" Spacing="0">
+
+
+
+                                                    <StackLayout Orientation="Vertical" >
+
+                                                       
+
+
+                                                    </StackLayout>
+
+
+
+                                                </StackLayout>
+                                            </Frame>
+                                            <!--<BoxView BackgroundColor="Black" HeightRequest="2"/>-->
+                                        </StackLayout>
+                                    </ViewCell>
+
+                                </DataTemplate>
+
+
+                            </ListView.ItemTemplate>
+                        </ListView>
+
+                    </StackLayout>
+
+
+
+                </Grid>
+
+
+            </StackLayout>
 
             <!--Apartado del menu de abajo-->
             <StackLayout  Spacing="0" VerticalOptions="End" HeightRequest="90"  Margin="0,0,0,0" BackgroundColor="White">
@@ -200,8 +247,8 @@
 
                         <BoxView HeightRequest="40" WidthRequest="1" BackgroundColor="#818285" VerticalOptions="Center" Opacity="0.7"/>
 
-                        <StackLayout Margin="10,0,10,0" Orientation="Horizontal" BackgroundColor="White" HorizontalOptions="FillAndExpand" x:Name="gridInfo" Spacing="0">
-                            <Image Source="user2.png" Margin="12,0,0,0" VerticalOptions="CenterAndExpand" HorizontalOptions="StartAndExpand" HeightRequest="30" x:Name="btnImgInfo"/>
+                        <StackLayout Margin="10,0,10,0" Orientation="Horizontal" BackgroundColor="White" HorizontalOptions="FillAndExpand" x:Name="gridMiPerfil" Spacing="0">
+                            <Image Source="user2.png" Margin="12,0,0,0" VerticalOptions="CenterAndExpand" HorizontalOptions="StartAndExpand" HeightRequest="30" x:Name="btnMiPerfil"/>
                         </StackLayout>
 
                     </StackLayout>
