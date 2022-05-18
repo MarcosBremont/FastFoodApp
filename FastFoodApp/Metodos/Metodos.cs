@@ -36,9 +36,9 @@ namespace FastFoodApp.Metodos
 
 
 
-        public async Task<Result> AgregarPedido(string usuario, string email, string telefono, int concuantopagara, int devuelta, string direccion, string producto, string latitud, string longitud)
+        public async Task<Result> AgregarPedido(string usuario, string email, string telefono, int concuantopagara, int devuelta, string direccion, StringBuilder producto, string latitud, string longitud)
         {
-            var result = await herramientas.EjecutarSentenciaEnApiLibre($"FastFood/AgregarPedido/{usuario.ToUpper()}/{email.ToUpper()}/{telefono.ToUpper()}/{concuantopagara}/{devuelta}/{direccion.ToUpper()}/{producto.ToUpper()}/{latitud}/{longitud}");
+            var result = await herramientas.EjecutarSentenciaEnApiLibre($"FastFood/AgregarPedido/{usuario.ToUpper()}/{email.ToUpper()}/{telefono.ToUpper()}/{concuantopagara}/{devuelta}/{direccion.ToUpper()}/{producto}/{latitud}/{longitud}");
             var response = Newtonsoft.Json.JsonConvert.DeserializeObject<Result>(result);
             return response;
         }// Fin del método ObtenerEmpresa

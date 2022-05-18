@@ -169,41 +169,37 @@
                 <Grid RowSpacing="0" BackgroundColor="#EEEEEE">
 
                     <StackLayout VerticalOptions="FillAndExpand" Grid.Row="0" Grid.Column="0" Orientation="Vertical" Margin="0,0,0,0">
-                        <ListView VerticalOptions="FillAndExpand" x:Name="lsv_miperfil" Grid.Row="0" BackgroundColor="Transparent" HorizontalOptions="CenterAndExpand" SeparatorVisibility="Default"  SeparatorColor="White" HasUnevenRows="True" >
-                            <ListView.ItemTemplate>
-
-                                <DataTemplate>
-
-                                    <ViewCell>
-
-
-                                        <!--ITEM-->
-                                        <StackLayout Margin="0,0,0,5" VerticalOptions="FillAndExpand">
-                                            <Frame HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" HasShadow="False" Margin="10" CornerRadius="4" BackgroundColor="#FFFFFF">
-                                                <StackLayout BackgroundColor="#FFFFFF" Padding="10,0,5,5" Spacing="0">
 
 
 
-                                                    <StackLayout Orientation="Vertical" >
-
-                                                       
-
-
-                                                    </StackLayout>
+                        <!--ITEM-->
+                        <Frame HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" HasShadow="False" Margin="10" CornerRadius="4" BackgroundColor="White">
+                            <StackLayout BackgroundColor="White" Padding="10,0,5,5" Spacing="0">
 
 
 
-                                                </StackLayout>
-                                            </Frame>
-                                            <!--<BoxView BackgroundColor="Black" HeightRequest="2"/>-->
-                                        </StackLayout>
-                                    </ViewCell>
+                                <StackLayout Orientation="Vertical" >
 
-                                </DataTemplate>
+                                    <Image HeightRequest="150" Source="user1"/>
+                                    <Label x:Name="LblNombre" FontAttributes="Bold" HorizontalOptions="Center"/>
+                                    <StackLayout Orientation="Horizontal">
+                                        <Label FontAttributes="Bold" HorizontalOptions="Center" Text="Direccion:"/>
+                                        <Label x:Name="lblDireccion" HorizontalOptions="Center" Text="Calle Ramon Maria Piña #25, Jarabacoa"/>
+                                    </StackLayout>
+
+                                    <StackLayout Orientation="Horizontal">
+                                        <Label FontAttributes="Bold" HorizontalOptions="Center" Text="Telefono:"/>
+                                        <Label x:Name="LblTelefono" HorizontalOptions="Center" Text="809-907-3244"/>
+                                    </StackLayout>
+                                    <Button Text="Editar Perfil" TextColor="White" BackgroundColor="#18356F" CornerRadius="4"/>
+                                    
+                                </StackLayout>
 
 
-                            </ListView.ItemTemplate>
-                        </ListView>
+
+                            </StackLayout>
+                        </Frame>
+                        <!--<BoxView BackgroundColor="Black" HeightRequest="2"/>-->
 
                     </StackLayout>
 

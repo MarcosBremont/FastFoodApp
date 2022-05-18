@@ -4,6 +4,7 @@ using Android.App;
 using Android.Content.PM;
 using Android.Runtime;
 using Android.OS;
+using Acr.UserDialogs;
 
 namespace FastFoodApp.Droid
 {
@@ -13,7 +14,7 @@ namespace FastFoodApp.Droid
         protected override void OnCreate(Bundle savedInstanceState)
         {
             Rg.Plugins.Popup.Popup.Init(this);
-
+            UserDialogs.Init(this);
             base.OnCreate(savedInstanceState);
 
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);

@@ -1,6 +1,7 @@
 ﻿using Rg.Plugins.Popup.Services;
 using System;
 using System.Collections.Generic;
+using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Xamarin.Forms;
@@ -12,6 +13,7 @@ namespace FastFoodApp.Pantallas
     public partial class ModalCantidad : Rg.Plugins.Popup.Pages.PopupPage
     {
         public event EventHandler OnLLamarOtraPantalla;
+
         string totaldeproductos = "";
         public ModalCantidad()
         {
@@ -22,7 +24,7 @@ namespace FastFoodApp.Pantallas
             TxtCantidad.Text = "1";
         }
 
-        public async Task EnviarPedido(string usuario, string email, string telefono, int concuantopagara, int devuelta, string direccion, string producto, string latitud, string longitud)
+        public async Task EnviarPedido(string usuario, string email, string telefono, int concuantopagara, int devuelta, string direccion, StringBuilder producto, string latitud, string longitud)
         {
             try
             {
@@ -41,6 +43,10 @@ namespace FastFoodApp.Pantallas
             {
                 Acr.UserDialogs.UserDialogs.Instance.Alert("Por favor rellene todos los campos");
             }
+            //App.listOfStrings.Add(App.producto);
+            App.TodosLosProductosDeLaOrden = App.TodosLosProductosDeLaOrden.Append(App.producto + "-");
+                //App.listOfStrings[0];
+            Acr.UserDialogs.UserDialogs.Instance.Toast(App.producto + "Agregada a tu orden.");
         }
 
         async void BtnCancelar_Clicked(System.Object sender, System.EventArgs e)
@@ -150,11 +156,19 @@ namespace FastFoodApp.Pantallas
 
         private async void BtnHacerPedido_Clicked(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(TxtCantidad.Text) || string.IsNullOrEmpty(TxtDinero.Text))
+            if (await DisplayAlert("Información", "¿Desea hacer su pedido?", "SI", "NO"))
             {
-                Acr.UserDialogs.UserDialogs.Instance.Alert("Por favor rellene todos los campos");
+                if (string.IsNullOrEmpty(TxtCantidad.Text) || string.IsNullOrEmpty(TxtDinero.Text))
+                {
+                    Acr.UserDialogs.UserDialogs.Instance.Alert("Por favor rellene todos los campos");
+                }
+                EnviarPedido(App.nombre, App.correo, App.whatsapp, Convert.ToInt32(TxtDinero.Text), Convert.ToInt32(lbldevuelta.Text), App.direccion, App.TodosLosProductosDeLaOrden, App.latitud, App.longitud);
             }
-            EnviarPedido(App.nombre, App.correo, App.whatsapp, Convert.ToInt32(TxtDinero.Text), Convert.ToInt32(lbldevuelta.Text), App.direccion, "1 Hamburguesa Clasica", App.latitud, App.longitud);
+            else
+            {
+
+            }
+          
         }
     }
 }

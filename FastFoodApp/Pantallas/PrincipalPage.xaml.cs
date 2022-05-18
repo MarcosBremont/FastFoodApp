@@ -20,7 +20,7 @@ namespace FastFoodApp.Pantallas
         {
             InitializeComponent();
             LlenarMenu();
-
+            LlenarMiPerfil();
 
 
             gridPedidos.GestureRecognizers.Add(new TapGestureRecognizer
@@ -29,8 +29,12 @@ namespace FastFoodApp.Pantallas
                 {
                     StackLayoutPaginaPrincipal.IsVisible = false;
                     StackLayoutPedidos.IsVisible = true;
+                    StackLayoutMiPerfil.IsVisible = false;
+
                     btnPedidos.Source = "buy1";
                     btnMenu.Source = "hamburger3";
+                    btnMiPerfil.Source = "user2";
+
 
                 }),
                 NumberOfTapsRequired = 1
@@ -41,9 +45,13 @@ namespace FastFoodApp.Pantallas
                 Command = new Command(async () =>
                 {
                     StackLayoutPaginaPrincipal.IsVisible = true;
+                    StackLayoutMiPerfil.IsVisible = false;
+
                     StackLayoutPedidos.IsVisible = false;
                     btnPedidos.Source = "buy2";
                     btnMenu.Source = "hamburger1";
+                    btnMiPerfil.Source = "user2";
+
 
                 }),
                 NumberOfTapsRequired = 1
@@ -55,14 +63,22 @@ namespace FastFoodApp.Pantallas
                 {
                     StackLayoutPaginaPrincipal.IsVisible = false;
                     StackLayoutPedidos.IsVisible = false;
-                    StackLayoutMiPerfil.IsVisible = false;
-                    btnPedidos.Source = "user1";
-                    btnMenu.Source = "hamburger1";
-                    btnPedidos.Source = "buy1";
+                    StackLayoutMiPerfil.IsVisible = true;
+                    btnPedidos.Source = "buy2";
+                    btnMenu.Source = "hamburger3";
+                    btnMiPerfil.Source = "user1";
 
                 }),
                 NumberOfTapsRequired = 1
             });
+        }
+
+        private void LlenarMiPerfil()
+        {
+            LblNombre.Text = App.nombre;
+            lblDireccion.Text = App.direccion;
+            LblTelefono.Text = App.telefono;
+
         }
 
         public async Task LlenarMenu()
