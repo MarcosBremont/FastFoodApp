@@ -11,6 +11,7 @@ namespace FastFoodApp
     {
         public static int Precio { get; set; }
         public static string nombre { get; set; }
+        public static string apellido { get; set; }
         public static string rnc { get; set; }
         public static string direccion { get; set; }
         public static string telefono { get; set; }

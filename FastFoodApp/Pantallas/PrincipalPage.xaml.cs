@@ -79,8 +79,10 @@ namespace FastFoodApp.Pantallas
         private void LlenarMiPerfil()
         {
             LblNombre.Text = App.nombre;
+            LblApellido.Text = App.apellido;
             lblDireccion.Text = App.direccion;
             LblTelefono.Text = App.telefono;
+            LblEmail.Text = App.correo;
 
         }
 

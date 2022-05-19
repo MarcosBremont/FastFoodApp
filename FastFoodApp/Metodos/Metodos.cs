@@ -53,6 +53,7 @@ namespace FastFoodApp.Metodos
             if (UsuarioResult.respuesta == "OK")
             {
                 App.nombre = UsuarioResult.nombre;
+                App.apellido = UsuarioResult.apellido;
                 App.direccion = UsuarioResult.direccion;
                 App.telefono = UsuarioResult.telefono;
                 App.correo = UsuarioResult.correo;

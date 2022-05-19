@@ -22,6 +22,10 @@ namespace FastFoodApp.Pantallas
             lblprecioenvio.Text = "RD$" + App.envio.ToString() + " Pesos";
             lblprecioenvio.Text.Trim();
             TxtCantidad.Text = "1";
+            if (!string.IsNullOrEmpty(App.DineroEnTxt))
+            {
+                TxtDinero.Text = App.DineroEnTxt;
+            }
         }
 
         public async Task EnviarPedido(string usuario, string email, string telefono, int concuantopagara, int devuelta, string direccion, StringBuilder producto, string latitud, string longitud)
@@ -43,10 +47,18 @@ namespace FastFoodApp.Pantallas
             {
                 Acr.UserDialogs.UserDialogs.Instance.Alert("Por favor rellene todos los campos");
             }
-            //App.listOfStrings.Add(App.producto);
-            App.TodosLosProductosDeLaOrden = App.TodosLosProductosDeLaOrden.Append(App.producto + "-");
-                //App.listOfStrings[0];
-            Acr.UserDialogs.UserDialogs.Instance.Toast(App.producto + "Agregada a tu orden.");
+
+            if (await DisplayAlert("Información", "¿Desea hacer su pedido?", "SI", "NO"))
+            {
+                if (!string.IsNullOrEmpty(TxtDinero.Text))
+                {
+                    App.DineroEnTxt = TxtDinero.Text;
+                }
+
+                App.TodosLosProductosDeLaOrden = App.TodosLosProductosDeLaOrden.Append(App.producto + "-");
+                Acr.UserDialogs.UserDialogs.Instance.Toast(App.producto + "Agregada a tu orden.");
+
+            }
         }
 
         async void BtnCancelar_Clicked(System.Object sender, System.EventArgs e)
@@ -122,7 +134,8 @@ namespace FastFoodApp.Pantallas
 
         private void TxtDinero_TextChanged(object sender, TextChangedEventArgs e)
         {
-            TxtDinero.Text = App.DineroEnTxt;
+   
+
             double.TryParse(TxtDinero.Text, out double dineroConvertido);
 
             if (!string.IsNullOrEmpty(dineroConvertido.ToString()))
@@ -150,24 +163,25 @@ namespace FastFoodApp.Pantallas
                 }
 
             }
-            App.DineroEnTxt = TxtDinero.Text;
         }
 
         private async void BtnHacerPedido_Clicked(object sender, EventArgs e)
         {
             if (await DisplayAlert("Información", "¿Desea hacer su pedido?", "SI", "NO"))
             {
+            
                 if (string.IsNullOrEmpty(TxtCantidad.Text) || string.IsNullOrEmpty(TxtDinero.Text))
                 {
                     Acr.UserDialogs.UserDialogs.Instance.Alert("Por favor rellene todos los campos");
                 }
+
                 EnviarPedido(App.nombre, App.correo, App.whatsapp, Convert.ToInt32(TxtDinero.Text), Convert.ToInt32(lbldevuelta.Text), App.direccion, App.TodosLosProductosDeLaOrden, App.latitud, App.longitud);
             }
             else
             {
 
             }
-          
+
         }
     }
 }
