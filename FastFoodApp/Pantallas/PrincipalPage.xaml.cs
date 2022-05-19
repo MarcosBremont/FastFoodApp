@@ -19,8 +19,9 @@ namespace FastFoodApp.Pantallas
         public PrincipalPage()
         {
             InitializeComponent();
-            LlenarMenu();
+            _ = LlenarMenu();
             LlenarMiPerfil();
+            _ = LlenarPedidos();
 
 
             gridPedidos.GestureRecognizers.Add(new TapGestureRecognizer
@@ -34,6 +35,8 @@ namespace FastFoodApp.Pantallas
                     btnPedidos.Source = "buy1";
                     btnMenu.Source = "hamburger3";
                     btnMiPerfil.Source = "user2";
+
+
 
 
                 }),
@@ -98,6 +101,23 @@ namespace FastFoodApp.Pantallas
             }
         }
 
+        public async Task LlenarPedidos()
+        {
+            try
+            {
+                lsv_pedidos.IsVisible = false;
+                FastFoodApp.Metodos.Metodos metodos = new FastFoodApp.Metodos.Metodos();
+                lsv_pedidos.ItemsSource = null;
+                var datos = await metodos.ObtenerPedidos();
+                lsv_pedidos.ItemsSource = datos;
+                lsv_pedidos.IsVisible = true;
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
+
         protected async override void OnAppearing()
         {
 
@@ -143,13 +163,10 @@ namespace FastFoodApp.Pantallas
 
         }
 
-
         private void ModalCantidad_Disappearing(object sender, EventArgs e)
         {
             App.producto = "";
         }
-
-      
 
         void lsv_menu_ItemSelected(System.Object sender, Xamarin.Forms.SelectedItemChangedEventArgs e)
         {

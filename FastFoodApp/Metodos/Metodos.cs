@@ -64,5 +64,13 @@ namespace FastFoodApp.Metodos
             return UsuarioResult;
         }
 
+        public async Task<List<EPedidos>> ObtenerPedidos()
+        {
+            var result = await herramientas.EjecutarSentenciaEnApiLibre($"FastFood/ObtenerPedidos");
+            var lista_pedidos = Newtonsoft.Json.JsonConvert.DeserializeObject<List<EPedidos>>(result);
+
+            return lista_pedidos;
+        } // Fin del método ObtenerMenu
+
     }
 }

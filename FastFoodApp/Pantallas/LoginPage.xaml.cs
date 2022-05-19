@@ -1,5 +1,6 @@
 ﻿using Acr.UserDialogs;
 using FastFoodApp.Entidad;
+using FastFoodApp.Modelo;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,6 +15,7 @@ namespace FastFoodApp.Pantallas
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class LoginPage : ContentPage
     {
+        ToastConfigClass toastConfig = new ToastConfigClass();
         public LoginPage()
         {
             InitializeComponent();
@@ -40,7 +42,7 @@ namespace FastFoodApp.Pantallas
                     var result = await metodos.IniciarSesion(TxtEmail.Text, TxtPassword.Text);
                     if (result.respuesta == "OK")
                     {
-                        Acr.UserDialogs.UserDialogs.Instance.Toast($"Bienvenido {result.nombre}");
+                        toastConfig.MostrarNotificacion($"Bienvenido {result.nombre}", ToastPosition.Top, 3, "#51C560");
                         await Navigation.PushModalAsync(new PrincipalPage());
                     }
                     else

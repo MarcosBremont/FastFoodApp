@@ -132,9 +132,6 @@ namespace FastFoodApp.Pantallas
 
                 if (Dinerotxt < TotalTxt)
                 {
-                    //int total = Convert.ToInt32(LblTotal.Text.Replace("RD$ ", ""));
-                    //int dinero = Convert.ToInt32(dineroConvertido);
-                    //int devuelta = dinero - total;
                     lbldevuelta.Text = "0";
                 }
                 else
