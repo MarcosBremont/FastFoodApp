@@ -4,7 +4,7 @@
              x:Class="FastFoodApp.Pantallas.PrincipalPage"
              NavigationPage.HasNavigationBar="False"
              BackgroundColor="#EEEEEE"
-             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core" xmlns:customcontrol="clr-namespace:FastFoodApp.ControlesPersonalizados"
              ios:Page.UseSafeArea="true">
     <ContentPage.Content>
         <StackLayout IsVisible="true" Margin="0,0,0,-35" x:Name="StackLayoutEquipo1" BackgroundColor="#EEEEEE">
@@ -170,6 +170,73 @@
 
             </StackLayout>
 
+            <!--Layout Pedidos-->
+            <StackLayout IsVisible="false" VerticalOptions="StartAndExpand" x:Name="StackLayoutTuCarrito" BackgroundColor="#EEEEEE">
+
+                <Grid RowSpacing="0" BackgroundColor="#EEEEEE">
+
+                    <StackLayout VerticalOptions="FillAndExpand" Grid.Row="0" Grid.Column="0" Orientation="Vertical" Margin="0,0,0,0">
+                        <ListView VerticalOptions="FillAndExpand" x:Name="lsv_Carrito" Grid.Row="0" BackgroundColor="Transparent" HorizontalOptions="CenterAndExpand" SeparatorVisibility="Default"  SeparatorColor="White" HasUnevenRows="True" >
+                            <ListView.ItemTemplate>
+
+                                <DataTemplate>
+
+                                    <ViewCell>
+
+
+                                        <!--ITEM-->
+                                        <StackLayout Margin="0,0,0,5" VerticalOptions="FillAndExpand">
+                                           
+                                            <!--<BoxView BackgroundColor="Black" HeightRequest="2"/>-->
+                                        </StackLayout>
+                                    </ViewCell>
+
+                                </DataTemplate>
+
+
+                            </ListView.ItemTemplate>
+                        </ListView>
+
+                        <Frame HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" HasShadow="False" Margin="10" CornerRadius="4" BackgroundColor="#FFFFFF">
+                            <StackLayout BackgroundColor="#FFFFFF" Padding="10,0,5,5" Spacing="0">
+
+
+
+                                <StackLayout Orientation="Vertical" >
+
+
+                                    <Frame Padding="0" BorderColor="White" HasShadow="False" CornerRadius="8" Margin="0,0,0,15" x:Name="FrConCuantoPagaras" >
+                                        <StackLayout Orientation="Horizontal" Margin="4" >
+                                            <Image Source="Dollar.png" WidthRequest="25" Margin="5"></Image>
+                                            <customcontrol:CustomEntry MaxLength="11" TextChanged="TxtDinero_TextChanged" HorizontalOptions="FillAndExpand" x:Name="TxtDinero"  Keyboard="Numeric"  Placeholder="¿Con cuanto pagaras?"/>
+                                        </StackLayout>
+                                    </Frame>
+
+                                    <StackLayout Orientation="Horizontal">
+                                        <Label Text="Devuelta:" Grid.Row="0" HorizontalTextAlignment="Center" TextColor="#333" FontAttributes="Bold" FontSize="Medium"/>
+                                        <Label Text="0" Grid.Row="0" x:Name="lbldevuelta" HorizontalTextAlignment="Center" TextColor="#333" FontAttributes="Bold"  FontSize="Medium"/>
+                                    </StackLayout>
+
+                                    <Label Text="0" Grid.Row="0" x:Name="LblTotal" HorizontalTextAlignment="Center" TextColor="#333" FontAttributes="Bold"  FontSize="Medium"/>
+                                    <Button Text="Hacer Pedido" x:Name="BtnHacerPedido" VerticalOptions="EndAndExpand" Clicked="BtnHacerPedido_Clicked" FontSize="14" FontAttributes="Bold" CornerRadius="4"  BackgroundColor="#FFCC00" TextColor="white" Margin="10,0,10,10 "></Button>
+
+                                </StackLayout>
+
+
+
+                            </StackLayout>
+                        </Frame>
+
+                    </StackLayout>
+
+
+
+                </Grid>
+
+
+            </StackLayout>
+
+            
             <!--Layout Mi Perfil-->
             <StackLayout IsVisible="false" VerticalOptions="StartAndExpand" x:Name="StackLayoutMiPerfil" BackgroundColor="#EEEEEE">
 
@@ -239,8 +306,8 @@
 
                         <BoxView HeightRequest="40" WidthRequest="1" BackgroundColor="#818285" VerticalOptions="Center" HorizontalOptions="Start" Opacity="0.7" />
 
-                        <StackLayout Margin="10,0,10,0" BackgroundColor="White" x:Name="gridconfig">
-                            <Image Source="hamburger3.png" Margin="12,0,12,0" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" HeightRequest="30" x:Name="btnImgConfiguracion"/>
+                        <StackLayout Margin="10,0,10,0" BackgroundColor="White" x:Name="gridMiCarrito">
+                            <Image Source="hamburger3.png" Margin="12,0,12,0" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" HeightRequest="30" x:Name="btnImgCarrito"/>
                         </StackLayout>
 
                         <BoxView HeightRequest="40" WidthRequest="1" BackgroundColor="#818285" VerticalOptions="Center" Opacity="0.7"/>
