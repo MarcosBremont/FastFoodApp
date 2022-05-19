@@ -25,6 +25,7 @@ namespace FastFoodApp
         public static int envio { get; set; }
         public static int devuelta { get; set; }
         public static string producto { get; set; }
+        public static string DineroEnTxt { get; set; }
         public static StringBuilder TodosLosProductosDeLaOrden = new StringBuilder();
 
         public static List<StringBuilder> listOfStrings = new List<StringBuilder>();

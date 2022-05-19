@@ -122,6 +122,7 @@ namespace FastFoodApp.Pantallas
 
         private void TxtDinero_TextChanged(object sender, TextChangedEventArgs e)
         {
+            TxtDinero.Text = App.DineroEnTxt;
             double.TryParse(TxtDinero.Text, out double dineroConvertido);
 
             if (!string.IsNullOrEmpty(dineroConvertido.ToString()))
@@ -152,6 +153,7 @@ namespace FastFoodApp.Pantallas
                 }
 
             }
+            App.DineroEnTxt = TxtDinero.Text;
         }
 
         private async void BtnHacerPedido_Clicked(object sender, EventArgs e)
