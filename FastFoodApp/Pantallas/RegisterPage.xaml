@@ -1,12 +1,74 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="FastFoodApp.Pantallas.RegisterPage">
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:customcontrol="clr-namespace:FastFoodApp.ControlesPersonalizados"
+             x:Class="FastFoodApp.Pantallas.RegisterPage" BackgroundImageSource="foodhamburguer.jpg"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             ios:Page.UseSafeArea="True">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+
+            <Frame BackgroundColor="Transparent" Padding="1">
+                <StackLayout HorizontalOptions="Center" Margin="0,0,0,0">
+                    <Image WidthRequest="254" Source="Fast_Food_Logo.png" ></Image>
+                </StackLayout>
+            </Frame>
+
+            <StackLayout Margin="0,0,0,0" Padding="20" VerticalOptions="Center">
+
+                <Label Margin="0,0,0,10" Text="Registrar" FontSize="22" FontAttributes="Bold" TextColor="White"></Label>
+
+                <Frame Padding="0" BorderColor="White" HasShadow="False" CornerRadius="8" Margin="0,0,0,15" x:Name="FrEmail" >
+                    <StackLayout Orientation="Horizontal" Margin="4" >
+                        <Image Source="Email.png" WidthRequest="25" Margin="5"></Image>
+                        <customcontrol:CustomEntry HorizontalOptions="FillAndExpand" x:Name="TxtEmail" Keyboard="Email"  Placeholder="Email"/>
+                    </StackLayout>
+                </Frame>
+
+                <Frame Padding="0" BorderColor="White" HasShadow="False" CornerRadius="8" Margin="0,0,0,15">
+                    <StackLayout Orientation="Horizontal" Margin="4" >
+                        <Image Source="Password.png" WidthRequest="25" Margin="5"></Image>
+                        <customcontrol:CustomEntry HorizontalOptions="FillAndExpand" x:Name="TxtNombre"  Keyboard="Default"  Placeholder="Nombre"/>
+                    </StackLayout>
+                </Frame>
+
+                <Frame Padding="0" BorderColor="White" HasShadow="False" CornerRadius="8" Margin="0,0,0,15">
+                    <StackLayout Orientation="Horizontal" Margin="4" >
+                        <Image Source="Password.png" WidthRequest="25" Margin="5"></Image>
+                        <customcontrol:CustomEntry HorizontalOptions="FillAndExpand" x:Name="TxtApellido" Keyboard="Default"  Placeholder="Apellido"/>
+                    </StackLayout>
+                </Frame>
+
+                <Frame Padding="0" BorderColor="White" HasShadow="False" CornerRadius="8" Margin="0,0,0,15" x:Name="FrPassword" >
+                    <StackLayout Orientation="Horizontal" Margin="4" >
+                        <Image Source="Password.png" WidthRequest="25" Margin="5"></Image>
+                        <customcontrol:CustomEntry HorizontalOptions="FillAndExpand" IsPassword="True" x:Name="TxtPassword"  Keyboard="Default"  Placeholder="Contraseña"/>
+                    </StackLayout>
+                </Frame>
+
+                <Frame Padding="0" BorderColor="White" HasShadow="False" CornerRadius="8" Margin="0,0,0,15">
+                    <StackLayout Orientation="Horizontal" Margin="4" >
+                        <Image Source="Location.png" WidthRequest="25" Margin="5"></Image>
+                        <customcontrol:CustomEntry HorizontalOptions="FillAndExpand" x:Name="TxtDireccion"  Keyboard="Default"  Placeholder="Direccion"/>
+                    </StackLayout>
+                </Frame>
+
+
+                <Frame Padding="0" BorderColor="White" HasShadow="False" CornerRadius="8" Margin="0,0,0,15" >
+                    <StackLayout Orientation="Horizontal" Margin="4" >
+                        <Image Source="Telephone.png" WidthRequest="25" Margin="5"></Image>
+                        <customcontrol:CustomEntry HorizontalOptions="FillAndExpand"  x:Name="TxtTelefono"  Keyboard="Telephone"  Placeholder="Telefono"/>
+                    </StackLayout>
+                </Frame>
+
+
+                <Button Clicked="BtnRegistrar_Clicked" VerticalOptions="Center" x:Name="BtnRegistrar" Text="Registrar" FontAttributes="Bold" CornerRadius="4" TextColor="#18356F" BackgroundColor="#FFCC00"/>
+
+                <StackLayout x:Name="LayoutIniciarSesion" Orientation="Horizontal" HorizontalOptions="Center">
+                    <Label HorizontalOptions="Center" TextColor="White" Margin="0,8,0,0" Text="¿Ya tienes una cuenta?"></Label>
+                    <Label HorizontalOptions="Center" TextColor="White" Margin="0,8,0,0" FontAttributes="Bold" Text="Iniciar Sesión"></Label>
+                </StackLayout>
+            </StackLayout>
+
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

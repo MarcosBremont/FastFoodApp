@@ -33,10 +33,10 @@ namespace FastFoodApp.Pantallas
                     StackLayoutMiPerfil.IsVisible = false;
                     StackLayoutTuCarrito.IsVisible = false;
 
-                    btnPedidos.Source = "buy1";
+                    btnPedidos.Source = "pedidosamarillo";
                     btnMenu.Source = "hamburger3";
                     btnMiPerfil.Source = "user2";
-                    btnImgCarrito.Source = "hamburger3";
+                    btnImgCarrito.Source = "buy2";
 
                     _ = LlenarPedidos();
                 }),
@@ -52,10 +52,10 @@ namespace FastFoodApp.Pantallas
                     StackLayoutTuCarrito.IsVisible = false;
 
                     StackLayoutPedidos.IsVisible = false;
-                    btnPedidos.Source = "buy2";
+                    btnPedidos.Source = "pedidosazul";
                     btnMenu.Source = "hamburger1";
                     btnMiPerfil.Source = "user2";
-                    btnImgCarrito.Source = "hamburger3";
+                    btnImgCarrito.Source = "buy2";
 
                 }),
                 NumberOfTapsRequired = 1
@@ -70,10 +70,10 @@ namespace FastFoodApp.Pantallas
                     StackLayoutTuCarrito.IsVisible = false;
 
                     StackLayoutMiPerfil.IsVisible = true;
-                    btnPedidos.Source = "buy2";
+                    btnPedidos.Source = "pedidosazul";
                     btnMenu.Source = "hamburger3";
                     btnMiPerfil.Source = "user1";
-                    btnImgCarrito.Source = "hamburger3";
+                    btnImgCarrito.Source = "buy2";
 
                 }),
                 NumberOfTapsRequired = 1
@@ -88,10 +88,10 @@ namespace FastFoodApp.Pantallas
                     StackLayoutPedidos.IsVisible = false;
                     StackLayoutMiPerfil.IsVisible = false;
                     StackLayoutTuCarrito.IsVisible = true;
-                    btnPedidos.Source = "buy2";
+                    btnPedidos.Source = "pedidosazul";
                     btnMenu.Source = "hamburger3";
                     btnMiPerfil.Source = "user2";
-                    btnImgCarrito.Source = "hamburger1";
+                    btnImgCarrito.Source = "buy1";
                 }),
                 NumberOfTapsRequired = 1
             });
@@ -262,5 +262,17 @@ namespace FastFoodApp.Pantallas
 
         }
 
+        private async void BtnCerrarSesion_Clicked(object sender, EventArgs e)
+        {
+            if (await DisplayAlert("Información", "¿Desea cerrar sesión?", "SI", "NO"))
+            {
+                //DatosConfiguracion.GrabarDatosSesion("", "", "S");
+                LoginPage loginPage = new LoginPage();
+                await Navigation.PushModalAsync(loginPage);
+                //DatosConfiguracion.EliminarDatosSesion();
+
+
+            }
+        }
     }
 }

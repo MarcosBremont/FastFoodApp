@@ -21,6 +21,17 @@ namespace FastFoodApp.Pantallas
             InitializeComponent();
             _ = LlenarEmpresa();
 
+            LayoutRegistrate.GestureRecognizers.Add(new TapGestureRecognizer
+            {
+                Command = new Command(async () =>
+                {
+                    await Navigation.PushModalAsync(new RegisterPage());
+
+                }),
+                NumberOfTapsRequired = 1
+            });
+
+
         }
 
         public async void IniciarSesion()

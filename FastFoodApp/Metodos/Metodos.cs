@@ -73,5 +73,14 @@ namespace FastFoodApp.Metodos
             return lista_pedidos;
         } // Fin del método ObtenerMenu
 
+        public async Task<Result> RegistrarUsuario(string nombre, string apellido, string direccion, string telefono, string email, string latitud, string longitud, string clave)
+        {
+            var result = await herramientas.EjecutarSentenciaEnApiLibre($"FastFood/RegistratUsuario/{nombre.ToUpper()}/{apellido.ToUpper()}/{direccion.ToUpper()}/{telefono}/{email.ToUpper()}/{direccion.ToUpper()}/{latitud}/{latitud}/{longitud}/{clave.ToUpper()}");
+            var response = Newtonsoft.Json.JsonConvert.DeserializeObject<Result>(result);
+            return response;
+        }// Fin del método ObtenerEmpresa
+
+
+
     }
 }

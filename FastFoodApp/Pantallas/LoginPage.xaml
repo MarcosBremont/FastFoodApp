@@ -34,10 +34,11 @@
 
                 <Button Clicked="BtnLogin_Clicked" VerticalOptions="Center" x:Name="BtnLogin" Text="Ingresar" FontAttributes="Bold" CornerRadius="4" TextColor="#18356F" BackgroundColor="#FFCC00"/>
 
-                <StackLayout x:Name="LayoutRegistrate">
-                    <Label HorizontalOptions="Center" TextColor="White" Margin="0,8,0,0" Text="¿No tienes una cuenta? Registrate aqui"></Label>
-                    <Label HorizontalOptions="Center" FontAttributes="Bold" VerticalOptions="EndAndExpand" TextColor="White" Margin="0,8,0,0" Text="Versión 1.0"></Label>
+                <StackLayout x:Name="LayoutRegistrate" HorizontalOptions="Center" Orientation="Horizontal">
+                    <Label HorizontalOptions="Center" TextColor="White" Margin="0,8,0,0" Text="¿No tienes una cuenta?"></Label>
+                    <Label HorizontalOptions="Center" TextColor="White" FontAttributes="Bold" Margin="0,8,0,0" Text="Registrate aqui"></Label>
                 </StackLayout>
+                <Label HorizontalOptions="Center" FontAttributes="Bold" VerticalOptions="EndAndExpand" TextColor="White" Margin="0,8,0,0" Text="Versión 1.0"></Label>
             </StackLayout>
 
         </StackLayout>
