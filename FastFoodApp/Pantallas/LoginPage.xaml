@@ -6,7 +6,7 @@
              ios:Page.UseSafeArea="True"
              >
     <ContentPage.Content>
-        <StackLayout Background="foodhamburger.jpg">
+        <StackLayout>
 
             <Frame BackgroundColor="Transparent" Padding="1">
                 <StackLayout HorizontalOptions="Center" Margin="0,0,0,0">

@@ -26,7 +26,7 @@ namespace FastFoodApp.Pantallas
 
             gridPedidos.GestureRecognizers.Add(new TapGestureRecognizer
             {
-                Command = new Command(async () =>
+                Command = new Command(()=>
                 {
                     StackLayoutPaginaPrincipal.IsVisible = false;
                     StackLayoutPedidos.IsVisible = true;
@@ -45,7 +45,7 @@ namespace FastFoodApp.Pantallas
 
             gridInicio.GestureRecognizers.Add(new TapGestureRecognizer
             {
-                Command = new Command(async () =>
+                Command = new Command(() =>
                 {
                     StackLayoutPaginaPrincipal.IsVisible = true;
                     StackLayoutMiPerfil.IsVisible = false;

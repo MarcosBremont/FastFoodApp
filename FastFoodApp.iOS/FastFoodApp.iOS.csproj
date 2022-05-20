@@ -152,6 +152,7 @@
     <BundleResource Include="Resources\user2.png" />
     <BundleResource Include="Resources\CantidadIcon.png" />
     <BundleResource Include="Resources\Dollar.png" />
+    <BundleResource Include="Resources\foodhamburguer.jpg" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\man.png" />
