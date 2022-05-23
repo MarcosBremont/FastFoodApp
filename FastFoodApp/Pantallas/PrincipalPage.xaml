@@ -13,6 +13,11 @@
             <StackLayout IsVisible="true" VerticalOptions="StartAndExpand" x:Name="StackLayoutPaginaPrincipal" BackgroundColor="#EEEEEE">
 
                 <Grid RowSpacing="0" BackgroundColor="#EEEEEE">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
 
                     <StackLayout VerticalOptions="FillAndExpand" Grid.Row="0" Grid.Column="0" Orientation="Vertical" Margin="0,0,0,0">
                         <ListView VerticalOptions="FillAndExpand" ItemSelected="lsv_menu_ItemSelected" x:Name="lsv_menu" Grid.Row="0" BackgroundColor="Transparent" HorizontalOptions="CenterAndExpand" SeparatorVisibility="Default"  SeparatorColor="White" HasUnevenRows="True" >
@@ -25,43 +30,41 @@
 
                                         <!--ITEM-->
                                         <StackLayout Margin="0,0,0,5" VerticalOptions="FillAndExpand">
-                                            <Frame HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" HasShadow="False" Margin="10" CornerRadius="4" BackgroundColor="#FFFFFF">
-                                                <StackLayout BackgroundColor="#FFFFFF" Padding="10,0,5,5" Spacing="0">
+                                            <Frame HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" HasShadow="False"  CornerRadius="4" BackgroundColor="#FFFFFF">
+                                                <StackLayout BackgroundColor="#FFFFFF" Padding="0,0,0,0" Spacing="0">
 
 
 
-                                                    <StackLayout Orientation="Vertical" >
 
-                                                        <StackLayout Orientation="Horizontal"  HorizontalOptions="Center" >
-                                                            <Frame CornerRadius="4" HasShadow="False"  Padding="0" IsClippedToBounds="True">
-                                                                <Image Aspect="AspectFill"  HeightRequest="200" WidthRequest="250" Source="{Binding foto}" />
-                                                            </Frame>
-                                                        </StackLayout>
+                                                    <StackLayout Orientation="Horizontal"  HorizontalOptions="StartAndExpand" >
 
-                                                        <StackLayout Orientation="Horizontal" VerticalOptions="Center" Margin="0,5,0,10">
-
-                                                            <Label Text="{Binding nombre}" VerticalOptions="Center"  FontSize="14" FontAttributes="Bold" TextColor="#1E2021" />
-                                                            <Frame HasShadow="False" Padding="10" VerticalOptions="Center"  CornerRadius="4" BackgroundColor="#FFCC00" HorizontalOptions="EndAndExpand">
-                                                                <StackLayout Orientation="Horizontal">
-
-                                                                    <Label VerticalOptions="Center" Text="RD$" FontAttributes="Bold" FontSize="12" TextColor="#333" />
-                                                                    <Label VerticalOptions="Center" Text="{Binding precio}" FontAttributes="Bold" FontSize="12" TextColor="#333" />
-                                                                </StackLayout>
-                                                            </Frame>
-
-                                                        </StackLayout>
+                                                        <Frame CornerRadius="4" HasShadow="False"  Padding="0" IsClippedToBounds="True">
+                                                            <Image Aspect="AspectFill"  HeightRequest="90" WidthRequest="90" Source="{Binding foto}" />
+                                                        </Frame>
 
 
-                                                        <StackLayout Orientation="Horizontal" VerticalOptions="Center" Margin="0,5,0,10">
+                                                        <Label Text="{Binding nombre}" VerticalOptions="Start" HorizontalOptions="Start"  FontSize="14" FontAttributes="Bold" TextColor="#1E2021" />
 
-                                                            <Label Text="{Binding descripcion}" VerticalOptions="Center"  FontSize="14" FontAttributes="Bold" TextColor="#333" />
-                                                        </StackLayout>
 
-                                                        <Button Text="Agregar" x:Name="BtnAgregar" CommandParameter="{Binding .}" Clicked="BtnAgregar_Clicked" BackgroundColor="#18356F" TextColor="White" FontAttributes="Bold" />
+
 
 
 
                                                     </StackLayout>
+
+
+                                                    <Frame HasShadow="False" Padding="10" VerticalOptions="Start"  CornerRadius="4" BackgroundColor="#FFCC00" HorizontalOptions="EndAndExpand">
+                                                        <StackLayout Orientation="Horizontal">
+
+                                                            <Label VerticalOptions="Center" Text="RD$" FontAttributes="Bold" FontSize="12" TextColor="#333" />
+                                                            <Label VerticalOptions="Center" Text="{Binding precio}" FontAttributes="Bold" FontSize="12" TextColor="#333" />
+                                                        </StackLayout>
+                                                    </Frame>
+
+                                                    <Button Text="Agregar" x:Name="BtnAgregar" CommandParameter="{Binding .}" Clicked="BtnAgregar_Clicked" BackgroundColor="#18356F" TextColor="White" FontAttributes="Bold" />
+
+
+
 
 
 
@@ -85,6 +88,202 @@
 
 
             </StackLayout>
+
+            <Grid BackgroundColor="#3e5569" RowSpacing="0">
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="60" ></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+
+
+
+                <StackLayout Grid.Row="0">
+                    <Grid VerticalOptions="FillAndExpand">
+                        <StackLayout Orientation="Horizontal" BackgroundColor="#2196F3" Margin="0,0,0,0" HeightRequest="60" VerticalOptions="End" HorizontalOptions="FillAndExpand" x:Name="lytBackNav">
+                            <Label TextColor="White"
+                               Text="ORDENES PENDIENTES"
+                               FontSize="16" 
+                               FontAttributes="Bold"
+                               VerticalOptions="CenterAndExpand"
+                               HorizontalOptions="StartAndExpand"
+                               Margin="10,0,0,0"/>
+                            <ImageButton Source="SectorMap.png" HeightRequest="25" Margin="80,0,10,0" BackgroundColor="Transparent" x:Name="BtnSector" Clicked="BtnSector_Clicked" HorizontalOptions="EndAndExpand"/>
+                        </StackLayout>
+                    </Grid>
+                </StackLayout>
+
+                <Grid ColumnSpacing="0" Grid.Row="1" RowSpacing="0" BackgroundColor="White">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="0"/>
+                    </Grid.RowDefinitions>
+
+                    <Grid>
+                        <ListView Grid.Row="0" x:Name="lsv_OrdenesPendientes"  CachingStrategy="RecycleElement" IsPullToRefreshEnabled="True" RefreshControlColor="Red" SeparatorVisibility="Default" SeparatorColor="#2A90CE" HasUnevenRows="True"  IsVisible="False">
+                            <ListView.ItemTemplate>
+
+                                <DataTemplate >
+
+                                    <ViewCell>
+
+
+                                        <!--ITEM-->
+                                        <StackLayout HorizontalOptions="FillAndExpand" Margin="0,0,0,5">
+                                            <StackLayout BackgroundColor="White" HeightRequest="280" Padding="10,0,5,5" Spacing="0">
+
+                                                <!--PRIMERA LINEA-->
+                                                <StackLayout  Padding="0,10,0,0" Orientation="Horizontal" HorizontalOptions="Center">
+                                                    <Frame BackgroundColor="Red" Padding="10,2,10,1" VerticalOptions="Center" HorizontalOptions="Center"  HasShadow="True" >
+                                                        <Label Text="{Binding tipo}" FontSize="10" x:Name="lbltipo" TextColor="White" VerticalOptions="Center" TextTransform="Uppercase" HorizontalOptions="Center" FontAttributes="Bold"/>
+                                                    </Frame>
+                                                    <Frame BackgroundColor="{Binding color_servicio}" Padding="10,2,10,1" x:Name="FrameEstado1"  HasShadow="True">
+                                                        <Label Text="{Binding servicio} " TextColor="White" FontSize="10" FontAttributes="Bold" TextTransform="Uppercase"   ></Label>
+                                                    </Frame>
+
+                                                </StackLayout>
+
+                                                <!--PRIMERA LINEA-->
+                                                <StackLayout Orientation="Horizontal" Padding="0,5,0,0">
+                                                    <Label Text="Orden:" FontSize="11" TextColor="#333" VerticalOptions="StartAndExpand"  FontAttributes="Bold"/>
+                                                    <Label Text="{Binding numero}" FontSize="11" TextColor="#333" VerticalOptions="Center"/>
+
+                                                    <Label Text="{Binding fecha,  StringFormat='{0:dddd, dd MMMM yyyy h:mm:ss}'}" FontSize="11" LineBreakMode="TailTruncation" MaxLines="1" TextColor="#333" VerticalOptions="Center" HorizontalOptions="EndAndExpand" Padding="0,0,5,0" FontAttributes="Bold"/>
+
+                                                </StackLayout>
+
+
+
+
+                                                <!--SEGUNDA LINEA-->
+                                                <StackLayout Orientation="Horizontal" Padding="0,9,0,0">
+                                                    <Label LineBreakMode="TailTruncation" >
+                                                        <Label.FormattedText>
+                                                            <FormattedString>
+                                                                <Span Text="Cliente: " FontAttributes="Bold" TextColor="#333" FontSize="11" ></Span>
+                                                                <Span Text="{Binding nombrecompleto}" TextColor="#333" FontSize="11" ></Span>
+                                                            </FormattedString>
+                                                        </Label.FormattedText>
+                                                    </Label>
+                                                </StackLayout>
+
+                                                <!--SEGUNDA LINEA-->
+                                                <StackLayout Orientation="Horizontal" Padding="0,9,0,0">
+                                                    <Label LineBreakMode="TailTruncation" >
+                                                        <Label.FormattedText>
+                                                            <FormattedString>
+                                                                <Span Text="Dir:  " FontSize="11" TextColor="#333" BackgroundColor="Transparent" FontAttributes="Bold"/>
+                                                                <Span Text="{Binding direccion}" FontSize="11" TextColor="#333" />
+                                                            </FormattedString>
+                                                        </Label.FormattedText>
+                                                    </Label>
+                                                </StackLayout>
+
+                                                <!--<StackLayout x:Name="StackNuevaDireccion" Orientation="Horizontal" Padding="0,9,0,0" PropertyChanged="StackNuevaDireccion_PropertyChanged" AutomationId="{Binding tipo}">
+                                                <Label LineBreakMode="TailTruncation" x:Name="lblnuevadireccion" >
+                                                    <Label.FormattedText>
+                                                        <FormattedString>
+                                                            <Span Text="Nueva Dir:  "  x:Name="lblnuevadire" FontSize="11" TextColor="#333" BackgroundColor="Transparent" FontAttributes="Bold"/>
+                                                            <Span Text="{Binding nueva_direccion}" FontSize="11" TextColor="#333" AutomationId="lbl_nueva_direccion"/>
+                                                        </FormattedString>
+                                                    </Label.FormattedText>
+                                                </Label>
+                                            </StackLayout>-->
+
+                                                <!--CUARTA LINEA-->
+                                                <StackLayout Orientation="Horizontal" Margin="0,9,0,0" >
+                                                    <Label LineBreakMode="TailTruncation" >
+                                                        <Label.FormattedText>
+                                                            <FormattedString>
+                                                                <Span Text="Localidad:  " FontSize="11" TextColor="#333" FontAttributes="Bold" />
+                                                                <Span Text="{Binding localidad }" x:Name="lbllocalidad" FontSize="11"  TextColor="#333" />
+                                                                <Span Text="  "></Span>
+                                                                <Span Text="Sector:  " FontSize="11" FontAttributes="Bold" TextColor="#333" />
+                                                                <Span Text="{Binding sector }" x:Name="lblsector" FontSize="11"  TextColor="#333"/>
+                                                            </FormattedString>
+                                                        </Label.FormattedText>
+                                                    </Label>
+                                                </StackLayout>
+
+                                                <StackLayout Orientation="Horizontal" Margin="0,9,0,0">
+                                                    <Label LineBreakMode="TailTruncation">
+                                                        <Label.FormattedText>
+                                                            <FormattedString>
+                                                                <Span Text="Calle:  " FontSize="11" FontAttributes="Bold" TextColor="#333" />
+                                                                <Span Text="{Binding calle }" x:Name="lblcalle" FontSize="11"  TextColor="#333"/>
+                                                            </FormattedString>
+                                                        </Label.FormattedText>
+                                                    </Label>
+                                                </StackLayout>
+
+                                                <!--SEGUNDA LINEA-->
+                                                <StackLayout Orientation="Horizontal" Margin="0,9,0,0">
+                                                    <Label LineBreakMode="TailTruncation">
+                                                        <Label.FormattedText>
+                                                            <FormattedString>
+                                                                <Span Text="Tel:  " FontSize="11" TextColor="#333" FontAttributes="Bold"/>
+                                                                <Span Text="{Binding telefono}" FontSize="11" TextColor="#333" />
+                                                                <Span Text="   -   " FontSize="11" TextColor="#333" FontAttributes="Bold"/>
+                                                                <Span Text="{Binding telefono_secundario}" FontSize="11" TextColor="#333" />
+                                                            </FormattedString>
+                                                        </Label.FormattedText>
+                                                    </Label>
+
+
+                                                </StackLayout>
+
+
+                                                <!--SEGUNDA LINEA-->
+                                                <StackLayout Orientation="Horizontal" Margin="0,9,0,0">
+                                                    <Label LineBreakMode="TailTruncation">
+                                                        <Label.FormattedText>
+                                                            <FormattedString>
+                                                                <Span Text="Equipos y Plan:  " FontSize="11" TextColor="#333" FontAttributes="Bold"/>
+                                                                <Span Text="{Binding equipos_y_plan}" FontSize="11" TextColor="#333" />
+                                                            </FormattedString>
+                                                        </Label.FormattedText>
+                                                    </Label>
+
+
+                                                </StackLayout>
+
+
+
+                                                <!--TERCERA LINEA-->
+                                                <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Margin="0,9,0,0">
+                                                    <Label Text="Progreso:" FontSize="11" TextColor="#333" VerticalOptions="Center"
+                                                 FontAttributes="Bold" />
+                                                    <Frame BackgroundColor="{Binding color_orden}" Padding="7,2,7,2" VerticalOptions="Center"  HasShadow="False">
+                                                        <Label Text="{Binding progresoorden}" FontSize="10" VerticalOptions="Center" FontAttributes="Bold" TextColor="White" />
+                                                    </Frame>
+                                                    <Label LineBreakMode="TailTruncation" MaxLines="1" Text="{Binding fecha_cambio_proceso, StringFormat='{0:dddd, dd MMMM yyyy h:mm:ss}'} " FontSize="10" VerticalOptions="Center" HorizontalOptions="EndAndExpand" TextColor="#333" Margin="0,0,5,0" />
+                                                </StackLayout>
+
+                                                <!--SEGUNDA LINEA-->
+                                                <StackLayout Orientation="Horizontal" Margin="0,9,0,10">
+                                                    <Image Source="persona_hablando.png" HeightRequest="25" VerticalOptions="Center"/>
+                                                    <Label>
+                                                        <Label.FormattedText>
+                                                            <FormattedString>
+                                                                <Span Text="{Binding reportetecnico}" FontSize="11" TextColor="#333" />
+                                                            </FormattedString>
+                                                        </Label.FormattedText>
+                                                    </Label>
+                                                </StackLayout>
+                                            </StackLayout>
+                                            <!--<BoxView BackgroundColor="Black" HeightRequest="2"/>-->
+                                        </StackLayout>
+                                    </ViewCell>
+                                </DataTemplate>
+
+
+                            </ListView.ItemTemplate>
+                        </ListView>
+
+                    </Grid>
+                </Grid>
+            </Grid>
+
 
             <!--Layout Pedidos-->
             <StackLayout IsVisible="false" VerticalOptions="StartAndExpand" x:Name="StackLayoutPedidos" BackgroundColor="#EEEEEE">
@@ -186,7 +385,7 @@
 
                                         <!--ITEM-->
                                         <StackLayout Margin="0,0,0,5" VerticalOptions="FillAndExpand">
-                                           
+
                                             <!--<BoxView BackgroundColor="Black" HeightRequest="2"/>-->
                                         </StackLayout>
                                     </ViewCell>
@@ -237,7 +436,7 @@
 
             </StackLayout>
 
-            
+
             <!--Layout Mi Perfil-->
             <StackLayout IsVisible="false" VerticalOptions="StartAndExpand" x:Name="StackLayoutMiPerfil" BackgroundColor="#EEEEEE">
 
