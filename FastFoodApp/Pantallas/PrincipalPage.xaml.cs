@@ -22,6 +22,7 @@ namespace FastFoodApp.Pantallas
             _ = LlenarMenu();
             LlenarMiPerfil();
             _ = LlenarPedidos();
+            _ = LlenarCarrito();
 
 
             gridPedidos.GestureRecognizers.Add(new TapGestureRecognizer
@@ -117,6 +118,23 @@ namespace FastFoodApp.Pantallas
                 var datos = await metodos.ObtenerMenu();
                 lsv_menu.ItemsSource = datos;
                 lsv_menu.IsVisible = true;
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
+
+        public async Task LlenarCarrito()
+        {
+            try
+            {
+                lsv_Carrito.IsVisible = false;
+                FastFoodApp.Metodos.Metodos metodos = new FastFoodApp.Metodos.Metodos();
+                lsv_Carrito.ItemsSource = null;
+                var datos = await metodos.ObtenerCarritoPorUsuario(1,9);
+                lsv_Carrito.ItemsSource = datos;
+                lsv_Carrito.IsVisible = true;
             }
             catch (Exception ex)
             {

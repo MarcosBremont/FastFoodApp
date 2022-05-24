@@ -187,7 +187,21 @@
 
                                         <!--ITEM-->
                                         <StackLayout Margin="0,0,0,5" VerticalOptions="FillAndExpand">
-
+                                            <Label TextColor="#333" Text="{Binding idpedido_temporal_fast_food}"></Label>
+                                            <Label TextColor="#333" Text="{Binding id_pedido_general}"></Label>
+                                            <Label TextColor="#333" Text="{Binding idusuarios}"></Label>
+                                            <Label TextColor="#333" Text="{Binding idmenu_fast_food}"></Label>
+                                            <Label TextColor="#333" Text="{Binding cantidad}"></Label>
+                                            <Label TextColor="#333" Text="{Binding direccion}"></Label>
+                                            <Label TextColor="#333" Text="{Binding estado_del_pedido}"></Label>
+                                            <Label TextColor="#333"  Text="{Binding foto}"></Label>
+                                            <Label TextColor="#333"  Text="{Binding descripcion}"></Label>
+                                            <Label TextColor="#333" Text="{Binding nombre_usuario}"></Label>
+                                            <Label TextColor="#333" Text="{Binding nombre_producto}"></Label>
+                                            <Label TextColor="#333" Text="{Binding latitud}"></Label>
+                                            <Label TextColor="#333" Text="{Binding longitud}"></Label>
+                                            <Label TextColor="#333" Text="{Binding precio}"></Label>
+                                            <Label TextColor="#333" Text="{Binding total_por_producto}"></Label>
                                             <!--<BoxView BackgroundColor="Black" HeightRequest="2"/>-->
                                         </StackLayout>
                                     </ViewCell>
@@ -218,8 +232,8 @@
                                         <Label Text="0" Grid.Row="0" x:Name="lbldevuelta" HorizontalTextAlignment="Center" TextColor="#333" FontAttributes="Bold"  FontSize="Medium"/>
                                     </StackLayout>
 
-                                    <Label Grid.Row="0" Text="Total: " HorizontalTextAlignment="Center" TextColor="#333" FontAttributes="Bold"  FontSize="Medium"/>
-                                    <Label Text="0" Grid.Row="0" x:Name="LblTotal" HorizontalTextAlignment="Center" TextColor="#333" FontAttributes="Bold"  FontSize="Medium"/>
+                                    <Label Grid.Row="0" Text="Total: " HorizontalTextAlignment="Start" TextColor="#333" FontAttributes="Bold"  FontSize="Medium"/>
+                                    <Label Text="0" Grid.Row="0" x:Name="LblTotal" HorizontalTextAlignment="Start" TextColor="#333" FontAttributes="Bold"  FontSize="Medium"/>
                                     <Button Text="Hacer Pedido" x:Name="BtnHacerPedido" VerticalOptions="EndAndExpand" Clicked="BtnHacerPedido_Clicked" FontSize="14" FontAttributes="Bold" CornerRadius="4"  BackgroundColor="#FFCC00" TextColor="white" Margin="10,0,10,10 "></Button>
 
                                 </StackLayout>
