@@ -52,6 +52,7 @@ namespace FastFoodApp.Metodos
 
             if (UsuarioResult.respuesta == "OK")
             {
+                App.idusuarios = UsuarioResult.idusuarios;
                 App.nombre = UsuarioResult.nombre;
                 App.apellido = UsuarioResult.apellido;
                 App.direccion = UsuarioResult.direccion;
@@ -81,9 +82,9 @@ namespace FastFoodApp.Metodos
         }// Fin del método ObtenerEmpresa
 
 
-        public async Task<List<EPedidos>> ObtenerCarritoPorUsuario(int idusuario, int idpedidos)
+        public async Task<List<EPedidos>> ObtenerCarritoPorUsuario(int idpedidos, int idusuario, string estado)
         {
-            var result = await herramientas.EjecutarSentenciaEnApiLibre($"FastFood/ObtenerCarritoPorUsuario/{idpedidos}/{idusuario}");
+            var result = await herramientas.EjecutarSentenciaEnApiLibre($"FastFood/ObtenerCarritoPorUsuario/{idpedidos}/{idusuario}/{estado}");
             var lista_pedidos = Newtonsoft.Json.JsonConvert.DeserializeObject<List<EPedidos>>(result);
 
             return lista_pedidos;
@@ -103,6 +104,29 @@ namespace FastFoodApp.Metodos
             var response = Newtonsoft.Json.JsonConvert.DeserializeObject<Result>(result);
             return response;
         }// Fin del método ObtenerEmpresa
+
+
+        public async Task<Result> AgregarPedidoPorID(int idusuarios)
+        {
+            var result = await herramientas.EjecutarSentenciaEnApiLibre($"FastFood/AgregarPedido/{idusuarios}");
+            var response = Newtonsoft.Json.JsonConvert.DeserializeObject<Result>(result);
+            return response;
+        }// Fin del método ObtenerEmpresa
+
+        public async Task<Result> AgregarPedidoTemporal(int idmenu_fast_food, int idusuarios, int cantidad)
+        {
+            var result = await herramientas.EjecutarSentenciaEnApiLibre($"FastFood/AgregarPedidoTemporal/{idmenu_fast_food}/{idusuarios}/{cantidad}");
+            var response = Newtonsoft.Json.JsonConvert.DeserializeObject<Result>(result);
+            return response;
+        }// Fin del método ObtenerEmpresa
+
+        public async Task<List<EPedidos>> SNumeroDeOrdenGeneral(int idusuario, string estado)
+        {
+            var result = await herramientas.EjecutarSentenciaEnApiLibre($"FastFood/SNumeroDeOrdenGeneral/{idusuario}/{estado}");
+            var lista_pedidos = Newtonsoft.Json.JsonConvert.DeserializeObject<List<EPedidos>>(result);
+
+            return lista_pedidos;
+        } // Fin del método ObtenerMenu
 
 
     }

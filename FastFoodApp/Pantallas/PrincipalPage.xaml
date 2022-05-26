@@ -232,8 +232,10 @@
                                         <Label Text="0" Grid.Row="0" x:Name="lbldevuelta" HorizontalTextAlignment="Center" TextColor="#333" FontAttributes="Bold"  FontSize="Medium"/>
                                     </StackLayout>
 
-                                    <Label Grid.Row="0" Text="Total: " HorizontalTextAlignment="Start" TextColor="#333" FontAttributes="Bold"  FontSize="Medium"/>
-                                    <Label Text="0" Grid.Row="0" x:Name="LblTotal" HorizontalTextAlignment="Start" TextColor="#333" FontAttributes="Bold"  FontSize="Medium"/>
+                                    <StackLayout Orientation="Horizontal">
+                                        <Label Grid.Row="0" Text="Total: " HorizontalTextAlignment="Start" TextColor="#333" FontAttributes="Bold"  FontSize="Medium"/>
+                                        <Label Text="0" Grid.Row="0" x:Name="LblTotal" HorizontalTextAlignment="Start" TextColor="#333" FontAttributes="Bold"  FontSize="Medium"/>
+                                    </StackLayout>
                                     <Button Text="Hacer Pedido" x:Name="BtnHacerPedido" VerticalOptions="EndAndExpand" Clicked="BtnHacerPedido_Clicked" FontSize="14" FontAttributes="Bold" CornerRadius="4"  BackgroundColor="#FFCC00" TextColor="white" Margin="10,0,10,10 "></Button>
 
                                 </StackLayout>

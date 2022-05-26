@@ -132,7 +132,7 @@ namespace FastFoodApp.Pantallas
                 lsv_Carrito.IsVisible = false;
                 FastFoodApp.Metodos.Metodos metodos = new FastFoodApp.Metodos.Metodos();
                 lsv_Carrito.ItemsSource = null;
-                var datos = await metodos.ObtenerCarritoPorUsuario(1,9);
+                var datos = await metodos.ObtenerCarritoPorUsuario(App.NumeroOrdenGeneral,App.idusuarios, "PRE-ORDEN");
                 lsv_Carrito.ItemsSource = datos;
                 lsv_Carrito.IsVisible = true;
             }
@@ -142,6 +142,7 @@ namespace FastFoodApp.Pantallas
             }
         }
 
+
         public async Task LlenarPedidos()
         {
             try
@@ -149,7 +150,7 @@ namespace FastFoodApp.Pantallas
                 lsv_pedidos.IsVisible = false;
                 FastFoodApp.Metodos.Metodos metodos = new FastFoodApp.Metodos.Metodos();
                 lsv_pedidos.ItemsSource = null;
-                var datos = await metodos.ObtenerPedidos();
+                var datos = await metodos.ObtenerCarritoPorUsuario(App.NumeroOrdenGeneral, App.idusuarios, "PENDIENTE");
                 lsv_pedidos.ItemsSource = datos;
                 lsv_pedidos.IsVisible = true;
             }
@@ -198,6 +199,7 @@ namespace FastFoodApp.Pantallas
             }
             App.Precio = ob.precio;
             App.producto = ob.nombre;
+            App.idProducto = ob.
             modalCantidad = new ModalCantidad();
             modalCantidad.Disappearing += ModalCantidad_Disappearing;
             await PopupNavigation.PushAsync(modalCantidad);

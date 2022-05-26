@@ -53,6 +53,8 @@ namespace FastFoodApp.Pantallas
                     var result = await metodos.IniciarSesion(TxtEmail.Text, TxtPassword.Text);
                     if (result.respuesta == "OK")
                     {
+                        InsertarIdPedido();
+                        SeleccionarNumeroDeOrdenGeneral();
                         toastConfig.MostrarNotificacion($"Bienvenido {result.nombre}", ToastPosition.Top, 3, "#51C560");
                         await Navigation.PushModalAsync(new PrincipalPage());
                     }
@@ -86,10 +88,36 @@ namespace FastFoodApp.Pantallas
             }
         }
 
+        public async Task SeleccionarNumeroDeOrdenGeneral()
+        {
+            try
+            {
+                FastFoodApp.Metodos.Metodos metodos = new FastFoodApp.Metodos.Metodos();
+                var datos = await metodos.SNumeroDeOrdenGeneral(App.idusuarios, "PRE-ORDEN");
+                App.NumeroOrdenGeneral = datos[0].idpedidos_fast_food;
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
+
+        public async Task InsertarIdPedido()
+        {
+            try
+            {
+                FastFoodApp.Metodos.Metodos metodos = new FastFoodApp.Metodos.Metodos();
+                var datos = await metodos.AgregarPedido(App.idusuarios);
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
+
         private void BtnLogin_Clicked(object sender, EventArgs e)
         {
             IniciarSesion();
-
         }
     }
 }

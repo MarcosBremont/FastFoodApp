@@ -70,10 +70,24 @@ namespace FastFoodApp.Pantallas
 
             if (await DisplayAlert("Información", "¿Desea agregar a su carrito?", "SI", "NO"))
             {
+                AgregarPedidoTemporal();
+                //App.TodosLosProductosDeLaOrden = App.TodosLosProductosDeLaOrden.Append(TxtCantidad.Text + App.producto + "-");
 
-                App.TodosLosProductosDeLaOrden = App.TodosLosProductosDeLaOrden.Append(TxtCantidad.Text + App.producto + "-");
                 Acr.UserDialogs.UserDialogs.Instance.Toast(App.producto + " Agregada a tu orden.");
                 await PopupNavigation.PopAsync();
+            }
+        }
+
+        public async Task AgregarPedidoTemporal()
+        {
+            try
+            {
+                FastFoodApp.Metodos.Metodos metodos = new FastFoodApp.Metodos.Metodos();
+                var datos = await metodos.AgregarPedidoTemporal(App.NumeroOrdenGeneral, App.idusuarios, Convert.ToInt32(TxtCantidad.Text));
+            }
+            catch (Exception ex)
+            {
+
             }
         }
 
