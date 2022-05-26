@@ -83,7 +83,7 @@ namespace FastFoodApp.Pantallas
             try
             {
                 FastFoodApp.Metodos.Metodos metodos = new FastFoodApp.Metodos.Metodos();
-                var datos = await metodos.AgregarPedidoTemporal(App.NumeroOrdenGeneral, App.idusuarios, Convert.ToInt32(TxtCantidad.Text));
+                var datos = await metodos.AgregarPedidoTemporal(App.idProducto, App.idusuarios, Convert.ToInt32(TxtCantidad.Text));
             }
             catch (Exception ex)
             {

@@ -15,6 +15,7 @@ namespace FastFoodApp.Pantallas
     public partial class PrincipalPage : ContentPage
     {
         ModalCantidad modalCantidad = new ModalCantidad();
+        ModalHacerPedido modalHacerPedido = new ModalHacerPedido();
 
         public PrincipalPage()
         {
@@ -199,7 +200,7 @@ namespace FastFoodApp.Pantallas
             }
             App.Precio = ob.precio;
             App.producto = ob.nombre;
-            App.idProducto = ob.
+            App.idProducto = ob.idmenu_fast_food;
             modalCantidad = new ModalCantidad();
             modalCantidad.Disappearing += ModalCantidad_Disappearing;
             await PopupNavigation.PushAsync(modalCantidad);
@@ -222,33 +223,7 @@ namespace FastFoodApp.Pantallas
         {
 
 
-            double.TryParse(TxtDinero.Text, out double dineroConvertido);
-
-            if (!string.IsNullOrEmpty(dineroConvertido.ToString()))
-            {
-                int Dinerotxt = Convert.ToInt32(dineroConvertido);
-                int TotalTxt = Convert.ToInt32(LblTotal.Text.Replace("RD$ ", ""));
-
-                if (Dinerotxt < TotalTxt)
-                {
-                    lbldevuelta.Text = "0";
-                }
-                else
-                {
-                    if (string.IsNullOrEmpty(dineroConvertido.ToString()))
-                    {
-                        lbldevuelta.Text = "0";
-                    }
-                    else
-                    {
-                        int total = Convert.ToInt32(LblTotal.Text.Replace("RD$ ", ""));
-                        int dinero = Convert.ToInt32(dineroConvertido);
-                        int devuelta = dinero - total;
-                        lbldevuelta.Text = devuelta.ToString();
-                    }
-                }
-
-            }
+            
         }
 
         public async Task EnviarPedido(string usuario, string email, string telefono, int concuantopagara, int devuelta, string direccion, StringBuilder producto, string latitud, string longitud)
@@ -265,20 +240,14 @@ namespace FastFoodApp.Pantallas
         }
         private async void BtnHacerPedido_Clicked(object sender, EventArgs e)
         {
-            if (await DisplayAlert("Información", "¿Desea hacer su pedido?", "SI", "NO"))
-            {
+            modalHacerPedido = new ModalHacerPedido();
+            modalHacerPedido.Disappearing += ModalHacerPedido_Disappearing;
+            await PopupNavigation.PushAsync(modalHacerPedido);
 
-                if (string.IsNullOrEmpty(TxtDinero.Text))
-                {
-                    Acr.UserDialogs.UserDialogs.Instance.Alert("Por favor rellene todos los campos");
-                }
+        }
 
-                EnviarPedido(App.nombre, App.correo, App.whatsapp, Convert.ToInt32(TxtDinero.Text), Convert.ToInt32(lbldevuelta.Text), App.direccion, App.TodosLosProductosDeLaOrden, App.latitud, App.longitud);
-            }
-            else
-            {
-
-            }
+        private void ModalHacerPedido_Disappearing(object sender, EventArgs e)
+        {
 
         }
 

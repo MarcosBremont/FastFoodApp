@@ -8,6 +8,7 @@ namespace FastFoodApp.Entidad
     {
         public string nombre { get; set; }
         public int precio { get; set; }
+        public int cantidad { get; set; }
         public int idusuarios { get; set; }
         public string disponible { get; set; }
         public string descripcion { get; set; }
@@ -23,5 +24,7 @@ namespace FastFoodApp.Entidad
         public string latitud { get; set; }
         public string longitud { get; set; }
         public string estado_del_pedido { get; set; }
+        public string nombre_producto { get; set; }
+        public string nombre_usuario { get; set; }
     }
 }

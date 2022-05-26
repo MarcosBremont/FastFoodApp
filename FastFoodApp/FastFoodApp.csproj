@@ -33,4 +33,9 @@
     <None Remove="Rg.Plugins.Popup" />
     <None Remove="Acr.UserDialogs" />
   </ItemGroup>
+  <ItemGroup>
+    <Compile Update="Pantallas\ModalHacerPedido.xaml.cs">
+      <DependentUpon>ModalHacerPedido.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
 </Project>
