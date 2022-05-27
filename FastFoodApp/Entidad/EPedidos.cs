@@ -8,6 +8,7 @@ namespace FastFoodApp.Entidad
     {
         public string nombre { get; set; }
         public int precio { get; set; }
+        public int total_por_producto { get; set; }
         public int cantidad { get; set; }
         public int idusuarios { get; set; }
         public string disponible { get; set; }

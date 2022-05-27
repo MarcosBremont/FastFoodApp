@@ -18,6 +18,8 @@ namespace FastFoodApp.Pantallas
         public ModalHacerPedido()
         {
             InitializeComponent();
+            LblTotal.Text = (App.TodalPrecioCarrito + App.envio).ToString();
+            lblprecioenvio.Text = App.envio.ToString();
         }
 
 
@@ -31,7 +33,7 @@ namespace FastFoodApp.Pantallas
                     Acr.UserDialogs.UserDialogs.Instance.Alert("Por favor rellene todos los campos");
                 }
 
-                EnviarPedido(App.nombre, App.correo, App.whatsapp, Convert.ToInt32(TxtDinero.Text), Convert.ToInt32(lbldevuelta.Text), App.direccion, App.TodosLosProductosDeLaOrden, App.latitud, App.longitud);
+                EnviarPedido(Convert.ToInt32(TxtDinero.Text), Convert.ToInt32(lbldevuelta.Text), App.latitud, App.longitud, "PENDIENTE", App.idusuarios, App.NumeroOrdenGeneral);
             }
             else
             {
@@ -40,12 +42,12 @@ namespace FastFoodApp.Pantallas
 
         }
 
-        public async Task EnviarPedido(string usuario, string email, string telefono, int concuantopagara, int devuelta, string direccion, StringBuilder producto, string latitud, string longitud)
+        public async Task EnviarPedido(int concuantopagara, int devuelta, string latitud, string longitud, string estado_del_pedido, int idusuarios, int idpedidos_fast_food)
         {
             try
             {
                 FastFoodApp.Metodos.Metodos metodos = new FastFoodApp.Metodos.Metodos();
-                var datos = await metodos.AgregarPedido(usuario, email, telefono, concuantopagara, devuelta, direccion, producto, latitud, longitud);
+                var datos = await metodos.AgregarPedido(concuantopagara, devuelta, latitud, longitud, estado_del_pedido, idusuarios, idpedidos_fast_food);
             }
             catch (Exception ex)
             {
@@ -60,6 +62,7 @@ namespace FastFoodApp.Pantallas
 
         private void TxtDinero_TextChanged(object sender, TextChangedEventArgs e)
         {
+
             double.TryParse(TxtDinero.Text, out double dineroConvertido);
 
             if (!string.IsNullOrEmpty(dineroConvertido.ToString()))

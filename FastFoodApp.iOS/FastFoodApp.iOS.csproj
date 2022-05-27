@@ -169,4 +169,52 @@
   <ItemGroup>
     <BundleResource Include="Resources\pedidosamarillo.png" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\eyeazul.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\eyenegro.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\mail.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\marker.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\phone.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\MiCarritoBlanco.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\TimeAmarillo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\TimeBlanco.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\userAmarillo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\userBlanco.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\bellAmarillo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\bellWhite.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\hamburgerSodaAmarillo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\hamburgerSodaWhite.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\MiCarritoAmarillo.png" />
+  </ItemGroup>
 </Project>

@@ -13,28 +13,42 @@
                         <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
                     <BoxView HeightRequest="40" Color="#FFCC00" HorizontalOptions="FillAndExpand"/>
-                    <Label Text="Cantidad" Grid.Row="0" HorizontalTextAlignment="Center" TextColor="#333" FontAttributes="Bold" FontSize="Medium"/>
+                    <Label VerticalOptions="Center" Text="Realizar Pedido" Grid.Row="0" HorizontalTextAlignment="Center" TextColor="#333" FontAttributes="Bold" FontSize="Medium"/>
                 </Grid>
             </StackLayout>
 
             <ScrollView Padding="10">
-                <StackLayout Orientation="Vertical">
+
                     <StackLayout Orientation="Vertical">
-                        <Label Text="Total:" Grid.Row="0" HorizontalTextAlignment="Center" TextColor="#333" FontAttributes="Bold"  FontSize="Medium"/>
-                        <Label Text="0" Grid.Row="0" x:Name="LblTotal" HorizontalTextAlignment="Center" TextColor="#333" FontAttributes="Bold" FontSize="Medium"/>
-                        
-                        <Label Text="Devuelta:" Grid.Row="0" HorizontalTextAlignment="Center" TextColor="#333" FontAttributes="Bold"  FontSize="Medium"/>
-                        <Label Text="0" Grid.Row="0" x:Name="lbldevuelta" HorizontalTextAlignment="Center" TextColor="#333" FontAttributes="Bold" FontSize="Medium"/>
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="Total:" Grid.Row="0" HorizontalTextAlignment="Center" TextColor="#333" FontAttributes="Bold"  FontSize="Medium"/>
+                            <Label Text="0" Grid.Row="0" x:Name="LblTotal" HorizontalTextAlignment="Center" TextColor="#333" FontSize="Medium"/>
+
+
+                        </StackLayout>
+
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="El precio del envio es de:" Grid.Row="0"  TextColor="#333" FontAttributes="Bold" Padding="0"  FontSize="10"/>
+                            <Label Text="0" Grid.Row="0" x:Name="lblprecioenvio"  TextColor="#333" FontAttributes="Bold" Padding="0"  FontSize="10"/>
+                            <Label Text="y ya fueron incluidos en el total." Grid.Row="0" TextColor="#333" FontAttributes="Bold" Padding="0"  FontSize="10"/>
+                        </StackLayout>
+
+
+
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="Devuelta:" Grid.Row="0" HorizontalTextAlignment="Center" TextColor="#333" FontAttributes="Bold"  FontSize="Medium"/>
+                            <Label Text="0" Grid.Row="0" x:Name="lbldevuelta" HorizontalTextAlignment="Center" TextColor="#333" FontSize="Medium"/>
+                        </StackLayout>
+
+                        <Frame Padding="0" BorderColor="White" HasShadow="False" CornerRadius="8" Margin="0,0,0,15" x:Name="FrCantidad" >
+                            <StackLayout Orientation="Horizontal" Margin="4" >
+                                <Image Source="Dollar.png" WidthRequest="25" Margin="5"></Image>
+                                <customcontrol:CustomEntry  MaxLength="11" TextChanged="TxtDinero_TextChanged" HorizontalOptions="FillAndExpand" x:Name="TxtDinero"  Keyboard="Numeric"  Placeholder="¿Con cuanto pagaras?"/>
+                            </StackLayout>
+                        </Frame>
+
                     </StackLayout>
 
-                    <Frame Padding="0" BorderColor="White" HasShadow="False" CornerRadius="8" Margin="0,0,0,15" x:Name="FrCantidad" >
-                        <StackLayout Orientation="Horizontal" Margin="4" >
-                            <Image Source="Dollar.png" WidthRequest="25" Margin="5"></Image>
-                            <customcontrol:CustomEntry  MaxLength="11" TextChanged="TxtDinero_TextChanged" HorizontalOptions="FillAndExpand" x:Name="TxtDinero"  Keyboard="Numeric"  Placeholder="¿Con cuanto pagaras?"/>
-                        </StackLayout>
-                    </Frame>
-
-                </StackLayout>
             </ScrollView>
             <Button Text="Realizar Pedido" x:Name="BtnRealizarPedido" VerticalOptions="EndAndExpand" Clicked="BtnRealizarPedido_Clicked" FontSize="14" FontAttributes="Bold" CornerRadius="4"  BackgroundColor="#18356F" TextColor="white" Margin="10,0,10,10 "></Button>
             <Button Text="Cancelar" x:Name="BtnCancelar" Clicked="BtnCancelar_Clicked"  FontSize="14" CornerRadius="4" FontAttributes="Bold" BackgroundColor="LightGray" TextColor="#333" Margin="10,0,10,10 "></Button>

@@ -18,47 +18,12 @@ namespace FastFoodApp.Pantallas
         public ModalCantidad()
         {
             InitializeComponent();
-            LblTotal.Text = "RD$ " + (App.Precio + App.envio).ToString();
-            lblprecioenvio.Text = "RD$" + App.envio.ToString() + " Pesos";
-            lblprecioenvio.Text.Trim();
+            LblTotal.Text = "RD$ " + App.Precio.ToString();
+            //lblprecioenvio.Text = "RD$" + App.envio.ToString() + " Pesos";
+            //lblprecioenvio.Text.Trim();
             TxtCantidad.Text = "1";
 
         }
-
-        void TxtCantidad_TextChanged(System.Object sender, Xamarin.Forms.TextChangedEventArgs e)
-        {
-
-            double.TryParse(TxtCantidad.Text, out double cantidad);
-
-            if (!string.IsNullOrEmpty(cantidad.ToString()))
-            {
-                if (cantidad == 0)
-                {
-                    LblTotal.Text = "0";
-                }
-                else
-                {
-
-                    int totalcantidad = Convert.ToInt32(cantidad);
-                    LblTotal.Text = (App.Precio * totalcantidad + App.envio).ToString();
-
-
-                    if (string.IsNullOrEmpty(cantidad.ToString()))
-                    {
-                        LblTotal.Text = App.Precio.ToString();
-                    }
-                    else
-                    {
-
-                        int total = Convert.ToInt32(LblTotal.Text.Replace("RD$ ", ""));
-                    }
-                }
-
-            }
-
-        }
-
-
 
 
         async void BtnagregarCantidad_Clicked(System.Object sender, System.EventArgs e)

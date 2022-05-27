@@ -119,5 +119,19 @@ namespace FastFoodApp.Pantallas
         {
             IniciarSesion();
         }
+
+        private void eyebuttonnegro_Clicked(object sender, EventArgs e)
+        {
+            eyebuttonnegro.IsVisible = false;
+            eyebuttonazul.IsVisible = true;
+            TxtPassword.IsPassword = false;
+        }
+
+        private void eyebuttonazul_Clicked(object sender, EventArgs e)
+        {
+            eyebuttonnegro.IsVisible = true;
+            eyebuttonazul.IsVisible = false;
+            TxtPassword.IsPassword = true;
+        }
     }
 }

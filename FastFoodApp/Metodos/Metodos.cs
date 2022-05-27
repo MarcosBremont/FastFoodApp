@@ -36,9 +36,9 @@ namespace FastFoodApp.Metodos
 
 
 
-        public async Task<Result> AgregarPedido(string usuario, string email, string telefono, int concuantopagara, int devuelta, string direccion, StringBuilder producto, string latitud, string longitud)
+        public async Task<Result> AgregarPedido(int concuantopagara, int devuelta, string latitud, string longitud, string estado_del_pedido, int idusuarios, int idpedidos_fast_food)
         {
-            var result = await herramientas.EjecutarSentenciaEnApiLibre($"FastFood/AgregarPedido/{usuario.ToUpper()}/{email.ToUpper()}/{telefono.ToUpper()}/{concuantopagara}/{devuelta}/{direccion.ToUpper()}/{producto}/{latitud}/{longitud}");
+            var result = await herramientas.EjecutarSentenciaEnApiLibre($"FastFood/ActualizarPedido/{concuantopagara}/{devuelta}/{latitud}/{longitud}/{estado_del_pedido}/{idusuarios}/{idpedidos_fast_food}");
             var response = Newtonsoft.Json.JsonConvert.DeserializeObject<Result>(result);
             return response;
         }// Fin del método ObtenerEmpresa
@@ -66,9 +66,9 @@ namespace FastFoodApp.Metodos
             return UsuarioResult;
         }
 
-        public async Task<List<EPedidos>> ObtenerPedidos()
+        public async Task<List<EPedidos>> ObtenerPedidos(string estado_del_pedido, int idusuarios)
         {
-            var result = await herramientas.EjecutarSentenciaEnApiLibre($"FastFood/ObtenerPedidos");
+            var result = await herramientas.EjecutarSentenciaEnApiLibre($"FastFood/ObtenerPedidos/{estado_del_pedido.ToUpper()}/{idusuarios}");
             var lista_pedidos = Newtonsoft.Json.JsonConvert.DeserializeObject<List<EPedidos>>(result);
 
             return lista_pedidos;

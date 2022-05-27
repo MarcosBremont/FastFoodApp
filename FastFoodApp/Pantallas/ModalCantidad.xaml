@@ -13,7 +13,7 @@
                         <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
                     <BoxView HeightRequest="40" Color="#FFCC00" HorizontalOptions="FillAndExpand"/>
-                    <Label Text="Cantidad" Grid.Row="0" HorizontalTextAlignment="Center" TextColor="#333" FontAttributes="Bold" FontSize="Medium"/>
+                    <Label Text="Cantidad" VerticalOptions="Center" Grid.Row="0" HorizontalTextAlignment="Center" TextColor="#333" FontAttributes="Bold" FontSize="Medium"/>
                 </Grid>
             </StackLayout>
 
@@ -24,17 +24,10 @@
                         <Label Text="0" Grid.Row="0" x:Name="LblTotal" HorizontalTextAlignment="Center" TextColor="#333" FontAttributes="Bold" FontSize="Medium"/>
                     </StackLayout>
 
-                    <StackLayout Orientation="Horizontal">
-                        <Label Text="El precio del envio es de:" Grid.Row="0"  TextColor="#333" FontAttributes="Bold" Padding="0"  FontSize="10"/>
-                        <Label Text="0" Grid.Row="0" x:Name="lblprecioenvio"  TextColor="#333" FontAttributes="Bold" Padding="0"  FontSize="10"/>
-                        <Label Text="y ya fueron incluidos en el total." Grid.Row="0" TextColor="#333" FontAttributes="Bold" Padding="0"  FontSize="10"/>
-                    </StackLayout>
-
-
                     <Frame Padding="0" BorderColor="White" HasShadow="False" CornerRadius="8" Margin="0,0,0,15" x:Name="FrCantidad" >
                         <StackLayout Orientation="Horizontal" Margin="4" >
                             <Image Source="CantidadIcon.png" WidthRequest="25" Margin="5"></Image>
-                            <customcontrol:CustomEntry TextChanged="TxtCantidad_TextChanged" MaxLength="11" HorizontalOptions="FillAndExpand" x:Name="TxtCantidad"  Keyboard="Numeric"  Placeholder="Cantidad"/>
+                            <customcontrol:CustomEntry MaxLength="11" HorizontalOptions="FillAndExpand" x:Name="TxtCantidad"  Keyboard="Numeric"  Placeholder="Cantidad"/>
                         </StackLayout>
                     </Frame>
 
