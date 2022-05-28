@@ -40,8 +40,8 @@
                     <Label HorizontalOptions="Center" TextColor="White" Margin="0,8,0,0" Text="¿No tienes una cuenta?"></Label>
                     <Label HorizontalOptions="Center" TextColor="White" FontAttributes="Bold" Margin="0,8,0,0" Text="Registrate aqui"></Label>
                 </StackLayout>
-                <Label HorizontalOptions="Center" FontAttributes="Bold" VerticalOptions="EndAndExpand" TextColor="White" Margin="0,8,0,0" Text="Versión 1.0"></Label>
             </StackLayout>
+            <Label HorizontalOptions="Center" FontAttributes="Bold" VerticalOptions="EndAndExpand" TextColor="White" Margin="0,8,0,0" Text="Versión 1.0"></Label>
 
         </StackLayout>
     </ContentPage.Content>

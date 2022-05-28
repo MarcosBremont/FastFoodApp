@@ -153,6 +153,8 @@
     <BundleResource Include="Resources\CantidadIcon.png" />
     <BundleResource Include="Resources\Dollar.png" />
     <BundleResource Include="Resources\foodhamburguer.jpg" />
+    <BundleResource Include="Resources\hamburgerSodaAmarillo.png" />
+    <BundleResource Include="Resources\hamburgerSodaWhite.png" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\man.png" />
@@ -207,12 +209,6 @@
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\bellWhite.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\hamburgerSodaAmarillo.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\hamburgerSodaWhite.png" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\MiCarritoAmarillo.png" />

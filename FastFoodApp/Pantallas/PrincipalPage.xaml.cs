@@ -20,6 +20,8 @@ namespace FastFoodApp.Pantallas
         public PrincipalPage()
         {
             InitializeComponent();
+            btnMenu.Source = "hamburgerSodaAmarillo.png";
+
             _ = LlenarMenu();
 
             gridPedidos.GestureRecognizers.Add(new TapGestureRecognizer
@@ -34,7 +36,7 @@ namespace FastFoodApp.Pantallas
 
 
                     btnPedidos.Source = "TimeAmarillo";
-                    btnMenu.Source = "HamburgerSodaWhite";
+                    btnMenu.Source = "hamburgerSodaWhite.png";
                     btnMiPerfil.Source = "userBlanco";
                     btnImgCarrito.Source = "MiCarritoBlanco";
                     btnNotitifaciones.Source = "bellWhite";
@@ -55,7 +57,7 @@ namespace FastFoodApp.Pantallas
 
                     StackLayoutPedidos.IsVisible = false;
                     btnPedidos.Source = "TimeBlanco";
-                    btnMenu.Source = "HamburgerSodaAmarillo";
+                    btnMenu.Source = "hamburgerSodaAmarillo.png";
                     btnMiPerfil.Source = "userBlanco";
                     btnImgCarrito.Source = "MiCarritoBlanco";
                     btnNotitifaciones.Source = "bellWhite";
@@ -77,7 +79,7 @@ namespace FastFoodApp.Pantallas
 
 
                     btnPedidos.Source = "TimeBlanco";
-                    btnMenu.Source = "HamburgerSodaWhite";
+                    btnMenu.Source = "hamburgerSodaWhite.png";
                     btnMiPerfil.Source = "userBlanco";
                     btnImgCarrito.Source = "MiCarritoBlanco";
                     btnNotitifaciones.Source = "bellAmarillo";
@@ -98,7 +100,7 @@ namespace FastFoodApp.Pantallas
 
                     StackLayoutMiPerfil.IsVisible = true;
                     btnPedidos.Source = "TimeBlanco";
-                    btnMenu.Source = "HamburgerSodaWhite";
+                    btnMenu.Source = "hamburgerSodaWhite.png";
                     btnMiPerfil.Source = "userAmarillo";
                     btnImgCarrito.Source = "MiCarritoBlanco";
                     btnNotitifaciones.Source = "bellWhite";
@@ -121,7 +123,7 @@ namespace FastFoodApp.Pantallas
                     StackLayoutNotificaciones.IsVisible = false;
 
                     btnPedidos.Source = "TimeBlanco";
-                    btnMenu.Source = "HamburgerSodaWhite";
+                    btnMenu.Source = "hamburgerSodaWhite.png";
                     btnMiPerfil.Source = "userBlanco";
                     btnImgCarrito.Source = "MiCarritoAmarillo";
                     btnNotitifaciones.Source = "bellWhite";
@@ -137,9 +139,9 @@ namespace FastFoodApp.Pantallas
         {
             LblNombre.Text = App.nombre;
             LblApellido.Text = App.apellido;
-            lblDireccion.Text = App.direccion;
-            LblTelefono.Text = App.telefono;
-            LblEmail.Text = App.correo;
+            TxtDireccion.Text = App.direccion;
+            TxtTelefono.Text = App.telefono;
+            TxtEmail.Text = App.correo;
 
         }
 
@@ -222,6 +224,7 @@ namespace FastFoodApp.Pantallas
                 var datos = await metodos.ObtenerMenu();
                 lsv_menu.ItemsSource = datos;
                 lsv_menu.IsVisible = true;
+
             }
             catch (Exception ex)
             {
@@ -290,6 +293,20 @@ namespace FastFoodApp.Pantallas
 
 
             }
+        }
+
+        void btnEditarPerfil_Clicked(System.Object sender, System.EventArgs e)
+        {
+            TxtEmail.IsEnabled = true;
+            TxtDireccion.IsEnabled = true;
+            TxtTelefono.IsEnabled = true;
+        }
+
+        void btnGuardarCambios_Clicked(System.Object sender, System.EventArgs e)
+        {
+            TxtEmail.IsEnabled = false;
+            TxtDireccion.IsEnabled = false;
+            TxtTelefono.IsEnabled = false;
         }
     }
 }
