@@ -26,7 +26,7 @@ namespace FastFoodApp.Pantallas
 
             gridPedidos.GestureRecognizers.Add(new TapGestureRecognizer
             {
-                Command = new Command(()=>
+                Command = new Command(() =>
                 {
                     StackLayoutPaginaPrincipal.IsVisible = false;
                     StackLayoutPedidos.IsVisible = true;
@@ -137,10 +137,11 @@ namespace FastFoodApp.Pantallas
 
         private void LlenarMiPerfil()
         {
-            LblNombre.Text = App.nombre;
-            LblApellido.Text = App.apellido;
+            TxtNombre.Text = App.nombre;
+            TxtApellido.Text = App.apellido;
             TxtDireccion.Text = App.direccion;
             TxtTelefono.Text = App.telefono;
+            TxtClave.Text = App.clave;
             TxtEmail.Text = App.correo;
 
         }
@@ -171,7 +172,7 @@ namespace FastFoodApp.Pantallas
                 lsv_Carrito.IsVisible = false;
                 FastFoodApp.Metodos.Metodos metodos = new FastFoodApp.Metodos.Metodos();
                 lsv_Carrito.ItemsSource = null;
-                var datos = await metodos.ObtenerCarritoPorUsuario(App.NumeroOrdenGeneral,App.idusuarios, "PRE-ORDEN");
+                var datos = await metodos.ObtenerCarritoPorUsuario(App.NumeroOrdenGeneral, App.idusuarios, "PRE-ORDEN");
                 if (datos.Count == 0)
                 {
                     LblAunNoAgregasNada.IsVisible = true;
@@ -237,7 +238,7 @@ namespace FastFoodApp.Pantallas
         [Obsolete]
         async void BtnAgregar_Clicked(System.Object sender, System.EventArgs e)
         {
-           
+
             var b = (Button)sender;
 
             var ob = b.CommandParameter as EMenu;
@@ -269,6 +270,7 @@ namespace FastFoodApp.Pantallas
             App.Precio = product.precio;
         }
 
+        [Obsolete]
         private async void BtnHacerPedido_Clicked(object sender, EventArgs e)
         {
             modalHacerPedido = new ModalHacerPedido();
@@ -300,6 +302,22 @@ namespace FastFoodApp.Pantallas
             TxtEmail.IsEnabled = true;
             TxtDireccion.IsEnabled = true;
             TxtTelefono.IsEnabled = true;
+            btnGuardarCambios.IsVisible = true;
+            btnEditarPerfil.IsVisible = false;
+
+        }
+
+        public async void ActualizarUsuario(string nombre, string apellido, string direccion, string telefono, string email, string clave, int idusuarios)
+        {
+            try
+            {
+                FastFoodApp.Metodos.Metodos metodos = new FastFoodApp.Metodos.Metodos();
+                var datos = await metodos.ActualizarUsuario(nombre, apellido, direccion, telefono, email, clave,idusuarios);
+            }
+            catch (Exception ex)
+            {
+
+            }
         }
 
         void btnGuardarCambios_Clicked(System.Object sender, System.EventArgs e)
@@ -307,6 +325,11 @@ namespace FastFoodApp.Pantallas
             TxtEmail.IsEnabled = false;
             TxtDireccion.IsEnabled = false;
             TxtTelefono.IsEnabled = false;
+            btnEditarPerfil.IsVisible = true;
+            btnGuardarCambios.IsVisible = false;
+
+            ActualizarUsuario(TxtNombre.Text, TxtApellido.Text, TxtDireccion.Text, TxtTelefono.Text, TxtEmail.Text, TxtClave.Text,App.idusuarios);
+
         }
     }
 }

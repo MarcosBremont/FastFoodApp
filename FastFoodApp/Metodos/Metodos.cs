@@ -128,6 +128,14 @@ namespace FastFoodApp.Metodos
             return lista_pedidos;
         } // Fin del método ObtenerMenu
 
+        public async Task<Result> ActualizarUsuario(string nombre, string apellido, string direccion, string telefono, string email, string clave, int idusuarios)
+        {
+            var result = await herramientas.EjecutarSentenciaEnApiLibre($"FastFood/ActualizarUsuario/{nombre}/{apellido}/{direccion}/{telefono}/{email}/{clave}/{idusuarios}");
+            var response = Newtonsoft.Json.JsonConvert.DeserializeObject<Result>(result);
+            return response;
+        }// Fin del método ObtenerEmpresa
+
+
 
     }
 }

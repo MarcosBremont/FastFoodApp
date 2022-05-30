@@ -24,10 +24,21 @@
                         <Label Text="0" Grid.Row="0" x:Name="LblTotal" HorizontalTextAlignment="Center" TextColor="#333" FontAttributes="Bold" FontSize="Medium"/>
                     </StackLayout>
 
+                    <StackLayout>
+                        <Label Text="Cantidad:"></Label>
+                    </StackLayout>
+
                     <Frame Padding="0" BorderColor="White" HasShadow="False" CornerRadius="8" Margin="0,0,0,15" x:Name="FrCantidad" >
                         <StackLayout Orientation="Horizontal" Margin="4" >
                             <Image Source="CantidadIcon.png" WidthRequest="25" Margin="5"></Image>
                             <customcontrol:CustomEntry MaxLength="11" HorizontalOptions="FillAndExpand" x:Name="TxtCantidad"  Keyboard="Numeric"  Placeholder="Cantidad"/>
+                        </StackLayout>
+                    </Frame>
+
+                      <Frame Padding="0" BorderColor="White" HasShadow="False" CornerRadius="8" Margin="0,0,0,15" x:Name="FrDescript" >
+                        <StackLayout Orientation="Horizontal" Margin="4" >
+                            <Image Source="CantidadIcon.png" WidthRequest="25" Margin="5"></Image>
+                            <customcontrol:CustomEntry MaxLength="11" HorizontalOptions="FillAndExpand" x:Name="TxtDescript"  Keyboard="Numeric"  Placeholder="¿Deseas que le quite algo?"/>
                         </StackLayout>
                     </Frame>
 
