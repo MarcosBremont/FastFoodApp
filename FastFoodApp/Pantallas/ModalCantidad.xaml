@@ -37,7 +37,7 @@
 
                       <Frame Padding="0" BorderColor="White" HasShadow="False" CornerRadius="8" Margin="0,0,0,15" x:Name="FrDescript" >
                         <StackLayout Orientation="Horizontal" Margin="4" >
-                            <Image Source="CantidadIcon.png" WidthRequest="25" Margin="5"></Image>
+                            <Image Source="comment.png" WidthRequest="25" Margin="5"></Image>
                             <customcontrol:CustomEntry MaxLength="11" HorizontalOptions="FillAndExpand" x:Name="TxtDescript"  Keyboard="Numeric"  Placeholder="¿Deseas que le quite algo?"/>
                         </StackLayout>
                     </Frame>

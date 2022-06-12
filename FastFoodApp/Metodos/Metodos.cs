@@ -61,6 +61,7 @@ namespace FastFoodApp.Metodos
                 App.latitud = UsuarioResult.latitud;
                 App.longitud = UsuarioResult.longitud;
                 App.clave = UsuarioResult.clave;
+                App.empresa = UsuarioResult.empresa;
             }
 
             return UsuarioResult;
@@ -113,9 +114,9 @@ namespace FastFoodApp.Metodos
             return response;
         }// Fin del método ObtenerEmpresa
 
-        public async Task<Result> AgregarPedidoTemporal(int idmenu_fast_food, int idusuarios, int cantidad)
+        public async Task<Result> AgregarPedidoTemporal(int idmenu_fast_food, int idusuarios, int cantidad, string descripcion)
         {
-            var result = await herramientas.EjecutarSentenciaEnApiLibre($"FastFood/AgregarPedidoTemporal/{idmenu_fast_food}/{idusuarios}/{cantidad}");
+            var result = await herramientas.EjecutarSentenciaEnApiLibre($"FastFood/AgregarPedidoTemporal/{idmenu_fast_food}/{idusuarios}/{cantidad}/{descripcion}");
             var response = Newtonsoft.Json.JsonConvert.DeserializeObject<Result>(result);
             return response;
         }// Fin del método ObtenerEmpresa

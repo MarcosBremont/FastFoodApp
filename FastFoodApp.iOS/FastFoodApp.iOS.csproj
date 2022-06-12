@@ -157,6 +157,7 @@
     <BundleResource Include="Resources\hamburgerSodaWhite.png" />
     <BundleResource Include="Resources\lock.png" />
     <BundleResource Include="Resources\user.png" />
+    <BundleResource Include="Resources\comment.png" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\man.png" />

@@ -53,6 +53,7 @@ namespace FastFoodApp.Pantallas
                     var result = await metodos.IniciarSesion(TxtEmail.Text, TxtPassword.Text);
                     if (result.respuesta == "OK")
                     {
+                        App.empresa = result.empresa;
                         InsertarIdPedido();
                         SeleccionarNumeroDeOrdenGeneral();
                         toastConfig.MostrarNotificacion($"Bienvenido {result.nombre}", ToastPosition.Top, 3, "#51C560");
