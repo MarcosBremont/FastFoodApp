@@ -57,7 +57,14 @@ namespace FastFoodApp.Pantallas
                         InsertarIdPedido();
                         SeleccionarNumeroDeOrdenGeneral();
                         toastConfig.MostrarNotificacion($"Bienvenido {result.nombre}", ToastPosition.Top, 3, "#51C560");
-                        await Navigation.PushModalAsync(new PrincipalPage());
+                        if (result.empresa == "S")
+                        {
+                            await Navigation.PushModalAsync(new PrincipalPageEmpresa());
+                        }
+                        else
+                        {
+                            await Navigation.PushModalAsync(new PrincipalPage());
+                        }
                     }
                     else
                     {

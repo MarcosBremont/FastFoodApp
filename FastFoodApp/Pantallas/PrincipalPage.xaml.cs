@@ -24,35 +24,16 @@ namespace FastFoodApp.Pantallas
 
             _ = LlenarMenu();
 
-            if (App.empresa == "S")
-            {
-                gridPedidos.IsVisible = false ;
-                gridPedidosEmpresa.IsVisible = true ;
-            }
-            else
-            {
-
-            }
-
             gridPedidos.GestureRecognizers.Add(new TapGestureRecognizer
             {
                 Command = new Command(() =>
                 {
-                    if (App.empresa == "S")
-                    {
-                        StackLayoutPedidos.IsVisible = false;
-                        StackLayoutPedidosEmpresa.IsVisible = true;
-                    }
-                    else
-                    {
 
-                    }
                     StackLayoutPaginaPrincipal.IsVisible = false;
                     StackLayoutPedidos.IsVisible = true;
                     StackLayoutMiPerfil.IsVisible = false;
                     StackLayoutTuCarrito.IsVisible = false;
                     StackLayoutNotificaciones.IsVisible = false;
-
 
                     btnPedidos.Source = "TimeAmarillo";
                     btnMenu.Source = "hamburgerSodaWhite.png";
@@ -64,27 +45,6 @@ namespace FastFoodApp.Pantallas
                 NumberOfTapsRequired = 1
             });
 
-            gridPedidosEmpresa.GestureRecognizers.Add(new TapGestureRecognizer
-            {
-                Command = new Command(() =>
-                {
-                
-                    StackLayoutPaginaPrincipal.IsVisible = false;
-                    StackLayoutPedidosEmpresa.IsVisible = true;
-                    StackLayoutMiPerfil.IsVisible = false;
-                    StackLayoutTuCarrito.IsVisible = false;
-                    StackLayoutNotificaciones.IsVisible = false;
-
-
-                    btnPedidosEmpresa.Source = "TimeAmarillo";
-                    btnMenu.Source = "hamburgerSodaWhite.png";
-                    btnMiPerfil.Source = "userBlanco";
-                    btnImgCarrito.Source = "MiCarritoBlanco";
-                    btnNotitifaciones.Source = "bellWhite";
-                    _ = LlenarPedidos();
-                }),
-                NumberOfTapsRequired = 1
-            });
 
             gridInicio.GestureRecognizers.Add(new TapGestureRecognizer
             {
@@ -112,50 +72,17 @@ namespace FastFoodApp.Pantallas
             {
                 Command = new Command(() =>
                 {
-                    if (App.empresa == "S")
-                    {
-                        StackLayoutNotificaciones.IsVisible = false;
-                        StackLayoutNotificacionesEmpresa.IsVisible = true;
-                    }
-                    else
-                    {
-
-                    }
                     StackLayoutPaginaPrincipal.IsVisible = false;
                     StackLayoutMiPerfil.IsVisible = false;
                     StackLayoutTuCarrito.IsVisible = false;
                     StackLayoutPedidos.IsVisible = false;
                     StackLayoutNotificaciones.IsVisible = true;
 
-
                     btnPedidos.Source = "TimeBlanco";
                     btnMenu.Source = "hamburgerSodaWhite.png";
                     btnMiPerfil.Source = "userBlanco";
                     btnImgCarrito.Source = "MiCarritoBlanco";
                     btnNotitifaciones.Source = "bellAmarillo";
-
-
-                }),
-                NumberOfTapsRequired = 1
-            });
-
-            gridNotificacionesEmpresa.GestureRecognizers.Add(new TapGestureRecognizer
-            {
-                Command = new Command(() =>
-                {
-                    StackLayoutPaginaPrincipal.IsVisible = false;
-                    StackLayoutMiPerfil.IsVisible = false;
-                    StackLayoutTuCarrito.IsVisible = false;
-                    StackLayoutPedidos.IsVisible = false;
-                    StackLayoutNotificacionesEmpresa.IsVisible = true;
-                    StackLayoutNotificaciones.IsVisible = false;
-
-
-                    btnPedidos.Source = "TimeBlanco";
-                    btnMenu.Source = "hamburgerSodaWhite.png";
-                    btnMiPerfil.Source = "userBlanco";
-                    btnImgCarrito.Source = "MiCarritoBlanco";
-                    btnNotitifacionesEmpresa.Source = "bellAmarillo";
 
 
                 }),
@@ -386,7 +313,7 @@ namespace FastFoodApp.Pantallas
             try
             {
                 FastFoodApp.Metodos.Metodos metodos = new FastFoodApp.Metodos.Metodos();
-                var datos = await metodos.ActualizarUsuario(nombre, apellido, direccion, telefono, email, clave,idusuarios);
+                var datos = await metodos.ActualizarUsuario(nombre, apellido, direccion, telefono, email, clave, idusuarios);
             }
             catch (Exception ex)
             {
@@ -403,7 +330,7 @@ namespace FastFoodApp.Pantallas
             TxtClave.IsEnabled = false;
             btnGuardarCambios.IsVisible = false;
 
-            ActualizarUsuario(TxtNombre.Text, TxtApellido.Text, TxtDireccion.Text, TxtTelefono.Text, TxtEmail.Text, TxtClave.Text,App.idusuarios);
+            ActualizarUsuario(TxtNombre.Text, TxtApellido.Text, TxtDireccion.Text, TxtTelefono.Text, TxtEmail.Text, TxtClave.Text, App.idusuarios);
 
         }
     }

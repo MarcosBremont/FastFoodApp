@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Acr.UserDialogs;
 using FastFoodApp.Entidad;
 using FastFoodApp.Metodos;
+using FastFoodApp.Modelo;
 using Rg.Plugins.Popup.Services;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -12,53 +14,37 @@ using Xamarin.Forms.Xaml;
 namespace FastFoodApp.Pantallas
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class PrincipalPage : ContentPage
+    public partial class PrincipalPageEmpresa : ContentPage
     {
         ModalCantidad modalCantidad = new ModalCantidad();
+        ModalMenu modalMenu = new ModalMenu();
         ModalHacerPedido modalHacerPedido = new ModalHacerPedido();
+        ToastConfigClass toastConfig = new ToastConfigClass();
 
-        public PrincipalPage()
+
+        public PrincipalPageEmpresa()
         {
             InitializeComponent();
-            btnMenu.Source = "hamburgerSodaAmarillo.png";
+            btnMenuEmpresa.Source = "hamburgerSodaAmarillo.png";
 
             _ = LlenarMenu();
 
-            if (App.empresa == "S")
-            {
-                gridPedidos.IsVisible = false ;
-                gridPedidosEmpresa.IsVisible = true ;
-            }
-            else
-            {
-
-            }
-
-            gridPedidos.GestureRecognizers.Add(new TapGestureRecognizer
+            gridPedidosEmpresa.GestureRecognizers.Add(new TapGestureRecognizer
             {
                 Command = new Command(() =>
                 {
-                    if (App.empresa == "S")
-                    {
-                        StackLayoutPedidos.IsVisible = false;
-                        StackLayoutPedidosEmpresa.IsVisible = true;
-                    }
-                    else
-                    {
-
-                    }
+                    StackLayoutPedidosEmpresa.IsVisible = true;
                     StackLayoutPaginaPrincipal.IsVisible = false;
-                    StackLayoutPedidos.IsVisible = true;
                     StackLayoutMiPerfil.IsVisible = false;
                     StackLayoutTuCarrito.IsVisible = false;
-                    StackLayoutNotificaciones.IsVisible = false;
+                    StackLayoutNotificacionesEmpresa.IsVisible = false;
 
 
-                    btnPedidos.Source = "TimeAmarillo";
-                    btnMenu.Source = "hamburgerSodaWhite.png";
+                    btnPedidosEmpresa.Source = "TimeAmarillo";
+                    btnMenuEmpresa.Source = "hamburgerSodaWhite.png";
                     btnMiPerfil.Source = "userBlanco";
-                    btnImgCarrito.Source = "MiCarritoBlanco";
-                    btnNotitifaciones.Source = "bellWhite";
+                    btnImgAnotarPedidos.Source = "MiCarritoBlanco";
+                    btnNotitifacionesEmpresa.Source = "bellWhite";
                     _ = LlenarPedidos();
                 }),
                 NumberOfTapsRequired = 1
@@ -68,47 +54,46 @@ namespace FastFoodApp.Pantallas
             {
                 Command = new Command(() =>
                 {
-                
+
                     StackLayoutPaginaPrincipal.IsVisible = false;
                     StackLayoutPedidosEmpresa.IsVisible = true;
                     StackLayoutMiPerfil.IsVisible = false;
                     StackLayoutTuCarrito.IsVisible = false;
-                    StackLayoutNotificaciones.IsVisible = false;
+                    StackLayoutNotificacionesEmpresa.IsVisible = false;
 
 
                     btnPedidosEmpresa.Source = "TimeAmarillo";
-                    btnMenu.Source = "hamburgerSodaWhite.png";
+                    btnMenuEmpresa.Source = "hamburgerSodaWhite.png";
                     btnMiPerfil.Source = "userBlanco";
-                    btnImgCarrito.Source = "MiCarritoBlanco";
-                    btnNotitifaciones.Source = "bellWhite";
+                    btnImgAnotarPedidos.Source = "MiCarritoBlanco";
+                    btnNotitifacionesEmpresa.Source = "bellWhite";
                     _ = LlenarPedidos();
                 }),
                 NumberOfTapsRequired = 1
             });
 
-            gridInicio.GestureRecognizers.Add(new TapGestureRecognizer
+            gridInicioEmpresa.GestureRecognizers.Add(new TapGestureRecognizer
             {
                 Command = new Command(() =>
                 {
                     StackLayoutPaginaPrincipal.IsVisible = true;
                     StackLayoutMiPerfil.IsVisible = false;
                     StackLayoutTuCarrito.IsVisible = false;
-                    StackLayoutNotificaciones.IsVisible = false;
+                    StackLayoutNotificacionesEmpresa.IsVisible = false;
 
-
-                    StackLayoutPedidos.IsVisible = false;
-                    btnPedidos.Source = "TimeBlanco";
-                    btnMenu.Source = "hamburgerSodaAmarillo.png";
+                    StackLayoutPedidosEmpresa.IsVisible = false;
+                    btnPedidosEmpresa.Source = "TimeBlanco";
+                    btnMenuEmpresa.Source = "hamburgerSodaAmarillo.png";
                     btnMiPerfil.Source = "userBlanco";
-                    btnImgCarrito.Source = "MiCarritoBlanco";
-                    btnNotitifaciones.Source = "bellWhite";
+                    btnImgAnotarPedidos.Source = "MiCarritoBlanco";
+                    btnNotitifacionesEmpresa.Source = "bellWhite";
 
 
                 }),
                 NumberOfTapsRequired = 1
             });
 
-            gridNotificaciones.GestureRecognizers.Add(new TapGestureRecognizer
+            gridNotificacionesEmpresa.GestureRecognizers.Add(new TapGestureRecognizer
             {
                 Command = new Command(() =>
                 {
@@ -117,7 +102,7 @@ namespace FastFoodApp.Pantallas
                         StackLayoutPaginaPrincipal.IsVisible = false;
                         StackLayoutMiPerfil.IsVisible = false;
                         StackLayoutTuCarrito.IsVisible = false;
-                        StackLayoutPedidos.IsVisible = false;
+                        StackLayoutPedidosEmpresa.IsVisible = false;
                         StackLayoutNotificacionesEmpresa.IsVisible = true;
                     }
                     else
@@ -125,17 +110,17 @@ namespace FastFoodApp.Pantallas
                         StackLayoutPaginaPrincipal.IsVisible = false;
                         StackLayoutMiPerfil.IsVisible = false;
                         StackLayoutTuCarrito.IsVisible = false;
-                        StackLayoutPedidos.IsVisible = false;
-                        StackLayoutNotificaciones.IsVisible = true;
+                        StackLayoutPedidosEmpresa.IsVisible = false;
+                        StackLayoutNotificacionesEmpresa.IsVisible = true;
                     }
-                    
 
 
-                    btnPedidos.Source = "TimeBlanco";
-                    btnMenu.Source = "hamburgerSodaWhite.png";
+
+                    btnPedidosEmpresa.Source = "TimeBlanco";
+                    btnMenuEmpresa.Source = "hamburgerSodaWhite.png";
                     btnMiPerfil.Source = "userBlanco";
-                    btnImgCarrito.Source = "MiCarritoBlanco";
-                    btnNotitifaciones.Source = "bellAmarillo";
+                    btnImgAnotarPedidos.Source = "MiCarritoBlanco";
+                    btnNotitifacionesEmpresa.Source = "bellAmarillo";
 
 
                 }),
@@ -149,35 +134,35 @@ namespace FastFoodApp.Pantallas
                     StackLayoutPaginaPrincipal.IsVisible = false;
                     StackLayoutMiPerfil.IsVisible = false;
                     StackLayoutTuCarrito.IsVisible = false;
-                    StackLayoutPedidos.IsVisible = false;
+                    StackLayoutPedidosEmpresa.IsVisible = false;
                     StackLayoutNotificacionesEmpresa.IsVisible = true;
 
 
-                    btnPedidos.Source = "TimeBlanco";
-                    btnMenu.Source = "hamburgerSodaWhite.png";
+                    btnPedidosEmpresa.Source = "TimeBlanco";
+                    btnMenuEmpresa.Source = "hamburgerSodaWhite.png";
                     btnMiPerfil.Source = "userBlanco";
-                    btnImgCarrito.Source = "MiCarritoBlanco";
+                    btnImgAnotarPedidos.Source = "MiCarritoBlanco";
                     btnNotitifacionesEmpresa.Source = "bellAmarillo";
 
                 }),
                 NumberOfTapsRequired = 1
             });
 
-            gridMiPerfil.GestureRecognizers.Add(new TapGestureRecognizer
+            gridMiPerfilEmpresa.GestureRecognizers.Add(new TapGestureRecognizer
             {
                 Command = new Command(async () =>
                 {
                     StackLayoutPaginaPrincipal.IsVisible = false;
-                    StackLayoutPedidos.IsVisible = false;
+                    StackLayoutPedidosEmpresa.IsVisible = false;
                     StackLayoutTuCarrito.IsVisible = false;
-                    StackLayoutNotificaciones.IsVisible = false;
+                    StackLayoutNotificacionesEmpresa.IsVisible = false;
 
                     StackLayoutMiPerfil.IsVisible = true;
-                    btnPedidos.Source = "TimeBlanco";
-                    btnMenu.Source = "hamburgerSodaWhite.png";
+                    btnPedidosEmpresa.Source = "TimeBlanco";
+                    btnMenuEmpresa.Source = "hamburgerSodaWhite.png";
                     btnMiPerfil.Source = "userAmarillo";
-                    btnImgCarrito.Source = "MiCarritoBlanco";
-                    btnNotitifaciones.Source = "bellWhite";
+                    btnImgAnotarPedidos.Source = "MiCarritoBlanco";
+                    btnNotitifacionesEmpresa.Source = "bellWhite";
 
                     LlenarMiPerfil();
 
@@ -186,21 +171,21 @@ namespace FastFoodApp.Pantallas
             });
 
 
-            gridMiCarrito.GestureRecognizers.Add(new TapGestureRecognizer
+            gridAnotarPedidos.GestureRecognizers.Add(new TapGestureRecognizer
             {
                 Command = new Command(async () =>
                 {
                     StackLayoutPaginaPrincipal.IsVisible = false;
-                    StackLayoutPedidos.IsVisible = false;
+                    StackLayoutPedidosEmpresa.IsVisible = false;
                     StackLayoutMiPerfil.IsVisible = false;
                     StackLayoutTuCarrito.IsVisible = true;
-                    StackLayoutNotificaciones.IsVisible = false;
+                    StackLayoutNotificacionesEmpresa.IsVisible = false;
 
-                    btnPedidos.Source = "TimeBlanco";
-                    btnMenu.Source = "hamburgerSodaWhite.png";
+                    btnPedidosEmpresa.Source = "TimeBlanco";
+                    btnMenuEmpresa.Source = "hamburgerSodaWhite.png";
                     btnMiPerfil.Source = "userBlanco";
-                    btnImgCarrito.Source = "MiCarritoAmarillo";
-                    btnNotitifaciones.Source = "bellWhite";
+                    btnImgAnotarPedidos.Source = "MiCarritoAmarillo";
+                    btnNotitifacionesEmpresa.Source = "bellWhite";
 
                     _ = LlenarCarrito();
 
@@ -224,14 +209,8 @@ namespace FastFoodApp.Pantallas
         {
             try
             {
-                lsv_menu.IsVisible = false;
                 FastFoodApp.Metodos.Metodos metodos = new FastFoodApp.Metodos.Metodos();
-                lsv_menu.ItemsSource = null;
                 var datos = await metodos.ObtenerMenu();
-                lsv_menu.ItemsSource = datos;
-                lsv_menu.IsVisible = true;
-
-
             }
             catch (Exception ex)
             {
@@ -273,12 +252,8 @@ namespace FastFoodApp.Pantallas
         {
             try
             {
-                lsv_pedidos.IsVisible = false;
                 FastFoodApp.Metodos.Metodos metodos = new FastFoodApp.Metodos.Metodos();
-                lsv_pedidos.ItemsSource = null;
                 var datos = await metodos.ObtenerCarritoPorUsuario(0, App.idusuarios, "PENDIENTE");
-                lsv_pedidos.ItemsSource = datos;
-                lsv_pedidos.IsVisible = true;
             }
             catch (Exception ex)
             {
@@ -293,13 +268,8 @@ namespace FastFoodApp.Pantallas
 
             try
             {
-                lsv_menu.IsVisible = false;
                 FastFoodApp.Metodos.Metodos metodos = new FastFoodApp.Metodos.Metodos();
-                lsv_menu.ItemsSource = null;
                 var datos = await metodos.ObtenerMenu();
-                lsv_menu.ItemsSource = datos;
-                lsv_menu.IsVisible = true;
-
             }
             catch (Exception ex)
             {
@@ -387,7 +357,7 @@ namespace FastFoodApp.Pantallas
             try
             {
                 FastFoodApp.Metodos.Metodos metodos = new FastFoodApp.Metodos.Metodos();
-                var datos = await metodos.ActualizarUsuario(nombre, apellido, direccion, telefono, email, clave,idusuarios);
+                var datos = await metodos.ActualizarUsuario(nombre, apellido, direccion, telefono, email, clave, idusuarios);
             }
             catch (Exception ex)
             {
@@ -404,8 +374,52 @@ namespace FastFoodApp.Pantallas
             TxtClave.IsEnabled = false;
             btnGuardarCambios.IsVisible = false;
 
-            ActualizarUsuario(TxtNombre.Text, TxtApellido.Text, TxtDireccion.Text, TxtTelefono.Text, TxtEmail.Text, TxtClave.Text,App.idusuarios);
+            ActualizarUsuario(TxtNombre.Text, TxtApellido.Text, TxtDireccion.Text, TxtTelefono.Text, TxtEmail.Text, TxtClave.Text, App.idusuarios);
 
+        }
+
+        void BtnAgregarAlMenu_Clicked(System.Object sender, System.EventArgs e)
+        {
+            try
+            {
+                AgregarProductoAlMenu(TxtNombreProducto.Text, Convert.ToInt32(TxtPrecio.Text), TxtDisponible.Text, "TxtDescripcion.Text", TxtDescripcion.Text);
+                toastConfig.MostrarNotificacion($"Producto agregado al menú", ToastPosition.Top, 3, "#51C560");
+                TxtNombreProducto.Text = "";
+                TxtPrecio.Text = "";
+                TxtDisponible.Text = "";
+                TxtDescripcion.Text = "";
+            }
+            catch (Exception ex)
+            {
+                toastConfig.MostrarNotificacion($"Ocurrio un error, intenta nuevamente o comunicate con el administrador", ToastPosition.Top, 3, "#51C560");
+
+            }
+
+        }
+
+
+
+        private async void AgregarProductoAlMenu(string nombre, int precio, string disponibilidad, string foto, string descripcion)
+        {
+            try
+            {
+                FastFoodApp.Metodos.Metodos metodos = new FastFoodApp.Metodos.Metodos();
+                var datos = await metodos.AgregarProductoAlMenu(nombre, precio, disponibilidad, foto, descripcion);
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
+
+        void BtnAgregarFoto_Clicked(System.Object sender, System.EventArgs e)
+        {
+        }
+
+        async void BtnVermenu_Clicked(System.Object sender, System.EventArgs e)
+        {
+            modalMenu = new ModalMenu();
+            await PopupNavigation.PushAsync(modalMenu);
         }
     }
 }

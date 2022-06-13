@@ -3,9 +3,9 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:popup="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup" xmlns:customcontrol="clr-namespace:FastFoodApp.ControlesPersonalizados"
-    x:Class="FastFoodApp.Pantallas.ModalCantidad">
+    x:Class="FastFoodApp.Pantallas.ModalMenu">
     <ContentPage.Content>
-        <StackLayout x:Name="modalCantidad" Margin="10,20,10,30" BackgroundColor="#EEEEEE" >
+        <StackLayout x:Name="modalMenu" Margin="10,20,10,30" BackgroundColor="#EEEEEE" >
 
             <StackLayout AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1">
                 <Grid>
@@ -13,38 +13,77 @@
                         <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
                     <BoxView HeightRequest="40" Color="#FFCC00" HorizontalOptions="FillAndExpand"/>
-                    <Label Text="Cantidad" VerticalOptions="Center" Grid.Row="0" HorizontalTextAlignment="Center" TextColor="#333" FontAttributes="Bold" FontSize="Medium"/>
+                    <Label Text="Menú" VerticalOptions="Center" Grid.Row="0" HorizontalTextAlignment="Center" TextColor="#333" FontAttributes="Bold" FontSize="Medium"/>
                 </Grid>
+
+
             </StackLayout>
 
-            <ScrollView Padding="10">
-                <StackLayout Orientation="Vertical">
-                    <StackLayout Orientation="Horizontal">
-                        <Label Text="Total:" Grid.Row="0" HorizontalTextAlignment="Center" TextColor="#333" FontAttributes="Bold"  FontSize="Medium"/>
-                        <Label Text="0" Grid.Row="0" x:Name="LblTotal" HorizontalTextAlignment="Center" TextColor="#333" FontAttributes="Bold" FontSize="Medium"/>
-                    </StackLayout>
 
-                    <StackLayout>
-                        <Label Text="Cantidad:"></Label>
-                    </StackLayout>
+            <StackLayout VerticalOptions="FillAndExpand" Grid.Row="0" Grid.Column="0" Orientation="Vertical" Margin="0,0,0,0">
+                <ListView VerticalOptions="FillAndExpand" ItemSelected="lsv_menu_ItemSelected" x:Name="lsv_menu" Grid.Row="0" BackgroundColor="Transparent" HorizontalOptions="CenterAndExpand" SeparatorVisibility="Default"  SeparatorColor="#18356F" HasUnevenRows="True" >
+                    <ListView.ItemTemplate>
 
-                    <Frame Padding="0" BorderColor="White" HasShadow="False" CornerRadius="8" Margin="0,0,0,15" x:Name="FrCantidad" >
-                        <StackLayout Orientation="Horizontal" Margin="4" >
-                            <Image Source="CantidadIcon.png" WidthRequest="25" Margin="5"></Image>
-                            <customcontrol:CustomEntry MaxLength="11" HorizontalOptions="FillAndExpand" x:Name="TxtCantidad"  Keyboard="Numeric"  Placeholder="Cantidad"/>
-                        </StackLayout>
-                    </Frame>
+                        <DataTemplate>
 
-                      <Frame Padding="0" BorderColor="White" HasShadow="False" CornerRadius="8" Margin="0,0,0,15" x:Name="FrDescript" >
-                        <StackLayout Orientation="Horizontal" Margin="4" >
-                            <Image Source="comment.png" WidthRequest="25" Margin="5"></Image>
-                            <customcontrol:CustomEntry MaxLength="11" HorizontalOptions="FillAndExpand" x:Name="TxtDescript"  Keyboard="Numeric"  Placeholder="¿Deseas que le quite algo?"/>
-                        </StackLayout>
-                    </Frame>
+                            <ViewCell>
 
-                </StackLayout>
-            </ScrollView>
-            <Button Text="Agregar" x:Name="BtnagregarCantidad" VerticalOptions="EndAndExpand" Clicked="BtnagregarCantidad_Clicked" FontSize="14" FontAttributes="Bold" CornerRadius="4"  BackgroundColor="#18356F" TextColor="white" Margin="10,0,10,10 "></Button>
+
+                                <!--ITEM-->
+                                <StackLayout Margin="0,0,0,5" VerticalOptions="FillAndExpand">
+                                    <Frame HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" HasShadow="False"  CornerRadius="4" BackgroundColor="#FFFFFF">
+                                        <StackLayout BackgroundColor="#FFFFFF"  Spacing="0">
+
+
+
+                                            <StackLayout Orientation="Vertical" >
+
+                                                <StackLayout Orientation="Horizontal"  HorizontalOptions="Center" >
+                                                    <Frame CornerRadius="4" HasShadow="False"  Padding="0" IsClippedToBounds="True">
+                                                        <Image Aspect="AspectFill"  HeightRequest="150" WidthRequest="150" Source="{Binding foto}" />
+                                                    </Frame>
+                                                </StackLayout>
+
+                                                <StackLayout Orientation="Horizontal" VerticalOptions="Center" Margin="0,0,0,10">
+
+                                                    <Label Text="{Binding nombre}" VerticalOptions="Center"  FontSize="14" FontAttributes="Bold" TextColor="#1E2021" />
+                                                    <Frame HasShadow="False" Padding="5" VerticalOptions="Center"  CornerRadius="4" BackgroundColor="#FFCC00" HorizontalOptions="EndAndExpand">
+                                                        <StackLayout Orientation="Horizontal">
+
+                                                            <Label VerticalOptions="Center" Text="RD$" FontAttributes="Bold" FontSize="12" TextColor="#333" />
+                                                            <Label VerticalOptions="Center" Text="{Binding precio}" FontAttributes="Bold" FontSize="12" TextColor="#333" />
+                                                        </StackLayout>
+                                                    </Frame>
+
+                                                </StackLayout>
+
+
+                                                <StackLayout Orientation="Horizontal" VerticalOptions="Center" Margin="0,0,0,0">
+                                                    <Label Text="{Binding descripcion}" VerticalOptions="Center"  FontSize="14" TextColor="#333" />
+                                                </StackLayout>
+
+                                            </StackLayout>
+
+
+
+                                        </StackLayout>
+                                    </Frame>
+                                    <!--<BoxView BackgroundColor="Black" HeightRequest="2"/>-->
+                                </StackLayout>
+                            </ViewCell>
+
+                        </DataTemplate>
+
+
+                    </ListView.ItemTemplate>
+                </ListView>
+
+            </StackLayout>
+
+
+
+
+
             <Button Text="Cancelar" x:Name="BtnCancelar" Clicked="BtnCancelar_Clicked" FontSize="14" CornerRadius="4" FontAttributes="Bold" BackgroundColor="LightGray" TextColor="#333" Margin="10,0,10,10 "></Button>
         </StackLayout>
     </ContentPage.Content>

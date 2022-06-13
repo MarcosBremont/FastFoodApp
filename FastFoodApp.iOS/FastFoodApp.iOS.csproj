@@ -27,6 +27,8 @@
     <MtouchArch>x86_64</MtouchArch>
     <MtouchLink>None</MtouchLink>
     <MtouchDebug>true</MtouchDebug>
+    <CodesignProvision>Automatic</CodesignProvision>
+    <CodesignKey>iPhone Developer</CodesignKey>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
     <DebugType>none</DebugType>
@@ -61,6 +63,7 @@
     <MtouchArch>ARM64</MtouchArch>
     <CodesignKey>iPhone Developer</CodesignKey>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <MtouchLink>SdkOnly</MtouchLink>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Main.cs" />
@@ -158,6 +161,10 @@
     <BundleResource Include="Resources\lock.png" />
     <BundleResource Include="Resources\user.png" />
     <BundleResource Include="Resources\comment.png" />
+    <BundleResource Include="Resources\hamburguericon.png" />
+    <BundleResource Include="Resources\hamburguericonlight.png" />
+    <BundleResource Include="Resources\check.png" />
+    <BundleResource Include="Resources\commentfood.png" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\man.png" />
