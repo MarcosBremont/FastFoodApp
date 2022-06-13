@@ -1,15 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Acr.UserDialogs;
+using FastFoodApp.Configuracion;
 using FastFoodApp.Entidad;
 using FastFoodApp.Metodos;
 using FastFoodApp.Modelo;
+using Plugin.Media;
+using Plugin.Media.Abstractions;
+using Plugin.Permissions;
+using Plugin.Permissions.Abstractions;
 using Rg.Plugins.Popup.Services;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using static FastFoodApp.Configuracion.Herramientas;
 
 namespace FastFoodApp.Pantallas
 {
@@ -20,8 +28,10 @@ namespace FastFoodApp.Pantallas
         ModalMenu modalMenu = new ModalMenu();
         ModalHacerPedido modalHacerPedido = new ModalHacerPedido();
         ToastConfigClass toastConfig = new ToastConfigClass();
+        Herramientas herramientas = new Herramientas();
 
-
+        private bool busy;
+        private object fileSelectedPath;
         public PrincipalPageEmpresa()
         {
             InitializeComponent();
@@ -412,9 +422,458 @@ namespace FastFoodApp.Pantallas
             }
         }
 
-        void BtnAgregarFoto_Clicked(System.Object sender, System.EventArgs e)
+        public void SeleccionarOTomarFoto(Page senderPage, string titulo, string cancelButton, Image imgToWork)
         {
+
+            switch (Device.RuntimePlatform)
+            {
+                case Device.iOS:
+                    UserDialogs.Instance.ActionSheet(new ActionSheetConfig()
+                                                     .SetTitle(titulo)
+                                                     .Add("Tomar Foto", () => TakePhotoAsync(senderPage, imgToWork))
+                                                     .Add("Seleccionar foto", () => PickPhotoAsync(senderPage, imgToWork)).SetCancel(cancelButton)
+                                                     );
+                    break;
+
+                case Device.Android:
+                    UserDialogs.Instance.ActionSheet(new ActionSheetConfig()
+                                                     .SetTitle(titulo)
+                                                     .Add("Tomar Foto", () => TakePhotoAsync(senderPage, imgToWork), "camera.png")
+                                                     .Add("Seleccionar foto", () => PickPhotoAsync(senderPage, imgToWork), "gallery.png").SetCancel(cancelButton)
+                                                     );
+                    break;
+            }
+
         }
+
+        private async void PickPhotoAsync(Page senderPage, Image imgToWork)
+        {
+            try
+            {
+
+                fileSelectedPath = null;
+
+                if (Device.RuntimePlatform == Device.Android)
+                {
+                    await RequestThisPermision(Permiso.Galeria);
+                }
+                else
+                {
+                    if (!await RequestThisPermision(Permiso.Galeria))
+                    {
+                        // MsgNormal(senderPage, "Permiso denegado, no se puede acceder a la galería");
+                        return;
+                    }
+                }
+
+                if (Device.RuntimePlatform == Device.Android)
+                {
+
+
+                    if (!CrossMedia.Current.IsPickPhotoSupported)
+                    {
+                        // MsgNormal(senderPage, "Este dispositivo no puede seleccionar imágenes", "OK");
+                        return;
+                    }
+                    else
+                    {
+                        try
+                        {
+
+                            //Check for Media Library Permisions
+                            var status = await CrossPermissions.Current.CheckPermissionStatusAsync(Plugin.Permissions.Abstractions.Permission.MediaLibrary);
+
+                            PickPicture:
+                            if (status == Plugin.Permissions.Abstractions.PermissionStatus.Granted)
+                            {
+
+                                var file = await Plugin.Media.CrossMedia.Current.PickPhotoAsync(new Plugin.Media.Abstractions.PickMediaOptions
+                                {
+                                    PhotoSize = PhotoSize.MaxWidthHeight,
+                                    MaxWidthHeight = 170
+                                });
+
+                                if (file == null)
+                                    return;
+                                else
+                                {
+                                    while (fileSelectedPath == null)
+                                        fileSelectedPath = file.Path;
+
+                                    imgToWork.Source = ImageSource.FromStream(() => file.GetStreamWithImageRotatedForExternalStorage());
+                                    GrabarImageApi(file.GetStreamWithImageRotatedForExternalStorage());
+                                }
+                            }
+                            else
+                            {
+                                await CrossPermissions.Current.RequestPermissionsAsync(Plugin.Permissions.Abstractions.Permission.MediaLibrary);
+                                var statusTwo = await CrossPermissions.Current.CheckPermissionStatusAsync(Plugin.Permissions.Abstractions.Permission.MediaLibrary);
+
+                                if (status == Plugin.Permissions.Abstractions.PermissionStatus.Granted)
+                                    goto PickPicture;
+                                else
+                                    return;
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            _ = ex.Message;
+                            //MsgNormal(senderPage, "Permiso denegado, no se puede acceder a la galería");
+                            return;
+                        }
+                    }
+
+                }
+                else
+                {
+                    await CrossMedia.Current.Initialize();
+
+                    var cameraStatus = await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Camera);
+                    var storageStatus = await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Storage);
+                    var photoLibraryStatus = await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.MediaLibrary);
+
+                    while (cameraStatus != Plugin.Permissions.Abstractions.PermissionStatus.Granted && storageStatus != Plugin.Permissions.Abstractions.PermissionStatus.Granted && photoLibraryStatus != Plugin.Permissions.Abstractions.PermissionStatus.Granted)
+                    {
+                        var cameraStatus1 = await CrossPermissions.Current.RequestPermissionsAsync(Permission.Camera);
+                        var storageStatus1 = await CrossPermissions.Current.RequestPermissionsAsync(Permission.Storage);
+                        var photoLibrary = await CrossPermissions.Current.RequestPermissionsAsync(Permission.MediaLibrary);
+
+                        cameraStatus = await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Camera);
+                        storageStatus = await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Storage);
+                        photoLibraryStatus = await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.MediaLibrary);
+                    }
+
+                    if (!CrossMedia.Current.IsPickPhotoSupported)
+                    {
+                        //MsgNormal("Photos Not Supported", ":( Permission not granted to photos.", "OK");
+                        return;
+                    }
+                    var file = await Plugin.Media.CrossMedia.Current.PickPhotoAsync(new Plugin.Media.Abstractions.PickMediaOptions
+                    {
+                        PhotoSize = PhotoSize.MaxWidthHeight,
+                        MaxWidthHeight = 170
+                    });
+
+                    if (file == null)
+                        return;
+
+                    imgToWork.Source = ImageSource.FromStream(() =>
+                    {
+
+                        while (fileSelectedPath == null)
+                            fileSelectedPath = file.Path;
+
+                        var stream = file.GetStreamWithImageRotatedForExternalStorage();
+                        GrabarImageApi(stream);
+                        return stream;
+                    });
+                }
+            }
+            catch (Exception)
+            {
+                return;
+            }
+        }
+
+        async private void GrabarImageApi(Stream st)
+        {
+            try
+            {
+                Acr.UserDialogs.UserDialogs.Instance.ShowLoading();
+                var buffer = new byte[st.Length];
+                st.Seek(0, SeekOrigin.Begin);
+                st.Read(buffer, 0, buffer.Length);
+                var base64 = Convert.ToBase64String(buffer);
+                var result = await herramientas.SetPost<EMenu>("FastFood/GrabarImagen", new EMenu() { idmenu_fast_food = 32, foto = base64 });
+
+                if (result.result == "OK")
+                {
+                    toastConfig.MostrarNotificacion($"¡La Foto de perfil se actualizará en breve!", ToastPosition.Top, 3, "#51C560");
+                    App.url_foto_menu = result.foto;
+                }
+                else
+                {
+                    toastConfig.MostrarNotificacion($"No se pudo actualizar la foto de perfil. Intente mas tarde.", ToastPosition.Top, 3, "#c82333");
+                }
+            }
+            catch (Exception)
+            {
+                toastConfig.MostrarNotificacion($"No se pudo actualizar la foto de perfil. Revise la conexión a internet.", ToastPosition.Top, 3, "#c82333");
+            }
+            finally
+            {
+                Acr.UserDialogs.UserDialogs.Instance.HideLoading();
+            }
+
+        }
+
+
+        private async void TakePhotoAsync(Page senderPage, Image imgToWork)
+        {
+
+            try
+            {
+                fileSelectedPath = null;
+
+                if (Device.RuntimePlatform == Device.Android)
+                {
+
+                    await CrossMedia.Current.Initialize();
+
+                    var cameraStatus = await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Camera);
+                    var storageStatus = await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Storage);
+                    var photoLibraryStatus = await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.MediaLibrary);
+
+                    while (cameraStatus != Plugin.Permissions.Abstractions.PermissionStatus.Granted && storageStatus != Plugin.Permissions.Abstractions.PermissionStatus.Granted && photoLibraryStatus != Plugin.Permissions.Abstractions.PermissionStatus.Granted)
+                    {
+                        var cameraStatus1 = await CrossPermissions.Current.RequestPermissionsAsync(Permission.Camera);
+                        var storageStatus1 = await CrossPermissions.Current.RequestPermissionsAsync(Permission.Storage);
+                        var photoLibrary = await CrossPermissions.Current.RequestPermissionsAsync(Permission.MediaLibrary);
+
+                        cameraStatus = await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Camera);
+                        storageStatus = await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Storage);
+                        photoLibraryStatus = await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.MediaLibrary);
+                    }
+
+                    if (!CrossMedia.Current.IsCameraAvailable || !CrossMedia.Current.IsTakePhotoSupported)
+                    {
+                        // MsgNormal(senderPage, "No hay cámara disponible", "OK", "Cámara");
+                        return;
+                    }
+
+                    //Check for Camera Permisions
+                    await CrossPermissions.Current.RequestPermissionsAsync(Plugin.Permissions.Abstractions.Permission.Camera);
+
+                    var file = await CrossMedia.Current.TakePhotoAsync(new Plugin.Media.Abstractions.StoreCameraMediaOptions
+                    {
+                        PhotoSize = PhotoSize.MaxWidthHeight,
+                        MaxWidthHeight = 170
+                    });
+
+                    if (file == null)
+                        return;
+                    else
+                    {
+                        while (fileSelectedPath == null)
+                            fileSelectedPath = file.Path;
+
+                        imgToWork.Source = ImageSource.FromStream(() => file.GetStreamWithImageRotatedForExternalStorage());
+
+                        GrabarImageApi(file.GetStreamWithImageRotatedForExternalStorage());
+
+                    }
+
+                }
+                else
+                {
+                    await CrossMedia.Current.Initialize();
+
+                    var cameraStatus = await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Camera);
+                    var storageStatus = await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Storage);
+                    var photoLibraryStatus = await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.MediaLibrary);
+
+                    while (cameraStatus != Plugin.Permissions.Abstractions.PermissionStatus.Granted && storageStatus != Plugin.Permissions.Abstractions.PermissionStatus.Granted && photoLibraryStatus != Plugin.Permissions.Abstractions.PermissionStatus.Granted)
+                    {
+                        var cameraStatus1 = await CrossPermissions.Current.RequestPermissionsAsync(Permission.Camera);
+                        var storageStatus1 = await CrossPermissions.Current.RequestPermissionsAsync(Permission.Storage);
+                        var photoLibrary = await CrossPermissions.Current.RequestPermissionsAsync(Permission.MediaLibrary);
+
+                        cameraStatus = await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Camera);
+                        storageStatus = await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Storage);
+                        photoLibraryStatus = await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.MediaLibrary);
+                    }
+
+                    if (!CrossMedia.Current.IsCameraAvailable || !CrossMedia.Current.IsTakePhotoSupported)
+                    {
+                        // MsgNormal("No Camera", ":( No camera available.", "OK");
+                        return;
+                    }
+
+                    var file = await CrossMedia.Current.TakePhotoAsync(new Plugin.Media.Abstractions.StoreCameraMediaOptions
+                    {
+                        PhotoSize = PhotoSize.MaxWidthHeight,
+                        MaxWidthHeight = 170
+                    });
+
+                    if (file == null)
+                        return;
+
+                    var image = imgToWork.Source = ImageSource.FromStream(() =>
+                    {
+
+                        while (fileSelectedPath == null)
+                            fileSelectedPath = file.Path;
+
+                        var stream = file.GetStreamWithImageRotatedForExternalStorage();
+                        GrabarImageApi(stream);
+                        return stream;
+                    });
+
+
+                }
+            }
+            catch (Exception ex)
+            {
+                _ = ex.Message;
+            }
+
+        }
+
+
+        [Obsolete]
+        public async Task<bool> RequestThisPermision(Permiso permiso)
+        {
+            if (busy)
+                return false;
+
+            busy = true;
+
+            var status = Plugin.Permissions.Abstractions.PermissionStatus.Unknown;
+            switch (permiso)
+            {
+                case Permiso.Camara:
+                    status = await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Camera);
+                    break;
+                case Permiso.Galeria:
+                    status = await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Photos);
+                    break;
+            }
+
+            if (status != Plugin.Permissions.Abstractions.PermissionStatus.Granted)
+            {
+                switch (permiso)
+                {
+                    case Permiso.Camara:
+                        status = await Herramientas.CheckPermissions(Permission.Camera);
+                        break;
+                    case Permiso.Galeria:
+                        status = await Herramientas.CheckPermissions(Permission.Photos);
+                        break;
+                }
+            }
+
+            busy = false;
+            return status == Plugin.Permissions.Abstractions.PermissionStatus.Granted ? true : false;
+        }
+
+
+        async void BtnAgregarFoto_Clicked(System.Object sender, System.EventArgs e)
+        {
+            try
+            {
+
+
+                if (!CrossMedia.Current.IsPickPhotoSupported)
+                {
+                    await DisplayAlert("Photos Not Supported", ":( Permission nor granted to photos.", "OK");
+                    return;
+                }
+                var file = await Plugin.Media.CrossMedia.Current.PickPhotoAsync(new Plugin.Media.Abstractions.PickMediaOptions
+                {
+                    PhotoSize = Plugin.Media.Abstractions.PhotoSize.Medium,
+                });
+
+
+                if (file == null)
+                    return;
+
+                imgProducto.Source = ImageSource.FromStream(() =>
+                {
+                    var stream = file.GetStream();
+                    return stream;
+                });
+
+                //Check for Media Library Permisions
+                var status = await CrossPermissions.Current.CheckPermissionStatusAsync(Plugin.Permissions.Abstractions.Permission.MediaLibrary);
+
+                PickPicture:
+                if (status == Plugin.Permissions.Abstractions.PermissionStatus.Granted)
+                {
+
+                    var file2 = await Plugin.Media.CrossMedia.Current.PickPhotoAsync(new Plugin.Media.Abstractions.PickMediaOptions
+                    {
+                        PhotoSize = PhotoSize.MaxWidthHeight,
+                        MaxWidthHeight = 170
+                    });
+
+                    if (file2 == null)
+                        return;
+                    else
+                    {
+                        while (fileSelectedPath == null)
+                            fileSelectedPath = file2.Path;
+
+                        imgProducto.Source = ImageSource.FromStream(() => file2.GetStreamWithImageRotatedForExternalStorage());
+                        GrabarImageApi(file2.GetStreamWithImageRotatedForExternalStorage());
+                    }
+                }
+                else
+                {
+                    await CrossPermissions.Current.RequestPermissionsAsync(Plugin.Permissions.Abstractions.Permission.MediaLibrary);
+                    var statusTwo = await CrossPermissions.Current.CheckPermissionStatusAsync(Plugin.Permissions.Abstractions.Permission.MediaLibrary);
+
+                    if (status == Plugin.Permissions.Abstractions.PermissionStatus.Granted)
+                        goto PickPicture;
+                    else
+                        return;
+                }
+            }
+            catch (Exception ex)
+            {
+                _ = ex.Message;
+                //MsgNormal(senderPage, "Permiso denegado, no se puede acceder a la galería");
+                return;
+            }
+
+
+          
+
+
+            //Metodo para tomar fotos
+            //await CrossMedia.Current.Initialize();
+            //if (!CrossMedia.Current.IsCameraAvailable || !CrossMedia.Current.IsTakePhotoSupported)
+            //{
+            //    await DisplayAlert("No Camera", ":( No camera available.", "0K");
+            //    return;
+            //}
+
+
+            //var file = await CrossMedia.Current.TakePhotoAsync(new Plugin.Media.Abstractions.StoreCameraMediaOptions
+            //{
+            //    Directory = "Sample",
+            //    Name = "test.jpg",
+            //    SaveToAlbum = true,
+            //    CompressionQuality = 75,
+
+            //    CustomPhotoSize = 50,
+
+            //    PhotoSize = Plugin.Media.Abstractions.PhotoSize.MaxWidthHeight,
+            //    MaxWidthHeight = 2000,
+            //    DefaultCamera = Plugin.Media.Abstractions.CameraDevice.Front
+            //});
+
+            //if (file == null)
+            //    return;
+            //await DisplayAlert("File Location", file.Path, "OK");
+
+            //imgProducto.Source = ImageSource.FromStream(() =>
+            //{
+            //    var stream = file.GetStream();
+            //    return stream;
+            //});
+
+
+            //try
+            //{
+            //    SeleccionarOTomarFoto(this, "Seleccionar Foto de Perfil", "Cancelar", imgProducto);
+
+            //}
+            //catch (Exception ex)
+            //{
+
+            //}
+        }
+
 
         async void BtnVermenu_Clicked(System.Object sender, System.EventArgs e)
         {

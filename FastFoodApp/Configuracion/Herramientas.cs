@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using Plugin.Permissions;
+using Plugin.Permissions.Abstractions;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Net.Http;
@@ -13,6 +16,98 @@ namespace FastFoodApp.Configuracion
 
         public Page defaultParentPage = null;
 
+        public enum Permiso
+        {
+            Camara,
+            Galeria,
+            Telefono
+        }
+
+        public async Task<T> SetPost<T>(string url, object obj)
+        {
+            var apiResult = Activator.CreateInstance(typeof(T));
+
+            try
+            {
+                var body_data = JsonConvert.SerializeObject(obj);
+                var result = await EjecutarMetodoPost(url, body_data);
+                apiResult = Newtonsoft.Json.JsonConvert.DeserializeObject<T>(result);
+
+            }
+            catch (Exception)
+            {
+
+            }
+
+            return (T)apiResult;
+        }
+
+        public static async Task<PermissionStatus> CheckPermissions(Permission permission)
+        {
+            var permissionStatus = await CrossPermissions.Current.CheckPermissionStatusAsync(permission);
+            bool request = false;
+            if (permissionStatus == PermissionStatus.Denied)
+            {
+                if (Device.RuntimePlatform == Device.iOS)
+                {
+
+                    var title = $"Permisos de {permission}";
+                    var question = $"Para usar este plugin se requiere el siguiente permiso {permission}. Por favor valla a la configuración y habilite el permiso de {permission} para esta aplicación.";
+                    var positive = "Ajustes";
+                    var negative = "Quizás luego";
+                    var task = Application.Current?.MainPage?.DisplayAlert(title, question, positive, negative);
+                    if (task == null)
+                        return permissionStatus;
+
+                    var result = await task;
+                    if (result)
+                    {
+                        CrossPermissions.Current.OpenAppSettings();
+                    }
+
+                    return permissionStatus;
+                }
+
+                request = true;
+
+            }
+
+            if (request || permissionStatus != PermissionStatus.Granted)
+            {
+                var newStatus = await CrossPermissions.Current.RequestPermissionsAsync(permission);
+
+                if (!newStatus.ContainsKey(permission))
+                {
+                    return permissionStatus;
+                }
+
+                permissionStatus = newStatus[permission];
+
+                if (newStatus[permission] != PermissionStatus.Granted)
+                {
+                    //CHeck fo Camera Permisions...
+                    await CrossPermissions.Current.RequestPermissionsAsync(permission);
+
+                    //permissionStatus = newStatus[permission];
+                    //var title = $"Permisos de {permission}";
+                    //var question = $"Para usar el plugin se requiere el permiso de {permission}";
+                    //var positive = "Ajustes";
+                    //var negative = "Quizás luego";
+                    //var task = Application.Current?.MainPage?.DisplayAlert(title, question, positive, negative);
+                    //if (task == null)
+                    //	return permissionStatus;
+
+                    //var result = await task;
+                    //if (result)
+                    //{
+                    //	CrossPermissions.Current.OpenAppSettings();
+                    //}
+                    //return permissionStatus;
+                }
+            }
+
+            return permissionStatus;
+        }
 
         internal string FromURLTOBase64(string fileName)
         {
