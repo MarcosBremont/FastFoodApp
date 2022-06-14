@@ -8,5 +8,6 @@ namespace FastFoodApp.Modelo
     {
         public string Respuesta { get; set; }
         public string Mensaje { get; set; }
+        public int Id { get; set; }
     }
 }

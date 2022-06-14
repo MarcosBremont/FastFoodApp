@@ -55,7 +55,7 @@
                                     </StackLayout>
 
                                     <StackLayout Margin="0,5,0,0">
-                                        <Button Text="Agregar foto" HeightRequest="40" x:Name="BtnAgregarFoto"  Clicked="BtnAgregarFoto_Clicked" BackgroundColor="#FFCC00" TextColor="White" FontAttributes="Bold" />
+                                        <Button Text="Agregar foto" HeightRequest="40" x:Name="BtnAgregarFoto" IsVisible="false" Clicked="BtnAgregarFoto_Clicked" BackgroundColor="#FFCC00" TextColor="White" FontAttributes="Bold" />
                                         <Button Text="Agregar al menu" HeightRequest="40" x:Name="BtnAgregarAlMenu"  Clicked="BtnAgregarAlMenu_Clicked" BackgroundColor="#18356F" TextColor="White" FontAttributes="Bold" />
                                         <Button Text="Ver Menu" HeightRequest="40" x:Name="BtnVermenu" Clicked="BtnVermenu_Clicked" BackgroundColor="#18356F" TextColor="White" FontAttributes="Bold" />
                                     </StackLayout>

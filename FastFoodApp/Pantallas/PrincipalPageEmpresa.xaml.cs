@@ -30,6 +30,7 @@ namespace FastFoodApp.Pantallas
         ToastConfigClass toastConfig = new ToastConfigClass();
         Herramientas herramientas = new Herramientas();
 
+        int id = 0;
         private bool busy;
         private object fileSelectedPath;
         public PrincipalPageEmpresa()
@@ -392,12 +393,9 @@ namespace FastFoodApp.Pantallas
         {
             try
             {
-                AgregarProductoAlMenu(TxtNombreProducto.Text, Convert.ToInt32(TxtPrecio.Text), TxtDisponible.Text, "TxtDescripcion.Text", TxtDescripcion.Text);
-                toastConfig.MostrarNotificacion($"Producto agregado al menú", ToastPosition.Top, 3, "#51C560");
-                TxtNombreProducto.Text = "";
-                TxtPrecio.Text = "";
-                TxtDisponible.Text = "";
-                TxtDescripcion.Text = "";
+                AgregarProductoAlMenu(TxtNombreProducto.Text, Convert.ToInt32(TxtPrecio.Text), TxtDisponible.Text, "0", TxtDescripcion.Text);
+                toastConfig.MostrarNotificacion($"Producto agregado al menú, ahora agrega la foto del producto", ToastPosition.Top, 3, "#51C560");
+                BtnAgregarFoto.IsVisible = true;
             }
             catch (Exception ex)
             {
@@ -415,6 +413,7 @@ namespace FastFoodApp.Pantallas
             {
                 FastFoodApp.Metodos.Metodos metodos = new FastFoodApp.Metodos.Metodos();
                 var datos = await metodos.AgregarProductoAlMenu(nombre, precio, disponibilidad, foto, descripcion);
+                id = datos.Id;
             }
             catch (Exception ex)
             {
@@ -584,21 +583,21 @@ namespace FastFoodApp.Pantallas
                 st.Seek(0, SeekOrigin.Begin);
                 st.Read(buffer, 0, buffer.Length);
                 var base64 = Convert.ToBase64String(buffer);
-                var result = await herramientas.SetPost<EMenu>("FastFood/GrabarImagen", new EMenu() { idmenu_fast_food = 32, foto = base64 });
+                var result = await herramientas.SetPost<EMenu>("FastFood/GrabarImagen", new EMenu() { idmenu_fast_food = id, foto = base64 });
 
                 if (result.result == "OK")
                 {
-                    toastConfig.MostrarNotificacion($"¡La Foto de perfil se actualizará en breve!", ToastPosition.Top, 3, "#51C560");
+                    toastConfig.MostrarNotificacion($"¡La Foto del producto se actualizó!", ToastPosition.Top, 3, "#51C560");
                     App.url_foto_menu = result.foto;
                 }
                 else
                 {
-                    toastConfig.MostrarNotificacion($"No se pudo actualizar la foto de perfil. Intente mas tarde.", ToastPosition.Top, 3, "#c82333");
+                    toastConfig.MostrarNotificacion($"No se pudo actualizar la foto del producto. Intente mas tarde.", ToastPosition.Top, 3, "#c82333");
                 }
             }
             catch (Exception)
             {
-                toastConfig.MostrarNotificacion($"No se pudo actualizar la foto de perfil. Revise la conexión a internet.", ToastPosition.Top, 3, "#c82333");
+                toastConfig.MostrarNotificacion($"No se pudo actualizar la foto del producto. Revise la conexión a internet.", ToastPosition.Top, 3, "#c82333");
             }
             finally
             {
@@ -763,25 +762,6 @@ namespace FastFoodApp.Pantallas
             {
 
 
-                if (!CrossMedia.Current.IsPickPhotoSupported)
-                {
-                    await DisplayAlert("Photos Not Supported", ":( Permission nor granted to photos.", "OK");
-                    return;
-                }
-                var file = await Plugin.Media.CrossMedia.Current.PickPhotoAsync(new Plugin.Media.Abstractions.PickMediaOptions
-                {
-                    PhotoSize = Plugin.Media.Abstractions.PhotoSize.Medium,
-                });
-
-
-                if (file == null)
-                    return;
-
-                imgProducto.Source = ImageSource.FromStream(() =>
-                {
-                    var stream = file.GetStream();
-                    return stream;
-                });
 
                 //Check for Media Library Permisions
                 var status = await CrossPermissions.Current.CheckPermissionStatusAsync(Plugin.Permissions.Abstractions.Permission.MediaLibrary);
@@ -790,21 +770,36 @@ namespace FastFoodApp.Pantallas
                 if (status == Plugin.Permissions.Abstractions.PermissionStatus.Granted)
                 {
 
-                    var file2 = await Plugin.Media.CrossMedia.Current.PickPhotoAsync(new Plugin.Media.Abstractions.PickMediaOptions
+                    if (!CrossMedia.Current.IsPickPhotoSupported)
                     {
-                        PhotoSize = PhotoSize.MaxWidthHeight,
-                        MaxWidthHeight = 170
+                        await DisplayAlert("Photos Not Supported", ":( Permission nor granted to photos.", "OK");
+                        return;
+                    }
+                    var file = await Plugin.Media.CrossMedia.Current.PickPhotoAsync(new Plugin.Media.Abstractions.PickMediaOptions
+                    {
+                        PhotoSize = Plugin.Media.Abstractions.PhotoSize.Medium,
                     });
 
-                    if (file2 == null)
+
+                    if (file == null)
+                        return;
+
+                    imgProducto.Source = ImageSource.FromStream(() =>
+                    {
+                        var stream = file.GetStream();
+                        return stream;
+                    });
+
+
+                    if (file == null)
                         return;
                     else
                     {
                         while (fileSelectedPath == null)
-                            fileSelectedPath = file2.Path;
+                            fileSelectedPath = file.Path;
 
-                        imgProducto.Source = ImageSource.FromStream(() => file2.GetStreamWithImageRotatedForExternalStorage());
-                        GrabarImageApi(file2.GetStreamWithImageRotatedForExternalStorage());
+                        imgProducto.Source = ImageSource.FromStream(() => file.GetStreamWithImageRotatedForExternalStorage());
+                        GrabarImageApi(file.GetStreamWithImageRotatedForExternalStorage());
                     }
                 }
                 else
