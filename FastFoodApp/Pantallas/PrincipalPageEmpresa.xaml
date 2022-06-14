@@ -37,7 +37,12 @@
                                     <Frame Padding="0" BorderColor="White" HasShadow="False" CornerRadius="8" Margin="0,0,0,15" >
                                         <StackLayout Orientation="Horizontal" Margin="4" >
                                             <Image Source="check.png" WidthRequest="25" Margin="5"></Image>
-                                            <customcontrol:CustomEntry HorizontalOptions="FillAndExpand" x:Name="TxtDisponible" Keyboard="Default"  Placeholder="Disponibilidad"/>
+                                            <Picker SelectedIndexChanged="PickerDisponible_SelectedIndexChanged" x:Name="PickerDisponible" Title="Disponibilidad">
+                                                <Picker.Items>
+                                                    <x:String>S</x:String>
+                                                    <x:String>N</x:String>
+                                                </Picker.Items>
+                                            </Picker>
                                         </StackLayout>
                                     </Frame>
 

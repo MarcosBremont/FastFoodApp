@@ -31,6 +31,7 @@ namespace FastFoodApp.Pantallas
         Herramientas herramientas = new Herramientas();
 
         int id = 0;
+        string Picker = "";
         private bool busy;
         private object fileSelectedPath;
         public PrincipalPageEmpresa()
@@ -360,7 +361,6 @@ namespace FastFoodApp.Pantallas
             TxtClave.IsEnabled = true;
             btnGuardarCambios.IsVisible = true;
             btnEditarPerfil.IsVisible = false;
-
         }
 
         public async void ActualizarUsuario(string nombre, string apellido, string direccion, string telefono, string email, string clave, int idusuarios)
@@ -393,7 +393,7 @@ namespace FastFoodApp.Pantallas
         {
             try
             {
-                AgregarProductoAlMenu(TxtNombreProducto.Text, Convert.ToInt32(TxtPrecio.Text), TxtDisponible.Text, "0", TxtDescripcion.Text);
+                AgregarProductoAlMenu(TxtNombreProducto.Text, Convert.ToInt32(TxtPrecio.Text), Picker, "0", TxtDescripcion.Text);
                 toastConfig.MostrarNotificacion($"Producto agregado al menú, ahora agrega la foto del producto", ToastPosition.Top, 3, "#51C560");
                 BtnAgregarFoto.IsVisible = true;
             }
@@ -404,6 +404,7 @@ namespace FastFoodApp.Pantallas
             }
 
         }
+
 
 
 
@@ -760,9 +761,6 @@ namespace FastFoodApp.Pantallas
         {
             try
             {
-
-
-
                 //Check for Media Library Permisions
                 var status = await CrossPermissions.Current.CheckPermissionStatusAsync(Plugin.Permissions.Abstractions.Permission.MediaLibrary);
 
@@ -874,6 +872,11 @@ namespace FastFoodApp.Pantallas
         {
             modalMenu = new ModalMenu();
             await PopupNavigation.PushAsync(modalMenu);
+        }
+
+        private void PickerDisponible_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Picker = PickerDisponible.SelectedItem.ToString();
         }
     }
 }

@@ -39,5 +39,8 @@
     <Compile Update="Pantallas\ModalHacerPedido.xaml.cs">
       <DependentUpon>ModalHacerPedido.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Pantallas\OlvideMiContrasena.xaml.cs">
+      <DependentUpon>OlvideMiContrasena.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
 </Project>

@@ -31,6 +31,16 @@ namespace FastFoodApp.Pantallas
                 NumberOfTapsRequired = 1
             });
 
+            LayoutOlvideMiContraseña.GestureRecognizers.Add(new TapGestureRecognizer
+            {
+                Command = new Command(async () =>
+                {
+                    await Navigation.PushModalAsync(new OlvideMiContrasena());
+
+                }),
+                NumberOfTapsRequired = 1
+            });
+
 
         }
 

@@ -40,6 +40,11 @@
                     <Label HorizontalOptions="Center" TextColor="White" Margin="0,8,0,0" Text="¿No tienes una cuenta?"></Label>
                     <Label HorizontalOptions="Center" TextColor="White" FontAttributes="Bold" Margin="0,8,0,0" Text="Registrate aqui"></Label>
                 </StackLayout>
+
+                <StackLayout x:Name="LayoutOlvideMiContraseña" HorizontalOptions="Center" Orientation="Horizontal">
+                    <Label HorizontalOptions="Center" TextColor="White" Margin="0,8,0,0" Text="¿Olvidaste tu contraseña?"></Label>
+                    <Label HorizontalOptions="Center" TextColor="White" FontAttributes="Bold" Margin="0,8,0,0" Text="click aqui"></Label>
+                </StackLayout>
             </StackLayout>
             <Label HorizontalOptions="Center" FontAttributes="Bold" VerticalOptions="EndAndExpand" TextColor="White" Margin="0,8,0,0" Text="Versión 1.0"></Label>
 

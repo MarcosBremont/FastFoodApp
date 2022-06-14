@@ -26,19 +26,16 @@ namespace FastFoodApp.Configuracion
         public async Task<T> SetPost<T>(string url, object obj)
         {
             var apiResult = Activator.CreateInstance(typeof(T));
-
             try
             {
                 var body_data = JsonConvert.SerializeObject(obj);
                 var result = await EjecutarMetodoPost(url, body_data);
                 apiResult = Newtonsoft.Json.JsonConvert.DeserializeObject<T>(result);
-
             }
             catch (Exception)
             {
 
             }
-
             return (T)apiResult;
         }
 

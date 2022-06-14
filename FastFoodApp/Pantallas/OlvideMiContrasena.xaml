@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:customcontrol="clr-namespace:FastFoodApp.ControlesPersonalizados"
+             x:Class="FastFoodApp.Pantallas.OlvideMiContrasena" BackgroundImageSource="foodhamburguer.jpg"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             ios:Page.UseSafeArea="True">
+    <ContentPage.Content>
+        <StackLayout>
+
+            <Frame BackgroundColor="Transparent" Padding="1">
+                <StackLayout HorizontalOptions="Center" Margin="0,0,0,0">
+                    <Image WidthRequest="254" Source="Fast_Food_Logo.png" ></Image>
+                </StackLayout>
+            </Frame>
+
+            <StackLayout Margin="0,0,0,0" Padding="20" VerticalOptions="Center">
+
+                <Label Margin="0,0,0,10" Text="Restablece tu contraseña" FontSize="22" FontAttributes="Bold" TextColor="White"></Label>
+
+                <Frame Padding="0" BorderColor="White" HasShadow="False" CornerRadius="8" Margin="0,0,0,15" x:Name="FrEmail" >
+                    <StackLayout Orientation="Horizontal" Margin="4" >
+                        <Image Source="Email.png" WidthRequest="25" Margin="5"></Image>
+                        <customcontrol:CustomEntry HorizontalOptions="FillAndExpand" x:Name="TxtEmail" Keyboard="Email"  Placeholder="Email"/>
+                    </StackLayout>
+                </Frame>
+
+                <Button Clicked="BtnEnviarContrasena_Clicked" VerticalOptions="Center" x:Name="BtnEnviarContrasena" Text="Restablecer Contraseña" FontAttributes="Bold" CornerRadius="4" TextColor="#18356F" BackgroundColor="#FFCC00"/>
+                <Button Clicked="BtnVolverAtras_Clicked" VerticalOptions="Center" x:Name="BtnVolverAtras" Text="Volver Atras" FontAttributes="Bold" CornerRadius="4" TextColor="White" BackgroundColor="#18356F"/>
+
+            </StackLayout>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

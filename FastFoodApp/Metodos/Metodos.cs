@@ -1,6 +1,7 @@
 ﻿using FastFoodApp.Configuracion;
 using FastFoodApp.Entidad;
 using FastFoodApp.Modelo;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -142,6 +143,15 @@ namespace FastFoodApp.Metodos
             var response = Newtonsoft.Json.JsonConvert.DeserializeObject<Result>(result);
             return response;
         }// Fin del método AgregarProductoAlMenu
+
+        public async Task<Result> ResetearClave(Entidad.EUsuario eUsuario)
+        {
+            var body_data = JsonConvert.SerializeObject(eUsuario);
+
+            var result = await herramientas.EjecutarMetodoPost($"FastFood/ResetearClave", body_data);
+            var apiResult = Newtonsoft.Json.JsonConvert.DeserializeObject<Result>(result);
+            return apiResult;
+        }
 
 
     }
