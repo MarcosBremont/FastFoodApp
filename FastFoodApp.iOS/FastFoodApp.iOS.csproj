@@ -223,4 +223,7 @@
   <ItemGroup>
     <BundleResource Include="Resources\MiCarritoAmarillo.png" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\FastFood1.png" />
+  </ItemGroup>
 </Project>

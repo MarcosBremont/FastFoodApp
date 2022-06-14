@@ -16,7 +16,17 @@
 
                     <StackLayout VerticalOptions="FillAndExpand" Grid.Row="0" Grid.Column="0" Orientation="Vertical" Margin="0,0,0,0">
                         <!--ITEM-->
+
+
+                        <Frame BackgroundColor="Transparent" Padding="1">
+                            <StackLayout HorizontalOptions="Center" Margin="0,0,0,0">
+                                <Image WidthRequest="200" Source="FastFood1.png" ></Image>
+                            </StackLayout>
+                        </Frame>
+                        
                         <StackLayout Margin="0,0,0,5" VerticalOptions="FillAndExpand">
+                            <Label Text="Agregar Productos al Menú" FontAttributes="Bold" FontSize="18" HorizontalOptions="Center"></Label>
+
                             <Frame HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" HasShadow="False"  CornerRadius="4" BackgroundColor="#FFFFFF">
                                 <StackLayout BackgroundColor="#FFFFFF"  Spacing="0">
 
@@ -225,18 +235,19 @@
             </StackLayout>
 
             <!--Layout Notificaciones-->
-            <StackLayout IsVisible="false" VerticalOptions="StartAndExpand" x:Name="StackLayoutNotificacionesEmpresa" BackgroundColor="#EEEEEE">
+            <StackLayout IsVisible="false" VerticalOptions="StartAndExpand" x:Name="StackLayoutNotificacionesEmpresa" >
 
+                <Label Margin="0,5,0,0" HorizontalOptions="Center" FontAttributes="Bold" FontSize="18" Text="Enviar Notificaciones a los clientes"></Label>
                 <!--ITEM-->
-                <Frame HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" HasShadow="False" Margin="8" CornerRadius="4" BackgroundColor="#EEEEEE">
+                <Frame HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" HasShadow="False" Margin="8" CornerRadius="4" >
 
                     <StackLayout Margin="0,0,0,5" Orientation="Vertical" VerticalOptions="FillAndExpand">
-                        <Frame HasShadow="False" Padding="10" BackgroundColor="#FFCC00">
+                        <Frame HasShadow="False" Padding="10" BackgroundColor="White">
                             <StackLayout  Orientation="Vertical">
-                                <Frame Padding="0" BorderColor="White" HasShadow="False" CornerRadius="8" Margin="0,0,0,15" x:Name="FrNotificacion" >
+                                <Frame Padding="0" BorderColor="#FFCC00" HasShadow="False" CornerRadius="8" Margin="0,0,0,15" x:Name="FrNotificacion" >
                                     <StackLayout Orientation="Horizontal" Margin="4" >
                                         <Image Source="bellAmarillo.png" WidthRequest="25" Margin="5"></Image>
-                                        <customcontrol:CustomEntry HorizontalOptions="FillAndExpand" IsPassword="True" Text="1234" x:Name="TxtNotificaciones"  Keyboard="Default"  Placeholder="Enviar Notificaciones"/>
+                                        <customcontrol:CustomEntry HorizontalOptions="FillAndExpand" x:Name="TxtNotificaciones"  Keyboard="Default"  Placeholder="Enviar Notificaciones"/>
                                     </StackLayout>
                                 </Frame>
                             </StackLayout>
@@ -244,6 +255,8 @@
 
                     </StackLayout>
                 </Frame>
+                
+                <Button Text="Enviar Notificación" HeightRequest="40" x:Name="BtnEnviarNotificacion"  Clicked="BtnEnviarNotificacion_Clicked" BackgroundColor="#FFCC00" TextColor="White" FontAttributes="Bold" />
 
 
             </StackLayout>

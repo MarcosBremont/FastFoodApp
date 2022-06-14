@@ -878,5 +878,10 @@ namespace FastFoodApp.Pantallas
         {
             Picker = PickerDisponible.SelectedItem.ToString();
         }
+
+        private void BtnEnviarNotificacion_Clicked(object sender, EventArgs e)
+        {
+
+        }
     }
 }
