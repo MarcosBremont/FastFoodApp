@@ -153,6 +153,27 @@ namespace FastFoodApp.Metodos
             return apiResult;
         }
 
+        public async Task<Result> EnviarNotificacon(string mensaje, string disponibilidad)
+        {
+            var result = await herramientas.EjecutarSentenciaEnApiLibre($"FastFood/EnviarNotificacion/{mensaje}/{disponibilidad}");
+            var response = Newtonsoft.Json.JsonConvert.DeserializeObject<Result>(result);
+            return response;
+        }// Fin del método AgregarProductoAlMenu
+
+        public async Task<List<ENotificaciones>> ObtenerNotificaciones(int idnotificaciones_empresa, string disponibilidad)
+        {
+            var result = await herramientas.EjecutarSentenciaEnApiLibre($"FastFood/SNotificacionesFFA/{idnotificaciones_empresa}/{disponibilidad}");
+            var lista_notificaciones = Newtonsoft.Json.JsonConvert.DeserializeObject<List<ENotificaciones>>(result);
+
+            return lista_notificaciones;
+        } // Fin del método ObtenerMenu
+
+        public async Task<Result> ActualizarNotificacion(int idnotificaciones_empresa, string disponibilidad)
+        {
+            var result = await herramientas.EjecutarSentenciaEnApiLibre($"FastFood/ActualizarNotificacion/{idnotificaciones_empresa}/{disponibilidad}");
+            var response = Newtonsoft.Json.JsonConvert.DeserializeObject<Result>(result);
+            return response;
+        }// Fin del método AgregarProductoAlMenu
 
     }
 }

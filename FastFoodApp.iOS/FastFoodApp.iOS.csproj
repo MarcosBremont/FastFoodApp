@@ -128,6 +128,15 @@
   <ItemGroup>
     <PackageReference Include="Xamarin.Forms" Version="5.0.0.2401" />
     <PackageReference Include="Xamarin.Essentials" Version="1.7.3" />
+    <PackageReference Include="Xam.Plugin.Media">
+      <Version>5.0.1</Version>
+    </PackageReference>
+    <PackageReference Include="Plugin.MediaManager">
+      <Version>1.1.1</Version>
+    </PackageReference>
+    <PackageReference Include="Plugin.MediaManager.Forms">
+      <Version>1.1.1</Version>
+    </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
@@ -165,6 +174,7 @@
     <BundleResource Include="Resources\hamburguericonlight.png" />
     <BundleResource Include="Resources\check.png" />
     <BundleResource Include="Resources\commentfood.png" />
+    <BundleResource Include="Resources\DefaultFood.png" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\man.png" />
@@ -222,8 +232,5 @@
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\MiCarritoAmarillo.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\FastFood1.png" />
   </ItemGroup>
 </Project>

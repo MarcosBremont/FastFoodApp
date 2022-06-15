@@ -30,9 +30,12 @@ namespace FastFoodApp.Pantallas
         ToastConfigClass toastConfig = new ToastConfigClass();
         Herramientas herramientas = new Herramientas();
 
+        List<ENotificaciones> ListENotificaciones = new List<ENotificaciones>();
         int id = 0;
         string Picker = "";
         private bool busy;
+        MediaFile mediaFile;
+
         private object fileSelectedPath;
         public PrincipalPageEmpresa()
         {
@@ -116,6 +119,8 @@ namespace FastFoodApp.Pantallas
                         StackLayoutTuCarrito.IsVisible = false;
                         StackLayoutPedidosEmpresa.IsVisible = false;
                         StackLayoutNotificacionesEmpresa.IsVisible = true;
+
+                        _ = LlenarNotificaciones();
                     }
                     else
                     {
@@ -149,6 +154,7 @@ namespace FastFoodApp.Pantallas
                     StackLayoutPedidosEmpresa.IsVisible = false;
                     StackLayoutNotificacionesEmpresa.IsVisible = true;
 
+                    _ = LlenarNotificaciones();
 
                     btnPedidosEmpresa.Source = "TimeBlanco";
                     btnMenuEmpresa.Source = "hamburgerSodaWhite.png";
@@ -223,6 +229,21 @@ namespace FastFoodApp.Pantallas
             {
                 FastFoodApp.Metodos.Metodos metodos = new FastFoodApp.Metodos.Metodos();
                 var datos = await metodos.ObtenerMenu();
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
+
+        public async Task LlenarNotificaciones()
+        {
+            try
+            {
+                FastFoodApp.Metodos.Metodos metodos = new FastFoodApp.Metodos.Metodos();
+                var datos = await metodos.ObtenerNotificaciones(0, 0.ToString());
+                lsv_notificaciones.ItemsSource = datos;
+
             }
             catch (Exception ex)
             {
@@ -394,8 +415,7 @@ namespace FastFoodApp.Pantallas
             try
             {
                 AgregarProductoAlMenu(TxtNombreProducto.Text, Convert.ToInt32(TxtPrecio.Text), Picker, "0", TxtDescripcion.Text);
-                toastConfig.MostrarNotificacion($"Producto agregado al menú, ahora agrega la foto del producto", ToastPosition.Top, 3, "#51C560");
-                BtnAgregarFoto.IsVisible = true;
+                toastConfig.MostrarNotificacion($"Producto agregado al menú", ToastPosition.Top, 3, "#51C560");
             }
             catch (Exception ex)
             {
@@ -415,6 +435,12 @@ namespace FastFoodApp.Pantallas
                 FastFoodApp.Metodos.Metodos metodos = new FastFoodApp.Metodos.Metodos();
                 var datos = await metodos.AgregarProductoAlMenu(nombre, precio, disponibilidad, foto, descripcion);
                 id = datos.Id;
+                GrabarImageApi(mediaFile.GetStreamWithImageRotatedForExternalStorage());
+                TxtNombreProducto.Text = "";
+                TxtPrecio.Text = "";
+                TxtDescripcion.Text = "";
+                imgProducto.Source = "DefaultFood.png";
+
             }
             catch (Exception ex)
             {
@@ -483,7 +509,7 @@ namespace FastFoodApp.Pantallas
                             //Check for Media Library Permisions
                             var status = await CrossPermissions.Current.CheckPermissionStatusAsync(Plugin.Permissions.Abstractions.Permission.MediaLibrary);
 
-                            PickPicture:
+                        PickPicture:
                             if (status == Plugin.Permissions.Abstractions.PermissionStatus.Granted)
                             {
 
@@ -501,7 +527,6 @@ namespace FastFoodApp.Pantallas
                                         fileSelectedPath = file.Path;
 
                                     imgToWork.Source = ImageSource.FromStream(() => file.GetStreamWithImageRotatedForExternalStorage());
-                                    GrabarImageApi(file.GetStreamWithImageRotatedForExternalStorage());
                                 }
                             }
                             else
@@ -588,7 +613,6 @@ namespace FastFoodApp.Pantallas
 
                 if (result.result == "OK")
                 {
-                    toastConfig.MostrarNotificacion($"¡La Foto del producto se actualizó!", ToastPosition.Top, 3, "#51C560");
                     App.url_foto_menu = result.foto;
                 }
                 else
@@ -658,9 +682,6 @@ namespace FastFoodApp.Pantallas
                             fileSelectedPath = file.Path;
 
                         imgToWork.Source = ImageSource.FromStream(() => file.GetStreamWithImageRotatedForExternalStorage());
-
-                        GrabarImageApi(file.GetStreamWithImageRotatedForExternalStorage());
-
                     }
 
                 }
@@ -756,70 +777,153 @@ namespace FastFoodApp.Pantallas
             return status == Plugin.Permissions.Abstractions.PermissionStatus.Granted ? true : false;
         }
 
-
+        [Obsolete]
         async void BtnAgregarFoto_Clicked(System.Object sender, System.EventArgs e)
         {
+
+
+
             try
             {
-                //Check for Media Library Permisions
-                var status = await CrossPermissions.Current.CheckPermissionStatusAsync(Plugin.Permissions.Abstractions.Permission.MediaLibrary);
 
-                PickPicture:
-                if (status == Plugin.Permissions.Abstractions.PermissionStatus.Granted)
+                fileSelectedPath = null;
+
+                if (Device.RuntimePlatform == Device.Android)
                 {
+                    await RequestThisPermision(Permiso.Galeria);
+                }
+                else
+                {
+                    if (!await RequestThisPermision(Permiso.Galeria))
+                    {
+                        // MsgNormal(senderPage, "Permiso denegado, no se puede acceder a la galería");
+                        return;
+                    }
+                }
+
+                if (Device.RuntimePlatform == Device.Android)
+                {
+
 
                     if (!CrossMedia.Current.IsPickPhotoSupported)
                     {
-                        await DisplayAlert("Photos Not Supported", ":( Permission nor granted to photos.", "OK");
+                        // MsgNormal(senderPage, "Este dispositivo no puede seleccionar imágenes", "OK");
+                        return;
+                    }
+                    else
+                    {
+                        try
+                        {
+
+                            //Check for Media Library Permisions
+                            var status = await CrossPermissions.Current.CheckPermissionStatusAsync(Plugin.Permissions.Abstractions.Permission.MediaLibrary);
+
+                        PickPicture:
+                            if (status == Plugin.Permissions.Abstractions.PermissionStatus.Granted)
+                            {
+
+
+
+                                var file = await Plugin.Media.CrossMedia.Current.PickPhotoAsync(new Plugin.Media.Abstractions.PickMediaOptions
+                                {
+                                    PhotoSize = Plugin.Media.Abstractions.PhotoSize.Small,
+                                    MaxWidthHeight = 600,
+                                    SaveMetaData = false
+                                });
+                                mediaFile = file;
+
+
+                                if (file == null)
+                                    return;
+                                else
+                                {
+                                    while (fileSelectedPath == null)
+                                        fileSelectedPath = file.Path;
+
+                                    imgProducto.Source = ImageSource.FromStream(() => file.GetStreamWithImageRotatedForExternalStorage());
+                                    if (mediaFile != null)
+                                    {
+                                        BtnAgregarAlMenu.IsVisible = true;
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                await CrossPermissions.Current.RequestPermissionsAsync(Plugin.Permissions.Abstractions.Permission.MediaLibrary);
+                                var statusTwo = await CrossPermissions.Current.CheckPermissionStatusAsync(Plugin.Permissions.Abstractions.Permission.MediaLibrary);
+
+                                if (status == Plugin.Permissions.Abstractions.PermissionStatus.Granted)
+                                    goto PickPicture;
+                                else
+                                    return;
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            _ = ex.Message;
+                            //MsgNormal(senderPage, "Permiso denegado, no se puede acceder a la galería");
+                            return;
+                        }
+                    }
+
+                }
+                else
+                {
+                    await CrossMedia.Current.Initialize();
+
+                    var cameraStatus = await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Camera);
+                    var storageStatus = await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Storage);
+                    var photoLibraryStatus = await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.MediaLibrary);
+
+                    while (cameraStatus != Plugin.Permissions.Abstractions.PermissionStatus.Granted && storageStatus != Plugin.Permissions.Abstractions.PermissionStatus.Granted && photoLibraryStatus != Plugin.Permissions.Abstractions.PermissionStatus.Granted)
+                    {
+                        var cameraStatus1 = await CrossPermissions.Current.RequestPermissionsAsync(Permission.Camera);
+                        var storageStatus1 = await CrossPermissions.Current.RequestPermissionsAsync(Permission.Storage);
+                        var photoLibrary = await CrossPermissions.Current.RequestPermissionsAsync(Permission.MediaLibrary);
+
+                        cameraStatus = await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Camera);
+                        storageStatus = await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Storage);
+                        photoLibraryStatus = await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.MediaLibrary);
+                    }
+
+                    if (!CrossMedia.Current.IsPickPhotoSupported)
+                    {
+                        //MsgNormal("Photos Not Supported", ":( Permission not granted to photos.", "OK");
                         return;
                     }
                     var file = await Plugin.Media.CrossMedia.Current.PickPhotoAsync(new Plugin.Media.Abstractions.PickMediaOptions
                     {
-                        PhotoSize = Plugin.Media.Abstractions.PhotoSize.Medium,
+                        PhotoSize = PhotoSize.MaxWidthHeight,
+                        MaxWidthHeight = 2000
                     });
 
+                    mediaFile = file;
 
                     if (file == null)
                         return;
 
                     imgProducto.Source = ImageSource.FromStream(() =>
                     {
+
+                        while (fileSelectedPath == null)
+                            fileSelectedPath = file.Path;
+
                         var stream = file.GetStream();
                         return stream;
                     });
 
-
-                    if (file == null)
-                        return;
-                    else
+                    if (mediaFile != null)
                     {
-                        while (fileSelectedPath == null)
-                            fileSelectedPath = file.Path;
-
-                        imgProducto.Source = ImageSource.FromStream(() => file.GetStreamWithImageRotatedForExternalStorage());
-                        GrabarImageApi(file.GetStreamWithImageRotatedForExternalStorage());
+                        BtnAgregarAlMenu.IsVisible = true;
                     }
-                }
-                else
-                {
-                    await CrossPermissions.Current.RequestPermissionsAsync(Plugin.Permissions.Abstractions.Permission.MediaLibrary);
-                    var statusTwo = await CrossPermissions.Current.CheckPermissionStatusAsync(Plugin.Permissions.Abstractions.Permission.MediaLibrary);
 
-                    if (status == Plugin.Permissions.Abstractions.PermissionStatus.Granted)
-                        goto PickPicture;
-                    else
-                        return;
+
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                _ = ex.Message;
-                //MsgNormal(senderPage, "Permiso denegado, no se puede acceder a la galería");
                 return;
             }
-
-
-          
 
 
             //Metodo para tomar fotos
@@ -879,9 +983,44 @@ namespace FastFoodApp.Pantallas
             Picker = PickerDisponible.SelectedItem.ToString();
         }
 
-        private void BtnEnviarNotificacion_Clicked(object sender, EventArgs e)
+        private async void BtnEnviarNotificacion_Clicked(object sender, EventArgs e)
         {
+            FastFoodApp.Metodos.Metodos metodos = new FastFoodApp.Metodos.Metodos();
+            var datos = await metodos.EnviarNotificacon(TxtNotificaciones.Text, "S");
+
+            if (datos.Respuesta == "OK")
+            {
+                toastConfig.MostrarNotificacion($"Notificación enviada a tus clientes", ToastPosition.Top, 3, "#51C560");
+            }
+            else
+            {
+                toastConfig.MostrarNotificacion($"Ocurrio un error, intenta nuevamente o comunicate con el administrador", ToastPosition.Top, 3, "#51C560");
+            }
+        }
+
+        async void lsv_notificaciones_ItemSelected(System.Object sender, Xamarin.Forms.SelectedItemChangedEventArgs e)
+        {
+            FastFoodApp.Metodos.Metodos metodos = new FastFoodApp.Metodos.Metodos();
+            var result = await DisplayAlert("Aviso", "¿Desea ocultar esta notificación?", "SI", "NO");
+            if (result)
+            {
+                var obj = (ENotificaciones)e.SelectedItem;
+                var ide = obj.disponibilidad;
+
+                if (ide == "S")
+                {
+                    var datos = await metodos.ActualizarNotificacion(obj.idnotificaciones_empresa, "N");
+                    toastConfig.MostrarNotificacion($"Esta notificación ya no será visible para tus clientes", ToastPosition.Top, 3, "#51C560");
+                }
+                else
+                {
+                    var datos = await metodos.ActualizarNotificacion(obj.idnotificaciones_empresa, "S");
+                    toastConfig.MostrarNotificacion($"Esta notificación ahora será visible para tus clientes", ToastPosition.Top, 3, "#51C560");
+
+                }
+            }
 
         }
+
     }
 }

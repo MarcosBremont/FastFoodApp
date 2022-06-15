@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 using Foundation;
+using MediaManager;
 using UIKit;
 
 namespace FastFoodApp.iOS
@@ -23,6 +24,7 @@ namespace FastFoodApp.iOS
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
             global::Xamarin.Forms.Forms.Init();
+            CrossMediaManager.Current.Init();
             LoadApplication(new App());
             Rg.Plugins.Popup.Popup.Init();
 

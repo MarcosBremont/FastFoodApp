@@ -236,27 +236,33 @@
             <StackLayout IsVisible="false" VerticalOptions="StartAndExpand" x:Name="StackLayoutNotificaciones" BackgroundColor="#EEEEEE">
 
                 <!--ITEM-->
-                <Frame HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" HasShadow="False" Margin="8" CornerRadius="4" BackgroundColor="#EEEEEE">
+                <ListView SelectionMode="None" VerticalOptions="FillAndExpand" x:Name="lsv_notificaciones" Grid.Row="0" BackgroundColor="Transparent" HorizontalOptions="CenterAndExpand" SeparatorVisibility="Default"  SeparatorColor="White" HasUnevenRows="True" >
+                    <ListView.ItemTemplate>
 
-                    <StackLayout Margin="0,0,0,5" Orientation="Vertical" VerticalOptions="FillAndExpand">
-                        <Frame HasShadow="False" Padding="10" BackgroundColor="#FFCC00">
-                            <StackLayout  Orientation="Vertical">
-                                <Label FontAttributes="Bold" Text="Ofertas el martes de 2x1, compra los CHICKEN NUGGETS y te llevaras otros completamente gratis, oferta valida hasta Julio del 2022.">
+                        <DataTemplate>
 
-                                </Label>
-                            </StackLayout>
-                        </Frame>
+                            <ViewCell>
 
-                        <Frame HasShadow="False" Padding="10" BackgroundColor="#FFCC00">
-                            <StackLayout  Orientation="Vertical">
-                                <Label FontAttributes="Bold" Text="Oferta miercoles de helado, tienes un descuento de 10% en todos los pedidos de helados, oferta valida hasta Noviembre del 2022.">
 
-                                </Label>
-                            </StackLayout>
-                        </Frame>
+                                <Frame HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" HasShadow="False" Margin="8" CornerRadius="4" BackgroundColor="#EEEEEE">
 
-                    </StackLayout>
-                </Frame>
+                                    <StackLayout Margin="0,0,0,5" Orientation="Vertical" VerticalOptions="FillAndExpand">
+                                        <Frame HasShadow="False" Padding="10" BackgroundColor="#FFCC00">
+                                            <StackLayout  Orientation="Vertical">
+                                                <Label FontAttributes="Bold" Text="{Binding mensaje}">
+
+                                                </Label>
+                                            </StackLayout>
+                                        </Frame>
+                                    </StackLayout>
+                                </Frame>
+                            </ViewCell>
+
+                        </DataTemplate>
+
+
+                    </ListView.ItemTemplate>
+                </ListView>
 
             </StackLayout>
 

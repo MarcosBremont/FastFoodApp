@@ -14,73 +14,77 @@
 
                 <Grid RowSpacing="0" BackgroundColor="#FFFFFF">
 
-                    <StackLayout VerticalOptions="FillAndExpand" Grid.Row="0" Grid.Column="0" Orientation="Vertical" Margin="0,0,0,0">
-                        <!--ITEM-->
+                    <ScrollView>
+                        <StackLayout VerticalOptions="FillAndExpand" Grid.Row="0" Grid.Column="0" Orientation="Vertical" Margin="0,0,0,0">
+                            <!--ITEM-->
 
 
-                        <Frame BackgroundColor="Transparent" Padding="1">
-                            <StackLayout HorizontalOptions="Center" Margin="0,0,0,0">
-                                <Image WidthRequest="200" Source="FastFood1.png" ></Image>
-                            </StackLayout>
-                        </Frame>
-                        
-                        <StackLayout Margin="0,0,0,5" VerticalOptions="FillAndExpand">
-                            <Label Text="Agregar Productos al Menú" FontAttributes="Bold" FontSize="18" HorizontalOptions="Center"></Label>
 
-                            <Frame HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" HasShadow="False"  CornerRadius="4" BackgroundColor="#FFFFFF">
-                                <StackLayout BackgroundColor="#FFFFFF"  Spacing="0">
-
-                                    <Frame Padding="0" BorderColor="White" HasShadow="False" CornerRadius="8" Margin="0,0,0,15"  >
-                                        <StackLayout Orientation="Horizontal" Margin="4" >
-                                            <Image Source="hamburguericon.png" WidthRequest="25" Margin="5"></Image>
-                                            <customcontrol:CustomEntry HorizontalOptions="FillAndExpand" x:Name="TxtNombreProducto" Keyboard="Default"  Placeholder="Nombre Producto"/>
-                                        </StackLayout>
-                                    </Frame>
-
-                                    <Frame Padding="0" BorderColor="White" HasShadow="False" CornerRadius="8" Margin="0,0,0,15" >
-                                        <StackLayout Orientation="Horizontal" Margin="4" >
-                                            <Image Source="Dollar.png" WidthRequest="25" Margin="5"></Image>
-                                            <customcontrol:CustomEntry HorizontalOptions="FillAndExpand" x:Name="TxtPrecio" Keyboard="Numeric"  Placeholder="Precio"/>
-                                        </StackLayout>
-                                    </Frame>
-
-                                    <Frame Padding="0" BorderColor="White" HasShadow="False" CornerRadius="8" Margin="0,0,0,15" >
-                                        <StackLayout Orientation="Horizontal" Margin="4" >
-                                            <Image Source="check.png" WidthRequest="25" Margin="5"></Image>
-                                            <Picker SelectedIndexChanged="PickerDisponible_SelectedIndexChanged" x:Name="PickerDisponible" Title="Disponibilidad">
-                                                <Picker.Items>
-                                                    <x:String>S</x:String>
-                                                    <x:String>N</x:String>
-                                                </Picker.Items>
-                                            </Picker>
-                                        </StackLayout>
-                                    </Frame>
-
-                                    <Frame Padding="0" BorderColor="White" HasShadow="False" CornerRadius="8" Margin="0,0,0,15" >
-                                        <StackLayout Orientation="Horizontal" Margin="4" >
-                                            <Image Source="commentfood.png" WidthRequest="25" Margin="5"></Image>
-                                            <customcontrol:CustomEntry HorizontalOptions="FillAndExpand" x:Name="TxtDescripcion" Keyboard="Default"  Placeholder="Descripcion"/>
-                                        </StackLayout>
-                                    </Frame>
-
-                                    <StackLayout  x:Name="lytImageCliente" Margin="0,0,0,0" HorizontalOptions="CenterAndExpand">
-                                        <Image x:Name="imgProducto">
-                                            
-                                        </Image>                                    
-                                    </StackLayout>
-
-                                    <StackLayout Margin="0,5,0,0">
-                                        <Button Text="Agregar foto" HeightRequest="40" x:Name="BtnAgregarFoto" IsVisible="false" Clicked="BtnAgregarFoto_Clicked" BackgroundColor="#FFCC00" TextColor="White" FontAttributes="Bold" />
-                                        <Button Text="Agregar al menu" HeightRequest="40" x:Name="BtnAgregarAlMenu"  Clicked="BtnAgregarAlMenu_Clicked" BackgroundColor="#18356F" TextColor="White" FontAttributes="Bold" />
-                                        <Button Text="Ver Menu" HeightRequest="40" x:Name="BtnVermenu" Clicked="BtnVermenu_Clicked" BackgroundColor="#18356F" TextColor="White" FontAttributes="Bold" />
-                                    </StackLayout>
-
-
+                            <Frame BackgroundColor="Transparent" Padding="1">
+                                <StackLayout HorizontalOptions="Center" Margin="0,0,0,0">
+                                    <Image WidthRequest="200" Source="FastFood1.png" ></Image>
                                 </StackLayout>
                             </Frame>
-                            <!--<BoxView BackgroundColor="Black" HeightRequest="2"/>-->
+
+                            <StackLayout Margin="0,0,0,5" VerticalOptions="FillAndExpand">
+                                <Label Text="Agregar Productos al Menú" FontAttributes="Bold" FontSize="18" HorizontalOptions="Center"></Label>
+
+                                <Frame HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" HasShadow="False"  CornerRadius="4" BackgroundColor="#FFFFFF">
+                                    <StackLayout BackgroundColor="#FFFFFF"  Spacing="0">
+
+                                        <Frame Padding="0" BorderColor="White" HasShadow="False" CornerRadius="8" Margin="0,0,0,15"  >
+                                            <StackLayout Orientation="Horizontal" Margin="4" >
+                                                <Image Source="hamburguericon.png" WidthRequest="25" Margin="5"></Image>
+                                                <customcontrol:CustomEntry HorizontalOptions="FillAndExpand" x:Name="TxtNombreProducto" Keyboard="Default"  Placeholder="Nombre Producto"/>
+                                            </StackLayout>
+                                        </Frame>
+
+                                        <Frame Padding="0" BorderColor="White" HasShadow="False" CornerRadius="8" Margin="0,0,0,15" >
+                                            <StackLayout Orientation="Horizontal" Margin="4" >
+                                                <Image Source="Dollar.png" WidthRequest="25" Margin="5"></Image>
+                                                <customcontrol:CustomEntry HorizontalOptions="FillAndExpand" x:Name="TxtPrecio" Keyboard="Numeric"  Placeholder="Precio"/>
+                                            </StackLayout>
+                                        </Frame>
+
+                                        <Frame Padding="0" BorderColor="White" HasShadow="False" CornerRadius="8" Margin="0,0,0,15" >
+                                            <StackLayout Orientation="Horizontal" Margin="4" >
+                                                <Image Source="check.png" WidthRequest="25" Margin="5"></Image>
+                                                <Picker SelectedIndexChanged="PickerDisponible_SelectedIndexChanged" x:Name="PickerDisponible" Title="Disponibilidad">
+                                                    <Picker.Items>
+                                                        <x:String>S</x:String>
+                                                        <x:String>N</x:String>
+                                                    </Picker.Items>
+                                                </Picker>
+                                            </StackLayout>
+                                        </Frame>
+
+                                        <Frame Padding="0" BorderColor="White" HasShadow="False" CornerRadius="8" Margin="0,0,0,15" >
+                                            <StackLayout Orientation="Horizontal" Margin="4" >
+                                                <Image Source="commentfood.png" WidthRequest="25" Margin="5"></Image>
+                                                <customcontrol:CustomEntry HorizontalOptions="FillAndExpand" x:Name="TxtDescripcion" Keyboard="Default"  Placeholder="Descripcion"/>
+                                            </StackLayout>
+                                        </Frame>
+
+                                        <StackLayout  x:Name="lytImageCliente" Margin="0,0,0,0" HorizontalOptions="CenterAndExpand">
+                                            <Image x:Name="imgProducto" Source="DefaultFood.png" HeightRequest="100">
+
+                                            </Image>
+                                        </StackLayout>
+
+                                        <StackLayout Margin="0,5,0,0">
+                                            <Button Text="Agregar foto" HeightRequest="40" x:Name="BtnAgregarFoto"  Clicked="BtnAgregarFoto_Clicked" BackgroundColor="#FFCC00" TextColor="White" FontAttributes="Bold" />
+                                            <Button Text="Agregar al menu" HeightRequest="40" x:Name="BtnAgregarAlMenu" IsVisible="false"  Clicked="BtnAgregarAlMenu_Clicked" BackgroundColor="#18356F" TextColor="White" FontAttributes="Bold" />
+                                            <Button Text="Ver Menu" HeightRequest="40" x:Name="BtnVermenu" Clicked="BtnVermenu_Clicked" BackgroundColor="#18356F" TextColor="White" FontAttributes="Bold" />
+                                        </StackLayout>
+
+
+                                    </StackLayout>
+                                </Frame>
+                                <!--<BoxView BackgroundColor="Black" HeightRequest="2"/>-->
+                            </StackLayout>
+
                         </StackLayout>
-                    </StackLayout>
+                    </ScrollView>
 
 
 
@@ -255,8 +259,38 @@
 
                     </StackLayout>
                 </Frame>
-                
-                <Button Text="Enviar Notificación" HeightRequest="40" x:Name="BtnEnviarNotificacion"  Clicked="BtnEnviarNotificacion_Clicked" BackgroundColor="#FFCC00" TextColor="White" FontAttributes="Bold" />
+
+                <Button Text="Enviar Notificación" HeightRequest="40" Margin="20,0,20,0"  CornerRadius="4"
+                        x:Name="BtnEnviarNotificacion"  Clicked="BtnEnviarNotificacion_Clicked" BackgroundColor="#FFCC00" TextColor="White" FontAttributes="Bold" />
+
+
+                <ListView SelectionMode="Single" ItemSelected="lsv_notificaciones_ItemSelected" VerticalOptions="FillAndExpand" x:Name="lsv_notificaciones" Grid.Row="0" BackgroundColor="Transparent" HorizontalOptions="CenterAndExpand" SeparatorVisibility="Default"  SeparatorColor="White" HasUnevenRows="True" >
+                    <ListView.ItemTemplate>
+
+                        <DataTemplate>
+
+                            <ViewCell>
+
+
+                                <!--ITEM-->
+                                <Frame HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" HasShadow="False" Margin="8" CornerRadius="4" BackgroundColor="#FFCC00">
+
+                                    <StackLayout Orientation="Vertical" Margin="10">
+                                        <StackLayout Orientation="Horizontal">
+                                            <Label TextColor="#333" Text="{Binding mensaje}"></Label>
+                                        </StackLayout>
+                                        <Label FontAttributes="Bold" TextColor="#333" Text="{Binding disponibilidad}"></Label>
+                                    </StackLayout>
+                                </Frame>
+                            </ViewCell>
+
+                        </DataTemplate>
+
+
+                    </ListView.ItemTemplate>
+                </ListView>
+
+
 
 
             </StackLayout>
