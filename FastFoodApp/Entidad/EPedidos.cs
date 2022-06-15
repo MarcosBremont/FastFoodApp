@@ -14,6 +14,8 @@ namespace FastFoodApp.Entidad
         public string disponible { get; set; }
         public string descripcion { get; set; }
         public string foto { get; set; }
+        public string nombreusuario { get; set; }
+        public string telefono { get; set; }
         public int idpedidos_fast_food { get; set; }
         public string usuario { get; set; }
         public string email { get; set; }

@@ -1,6 +1,8 @@
-﻿using Rg.Plugins.Popup.Services;
+﻿using FastFoodApp.Entidad;
+using Rg.Plugins.Popup.Services;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -13,6 +15,7 @@ namespace FastFoodApp.Pantallas
     public partial class ModalMenu : Rg.Plugins.Popup.Pages.PopupPage
     {
         public event EventHandler OnLLamarOtraPantalla;
+        List<EMenu> ListMenu = new List<EMenu>();
 
         public ModalMenu()
         {
@@ -31,13 +34,20 @@ namespace FastFoodApp.Pantallas
                 var datos = await metodos.ObtenerMenu();
                 lsv_menu.ItemsSource = datos;
                 lsv_menu.IsVisible = true;
-
+                ListMenu = datos;
 
             }
             catch (Exception ex)
             {
 
             }
+        }
+
+
+        void Handle_SearchButtonPressed(object sender, System.EventArgs e)
+        {
+            var ProductoMenu = ListMenu.Where(c => c.nombre.Contains(ProductosSearchBar.Text.ToUpper()));
+            lsv_menu.ItemsSource = ProductoMenu;
         }
 
 

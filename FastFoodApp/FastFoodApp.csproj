@@ -38,6 +38,9 @@
     <None Remove="Plugin.MediaManager" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Update="Pantallas\ModalCambiarProgreso.xaml.cs">
+      <DependentUpon>ModalCambiarProgreso.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Pantallas\ModalHacerPedido.xaml.cs">
       <DependentUpon>ModalHacerPedido.xaml</DependentUpon>
     </Compile>

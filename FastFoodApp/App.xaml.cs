@@ -10,6 +10,7 @@ namespace FastFoodApp
     public partial class App : Application
     {
         public static int Precio { get; set; }
+        public static int idpedidos_fast_food { get; set; }
         public static int TodalPrecioCarrito { get; set; }
         public static string TodalPrecioCarritoString { get; set; }
         public static int idusuarios { get; set; }

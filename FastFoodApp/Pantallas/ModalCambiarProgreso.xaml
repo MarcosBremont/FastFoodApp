@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<popup:PopupPage  
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:popup="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup" xmlns:customcontrol="clr-namespace:FastFoodApp.ControlesPersonalizados"
+    x:Class="FastFoodApp.Pantallas.ModalCambiarProgreso">
+    <ContentPage.Content>
+        <StackLayout x:Name="modalcambiarprogreso" Margin="10,20,10,30" BackgroundColor="#EEEEEE" >
+
+            <StackLayout AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <BoxView HeightRequest="40" Color="#FFCC00" HorizontalOptions="FillAndExpand"/>
+                    <Label Text="CAMBIAR PROGRESO" VerticalOptions="Center" Grid.Row="0" HorizontalTextAlignment="Center" TextColor="#333" FontAttributes="Bold" FontSize="Medium"/>
+                </Grid>
+            </StackLayout>
+
+            <ScrollView Padding="10">
+                <StackLayout Orientation="Vertical">
+                    <Button Text="EN PROCESO" x:Name="BtnEnProceso" VerticalOptions="EndAndExpand" Clicked="BtnEnProceso_Clicked" FontSize="14" FontAttributes="Bold" CornerRadius="4"  BackgroundColor="#18356F" TextColor="white" Margin="10,0,10,10 "></Button>
+                    <Button Text="EN CAMINO" x:Name="BtnEnCamino" VerticalOptions="EndAndExpand" Clicked="BtnEnCamino_Clicked" FontSize="14" FontAttributes="Bold" CornerRadius="4"  BackgroundColor="#18356F" TextColor="white" Margin="10,0,10,10 "></Button>
+                    <Button Text="ENTREGADA" x:Name="BtnEntregada" VerticalOptions="EndAndExpand" Clicked="BtnEntregada_Clicked" FontSize="14" FontAttributes="Bold" CornerRadius="4"  BackgroundColor="#18356F" TextColor="white" Margin="10,0,10,10 "></Button>
+
+
+                </StackLayout>
+            </ScrollView>
+            <Button Text="Cancelar" x:Name="BtnCancelar" Clicked="BtnCancelar_Clicked" FontSize="14" CornerRadius="4" FontAttributes="Bold" BackgroundColor="LightGray" TextColor="#333" Margin="10,0,10,10 "></Button>
+        </StackLayout>
+    </ContentPage.Content>
+</popup:PopupPage>

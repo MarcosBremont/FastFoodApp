@@ -83,7 +83,7 @@ namespace FastFoodApp.Pantallas
                     btnMiPerfil.Source = "userBlanco";
                     btnImgCarrito.Source = "MiCarritoBlanco";
                     btnNotitifaciones.Source = "bellAmarillo";
-
+                    _ = LlenarNotificaciones();
 
                 }),
                 NumberOfTapsRequired = 1
@@ -156,6 +156,25 @@ namespace FastFoodApp.Pantallas
                 var datos = await metodos.ObtenerMenu();
                 lsv_menu.ItemsSource = datos;
                 lsv_menu.IsVisible = true;
+
+
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
+
+        public async Task LlenarNotificaciones()
+        {
+            try
+            {
+                lsv_notificaciones.IsVisible = false;
+                FastFoodApp.Metodos.Metodos metodos = new FastFoodApp.Metodos.Metodos();
+                lsv_notificaciones.ItemsSource = null;
+                var datos = await metodos.ObtenerNotificaciones(0,"S");
+                lsv_notificaciones.ItemsSource = datos;
+                lsv_notificaciones.IsVisible = true;
 
 
             }

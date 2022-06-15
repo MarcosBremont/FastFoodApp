@@ -27,6 +27,7 @@ namespace FastFoodApp.Pantallas
         ModalCantidad modalCantidad = new ModalCantidad();
         ModalMenu modalMenu = new ModalMenu();
         ModalHacerPedido modalHacerPedido = new ModalHacerPedido();
+        ModalCambiarProgreso modalCambiarProgreso = new ModalCambiarProgreso();
         ToastConfigClass toastConfig = new ToastConfigClass();
         Herramientas herramientas = new Herramientas();
 
@@ -65,27 +66,6 @@ namespace FastFoodApp.Pantallas
                 NumberOfTapsRequired = 1
             });
 
-            gridPedidosEmpresa.GestureRecognizers.Add(new TapGestureRecognizer
-            {
-                Command = new Command(() =>
-                {
-
-                    StackLayoutPaginaPrincipal.IsVisible = false;
-                    StackLayoutPedidosEmpresa.IsVisible = true;
-                    StackLayoutMiPerfil.IsVisible = false;
-                    StackLayoutTuCarrito.IsVisible = false;
-                    StackLayoutNotificacionesEmpresa.IsVisible = false;
-
-
-                    btnPedidosEmpresa.Source = "TimeAmarillo";
-                    btnMenuEmpresa.Source = "hamburgerSodaWhite.png";
-                    btnMiPerfil.Source = "userBlanco";
-                    btnImgAnotarPedidos.Source = "MiCarritoBlanco";
-                    btnNotitifacionesEmpresa.Source = "bellWhite";
-                    _ = LlenarPedidos();
-                }),
-                NumberOfTapsRequired = 1
-            });
 
             gridInicioEmpresa.GestureRecognizers.Add(new TapGestureRecognizer
             {
@@ -286,7 +266,8 @@ namespace FastFoodApp.Pantallas
             try
             {
                 FastFoodApp.Metodos.Metodos metodos = new FastFoodApp.Metodos.Metodos();
-                var datos = await metodos.ObtenerCarritoPorUsuario(0, App.idusuarios, "PENDIENTE");
+                var datos = await metodos.ObtenerPedidos("PENDIENTE", 1);
+                lsv_pedidosEmpresa.ItemsSource = datos;
             }
             catch (Exception ex)
             {
@@ -1019,8 +1000,19 @@ namespace FastFoodApp.Pantallas
 
                 }
             }
+            _ = LlenarNotificaciones();
+
 
         }
 
+        private async void lsv_pedidosEmpresa_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        {
+            var obj = (EPedidos)e.SelectedItem;
+            App.idpedidos_fast_food = obj.idpedidos_fast_food;
+
+            modalCambiarProgreso = new ModalCambiarProgreso();
+            await PopupNavigation.PushAsync(modalCambiarProgreso);
+
+        }
     }
 }

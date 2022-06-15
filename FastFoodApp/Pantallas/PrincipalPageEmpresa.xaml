@@ -22,7 +22,7 @@
 
                             <Frame BackgroundColor="Transparent" Padding="1">
                                 <StackLayout HorizontalOptions="Center" Margin="0,0,0,0">
-                                    <Image WidthRequest="200" Source="FastFood1.png" ></Image>
+                                    <Image WidthRequest="150" Source="FastFood1.png" ></Image>
                                 </StackLayout>
                             </Frame>
 
@@ -32,21 +32,21 @@
                                 <Frame HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" HasShadow="False"  CornerRadius="4" BackgroundColor="#FFFFFF">
                                     <StackLayout BackgroundColor="#FFFFFF"  Spacing="0">
 
-                                        <Frame Padding="0" BorderColor="White" HasShadow="False" CornerRadius="8" Margin="0,0,0,15"  >
+                                        <Frame Padding="0" BorderColor="White" HasShadow="False" CornerRadius="8" Margin="0,0,0,10"  >
                                             <StackLayout Orientation="Horizontal" Margin="4" >
                                                 <Image Source="hamburguericon.png" WidthRequest="25" Margin="5"></Image>
                                                 <customcontrol:CustomEntry HorizontalOptions="FillAndExpand" x:Name="TxtNombreProducto" Keyboard="Default"  Placeholder="Nombre Producto"/>
                                             </StackLayout>
                                         </Frame>
 
-                                        <Frame Padding="0" BorderColor="White" HasShadow="False" CornerRadius="8" Margin="0,0,0,15" >
+                                        <Frame Padding="0" BorderColor="White" HasShadow="False" CornerRadius="8" Margin="0,0,0,10" >
                                             <StackLayout Orientation="Horizontal" Margin="4" >
                                                 <Image Source="Dollar.png" WidthRequest="25" Margin="5"></Image>
                                                 <customcontrol:CustomEntry HorizontalOptions="FillAndExpand" x:Name="TxtPrecio" Keyboard="Numeric"  Placeholder="Precio"/>
                                             </StackLayout>
                                         </Frame>
 
-                                        <Frame Padding="0" BorderColor="White" HasShadow="False" CornerRadius="8" Margin="0,0,0,15" >
+                                        <Frame Padding="0" BorderColor="White" HasShadow="False" CornerRadius="8" Margin="0,0,0,10" >
                                             <StackLayout Orientation="Horizontal" Margin="4" >
                                                 <Image Source="check.png" WidthRequest="25" Margin="5"></Image>
                                                 <Picker SelectedIndexChanged="PickerDisponible_SelectedIndexChanged" x:Name="PickerDisponible" Title="Disponibilidad">
@@ -58,15 +58,15 @@
                                             </StackLayout>
                                         </Frame>
 
-                                        <Frame Padding="0" BorderColor="White" HasShadow="False" CornerRadius="8" Margin="0,0,0,15" >
+                                        <Frame Padding="0" BorderColor="White" HasShadow="False" CornerRadius="8" Margin="0,0,0,10" >
                                             <StackLayout Orientation="Horizontal" Margin="4" >
                                                 <Image Source="commentfood.png" WidthRequest="25" Margin="5"></Image>
-                                                <customcontrol:CustomEntry HorizontalOptions="FillAndExpand" x:Name="TxtDescripcion" Keyboard="Default"  Placeholder="Descripcion"/>
+                                                <Editor Placeholder="Descripcion" TextTransform="Uppercase" VerticalOptions="Center" HorizontalOptions="FillAndExpand" Margin="0,0,10,0" HeightRequest="80" WidthRequest="50" x:Name="TxtDescripcion"  />
                                             </StackLayout>
                                         </Frame>
 
                                         <StackLayout  x:Name="lytImageCliente" Margin="0,0,0,0" HorizontalOptions="CenterAndExpand">
-                                            <Image x:Name="imgProducto" Source="DefaultFood.png" HeightRequest="100">
+                                            <Image x:Name="imgProducto" Source="DefaultFood.png" HeightRequest="80">
 
                                             </Image>
                                         </StackLayout>
@@ -96,12 +96,11 @@
             <!--Layout Pedidos Empresa-->
             <StackLayout IsVisible="false" VerticalOptions="StartAndExpand" x:Name="StackLayoutPedidosEmpresa" BackgroundColor="#EEEEEE">
                 <Label FontAttributes="Bold" HorizontalOptions="Center" x:Name="LblAunNoHasPedidoNadaEmpresa" IsVisible="false" TextColor="#18356F" Text="Aun no hay ningun pedido."></Label>
-                <Label FontAttributes="Bold" HorizontalOptions="Center"  TextColor="#18356F" Text="EMPRESAAA."></Label>
 
                 <Grid RowSpacing="0" BackgroundColor="#EEEEEE">
 
                     <StackLayout VerticalOptions="FillAndExpand" Grid.Row="0" Grid.Column="0" Orientation="Vertical" Margin="0,0,0,0">
-                        <ListView SelectionMode="None" VerticalOptions="FillAndExpand" x:Name="lsv_pedidosEmpresa" Grid.Row="0" BackgroundColor="Transparent" HorizontalOptions="CenterAndExpand" SeparatorVisibility="Default"  SeparatorColor="White" HasUnevenRows="True" >
+                        <ListView SelectionMode="Single" ItemSelected="lsv_pedidosEmpresa_ItemSelected" VerticalOptions="FillAndExpand" x:Name="lsv_pedidosEmpresa" Grid.Row="0" BackgroundColor="Transparent" HorizontalOptions="CenterAndExpand" SeparatorVisibility="Default"  SeparatorColor="White" HasUnevenRows="True" >
                             <ListView.ItemTemplate>
 
                                 <DataTemplate>
@@ -116,16 +115,18 @@
                                                 <Image Margin="10,0,0,0" Source="{Binding foto}" HeightRequest="100"></Image>
 
                                                 <StackLayout Orientation="Vertical" Margin="10">
+                                                    <Label FontAttributes="Bold" TextColor="#333" Text="{Binding nombreusuario}"></Label>
                                                     <StackLayout Orientation="Horizontal">
                                                         <Label FontAttributes="Bold" TextColor="#333" Text="Numero de Pedido:"></Label>
                                                         <Label TextColor="#333" Text="{Binding idpedidos_fast_food}"></Label>
                                                     </StackLayout>
-                                                    <Label FontAttributes="Bold" TextColor="#333" Text="{Binding nombre_producto}"></Label>
-                                                    <Label TextColor="#333"  Text="{Binding descripcion}"></Label>
+                                                    <Label FontAttributes="Bold" TextColor="#333" Text="{Binding nombre}"></Label>
+
                                                     <StackLayout Orientation="Horizontal">
                                                         <Label FontAttributes="Bold" TextColor="#333" Text="Precio:"></Label>
                                                         <Label TextColor="#333" Text="{Binding precio}"></Label>
                                                     </StackLayout>
+
                                                     <StackLayout Orientation="Horizontal">
                                                         <Label FontAttributes="Bold" TextColor="#333" Text="Cantidad:"></Label>
                                                         <Label TextColor="#333" Text="{Binding cantidad}"></Label>
@@ -134,6 +135,28 @@
                                                         <Label FontAttributes="Bold" TextColor="#333" Text="Total:"></Label>
                                                         <Label TextColor="#333" Text="{Binding total_por_producto}"></Label>
                                                     </StackLayout>
+
+                                                    <StackLayout Orientation="Horizontal">
+                                                        <Label FontAttributes="Bold" TextColor="#333" Text="Pagará con:"></Label>
+                                                        <Label TextColor="#333" Text="{Binding concuantopagara}"></Label>
+                                                    </StackLayout>
+
+                                                    <StackLayout Orientation="Horizontal">
+                                                        <Label FontAttributes="Bold" TextColor="#333" Text="Devuelta:"></Label>
+                                                        <Label TextColor="#333" Text="{Binding devuelta}"></Label>
+                                                    </StackLayout>
+
+
+                                                    <StackLayout Orientation="Horizontal">
+                                                        <Label FontAttributes="Bold" TextColor="#333" Text="Dirección:"></Label>
+                                                    </StackLayout>
+                                                    <Label TextColor="#333" Text="{Binding direccion}"></Label>
+
+                                                    <StackLayout Orientation="Horizontal">
+                                                        <Label FontAttributes="Bold" TextColor="#333" Text="Teléfono:"></Label>
+                                                        <Label TextColor="#333" Text="{Binding telefono}"></Label>
+                                                    </StackLayout>
+
                                                     <Frame Padding="10" HasShadow="False" BackgroundColor="#18356F">
                                                         <StackLayout HorizontalOptions="Center" Orientation="Horizontal">
                                                             <Label HorizontalOptions="Center" TextColor="White" Text="{Binding estado_del_pedido}"></Label>
@@ -243,7 +266,7 @@
 
                 <Label Margin="0,5,0,0" HorizontalOptions="Center" FontAttributes="Bold" FontSize="18" Text="Enviar Notificaciones a los clientes"></Label>
                 <!--ITEM-->
-                <Frame HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" HasShadow="False" Margin="8" CornerRadius="4" >
+                <Frame HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" HasShadow="False" CornerRadius="4" >
 
                     <StackLayout Margin="0,0,0,5" Orientation="Vertical" VerticalOptions="FillAndExpand">
                         <Frame HasShadow="False" Padding="10" BackgroundColor="White">
@@ -261,8 +284,9 @@
                 </Frame>
 
                 <Button Text="Enviar Notificación" HeightRequest="40" Margin="20,0,20,0"  CornerRadius="4"
-                        x:Name="BtnEnviarNotificacion"  Clicked="BtnEnviarNotificacion_Clicked" BackgroundColor="#FFCC00" TextColor="White" FontAttributes="Bold" />
+                        x:Name="BtnEnviarNotificacion"  Clicked="BtnEnviarNotificacion_Clicked" BackgroundColor="#18356F" TextColor="White" FontAttributes="Bold" />
 
+                <Label Text="Notificaciones Creadas" HorizontalOptions="Center" FontAttributes="Bold" TextColor="#333"></Label>
 
                 <ListView SelectionMode="Single" ItemSelected="lsv_notificaciones_ItemSelected" VerticalOptions="FillAndExpand" x:Name="lsv_notificaciones" Grid.Row="0" BackgroundColor="Transparent" HorizontalOptions="CenterAndExpand" SeparatorVisibility="Default"  SeparatorColor="White" HasUnevenRows="True" >
                     <ListView.ItemTemplate>

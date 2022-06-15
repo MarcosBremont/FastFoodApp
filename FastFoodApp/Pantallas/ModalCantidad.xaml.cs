@@ -42,13 +42,18 @@ namespace FastFoodApp.Pantallas
                 await PopupNavigation.PopAsync();
             }
         }
-
+    
         public async Task AgregarPedidoTemporal()
         {
             try
             {
+                string descripcion = TxtDescript.Text;
+                if (string.IsNullOrEmpty(descripcion))
+                {
+                    descripcion = "Nada";
+                }
                 FastFoodApp.Metodos.Metodos metodos = new FastFoodApp.Metodos.Metodos();
-                var datos = await metodos.AgregarPedidoTemporal(App.idProducto, App.idusuarios, Convert.ToInt32(TxtCantidad.Text),TxtDescript.Text.ToUpper());
+                var datos = await metodos.AgregarPedidoTemporal(App.idProducto, App.idusuarios, Convert.ToInt32(TxtCantidad.Text), descripcion.ToUpper());
             }
             catch (Exception ex)
             {

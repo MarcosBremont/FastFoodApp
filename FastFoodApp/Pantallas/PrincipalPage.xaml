@@ -115,7 +115,10 @@
                                                         <Label TextColor="#333" Text="{Binding idpedidos_fast_food}"></Label>
                                                     </StackLayout>
                                                     <Label FontAttributes="Bold" TextColor="#333" Text="{Binding nombre_producto}"></Label>
-                                                    <Label TextColor="#333"  Text="{Binding descripcion}"></Label>
+                                                    <StackLayout Orientation="Horizontal">
+                                                        <Label FontAttributes="Bold" TextColor="#333" Text="Descripcion:"></Label>
+                                                        <Label TextColor="#333"  Text="{Binding descripcion}"></Label>
+                                                    </StackLayout>
                                                     <StackLayout Orientation="Horizontal">
                                                         <Label FontAttributes="Bold" TextColor="#333" Text="Precio:"></Label>
                                                         <Label TextColor="#333" Text="{Binding precio}"></Label>
@@ -181,7 +184,6 @@
 
                                                 <StackLayout Orientation="Vertical" Margin="10">
                                                     <Label FontAttributes="Bold" TextColor="#333" Text="{Binding nombre_producto}"></Label>
-                                                    <Label TextColor="#333"  Text="{Binding descripcion}"></Label>
                                                     <StackLayout Orientation="Horizontal">
                                                         <Label FontAttributes="Bold" TextColor="#333" Text="Precio:"></Label>
                                                         <Label TextColor="#333" Text="{Binding precio}"></Label>
@@ -235,6 +237,11 @@
             <!--Layout Notificaciones-->
             <StackLayout IsVisible="false" VerticalOptions="StartAndExpand" x:Name="StackLayoutNotificaciones" BackgroundColor="#EEEEEE">
 
+                <StackLayout HorizontalOptions="Center">
+                    <Label HorizontalOptions="Center" FontAttributes="Bold" FontSize="18" Text="Ofertas del día de hoy"></Label>
+                    <Label HorizontalOptions="Center" Text="¡Aprovecha!"></Label>
+                    <Label HorizontalOptions="Center" Text="No hay ofertas para el día de hoy"></Label>
+                </StackLayout>
                 <!--ITEM-->
                 <ListView SelectionMode="None" VerticalOptions="FillAndExpand" x:Name="lsv_notificaciones" Grid.Row="0" BackgroundColor="Transparent" HorizontalOptions="CenterAndExpand" SeparatorVisibility="Default"  SeparatorColor="White" HasUnevenRows="True" >
                     <ListView.ItemTemplate>
@@ -244,14 +251,12 @@
                             <ViewCell>
 
 
-                                <Frame HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" HasShadow="False" Margin="8" CornerRadius="4" BackgroundColor="#EEEEEE">
+                                <Frame HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" HasShadow="False" CornerRadius="4" BackgroundColor="#EEEEEE">
 
                                     <StackLayout Margin="0,0,0,5" Orientation="Vertical" VerticalOptions="FillAndExpand">
-                                        <Frame HasShadow="False" Padding="10" BackgroundColor="#FFCC00">
+                                        <Frame HasShadow="False" BackgroundColor="#FFCC00">
                                             <StackLayout  Orientation="Vertical">
-                                                <Label FontAttributes="Bold" Text="{Binding mensaje}">
-
-                                                </Label>
+                                                <Label FontAttributes="Bold" Text="{Binding mensaje}"/>
                                             </StackLayout>
                                         </Frame>
                                     </StackLayout>
@@ -269,78 +274,81 @@
             <!--Layout Mi Perfil-->
             <StackLayout IsVisible="false" VerticalOptions="StartAndExpand" x:Name="StackLayoutMiPerfil" BackgroundColor="White">
 
-                <Frame HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand" HasShadow="False" Margin="10" CornerRadius="4" BackgroundColor="White">
-                    <Grid RowSpacing="0" BackgroundColor="#EEEEEE">
-
-                        <StackLayout VerticalOptions="FillAndExpand" Grid.Row="0" Grid.Column="0" Orientation="Vertical" Margin="0,0,0,0">
-
-                            <StackLayout BackgroundColor="White" Padding="10,0,5,5" Spacing="0">
-
-                                <StackLayout Orientation="Vertical" >
+                <ScrollView>
 
 
-                                    <StackLayout  Background="Logo.jpg" Orientation="Vertical">
-                                        <Image HeightRequest="100" Source="man.png"/>
-                                        <Image HeightRequest="20" Source="add.png"/>
+                    <Frame HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand" HasShadow="False" Margin="10" CornerRadius="4" BackgroundColor="White">
+                        <Grid RowSpacing="0" BackgroundColor="#EEEEEE">
+
+                            <StackLayout VerticalOptions="FillAndExpand" Grid.Row="0" Grid.Column="0" Orientation="Vertical" Margin="0,0,0,0">
+
+                                <StackLayout BackgroundColor="White" Padding="0,0,0,0" Spacing="0">
+
+                                    <StackLayout Orientation="Vertical" >
+
+
+                                        <StackLayout  Background="Logo.jpg" Orientation="Vertical">
+                                            <Image HeightRequest="100" Source="man.png"/>
+                                            <Image HeightRequest="20" Source="add.png"/>
+                                        </StackLayout>
+
+                                        <StackLayout Margin="0,10,0,0" VerticalOptions="Center" HorizontalOptions="FillAndExpand" Orientation="Horizontal">
+                                            <Image HeightRequest="20" VerticalOptions="Center" Source="userIconApp.png"/>
+                                            <Entry Placeholder="Nombre" IsEnabled="False" x:Name="TxtNombre" VerticalOptions="Center" HorizontalOptions="FillAndExpand"></Entry>
+                                        </StackLayout>
+
+
+                                        <StackLayout Margin="0,2,0,0" VerticalOptions="Center" HorizontalOptions="FillAndExpand" Orientation="Horizontal">
+                                            <Image HeightRequest="20" VerticalOptions="Center" Source="userIconApp.png"/>
+                                            <Entry Placeholder="Apellido" IsEnabled="False" x:Name="TxtApellido" VerticalOptions="Center" HorizontalOptions="FillAndExpand"></Entry>
+                                        </StackLayout>
+
+
+                                        <StackLayout Margin="0,2,0,0" VerticalOptions="Center" HorizontalOptions="FillAndExpand" Orientation="Horizontal">
+                                            <Image HeightRequest="20" VerticalOptions="Center" Source="mail.png"/>
+                                            <Entry Placeholder="Email" IsEnabled="False" x:Name="TxtEmail" VerticalOptions="Center" HorizontalOptions="FillAndExpand"></Entry>
+                                        </StackLayout>
+
+                                        <StackLayout Margin="0,2,0,0" VerticalOptions="Center" HorizontalOptions="FillAndExpand" Orientation="Horizontal">
+                                            <Image HeightRequest="20" VerticalOptions="Center" Source="marker.png"/>
+                                            <Editor Placeholder="Dirección"  x:Name="TxtDireccion" IsEnabled="False" TextTransform="Uppercase" VerticalOptions="Center" HorizontalOptions="FillAndExpand" Margin="0,0,0,0" HeightRequest="80" WidthRequest="50"/>
+                                        </StackLayout>
+
+                                        <StackLayout Margin="0,2,0,0" VerticalOptions="Center" HorizontalOptions="FillAndExpand" Orientation="Horizontal">
+                                            <Image HeightRequest="20" VerticalOptions="Center" Source="phone.png"/>
+                                            <Entry Placeholder="Telefono" IsEnabled="False" x:Name="TxtTelefono" VerticalOptions="Center" HorizontalOptions="FillAndExpand"></Entry>
+                                        </StackLayout>
+
+                                        <StackLayout Margin="0,2,0,0" VerticalOptions="Center" HorizontalOptions="FillAndExpand" Orientation="Horizontal">
+                                            <Image HeightRequest="20" VerticalOptions="Center" Source="passwordIconApp.png"/>
+                                            <Entry Placeholder="Contraseña" IsEnabled="False" x:Name="TxtClave" VerticalOptions="Center" HorizontalOptions="FillAndExpand"></Entry>
+                                        </StackLayout>
+
+
+                                        <StackLayout Margin="0,2,0,0">
+                                            <Button Text="Editar Perfil" x:Name="btnEditarPerfil" Clicked="btnEditarPerfil_Clicked" FontAttributes="Bold" TextColor="White" BackgroundColor="#18356F" CornerRadius="4"/>
+                                        </StackLayout>
+
+                                        <StackLayout Margin="0,2,0,0">
+                                            <Button Text="Guardar Cambios" IsVisible="False" x:Name="btnGuardarCambios" Clicked="btnGuardarCambios_Clicked" FontAttributes="Bold" TextColor="White" BackgroundColor="#18356F" CornerRadius="4"/>
+                                        </StackLayout>
+
+                                        <StackLayout Margin="0,2,0,0">
+                                            <Button Text="Cerrar Sesión" FontAttributes="Bold" x:Name="BtnCerrarSesion" Clicked="BtnCerrarSesion_Clicked" VerticalOptions="EndAndExpand" TextColor="#18356F" BackgroundColor="#FFCC00" CornerRadius="4"/>
+                                        </StackLayout>
+
                                     </StackLayout>
 
-                                    <StackLayout Margin="0,10,0,10" VerticalOptions="Center" HorizontalOptions="FillAndExpand" Orientation="Horizontal">
-                                        <Image HeightRequest="20" VerticalOptions="Center" Source="user.png"/>
-                                        <Entry Placeholder="Nombre" IsEnabled="False" x:Name="TxtNombre" VerticalOptions="Center" HorizontalOptions="FillAndExpand"></Entry>
-                                    </StackLayout>
 
-
-                                    <StackLayout Margin="0,10,0,10" VerticalOptions="Center" HorizontalOptions="FillAndExpand" Orientation="Horizontal">
-                                        <Image HeightRequest="20" VerticalOptions="Center" Source="user.png"/>
-                                        <Entry Placeholder="Apellido" IsEnabled="False" x:Name="TxtApellido" VerticalOptions="Center" HorizontalOptions="FillAndExpand"></Entry>
-                                    </StackLayout>
-
-
-                                    <StackLayout Margin="0,10,0,10" VerticalOptions="Center" HorizontalOptions="FillAndExpand" Orientation="Horizontal">
-                                        <Image HeightRequest="20" VerticalOptions="Center" Source="mail.png"/>
-                                        <Entry Placeholder="Email" IsEnabled="False" x:Name="TxtEmail" VerticalOptions="Center" HorizontalOptions="FillAndExpand"></Entry>
-                                    </StackLayout>
-
-                                    <StackLayout Margin="0,10,0,10" VerticalOptions="Center" HorizontalOptions="FillAndExpand" Orientation="Horizontal">
-                                        <Image HeightRequest="20" VerticalOptions="Center" Source="marker.png"/>
-                                        <Entry Placeholder="Dirección" IsEnabled="False" x:Name="TxtDireccion" VerticalOptions="Center" HorizontalOptions="FillAndExpand"></Entry>
-
-                                    </StackLayout>
-
-                                    <StackLayout Margin="0,10,0,10" VerticalOptions="Center" HorizontalOptions="FillAndExpand" Orientation="Horizontal">
-                                        <Image HeightRequest="20" VerticalOptions="Center" Source="phone.png"/>
-                                        <Entry Placeholder="Telefono" IsEnabled="False" x:Name="TxtTelefono" VerticalOptions="Center" HorizontalOptions="FillAndExpand"></Entry>
-                                    </StackLayout>
-
-                                    <StackLayout Margin="0,10,0,10" VerticalOptions="Center" HorizontalOptions="FillAndExpand" Orientation="Horizontal">
-                                        <Image HeightRequest="20" VerticalOptions="Center" Source="lock.png"/>
-                                        <Entry Placeholder="Contraseña" IsEnabled="False" x:Name="TxtClave" VerticalOptions="Center" HorizontalOptions="FillAndExpand"></Entry>
-                                    </StackLayout>
-
-
-                                    <StackLayout Margin="0,10,0,10">
-                                        <Button Text="Editar Perfil" x:Name="btnEditarPerfil" Clicked="btnEditarPerfil_Clicked" FontAttributes="Bold" TextColor="White" BackgroundColor="#18356F" CornerRadius="4"/>
-                                    </StackLayout>
-
-                                    <StackLayout Margin="0,10,0,10">
-                                        <Button Text="Guardar Cambios" IsVisible="False" x:Name="btnGuardarCambios" Clicked="btnGuardarCambios_Clicked" FontAttributes="Bold" TextColor="White" BackgroundColor="#18356F" CornerRadius="4"/>
-                                    </StackLayout>
-
-                                    <StackLayout Margin="0,10,0,10">
-                                        <Button Text="Cerrar Sesión" FontAttributes="Bold" x:Name="BtnCerrarSesion" Clicked="BtnCerrarSesion_Clicked" VerticalOptions="EndAndExpand" TextColor="#18356F" BackgroundColor="#FFCC00" CornerRadius="4"/>
-                                    </StackLayout>
 
                                 </StackLayout>
-
-
-
                             </StackLayout>
-                        </StackLayout>
 
 
 
-                    </Grid>
-                </Frame>
+                        </Grid>
+                    </Frame>
+                </ScrollView>
 
 
             </StackLayout>

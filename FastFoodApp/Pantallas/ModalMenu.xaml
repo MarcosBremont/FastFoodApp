@@ -20,6 +20,12 @@
             </StackLayout>
 
 
+            <SearchBar x:Name="ProductosSearchBar"  
+                       TextTransform="Uppercase"
+                 TextChanged="Handle_SearchButtonPressed"
+                 BackgroundColor="#FFFFFF"/>
+
+            
             <StackLayout VerticalOptions="FillAndExpand" Grid.Row="0" Grid.Column="0" Orientation="Vertical" Margin="0,0,0,0">
                 <ListView VerticalOptions="FillAndExpand" ItemSelected="lsv_menu_ItemSelected" x:Name="lsv_menu" Grid.Row="0" BackgroundColor="Transparent" HorizontalOptions="CenterAndExpand" SeparatorVisibility="Default"  SeparatorColor="#18356F" HasUnevenRows="True" >
                     <ListView.ItemTemplate>

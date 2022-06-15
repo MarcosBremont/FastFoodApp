@@ -175,5 +175,12 @@ namespace FastFoodApp.Metodos
             return response;
         }// Fin del método AgregarProductoAlMenu
 
+        public async Task<Result> ActualizarProgresoPedido(int idpedidos_fast_food, string estado_del_pedido)
+        {
+            var result = await herramientas.EjecutarSentenciaEnApiLibre($"FastFood/UProgresoPedido/{idpedidos_fast_food}/{estado_del_pedido}");
+            var response = Newtonsoft.Json.JsonConvert.DeserializeObject<Result>(result);
+            return response;
+        }// Fin del método AgregarProductoAlMenu
+
     }
 }
