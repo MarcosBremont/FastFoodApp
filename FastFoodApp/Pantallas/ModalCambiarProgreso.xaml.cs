@@ -17,18 +17,11 @@ namespace FastFoodApp.Pantallas
         public event EventHandler OnLLamarOtraPantalla;
         ToastConfigClass toastConfig = new ToastConfigClass();
 
-        string totaldeproductos = "";
+        string btnname = "";
         public ModalCambiarProgreso()
         {
             InitializeComponent();
-
-
         }
-
-
-     
-      
-
         async void BtnCancelar_Clicked(System.Object sender, System.EventArgs e)
         {
             await PopupNavigation.PopAsync();
@@ -38,11 +31,14 @@ namespace FastFoodApp.Pantallas
         {
             try
             {
-                FastFoodApp.Metodos.Metodos metodos = new FastFoodApp.Metodos.Metodos();
-                var datos = await metodos.ActualizarProgresoPedido(idpedidos_fast_food, estado_del_pedido);
-                if (datos.Respuesta == "OK")
+                if (await DisplayAlert($"Información", $"¿Deseas cambiar el pedido a {btnname}?", "SI", "NO"))
                 {
-                    toastConfig.MostrarNotificacion($"Se ha actualizado el progreso", ToastPosition.Top, 3, "#51C560");
+                    FastFoodApp.Metodos.Metodos metodos = new FastFoodApp.Metodos.Metodos();
+                    var datos = await metodos.ActualizarProgresoPedido(idpedidos_fast_food, estado_del_pedido);
+                    if (datos.Respuesta == "OK")
+                    {
+                        toastConfig.MostrarNotificacion($"Se ha actualizado el progreso", ToastPosition.Top, 3, "#51C560");
+                    }
                 }
             }
             catch (Exception ex)
@@ -53,17 +49,22 @@ namespace FastFoodApp.Pantallas
 
         private void BtnEnProceso_Clicked(object sender, EventArgs e)
         {
+            btnname = BtnEnProceso.Text;
             ActualizarProgresoPedido(App.idpedidos_fast_food, "EN PROCESO");
         }
 
         private void BtnEnCamino_Clicked(object sender, EventArgs e)
         {
+            btnname = BtnEnCamino.Text;
             ActualizarProgresoPedido(App.idpedidos_fast_food, "EN CAMINO");
+
         }
 
         private void BtnEntregada_Clicked(object sender, EventArgs e)
         {
+            btnname = BtnEntregada.Text;
             ActualizarProgresoPedido(App.idpedidos_fast_food, "ENTREGADA");
+
         }
     }
 }

@@ -41,6 +41,24 @@ namespace FastFoodApp
         public static List<StringBuilder> listOfStrings = new List<StringBuilder>();
 
 
+        //DATOS EMPRESA
+        public static int idempresa { get; set; }
+        public static string NombreEmpresa { get; set; }
+        public static string rncEmpresa { get; set; }
+        public static string direccionEmpresa { get; set; }
+        public static string telefonoEmpresa { get; set; }
+        public static string whatsappEmpresa { get; set; }
+        public static string correoEmpresa { get; set; }
+        public static string latitudEmpresa { get; set; }
+        public static string longitudeEmpresa { get; set; }
+        public static string claveEmpresa { get; set; }
+        public static string instagramEmpresa { get; set; }
+        public static string encargado_Empresa { get; set; }
+        public static string facebookEmpresa { get; set; }
+        public static string logo_empresa { get; set; }
+
+
+
         public App()
         {
             InitializeComponent();

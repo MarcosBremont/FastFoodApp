@@ -66,6 +66,8 @@ namespace FastFoodApp.Pantallas
                         App.empresa = result.empresa;
                         InsertarIdPedido();
                         SeleccionarNumeroDeOrdenGeneral();
+                        LlenarEmpresa();
+
                         toastConfig.MostrarNotificacion($"Bienvenido {result.nombre}", ToastPosition.Top, 3, "#51C560");
                         if (result.empresa == "S")
                         {
@@ -99,6 +101,21 @@ namespace FastFoodApp.Pantallas
                 FastFoodApp.Metodos.Metodos metodos = new FastFoodApp.Metodos.Metodos();
                 var datos = await metodos.ObtenerEmpresa();
                 App.envio = datos[0].envio;
+                App.NombreEmpresa = datos[0].nombre;
+                App.direccionEmpresa = datos[0].direccion;
+                App.rncEmpresa = datos[0].rnc;
+                App.telefonoEmpresa = datos[0].telefono;
+                App.whatsappEmpresa = datos[0].whatsapp;
+                App.correoEmpresa = datos[0].correo;
+                App.latitudEmpresa = datos[0].latitud;
+                App.longitudeEmpresa = datos[0].longitud;
+                App.claveEmpresa = datos[0].clave;
+                App.instagramEmpresa = datos[0].instagram;
+                App.facebookEmpresa = datos[0].facebook;
+                App.encargado_empresa = datos[0].encargado_empresa;
+                App.encargado_empresa = datos[0].encargado_empresa;
+                App.logo_empresa = datos[0].logo_empresa;
+                App.idempresa = datos[0].idempresa;
             }
             catch (Exception ex)
             {

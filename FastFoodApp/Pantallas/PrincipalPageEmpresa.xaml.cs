@@ -67,6 +67,16 @@ namespace FastFoodApp.Pantallas
             });
 
 
+            PickPhoto.GestureRecognizers.Add(new TapGestureRecognizer
+            {
+                Command = new Command(() =>
+                {
+                    EscogerFoto();
+                }),
+                NumberOfTapsRequired = 1
+            });
+
+
             gridInicioEmpresa.GestureRecognizers.Add(new TapGestureRecognizer
             {
                 Command = new Command(() =>
@@ -162,7 +172,7 @@ namespace FastFoodApp.Pantallas
                     btnImgAnotarPedidos.Source = "MiCarritoBlanco";
                     btnNotitifacionesEmpresa.Source = "bellWhite";
 
-                    LlenarMiPerfil();
+                    LlenarMiPerfilEmpresa();
 
                 }),
                 NumberOfTapsRequired = 1
@@ -192,15 +202,162 @@ namespace FastFoodApp.Pantallas
             });
         }
 
-        private void LlenarMiPerfil()
+        private async void EscogerFoto()
         {
-            TxtNombre.Text = App.nombre;
-            TxtApellido.Text = App.apellido;
-            TxtDireccion.Text = App.direccion;
-            TxtTelefono.Text = App.telefono;
-            TxtClave.Text = App.clave;
-            TxtEmail.Text = App.correo;
 
+
+            try
+            {
+
+                fileSelectedPath = null;
+
+                if (Device.RuntimePlatform == Device.Android)
+                {
+                    await RequestThisPermision(Permiso.Galeria);
+                }
+                else
+                {
+                    if (!await RequestThisPermision(Permiso.Galeria))
+                    {
+                        // MsgNormal(senderPage, "Permiso denegado, no se puede acceder a la galería");
+                        return;
+                    }
+                }
+
+                if (Device.RuntimePlatform == Device.Android)
+                {
+
+
+                    if (!CrossMedia.Current.IsPickPhotoSupported)
+                    {
+                        // MsgNormal(senderPage, "Este dispositivo no puede seleccionar imágenes", "OK");
+                        return;
+                    }
+                    else
+                    {
+                        try
+                        {
+
+                            //Check for Media Library Permisions
+                            var status = await CrossPermissions.Current.CheckPermissionStatusAsync(Plugin.Permissions.Abstractions.Permission.MediaLibrary);
+
+                            PickPicture:
+                            if (status == Plugin.Permissions.Abstractions.PermissionStatus.Granted)
+                            {
+
+
+
+                                var file = await Plugin.Media.CrossMedia.Current.PickPhotoAsync(new Plugin.Media.Abstractions.PickMediaOptions
+                                {
+                                    PhotoSize = Plugin.Media.Abstractions.PhotoSize.Small,
+                                    MaxWidthHeight = 600,
+                                    SaveMetaData = false
+                                });
+                                mediaFile = file;
+
+
+                                if (file == null)
+                                    return;
+                                else
+                                {
+                                    while (fileSelectedPath == null)
+                                        fileSelectedPath = file.Path;
+
+                                    EmpresaFoto.Source = ImageSource.FromStream(() => file.GetStreamWithImageRotatedForExternalStorage());
+                                    if (mediaFile != null)
+                                    {
+                                        BtnAgregarAlMenu.IsVisible = true;
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                await CrossPermissions.Current.RequestPermissionsAsync(Plugin.Permissions.Abstractions.Permission.MediaLibrary);
+                                var statusTwo = await CrossPermissions.Current.CheckPermissionStatusAsync(Plugin.Permissions.Abstractions.Permission.MediaLibrary);
+
+                                if (status == Plugin.Permissions.Abstractions.PermissionStatus.Granted)
+                                    goto PickPicture;
+                                else
+                                    return;
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            _ = ex.Message;
+                            //MsgNormal(senderPage, "Permiso denegado, no se puede acceder a la galería");
+                            return;
+                        }
+                    }
+
+                }
+                else
+                {
+                    await CrossMedia.Current.Initialize();
+
+                    var cameraStatus = await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Camera);
+                    var storageStatus = await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Storage);
+                    var photoLibraryStatus = await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.MediaLibrary);
+
+                    while (cameraStatus != Plugin.Permissions.Abstractions.PermissionStatus.Granted && storageStatus != Plugin.Permissions.Abstractions.PermissionStatus.Granted && photoLibraryStatus != Plugin.Permissions.Abstractions.PermissionStatus.Granted)
+                    {
+                        var cameraStatus1 = await CrossPermissions.Current.RequestPermissionsAsync(Permission.Camera);
+                        var storageStatus1 = await CrossPermissions.Current.RequestPermissionsAsync(Permission.Storage);
+                        var photoLibrary = await CrossPermissions.Current.RequestPermissionsAsync(Permission.MediaLibrary);
+
+                        cameraStatus = await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Camera);
+                        storageStatus = await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Storage);
+                        photoLibraryStatus = await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.MediaLibrary);
+                    }
+
+                    if (!CrossMedia.Current.IsPickPhotoSupported)
+                    {
+                        //MsgNormal("Photos Not Supported", ":( Permission not granted to photos.", "OK");
+                        return;
+                    }
+                    var file = await Plugin.Media.CrossMedia.Current.PickPhotoAsync(new Plugin.Media.Abstractions.PickMediaOptions
+                    {
+                        PhotoSize = PhotoSize.MaxWidthHeight,
+                        MaxWidthHeight = 2000
+                    });
+
+                    mediaFile = file;
+
+                    if (file == null)
+                        return;
+
+                    EmpresaFoto.Source = ImageSource.FromStream(() =>
+                    {
+
+                        while (fileSelectedPath == null)
+                            fileSelectedPath = file.Path;
+
+                        var stream = file.GetStream();
+                        return stream;
+                    });
+
+                    if (mediaFile != null)
+                    {
+                        BtnAgregarAlMenu.IsVisible = true;
+                    }
+
+
+                }
+            }
+            catch (Exception)
+            {
+                return;
+            }
+
+        }
+
+        private void LlenarMiPerfilEmpresa()
+        {
+            TxtNombreEmpresa.Text = App.NombreEmpresa;
+            TxtDireccionEmpresa.Text = App.direccionEmpresa;
+            TxtWhatsappEmpresa.Text = App.whatsappEmpresa;
+            TxtCorreoEmpresa.Text = App.correoEmpresa;
+            TxtClaveEMpresa.Text = App.claveEmpresa;
+            TxtPrecioEnvio.Text = App.envio.ToString();
         }
 
         public async Task LlenarMenu()
@@ -355,41 +512,10 @@ namespace FastFoodApp.Pantallas
             }
         }
 
-        void btnEditarPerfil_Clicked(System.Object sender, System.EventArgs e)
-        {
-            TxtEmail.IsEnabled = true;
-            TxtDireccion.IsEnabled = true;
-            TxtTelefono.IsEnabled = true;
-            TxtClave.IsEnabled = true;
-            btnGuardarCambios.IsVisible = true;
-            btnEditarPerfil.IsVisible = false;
-        }
+      
 
-        public async void ActualizarUsuario(string nombre, string apellido, string direccion, string telefono, string email, string clave, int idusuarios)
-        {
-            try
-            {
-                FastFoodApp.Metodos.Metodos metodos = new FastFoodApp.Metodos.Metodos();
-                var datos = await metodos.ActualizarUsuario(nombre, apellido, direccion, telefono, email, clave, idusuarios);
-            }
-            catch (Exception ex)
-            {
 
-            }
-        }
 
-        void btnGuardarCambios_Clicked(System.Object sender, System.EventArgs e)
-        {
-            TxtEmail.IsEnabled = false;
-            TxtDireccion.IsEnabled = false;
-            TxtTelefono.IsEnabled = false;
-            btnEditarPerfil.IsVisible = true;
-            TxtClave.IsEnabled = false;
-            btnGuardarCambios.IsVisible = false;
-
-            ActualizarUsuario(TxtNombre.Text, TxtApellido.Text, TxtDireccion.Text, TxtTelefono.Text, TxtEmail.Text, TxtClave.Text, App.idusuarios);
-
-        }
 
         void BtnAgregarAlMenu_Clicked(System.Object sender, System.EventArgs e)
         {
@@ -490,7 +616,7 @@ namespace FastFoodApp.Pantallas
                             //Check for Media Library Permisions
                             var status = await CrossPermissions.Current.CheckPermissionStatusAsync(Plugin.Permissions.Abstractions.Permission.MediaLibrary);
 
-                        PickPicture:
+                            PickPicture:
                             if (status == Plugin.Permissions.Abstractions.PermissionStatus.Granted)
                             {
 
@@ -591,6 +717,37 @@ namespace FastFoodApp.Pantallas
                 st.Read(buffer, 0, buffer.Length);
                 var base64 = Convert.ToBase64String(buffer);
                 var result = await herramientas.SetPost<EMenu>("FastFood/GrabarImagen", new EMenu() { idmenu_fast_food = id, foto = base64 });
+
+                if (result.result == "OK")
+                {
+                    App.url_foto_menu = result.foto;
+                }
+                else
+                {
+                    toastConfig.MostrarNotificacion($"No se pudo actualizar la foto del producto. Intente mas tarde.", ToastPosition.Top, 3, "#c82333");
+                }
+            }
+            catch (Exception)
+            {
+                toastConfig.MostrarNotificacion($"No se pudo actualizar la foto del producto. Revise la conexión a internet.", ToastPosition.Top, 3, "#c82333");
+            }
+            finally
+            {
+                Acr.UserDialogs.UserDialogs.Instance.HideLoading();
+            }
+
+        }
+
+        async private void GrabarImageApiEmpresa(Stream st)
+        {
+            try
+            {
+                Acr.UserDialogs.UserDialogs.Instance.ShowLoading();
+                var buffer = new byte[st.Length];
+                st.Seek(0, SeekOrigin.Begin);
+                st.Read(buffer, 0, buffer.Length);
+                var base64 = Convert.ToBase64String(buffer);
+                var result = await herramientas.SetPost<EMenu>("FastFood/GrabarImagenEmpresa", new EMenu() { idmenu_fast_food = id, foto = base64 });
 
                 if (result.result == "OK")
                 {
@@ -799,7 +956,7 @@ namespace FastFoodApp.Pantallas
                             //Check for Media Library Permisions
                             var status = await CrossPermissions.Current.CheckPermissionStatusAsync(Plugin.Permissions.Abstractions.Permission.MediaLibrary);
 
-                        PickPicture:
+                            PickPicture:
                             if (status == Plugin.Permissions.Abstractions.PermissionStatus.Granted)
                             {
 
@@ -1019,6 +1176,52 @@ namespace FastFoodApp.Pantallas
         private void ModalCambiarProgreso_Disappearing(object sender, EventArgs e)
         {
             _ = LlenarPedidos();
+        }
+
+        private void btnEditarPerfilEmpresa_Clicked(object sender, EventArgs e)
+        {
+            TxtNombreEmpresa.IsEnabled = true;
+            TxtDireccionEmpresa.IsEnabled = true;
+            TxtTelefonoEmpresa.IsEnabled = true;
+            TxtCorreoEmpresa.IsEnabled = true;
+            TxtPrecioEnvio.IsEnabled = true;
+            TxtClaveEMpresa.IsEnabled = true;
+            btnGuardarCambiosEmpresa.IsVisible = true;
+            btnEditarPerfilEmpresa.IsVisible = false;
+            PickPhoto.IsVisible = true;
+        }
+
+        private void btnGuardarCambiosEmpresa_Clicked(object sender, EventArgs e)
+        {
+            TxtNombreEmpresa.IsEnabled = false;
+            TxtDireccionEmpresa.IsEnabled = false;
+            TxtTelefonoEmpresa.IsEnabled = false;
+            TxtCorreoEmpresa.IsEnabled = false;
+            TxtPrecioEnvio.IsEnabled = false;
+            TxtClaveEMpresa.IsEnabled = false;
+            btnGuardarCambiosEmpresa.IsVisible = false;
+
+            ActualizarEmpresa(TxtNombreEmpresa.Text, TxtDireccionEmpresa.Text, TxtTelefonoEmpresa.Text, TxtWhatsappEmpresa.Text, TxtCorreoEmpresa.Text, TxtPrecioEnvio.Text, TxtClaveEMpresa.Text, App.idempresa);
+            GrabarImageApi(mediaFile.GetStreamWithImageRotatedForExternalStorage());
+
+        }
+
+        public async void ActualizarEmpresa(string nombreEmpresa, string DireccionEmpresa, string TelefonoEmpresa, string WhatsappEmpresa, string CorreoEmpresa, string PrecioEnvio, string ClaveEMpresa, int idempresa)
+        {
+            try
+            {
+                FastFoodApp.Metodos.Metodos metodos = new FastFoodApp.Metodos.Metodos();
+                var datos = await metodos.ActualizarEmpresa(nombreEmpresa, DireccionEmpresa, TelefonoEmpresa, WhatsappEmpresa, CorreoEmpresa, PrecioEnvio, ClaveEMpresa, idempresa);
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
+
+        private void BtnCerrarSesionEmpresa_Clicked(object sender, EventArgs e)
+        {
+
         }
     }
 }

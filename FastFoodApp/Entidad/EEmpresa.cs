@@ -6,6 +6,7 @@ namespace FastFoodApp.Entidad
 {
     public class EEmpresa
     {
+        public int idempresa { get; set; }
         public string nombre { get; set; }
         public string rnc { get; set; }
         public string direccion { get; set; }
@@ -19,5 +20,6 @@ namespace FastFoodApp.Entidad
         public string facebook { get; set; }
         public string encargado_empresa { get; set; }
         public int envio { get; set; }
+        public string logo_empresa { get; set; }
     }
 }

@@ -235,4 +235,10 @@
   <ItemGroup>
     <BundleResource Include="Resources\passwordIconApp.png" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\locationempresa.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\empresa.png" />
+  </ItemGroup>
 </Project>

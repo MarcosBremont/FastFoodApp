@@ -182,5 +182,13 @@ namespace FastFoodApp.Metodos
             return response;
         }// Fin del método AgregarProductoAlMenu
 
+        public async Task<Result> ActualizarEmpresa(string nombreEmpresa, string DireccionEmpresa, string TelefonoEmpresa, string WhatsappEmpresa, string CorreoEmpresa, string PrecioEnvio, string ClaveEMpresa, int idempresa)
+        {
+            var result = await herramientas.EjecutarSentenciaEnApiLibre($"FastFood/ActualizarEmpresa/{nombreEmpresa}/{DireccionEmpresa}/{TelefonoEmpresa}/{WhatsappEmpresa}/{CorreoEmpresa}/{PrecioEnvio}/{ClaveEMpresa}/{idempresa}");
+            var response = Newtonsoft.Json.JsonConvert.DeserializeObject<Result>(result);
+            return response;
+        }// Fin del método ObtenerEmpresa
+
+
     }
 }

@@ -107,7 +107,6 @@
 
                                     <ViewCell>
 
-
                                         <!--ITEM-->
                                         <Frame HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" HasShadow="False" Margin="8" CornerRadius="4" BackgroundColor="White">
 
@@ -333,54 +332,63 @@
 
 
                                     <StackLayout  Background="Logo.jpg" Orientation="Vertical">
-                                        <Image HeightRequest="100" Source="man.png"/>
-                                        <Image HeightRequest="20" Source="add.png"/>
+                                        <Image HeightRequest="100" x:Name="EmpresaFoto" Source="man.png"/>
+                                        <Image HeightRequest="20" IsVisible="false" x:Name="PickPhoto" Source="add.png"/>
                                     </StackLayout>
 
-                                    <StackLayout Margin="0,10,0,10" VerticalOptions="Center" HorizontalOptions="FillAndExpand" Orientation="Horizontal">
-                                        <Image HeightRequest="20" VerticalOptions="Center" Source="user.png"/>
-                                        <Entry Placeholder="Nombre" IsEnabled="False" x:Name="TxtNombre" VerticalOptions="Center" HorizontalOptions="FillAndExpand"></Entry>
-                                    </StackLayout>
-
-
-                                    <StackLayout Margin="0,10,0,10" VerticalOptions="Center" HorizontalOptions="FillAndExpand" Orientation="Horizontal">
-                                        <Image HeightRequest="20" VerticalOptions="Center" Source="user.png"/>
-                                        <Entry Placeholder="Apellido" IsEnabled="False" x:Name="TxtApellido" VerticalOptions="Center" HorizontalOptions="FillAndExpand"></Entry>
+                                    <StackLayout Margin="0,2,0,0" VerticalOptions="Center" HorizontalOptions="FillAndExpand" Orientation="Horizontal">
+                                        <Image HeightRequest="20" VerticalOptions="Center" Source="empresa.png"/>
+                                        <Entry Placeholder="Empresa" IsEnabled="False" x:Name="TxtNombreEmpresa" VerticalOptions="Center" HorizontalOptions="FillAndExpand"></Entry>
                                     </StackLayout>
 
 
-                                    <StackLayout Margin="0,10,0,10" VerticalOptions="Center" HorizontalOptions="FillAndExpand" Orientation="Horizontal">
+                                    <StackLayout Margin="0,2,0,0" VerticalOptions="Center" HorizontalOptions="FillAndExpand" Orientation="Horizontal">
+                                        <Image HeightRequest="20" VerticalOptions="Center" Source="locationempresa.png"/>
+                                        <Entry Placeholder="Dirección" IsEnabled="False" x:Name="TxtDireccionEmpresa" VerticalOptions="Center" HorizontalOptions="FillAndExpand"></Entry>
+                                    </StackLayout>
+
+
+
+                                    <StackLayout Margin="0,2,0,0" VerticalOptions="Center" HorizontalOptions="FillAndExpand" Orientation="Horizontal">
                                         <Image HeightRequest="20" VerticalOptions="Center" Source="mail.png"/>
-                                        <Entry Placeholder="Email" IsEnabled="False" x:Name="TxtEmail" VerticalOptions="Center" HorizontalOptions="FillAndExpand"></Entry>
+                                        <Entry Placeholder="Email" IsEnabled="False" x:Name="TxtTelefonoEmpresa" VerticalOptions="Center" HorizontalOptions="FillAndExpand"></Entry>
                                     </StackLayout>
 
-                                    <StackLayout Margin="0,10,0,10" VerticalOptions="Center" HorizontalOptions="FillAndExpand" Orientation="Horizontal">
+
+                                    <StackLayout Margin="0,2,0,0" VerticalOptions="Center" HorizontalOptions="FillAndExpand" Orientation="Horizontal">
+                                        <Image HeightRequest="20" VerticalOptions="Center" Source="mail.png"/>
+                                        <Entry Placeholder="Email" IsEnabled="False" x:Name="TxtWhatsappEmpresa" VerticalOptions="Center" HorizontalOptions="FillAndExpand"></Entry>
+                                    </StackLayout>
+
+                                    <StackLayout Margin="0,2,0,0" VerticalOptions="Center" HorizontalOptions="FillAndExpand" Orientation="Horizontal">
                                         <Image HeightRequest="20" VerticalOptions="Center" Source="marker.png"/>
-                                        <Entry Placeholder="Dirección" IsEnabled="False" x:Name="TxtDireccion" VerticalOptions="Center" HorizontalOptions="FillAndExpand"></Entry>
+                                        <Entry Placeholder="Dirección" IsEnabled="False" x:Name="TxtCorreoEmpresa" VerticalOptions="Center" HorizontalOptions="FillAndExpand"></Entry>
 
-                                    </StackLayout>
-
-                                    <StackLayout Margin="0,10,0,10" VerticalOptions="Center" HorizontalOptions="FillAndExpand" Orientation="Horizontal">
-                                        <Image HeightRequest="20" VerticalOptions="Center" Source="phone.png"/>
-                                        <Entry Placeholder="Telefono" IsEnabled="False" x:Name="TxtTelefono" VerticalOptions="Center" HorizontalOptions="FillAndExpand"></Entry>
                                     </StackLayout>
 
                                     <StackLayout Margin="0,10,0,10" VerticalOptions="Center" HorizontalOptions="FillAndExpand" Orientation="Horizontal">
                                         <Image HeightRequest="20" VerticalOptions="Center" Source="lock.png"/>
-                                        <Entry Placeholder="Contraseña" IsEnabled="False" x:Name="TxtClave" VerticalOptions="Center" HorizontalOptions="FillAndExpand"></Entry>
+                                        <Entry Placeholder="Contraseña" IsEnabled="False" x:Name="TxtClaveEMpresa" VerticalOptions="Center" HorizontalOptions="FillAndExpand"></Entry>
                                     </StackLayout>
 
 
-                                    <StackLayout Margin="0,10,0,10">
-                                        <Button Text="Editar Perfil" x:Name="btnEditarPerfil" Clicked="btnEditarPerfil_Clicked" FontAttributes="Bold" TextColor="White" BackgroundColor="#18356F" CornerRadius="4"/>
+                                    <StackLayout Margin="0,2,0,0" VerticalOptions="Center" HorizontalOptions="FillAndExpand" Orientation="Horizontal">
+                                        <Image HeightRequest="20" VerticalOptions="Center" Source="marker.png"/>
+                                        <Entry Placeholder="Precio Envio" IsEnabled="False" x:Name="TxtPrecioEnvio" VerticalOptions="Center" HorizontalOptions="FillAndExpand"></Entry>
+
                                     </StackLayout>
 
-                                    <StackLayout Margin="0,10,0,10">
-                                        <Button Text="Guardar Cambios" IsVisible="False" x:Name="btnGuardarCambios" Clicked="btnGuardarCambios_Clicked" FontAttributes="Bold" TextColor="White" BackgroundColor="#18356F" CornerRadius="4"/>
+
+                                    <StackLayout Margin="0,2,0,0">
+                                        <Button Text="Editar Perfil" x:Name="btnEditarPerfilEmpresa" Clicked="btnEditarPerfilEmpresa_Clicked" FontAttributes="Bold" TextColor="White" BackgroundColor="#18356F" CornerRadius="4"/>
                                     </StackLayout>
 
-                                    <StackLayout Margin="0,10,0,10">
-                                        <Button Text="Cerrar Sesión" FontAttributes="Bold" x:Name="BtnCerrarSesion" Clicked="BtnCerrarSesion_Clicked" VerticalOptions="EndAndExpand" TextColor="#18356F" BackgroundColor="#FFCC00" CornerRadius="4"/>
+                                    <StackLayout Margin="0,2,0,0">
+                                        <Button Text="Guardar Cambios" IsVisible="False" x:Name="btnGuardarCambiosEmpresa" Clicked="btnGuardarCambiosEmpresa_Clicked" FontAttributes="Bold" TextColor="White" BackgroundColor="#18356F" CornerRadius="4"/>
+                                    </StackLayout>
+
+                                    <StackLayout Margin="0,2,0,0">
+                                        <Button Text="Cerrar Sesión" FontAttributes="Bold" x:Name="BtnCerrarSesionEmpresa" Clicked="BtnCerrarSesionEmpresa_Clicked" VerticalOptions="EndAndExpand" TextColor="#18356F" BackgroundColor="#FFCC00" CornerRadius="4"/>
                                     </StackLayout>
 
                                 </StackLayout>
