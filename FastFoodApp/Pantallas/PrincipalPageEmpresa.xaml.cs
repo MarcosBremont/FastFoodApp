@@ -266,7 +266,7 @@ namespace FastFoodApp.Pantallas
             try
             {
                 FastFoodApp.Metodos.Metodos metodos = new FastFoodApp.Metodos.Metodos();
-                var datos = await metodos.ObtenerPedidos("PENDIENTE", 1);
+                var datos = await metodos.ObtenerPedidos("PENDIENTE", 0);
                 lsv_pedidosEmpresa.ItemsSource = datos;
             }
             catch (Exception ex)
@@ -1009,10 +1009,16 @@ namespace FastFoodApp.Pantallas
         {
             var obj = (EPedidos)e.SelectedItem;
             App.idpedidos_fast_food = obj.idpedidos_fast_food;
+            modalCambiarProgreso.Disappearing += ModalCambiarProgreso_Disappearing; ;
 
             modalCambiarProgreso = new ModalCambiarProgreso();
             await PopupNavigation.PushAsync(modalCambiarProgreso);
 
+        }
+
+        private void ModalCambiarProgreso_Disappearing(object sender, EventArgs e)
+        {
+            _ = LlenarPedidos();
         }
     }
 }
