@@ -1,4 +1,6 @@
-﻿using Rg.Plugins.Popup.Services;
+﻿using Acr.UserDialogs;
+using FastFoodApp.Modelo;
+using Rg.Plugins.Popup.Services;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -13,6 +15,7 @@ namespace FastFoodApp.Pantallas
     public partial class ModalCambiarProgreso : Rg.Plugins.Popup.Pages.PopupPage
     {
         public event EventHandler OnLLamarOtraPantalla;
+        ToastConfigClass toastConfig = new ToastConfigClass();
 
         string totaldeproductos = "";
         public ModalCambiarProgreso()
@@ -37,6 +40,10 @@ namespace FastFoodApp.Pantallas
             {
                 FastFoodApp.Metodos.Metodos metodos = new FastFoodApp.Metodos.Metodos();
                 var datos = await metodos.ActualizarProgresoPedido(idpedidos_fast_food, estado_del_pedido);
+                if (datos.Respuesta == "OK")
+                {
+                    toastConfig.MostrarNotificacion($"Se ha actualizado el progreso", ToastPosition.Top, 3, "#51C560");
+                }
             }
             catch (Exception ex)
             {
