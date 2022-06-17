@@ -62,7 +62,7 @@ namespace FastFoodApp.Pantallas
                     btnMiPerfil.Source = "userBlanco";
                     btnImgAnotarPedidos.Source = "MiCarritoBlanco";
                     btnNotitifacionesEmpresa.Source = "bellWhite";
-                    _ = LlenarPedidos();
+                    _ = LlenarPedidos("PENDIENTE");
                 }),
                 NumberOfTapsRequired = 1
             });
@@ -359,6 +359,8 @@ namespace FastFoodApp.Pantallas
             TxtCorreoEmpresa.Text = App.correoEmpresa;
             TxtClaveEMpresa.Text = App.claveEmpresa;
             TxtPrecioEnvio.Text = App.envio.ToString();
+            TxtTelefonoEmpresa.Text = App.telefonoEmpresa;
+            EmpresaFoto.Source = App.logo_empresa;
         }
 
         public async Task LlenarMenu()
@@ -388,6 +390,37 @@ namespace FastFoodApp.Pantallas
 
             }
         }
+
+
+        public async Task LlenarEmpresa()
+        {
+            try
+            {
+                FastFoodApp.Metodos.Metodos metodos = new FastFoodApp.Metodos.Metodos();
+                var datos = await metodos.ObtenerEmpresa();
+                App.envio = datos[0].envio;
+                App.NombreEmpresa = datos[0].nombre;
+                App.direccionEmpresa = datos[0].direccion;
+                App.rncEmpresa = datos[0].rnc;
+                App.telefonoEmpresa = datos[0].telefono;
+                App.whatsappEmpresa = datos[0].whatsapp;
+                App.correoEmpresa = datos[0].correo;
+                App.latitudEmpresa = datos[0].latitud;
+                App.longitudeEmpresa = datos[0].longitud;
+                App.claveEmpresa = datos[0].clave;
+                App.instagramEmpresa = datos[0].instagram;
+                App.facebookEmpresa = datos[0].facebook;
+                App.encargado_empresa = datos[0].encargado_empresa;
+                App.encargado_empresa = datos[0].encargado_empresa;
+                App.logo_empresa = datos[0].logo_empresa;
+                App.idempresa = datos[0].idempresa;
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
+
 
         public async Task LlenarCarrito()
         {
@@ -419,12 +452,12 @@ namespace FastFoodApp.Pantallas
         }
 
 
-        public async Task LlenarPedidos()
+        public async Task LlenarPedidos(string progresoorden)
         {
             try
             {
                 FastFoodApp.Metodos.Metodos metodos = new FastFoodApp.Metodos.Metodos();
-                var datos = await metodos.ObtenerPedidos("PENDIENTE", 0);
+                var datos = await metodos.ObtenerPedidos(progresoorden, 0);
                 lsv_pedidosEmpresa.ItemsSource = datos;
             }
             catch (Exception ex)
@@ -513,11 +546,6 @@ namespace FastFoodApp.Pantallas
             }
         }
 
-      
-
-
-
-
         void BtnAgregarAlMenu_Clicked(System.Object sender, System.EventArgs e)
         {
             try
@@ -532,9 +560,6 @@ namespace FastFoodApp.Pantallas
             }
 
         }
-
-
-
 
         private async void AgregarProductoAlMenu(string nombre, int precio, string disponibilidad, string foto, string descripcion)
         {
@@ -714,7 +739,7 @@ namespace FastFoodApp.Pantallas
             {
                 Acr.UserDialogs.UserDialogs.Instance.ShowLoading();
                 var buffer = new byte[st.Length];
-                st.Seek(0, SeekOrigin.Begin);
+                st.Seek(0, SeekOrigin.Begin);   
                 st.Read(buffer, 0, buffer.Length);
                 var base64 = Convert.ToBase64String(buffer);
                 var result = await herramientas.SetPost<EMenu>("FastFood/GrabarImagen", new EMenu() { idmenu_fast_food = id, foto = base64 });
@@ -749,7 +774,7 @@ namespace FastFoodApp.Pantallas
                 st.Seek(0, SeekOrigin.Begin);
                 st.Read(buffer, 0, buffer.Length);
                 var base64 = Convert.ToBase64String(buffer);
-                var result = await herramientas.SetPost<EEmpresa>("FastFood/GrabarImagenEmpresa", new EEmpresa() { idempresa = App.idempresa, logo_empresa = base64 });
+                var result = await herramientas.SetPost<EEmpresa>("FastFood/GrabarImagenEmpesa", new EEmpresa() { idempresa = App.idempresa, logo_empresa = base64 });
 
                 if (result.result == "OK")
                 {
@@ -760,7 +785,7 @@ namespace FastFoodApp.Pantallas
                     toastConfig.MostrarNotificacion($"No se pudo actualizar la foto del producto. Intente mas tarde.", ToastPosition.Top, 3, "#c82333");
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 toastConfig.MostrarNotificacion($"No se pudo actualizar la foto del producto. Revise la conexión a internet.", ToastPosition.Top, 3, "#c82333");
             }
@@ -919,9 +944,6 @@ namespace FastFoodApp.Pantallas
         [Obsolete]
         async void BtnAgregarFoto_Clicked(System.Object sender, System.EventArgs e)
         {
-
-
-
             try
             {
 
@@ -1167,7 +1189,9 @@ namespace FastFoodApp.Pantallas
         {
             var obj = (EPedidos)e.SelectedItem;
             App.idpedidos_fast_food = obj.idpedidos_fast_food;
-            modalCambiarProgreso.Disappearing += ModalCambiarProgreso_Disappearing; ;
+            App.latitudPedido = obj.latitud;
+            App.longitudPedido = obj.longitud;
+            modalCambiarProgreso.Disappearing += ModalCambiarProgreso_Disappearing;
 
             modalCambiarProgreso = new ModalCambiarProgreso();
             await PopupNavigation.PushAsync(modalCambiarProgreso);
@@ -1176,7 +1200,7 @@ namespace FastFoodApp.Pantallas
 
         private void ModalCambiarProgreso_Disappearing(object sender, EventArgs e)
         {
-            _ = LlenarPedidos();
+            _ = LlenarPedidos("PENDIENTE");
         }
 
         private void btnEditarPerfilEmpresa_Clicked(object sender, EventArgs e)
@@ -1204,6 +1228,7 @@ namespace FastFoodApp.Pantallas
 
             ActualizarEmpresa(TxtNombreEmpresa.Text, TxtDireccionEmpresa.Text, TxtTelefonoEmpresa.Text, TxtWhatsappEmpresa.Text, TxtCorreoEmpresa.Text, TxtPrecioEnvio.Text, TxtClaveEMpresa.Text, App.idempresa);
             GrabarImageApiEmpresa(mediaFileEmpresa.GetStreamWithImageRotatedForExternalStorage());
+            LlenarEmpresa();
 
         }
 
@@ -1223,6 +1248,12 @@ namespace FastFoodApp.Pantallas
         private void BtnCerrarSesionEmpresa_Clicked(object sender, EventArgs e)
         {
 
+        }
+
+        private void PickerProgreso_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            App.ProgresoOrden = PickerProgreso.SelectedItem.ToString();
+            _ = LlenarPedidos(App.ProgresoOrden);
         }
     }
 }

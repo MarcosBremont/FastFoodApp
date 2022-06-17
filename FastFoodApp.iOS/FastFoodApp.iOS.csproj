@@ -241,4 +241,28 @@
   <ItemGroup>
     <BundleResource Include="Resources\empresa.png" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\envionew.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\locknew.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\telephonenew.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\mailnew.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\whatsappnew.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\telephonenew2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\locknew2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\searchnew.png" />
+  </ItemGroup>
 </Project>

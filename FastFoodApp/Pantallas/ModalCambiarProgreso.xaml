@@ -5,7 +5,7 @@
     xmlns:popup="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup" xmlns:customcontrol="clr-namespace:FastFoodApp.ControlesPersonalizados"
     x:Class="FastFoodApp.Pantallas.ModalCambiarProgreso">
     <ContentPage.Content>
-        <Frame CornerRadius="4" Margin="10,20,10,400" HasShadow="True" BackgroundColor="#18356F">
+        <Frame CornerRadius="4" Margin="10,20,10,320" HasShadow="True" BackgroundColor="#18356F">
             <StackLayout x:Name="modalcambiarprogreso"  >
 
                 <StackLayout AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1">
@@ -22,6 +22,7 @@
                         <Button Text="EN PROCESO" x:Name="BtnEnProceso" VerticalOptions="EndAndExpand" Clicked="BtnEnProceso_Clicked" FontSize="14" FontAttributes="Bold" CornerRadius="4"  BackgroundColor="white" TextColor="#333" Margin="10,0,10,10 "></Button>
                         <Button Text="EN CAMINO" x:Name="BtnEnCamino" VerticalOptions="EndAndExpand" Clicked="BtnEnCamino_Clicked" FontSize="14" FontAttributes="Bold" CornerRadius="4"  BackgroundColor="white"  TextColor="#333" Margin="10,0,10,10 "></Button>
                         <Button Text="ENTREGADA" x:Name="BtnEntregada" VerticalOptions="EndAndExpand" Clicked="BtnEntregada_Clicked" FontSize="14" FontAttributes="Bold" CornerRadius="4"  BackgroundColor="white" TextColor="#333" Margin="10,0,10,10 "></Button>
+                        <Button Text="UBICACIÓN" x:Name="BtnUbicacion" VerticalOptions="EndAndExpand" Clicked="BtnUbicacion_Clicked" FontSize="14" FontAttributes="Bold" CornerRadius="4"  BackgroundColor="DarkGreen" TextColor="White" Margin="10,0,10,10 "></Button>
 
                     </StackLayout>
                 </ScrollView>

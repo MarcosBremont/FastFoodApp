@@ -6,7 +6,7 @@
              BackgroundColor="#FFFFFF"
              xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core" xmlns:customcontrol="clr-namespace:FastFoodApp.ControlesPersonalizados"
              ios:Page.UseSafeArea="true">
-    <ContentPage.Content> 
+    <ContentPage.Content>
         <StackLayout IsVisible="true" Margin="0,0,0,-35" x:Name="StackLayoutEquipo1" BackgroundColor="#FFFFFF">
 
             <!--Layout Principal-->
@@ -95,8 +95,24 @@
 
             <!--Layout Pedidos Empresa-->
             <StackLayout IsVisible="false" VerticalOptions="StartAndExpand" x:Name="StackLayoutPedidosEmpresa" BackgroundColor="#EEEEEE">
-                <Label FontAttributes="Bold" HorizontalOptions="Center" x:Name="LblAunNoHasPedidoNadaEmpresa" IsVisible="false" TextColor="#18356F" Text="Aun no hay ningun pedido."></Label>
 
+                <Frame HasShadow="False" BackgroundColor="#18356F"  Padding="5">
+
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" >
+                        <Image Margin="5,0,0,0" HeightRequest="20" Source="searchnew.png"></Image>
+                        <Picker HorizontalOptions="FillAndExpand" SelectedIndexChanged="PickerProgreso_SelectedIndexChanged" TitleColor="White" x:Name="PickerProgreso" TextColor="White" Title="PROGRESO ORDEN">
+                            <Picker.Items>
+                                <x:String>PENDIENTE</x:String>
+                                <x:String>EN PROCESO</x:String>
+                                <x:String>EN CAMINO</x:String>
+                                <x:String>TRABAJADA</x:String>
+                            </Picker.Items>
+                        </Picker>
+                    </StackLayout>
+                </Frame>
+                
+                
+                <Label FontAttributes="Bold" HorizontalOptions="Center" x:Name="LblAunNoHasPedidoNadaEmpresa" IsVisible="false" TextColor="#18356F" Text="Aun no hay ningun pedido."></Label>
                 <Grid RowSpacing="0" BackgroundColor="#EEEEEE">
 
                     <StackLayout VerticalOptions="FillAndExpand" Grid.Row="0" Grid.Column="0" Orientation="Vertical" Margin="0,0,0,0">
@@ -338,7 +354,7 @@
 
                                     <StackLayout Margin="0,2,0,0" VerticalOptions="Center" HorizontalOptions="FillAndExpand" Orientation="Horizontal">
                                         <Image HeightRequest="20" VerticalOptions="Center" Source="empresa.png"/>
-                                        <Entry Placeholder="Empresa" IsEnabled="False" x:Name="TxtNombreEmpresa" VerticalOptions="Center" HorizontalOptions="FillAndExpand"></Entry>
+                                        <Entry Placeholder="Nombre Empresa" IsEnabled="False" x:Name="TxtNombreEmpresa" VerticalOptions="Center" HorizontalOptions="FillAndExpand"></Entry>
                                     </StackLayout>
 
 
@@ -350,30 +366,30 @@
 
 
                                     <StackLayout Margin="0,2,0,0" VerticalOptions="Center" HorizontalOptions="FillAndExpand" Orientation="Horizontal">
-                                        <Image HeightRequest="20" VerticalOptions="Center" Source="mail.png"/>
-                                        <Entry Placeholder="Email" IsEnabled="False" x:Name="TxtTelefonoEmpresa" VerticalOptions="Center" HorizontalOptions="FillAndExpand"></Entry>
+                                        <Image HeightRequest="20" VerticalOptions="Center" Source="telephonenew2.png"/>
+                                        <Entry Placeholder="Telefono Empresa" IsEnabled="False" x:Name="TxtTelefonoEmpresa" VerticalOptions="Center" HorizontalOptions="FillAndExpand"></Entry>
                                     </StackLayout>
 
 
                                     <StackLayout Margin="0,2,0,0" VerticalOptions="Center" HorizontalOptions="FillAndExpand" Orientation="Horizontal">
-                                        <Image HeightRequest="20" VerticalOptions="Center" Source="mail.png"/>
-                                        <Entry Placeholder="Email" IsEnabled="False" x:Name="TxtWhatsappEmpresa" VerticalOptions="Center" HorizontalOptions="FillAndExpand"></Entry>
+                                        <Image HeightRequest="20" VerticalOptions="Center" Source="whatsappnew.png"/>
+                                        <Entry Placeholder="Whatsapp" IsEnabled="False" x:Name="TxtWhatsappEmpresa" VerticalOptions="Center" HorizontalOptions="FillAndExpand"></Entry>
                                     </StackLayout>
 
                                     <StackLayout Margin="0,2,0,0" VerticalOptions="Center" HorizontalOptions="FillAndExpand" Orientation="Horizontal">
-                                        <Image HeightRequest="20" VerticalOptions="Center" Source="marker.png"/>
-                                        <Entry Placeholder="Dirección" IsEnabled="False" x:Name="TxtCorreoEmpresa" VerticalOptions="Center" HorizontalOptions="FillAndExpand"></Entry>
+                                        <Image HeightRequest="20" VerticalOptions="Center" Source="mailnew.png"/>
+                                        <Entry Placeholder="Correo Empresa" IsEnabled="False" x:Name="TxtCorreoEmpresa" VerticalOptions="Center" HorizontalOptions="FillAndExpand"></Entry>
 
                                     </StackLayout>
 
-                                    <StackLayout Margin="0,10,0,10" VerticalOptions="Center" HorizontalOptions="FillAndExpand" Orientation="Horizontal">
-                                        <Image HeightRequest="20" VerticalOptions="Center" Source="lock.png"/>
+                                    <StackLayout Margin="0,2,0,0" VerticalOptions="Center" HorizontalOptions="FillAndExpand" Orientation="Horizontal">
+                                        <Image HeightRequest="20" VerticalOptions="Center" Source="locknew2.png"/>
                                         <Entry Placeholder="Contraseña" IsEnabled="False" x:Name="TxtClaveEMpresa" VerticalOptions="Center" HorizontalOptions="FillAndExpand"></Entry>
                                     </StackLayout>
 
 
                                     <StackLayout Margin="0,2,0,0" VerticalOptions="Center" HorizontalOptions="FillAndExpand" Orientation="Horizontal">
-                                        <Image HeightRequest="20" VerticalOptions="Center" Source="marker.png"/>
+                                        <Image HeightRequest="20" VerticalOptions="Center" Source="envionew.png"/>
                                         <Entry Placeholder="Precio Envio" IsEnabled="False" x:Name="TxtPrecioEnvio" VerticalOptions="Center" HorizontalOptions="FillAndExpand"></Entry>
 
                                     </StackLayout>

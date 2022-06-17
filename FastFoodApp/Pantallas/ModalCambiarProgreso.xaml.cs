@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -64,6 +65,13 @@ namespace FastFoodApp.Pantallas
         {
             btnname = BtnEntregada.Text;
             ActualizarProgresoPedido(App.idpedidos_fast_food, "ENTREGADA");
+
+        }
+
+        private async void BtnUbicacion_Clicked(object sender, EventArgs e)
+        {
+
+            await Launcher.OpenAsync($"https://www.google.com/maps/place/{App.latitudPedido},{App.longitudPedido}");
 
         }
     }
