@@ -26696,10 +26696,10 @@ namespace FastFoodApp.Droid
 			public const int material_ic_menu_arrow_up_black_24dp = 2131165381;
 			
 			// aapt resource value: 0x7F0700C6
-			public const int MiCarritoAmarillo = 2131165382;
+			public const int moneyAmarillo = 2131165382;
 			
 			// aapt resource value: 0x7F0700C7
-			public const int MiCarritoBlanco = 2131165383;
+			public const int moneyBlanco = 2131165383;
 			
 			// aapt resource value: 0x7F0700C8
 			public const int mtrl_dialog_background = 2131165384;
@@ -26807,52 +26807,55 @@ namespace FastFoodApp.Droid
 			public const int settingsAmarillo = 2131165418;
 			
 			// aapt resource value: 0x7F0700EB
-			public const int settingsWhite = 2131165419;
+			public const int settingsBlanco = 2131165419;
 			
 			// aapt resource value: 0x7F0700EC
-			public const int SplashScreenLayout = 2131165420;
+			public const int settingsWhite = 2131165420;
 			
 			// aapt resource value: 0x7F0700ED
-			public const int Telephone = 2131165421;
+			public const int SplashScreenLayout = 2131165421;
 			
 			// aapt resource value: 0x7F0700EE
-			public const int telephonenew = 2131165422;
+			public const int Telephone = 2131165422;
 			
 			// aapt resource value: 0x7F0700EF
-			public const int telephonenew2 = 2131165423;
+			public const int telephonenew = 2131165423;
 			
 			// aapt resource value: 0x7F0700F0
-			public const int test_custom_background = 2131165424;
+			public const int telephonenew2 = 2131165424;
 			
 			// aapt resource value: 0x7F0700F1
-			public const int TimeAmarillo = 2131165425;
+			public const int test_custom_background = 2131165425;
 			
 			// aapt resource value: 0x7F0700F2
-			public const int TimeBlanco = 2131165426;
+			public const int TimeAmarillo = 2131165426;
 			
 			// aapt resource value: 0x7F0700F3
-			public const int tooltip_frame_dark = 2131165427;
+			public const int TimeBlanco = 2131165427;
 			
 			// aapt resource value: 0x7F0700F4
-			public const int tooltip_frame_light = 2131165428;
+			public const int tooltip_frame_dark = 2131165428;
 			
 			// aapt resource value: 0x7F0700F5
-			public const int user1 = 2131165429;
+			public const int tooltip_frame_light = 2131165429;
 			
 			// aapt resource value: 0x7F0700F6
-			public const int user2 = 2131165430;
+			public const int user1 = 2131165430;
 			
 			// aapt resource value: 0x7F0700F7
-			public const int userAmarillo = 2131165431;
+			public const int user2 = 2131165431;
 			
 			// aapt resource value: 0x7F0700F8
-			public const int userBlanco = 2131165432;
+			public const int userAmarillo = 2131165432;
 			
 			// aapt resource value: 0x7F0700F9
-			public const int userIconApp = 2131165433;
+			public const int userBlanco = 2131165433;
 			
 			// aapt resource value: 0x7F0700FA
-			public const int whatsappnew = 2131165434;
+			public const int userIconApp = 2131165434;
+			
+			// aapt resource value: 0x7F0700FB
+			public const int whatsappnew = 2131165435;
 			
 			static Drawable()
 			{

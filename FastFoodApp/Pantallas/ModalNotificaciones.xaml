@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<popup:PopupPage  
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:popup="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup" xmlns:customcontrol="clr-namespace:FastFoodApp.ControlesPersonalizados"
+    x:Class="FastFoodApp.Pantallas.ModalNotificaciones">
+    <ContentPage.Content>
+        <StackLayout x:Name="modalNotificaciones" Margin="10,20,10,30" BackgroundColor="#EEEEEE" >
+
+            <StackLayout AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <BoxView HeightRequest="40" Color="#FFCC00" HorizontalOptions="FillAndExpand"/>
+                    <Label Text="Notificaciones" VerticalOptions="Center" Grid.Row="0" HorizontalTextAlignment="Center" TextColor="#333" FontAttributes="Bold" FontSize="Medium"/>
+                </Grid>
+            </StackLayout>
+
+            <Label Text="Notificaciones Creadas" HorizontalOptions="Center" FontSize="16" TextColor="#18356F" FontAttributes="Bold" ></Label>
+
+            <ListView SelectionMode="Single" ItemSelected="lsv_notificaciones_ItemSelected" VerticalOptions="FillAndExpand" x:Name="lsv_notificaciones" Grid.Row="0" BackgroundColor="Transparent" HorizontalOptions="CenterAndExpand" SeparatorVisibility="Default"  SeparatorColor="White" HasUnevenRows="True" >
+                <ListView.ItemTemplate>
+
+                    <DataTemplate>
+
+                        <ViewCell>
+
+
+                            <!--ITEM-->
+                            <Frame HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" HasShadow="False" Margin="8" CornerRadius="4" BackgroundColor="#FFCC00">
+
+                                <StackLayout Orientation="Vertical" Margin="10">
+                                    <StackLayout Orientation="Horizontal">
+                                        <Label TextColor="#333" Text="{Binding mensaje}"></Label>
+                                    </StackLayout>
+                                    <Label FontAttributes="Bold" TextColor="#333" Text="{Binding disponibilidad}"></Label>
+                                </StackLayout>
+                            </Frame>
+                        </ViewCell>
+
+                    </DataTemplate>
+
+
+                </ListView.ItemTemplate>
+            </ListView>
+
+            <Button Text="Cancelar" x:Name="BtnCancelar" Clicked="BtnCancelar_Clicked"  FontSize="14" CornerRadius="4" FontAttributes="Bold" BackgroundColor="LightGray" TextColor="#333" Margin="10,0,10,10 "></Button>
+
+        </StackLayout>
+    </ContentPage.Content>
+</popup:PopupPage>

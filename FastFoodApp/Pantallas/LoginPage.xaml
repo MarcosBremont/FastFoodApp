@@ -29,8 +29,8 @@
                     <StackLayout Orientation="Horizontal" Margin="4" >
                         <Image Source="Password.png" WidthRequest="25" Margin="5"></Image>
                         <customcontrol:CustomEntry HorizontalOptions="FillAndExpand" IsPassword="True" Text="1234" x:Name="TxtPassword"  Keyboard="Default"  Placeholder="Contraseña"/>
-                        <ImageButton x:Name="eyebuttonnegro" Clicked="eyebuttonnegro_Clicked" Source="eyenegro.png" WidthRequest="25" Margin="5"/>
-                        <ImageButton x:Name="eyebuttonazul" Clicked="eyebuttonazul_Clicked" Source="eyeazul.png" IsVisible="false" WidthRequest="25" Margin="5"/>
+                        <ImageButton BackgroundColor="Transparent" x:Name="eyebuttonnegro" Clicked="eyebuttonnegro_Clicked" Source="eyenegro.png" WidthRequest="25" Margin="5"/>
+                        <ImageButton BackgroundColor="Transparent" x:Name="eyebuttonazul" Clicked="eyebuttonazul_Clicked" Source="eyeazul.png" IsVisible="false" WidthRequest="25" Margin="5"/>
                     </StackLayout>
                 </Frame>
 

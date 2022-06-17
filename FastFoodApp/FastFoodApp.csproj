@@ -41,6 +41,9 @@
     <Compile Update="Pantallas\ModalCambiarProgreso.xaml.cs">
       <DependentUpon>ModalCambiarProgreso.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Pantallas\ModalNotificaciones.xaml.cs">
+      <DependentUpon>ModalNotificaciones.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Pantallas\ModalHacerPedido.xaml.cs">
       <DependentUpon>ModalHacerPedido.xaml</DependentUpon>
     </Compile>

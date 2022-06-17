@@ -28,10 +28,10 @@ namespace FastFoodApp.Pantallas
         ModalMenu modalMenu = new ModalMenu();
         ModalHacerPedido modalHacerPedido = new ModalHacerPedido();
         ModalCambiarProgreso modalCambiarProgreso = new ModalCambiarProgreso();
+        ModalNotificaciones modalNotificaciones = new ModalNotificaciones();
         ToastConfigClass toastConfig = new ToastConfigClass();
         Herramientas herramientas = new Herramientas();
 
-        List<ENotificaciones> ListENotificaciones = new List<ENotificaciones>();
         int id = 0;
         string Picker = "";
         private bool busy;
@@ -53,20 +53,20 @@ namespace FastFoodApp.Pantallas
                     StackLayoutPedidosEmpresa.IsVisible = true;
                     StackLayoutPaginaPrincipal.IsVisible = false;
                     StackLayoutMiPerfil.IsVisible = false;
-                    StackLayoutTuCarrito.IsVisible = false;
+                    StackLayoutMoney.IsVisible = false;
                     StackLayoutNotificacionesEmpresa.IsVisible = false;
 
 
                     btnPedidosEmpresa.Source = "TimeAmarillo";
                     btnMenuEmpresa.Source = "hamburgerSodaWhite.png";
                     btnMiPerfil.Source = "userBlanco";
-                    btnImgAnotarPedidos.Source = "MiCarritoBlanco";
+                    btnMoney.Source = "moneyBlanco";
                     btnNotitifacionesEmpresa.Source = "bellWhite";
                     _ = LlenarPedidos("PENDIENTE");
+                    PickerProgreso.SelectedItem = "PENDIENTE";
                 }),
                 NumberOfTapsRequired = 1
             });
-
 
             PickPhoto.GestureRecognizers.Add(new TapGestureRecognizer
             {
@@ -77,58 +77,21 @@ namespace FastFoodApp.Pantallas
                 NumberOfTapsRequired = 1
             });
 
-
             gridInicioEmpresa.GestureRecognizers.Add(new TapGestureRecognizer
             {
                 Command = new Command(() =>
                 {
                     StackLayoutPaginaPrincipal.IsVisible = true;
                     StackLayoutMiPerfil.IsVisible = false;
-                    StackLayoutTuCarrito.IsVisible = false;
+                    StackLayoutMoney.IsVisible = false;
                     StackLayoutNotificacionesEmpresa.IsVisible = false;
 
                     StackLayoutPedidosEmpresa.IsVisible = false;
                     btnPedidosEmpresa.Source = "TimeBlanco";
                     btnMenuEmpresa.Source = "hamburgerSodaAmarillo.png";
                     btnMiPerfil.Source = "userBlanco";
-                    btnImgAnotarPedidos.Source = "MiCarritoBlanco";
+                    btnMoney.Source = "moneyBlanco";
                     btnNotitifacionesEmpresa.Source = "bellWhite";
-
-
-                }),
-                NumberOfTapsRequired = 1
-            });
-
-            gridNotificacionesEmpresa.GestureRecognizers.Add(new TapGestureRecognizer
-            {
-                Command = new Command(() =>
-                {
-                    if (App.empresa == "S")
-                    {
-                        StackLayoutPaginaPrincipal.IsVisible = false;
-                        StackLayoutMiPerfil.IsVisible = false;
-                        StackLayoutTuCarrito.IsVisible = false;
-                        StackLayoutPedidosEmpresa.IsVisible = false;
-                        StackLayoutNotificacionesEmpresa.IsVisible = true;
-
-                        _ = LlenarNotificaciones();
-                    }
-                    else
-                    {
-                        StackLayoutPaginaPrincipal.IsVisible = false;
-                        StackLayoutMiPerfil.IsVisible = false;
-                        StackLayoutTuCarrito.IsVisible = false;
-                        StackLayoutPedidosEmpresa.IsVisible = false;
-                        StackLayoutNotificacionesEmpresa.IsVisible = true;
-                    }
-
-
-
-                    btnPedidosEmpresa.Source = "TimeBlanco";
-                    btnMenuEmpresa.Source = "hamburgerSodaWhite.png";
-                    btnMiPerfil.Source = "userBlanco";
-                    btnImgAnotarPedidos.Source = "MiCarritoBlanco";
-                    btnNotitifacionesEmpresa.Source = "bellAmarillo";
 
 
                 }),
@@ -141,16 +104,15 @@ namespace FastFoodApp.Pantallas
                 {
                     StackLayoutPaginaPrincipal.IsVisible = false;
                     StackLayoutMiPerfil.IsVisible = false;
-                    StackLayoutTuCarrito.IsVisible = false;
+                    StackLayoutMoney.IsVisible = false;
                     StackLayoutPedidosEmpresa.IsVisible = false;
                     StackLayoutNotificacionesEmpresa.IsVisible = true;
 
-                    _ = LlenarNotificaciones();
 
                     btnPedidosEmpresa.Source = "TimeBlanco";
                     btnMenuEmpresa.Source = "hamburgerSodaWhite.png";
                     btnMiPerfil.Source = "userBlanco";
-                    btnImgAnotarPedidos.Source = "MiCarritoBlanco";
+                    btnMoney.Source = "moneyBlanco";
                     btnNotitifacionesEmpresa.Source = "bellAmarillo";
 
                 }),
@@ -163,14 +125,14 @@ namespace FastFoodApp.Pantallas
                 {
                     StackLayoutPaginaPrincipal.IsVisible = false;
                     StackLayoutPedidosEmpresa.IsVisible = false;
-                    StackLayoutTuCarrito.IsVisible = false;
+                    StackLayoutMoney.IsVisible = false;
                     StackLayoutNotificacionesEmpresa.IsVisible = false;
 
                     StackLayoutMiPerfil.IsVisible = true;
                     btnPedidosEmpresa.Source = "TimeBlanco";
                     btnMenuEmpresa.Source = "hamburgerSodaWhite.png";
                     btnMiPerfil.Source = "userAmarillo";
-                    btnImgAnotarPedidos.Source = "MiCarritoBlanco";
+                    btnMoney.Source = "moneyBlanco";
                     btnNotitifacionesEmpresa.Source = "bellWhite";
 
                     LlenarMiPerfilEmpresa();
@@ -179,28 +141,42 @@ namespace FastFoodApp.Pantallas
                 NumberOfTapsRequired = 1
             });
 
-
-            gridAnotarPedidos.GestureRecognizers.Add(new TapGestureRecognizer
+            gridMoney.GestureRecognizers.Add(new TapGestureRecognizer
             {
                 Command = new Command(async () =>
                 {
                     StackLayoutPaginaPrincipal.IsVisible = false;
                     StackLayoutPedidosEmpresa.IsVisible = false;
                     StackLayoutMiPerfil.IsVisible = false;
-                    StackLayoutTuCarrito.IsVisible = true;
+                    StackLayoutMoney.IsVisible = true;
                     StackLayoutNotificacionesEmpresa.IsVisible = false;
 
                     btnPedidosEmpresa.Source = "TimeBlanco";
                     btnMenuEmpresa.Source = "hamburgerSodaWhite.png";
                     btnMiPerfil.Source = "userBlanco";
-                    btnImgAnotarPedidos.Source = "MiCarritoAmarillo";
+                    btnMoney.Source = "moneyAmarillo";
                     btnNotitifacionesEmpresa.Source = "bellWhite";
 
-                    _ = LlenarCarrito();
-
+                    LlenarMoney();
                 }),
                 NumberOfTapsRequired = 1
             });
+        }
+
+        public async void LlenarMoney()
+        {
+            try
+            {
+                FastFoodApp.Metodos.Metodos metodos = new FastFoodApp.Metodos.Metodos();
+                var datos = await metodos.ObtenerPedidos("TRABAJADA", 0);
+                lsv_money.ItemsSource = datos;
+                lblBalance.Text = string.Format("{0:N2}", datos.Sum(n => n.total_por_producto));
+                lblcantidad.Text = datos.Count.ToString();
+            }
+            catch (Exception ex)
+            {
+
+            }
         }
 
         private async void EscogerFoto()
@@ -376,22 +352,6 @@ namespace FastFoodApp.Pantallas
             }
         }
 
-        public async Task LlenarNotificaciones()
-        {
-            try
-            {
-                FastFoodApp.Metodos.Metodos metodos = new FastFoodApp.Metodos.Metodos();
-                var datos = await metodos.ObtenerNotificaciones(0, 0.ToString());
-                lsv_notificaciones.ItemsSource = datos;
-
-            }
-            catch (Exception ex)
-            {
-
-            }
-        }
-
-
         public async Task LlenarEmpresa()
         {
             try
@@ -420,37 +380,6 @@ namespace FastFoodApp.Pantallas
 
             }
         }
-
-
-        public async Task LlenarCarrito()
-        {
-            try
-            {
-                lsv_Carrito.IsVisible = false;
-                FastFoodApp.Metodos.Metodos metodos = new FastFoodApp.Metodos.Metodos();
-                lsv_Carrito.ItemsSource = null;
-                var datos = await metodos.ObtenerCarritoPorUsuario(App.NumeroOrdenGeneral, App.idusuarios, "PRE-ORDEN");
-                if (datos.Count == 0)
-                {
-                    LblAunNoAgregasNada.IsVisible = true;
-                }
-                else
-                {
-                    LblAunNoAgregasNada.IsVisible = false;
-
-                }
-                lsv_Carrito.ItemsSource = datos;
-
-                lsv_Carrito.IsVisible = true;
-                App.TodalPrecioCarrito = datos.Sum(n => n.total_por_producto);
-
-            }
-            catch (Exception ex)
-            {
-
-            }
-        }
-
 
         public async Task LlenarPedidos(string progresoorden)
         {
@@ -533,18 +462,6 @@ namespace FastFoodApp.Pantallas
 
         }
 
-        private async void BtnCerrarSesion_Clicked(object sender, EventArgs e)
-        {
-            if (await DisplayAlert("Información", "¿Desea cerrar sesión?", "SI", "NO"))
-            {
-                //DatosConfiguracion.GrabarDatosSesion("", "", "S");
-                LoginPage loginPage = new LoginPage();
-                await Navigation.PushModalAsync(loginPage);
-                //DatosConfiguracion.EliminarDatosSesion();
-
-
-            }
-        }
 
         void BtnAgregarAlMenu_Clicked(System.Object sender, System.EventArgs e)
         {
@@ -739,7 +656,7 @@ namespace FastFoodApp.Pantallas
             {
                 Acr.UserDialogs.UserDialogs.Instance.ShowLoading();
                 var buffer = new byte[st.Length];
-                st.Seek(0, SeekOrigin.Begin);   
+                st.Seek(0, SeekOrigin.Begin);
                 st.Read(buffer, 0, buffer.Length);
                 var base64 = Convert.ToBase64String(buffer);
                 var result = await herramientas.SetPost<EMenu>("FastFood/GrabarImagen", new EMenu() { idmenu_fast_food = id, foto = base64 });
@@ -1152,6 +1069,7 @@ namespace FastFoodApp.Pantallas
             if (datos.Respuesta == "OK")
             {
                 toastConfig.MostrarNotificacion($"Notificación enviada a tus clientes", ToastPosition.Top, 3, "#51C560");
+                TxtNotificaciones.Text = "";
             }
             else
             {
@@ -1159,31 +1077,7 @@ namespace FastFoodApp.Pantallas
             }
         }
 
-        async void lsv_notificaciones_ItemSelected(System.Object sender, Xamarin.Forms.SelectedItemChangedEventArgs e)
-        {
-            FastFoodApp.Metodos.Metodos metodos = new FastFoodApp.Metodos.Metodos();
-            var result = await DisplayAlert("Aviso", "¿Desea ocultar esta notificación?", "SI", "NO");
-            if (result)
-            {
-                var obj = (ENotificaciones)e.SelectedItem;
-                var ide = obj.disponibilidad;
-
-                if (ide == "S")
-                {
-                    var datos = await metodos.ActualizarNotificacion(obj.idnotificaciones_empresa, "N");
-                    toastConfig.MostrarNotificacion($"Esta notificación ya no será visible para tus clientes", ToastPosition.Top, 3, "#51C560");
-                }
-                else
-                {
-                    var datos = await metodos.ActualizarNotificacion(obj.idnotificaciones_empresa, "S");
-                    toastConfig.MostrarNotificacion($"Esta notificación ahora será visible para tus clientes", ToastPosition.Top, 3, "#51C560");
-
-                }
-            }
-            _ = LlenarNotificaciones();
-
-
-        }
+      
 
         private async void lsv_pedidosEmpresa_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
@@ -1210,6 +1104,7 @@ namespace FastFoodApp.Pantallas
             TxtTelefonoEmpresa.IsEnabled = true;
             TxtCorreoEmpresa.IsEnabled = true;
             TxtPrecioEnvio.IsEnabled = true;
+            TxtWhatsappEmpresa.IsEnabled = true;
             TxtClaveEMpresa.IsEnabled = true;
             btnGuardarCambiosEmpresa.IsVisible = true;
             btnEditarPerfilEmpresa.IsVisible = false;
@@ -1222,14 +1117,33 @@ namespace FastFoodApp.Pantallas
             TxtDireccionEmpresa.IsEnabled = false;
             TxtTelefonoEmpresa.IsEnabled = false;
             TxtCorreoEmpresa.IsEnabled = false;
+            TxtWhatsappEmpresa.IsEnabled = false;
             TxtPrecioEnvio.IsEnabled = false;
             TxtClaveEMpresa.IsEnabled = false;
             btnGuardarCambiosEmpresa.IsVisible = false;
+            btnEditarPerfilEmpresa.IsVisible = true;
 
             ActualizarEmpresa(TxtNombreEmpresa.Text, TxtDireccionEmpresa.Text, TxtTelefonoEmpresa.Text, TxtWhatsappEmpresa.Text, TxtCorreoEmpresa.Text, TxtPrecioEnvio.Text, TxtClaveEMpresa.Text, App.idempresa);
-            GrabarImageApiEmpresa(mediaFileEmpresa.GetStreamWithImageRotatedForExternalStorage());
+            if (mediaFileEmpresa != null)
+            {
+                GrabarImageApiEmpresa(mediaFileEmpresa.GetStreamWithImageRotatedForExternalStorage());
+            }
             LlenarEmpresa();
 
+        }
+
+        private void eyebuttonnegro_Clicked(object sender, EventArgs e)
+        {
+            eyebuttonnegro.IsVisible = false;
+            eyebuttonazul.IsVisible = true;
+            TxtClaveEMpresa.IsPassword = false;
+        }
+
+        private void eyebuttonazul_Clicked(object sender, EventArgs e)
+        {
+            eyebuttonnegro.IsVisible = true;
+            eyebuttonazul.IsVisible = false;
+            TxtClaveEMpresa.IsPassword = true;
         }
 
         public async void ActualizarEmpresa(string nombreEmpresa, string DireccionEmpresa, string TelefonoEmpresa, string WhatsappEmpresa, string CorreoEmpresa, string PrecioEnvio, string ClaveEMpresa, int idempresa)
@@ -1245,15 +1159,29 @@ namespace FastFoodApp.Pantallas
             }
         }
 
-        private void BtnCerrarSesionEmpresa_Clicked(object sender, EventArgs e)
+        private async void BtnCerrarSesionEmpresa_Clicked(object sender, EventArgs e)
         {
+            if (await DisplayAlert("Información", "¿Desea cerrar sesión?", "SI", "NO"))
+            {
+                //DatosConfiguracion.GrabarDatosSesion("", "", "S");
+                LoginPage loginPage = new LoginPage();
+                await Navigation.PushModalAsync(loginPage);
+                //DatosConfiguracion.EliminarDatosSesion();
 
+
+            }
         }
 
         private void PickerProgreso_SelectedIndexChanged(object sender, EventArgs e)
         {
             App.ProgresoOrden = PickerProgreso.SelectedItem.ToString();
             _ = LlenarPedidos(App.ProgresoOrden);
+        }
+
+        public async void BtnVerNotificaciones_Clicked(object sender, EventArgs e)
+        {
+            modalNotificaciones = new ModalNotificaciones();
+            await PopupNavigation.PushAsync(modalNotificaciones);
         }
     }
 }

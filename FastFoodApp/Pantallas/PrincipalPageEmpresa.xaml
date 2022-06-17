@@ -18,38 +18,30 @@
                         <StackLayout VerticalOptions="FillAndExpand" Grid.Row="0" Grid.Column="0" Orientation="Vertical" Margin="0,0,0,0">
                             <!--ITEM-->
 
-
-
-                            <Frame BackgroundColor="Transparent" Padding="1">
-                                <StackLayout HorizontalOptions="Center" Margin="0,0,0,0">
-                                    <Image WidthRequest="150" Source="FastFood1.png" ></Image>
-                                </StackLayout>
-                            </Frame>
-
-                            <StackLayout Margin="0,0,0,5" VerticalOptions="FillAndExpand">
-                                <Label Text="Agregar Productos al Menú" FontAttributes="Bold" FontSize="18" HorizontalOptions="Center"></Label>
+                            <StackLayout Margin="0,20,0,5" VerticalOptions="FillAndExpand">
+                                <Label Text="Agregar Productos al Menú" TextColor="#18356F" FontAttributes="Bold" FontSize="18" HorizontalOptions="Center"></Label>
 
                                 <Frame HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" HasShadow="False"  CornerRadius="4" BackgroundColor="#FFFFFF">
                                     <StackLayout BackgroundColor="#FFFFFF"  Spacing="0">
 
-                                        <Frame Padding="0" BorderColor="White" HasShadow="False" CornerRadius="8" Margin="0,0,0,10"  >
+                                        <Frame Padding="0" BorderColor="#18356F" HasShadow="False" CornerRadius="8" Margin="0,0,0,10"  >
                                             <StackLayout Orientation="Horizontal" Margin="4" >
                                                 <Image Source="hamburguericon.png" WidthRequest="25" Margin="5"></Image>
                                                 <customcontrol:CustomEntry HorizontalOptions="FillAndExpand" x:Name="TxtNombreProducto" Keyboard="Default"  Placeholder="Nombre Producto"/>
                                             </StackLayout>
                                         </Frame>
 
-                                        <Frame Padding="0" BorderColor="White" HasShadow="False" CornerRadius="8" Margin="0,0,0,10" >
+                                        <Frame Padding="0" BorderColor="#18356F" HasShadow="False" CornerRadius="8" Margin="0,0,0,10" >
                                             <StackLayout Orientation="Horizontal" Margin="4" >
                                                 <Image Source="Dollar.png" WidthRequest="25" Margin="5"></Image>
                                                 <customcontrol:CustomEntry HorizontalOptions="FillAndExpand" x:Name="TxtPrecio" Keyboard="Numeric"  Placeholder="Precio"/>
                                             </StackLayout>
                                         </Frame>
 
-                                        <Frame Padding="0" BorderColor="White" HasShadow="False" CornerRadius="8" Margin="0,0,0,10" >
-                                            <StackLayout Orientation="Horizontal" Margin="4" >
+                                        <Frame Padding="0" BorderColor="#18356F" HorizontalOptions="FillAndExpand" HasShadow="False" CornerRadius="8" Margin="0,0,0,10" >
+                                            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Margin="4" >
                                                 <Image Source="check.png" WidthRequest="25" Margin="5"></Image>
-                                                <Picker SelectedIndexChanged="PickerDisponible_SelectedIndexChanged" x:Name="PickerDisponible" Title="Disponibilidad">
+                                                <Picker HorizontalOptions="FillAndExpand" SelectedIndexChanged="PickerDisponible_SelectedIndexChanged" x:Name="PickerDisponible" Title="Disponibilidad">
                                                     <Picker.Items>
                                                         <x:String>S</x:String>
                                                         <x:String>N</x:String>
@@ -58,7 +50,7 @@
                                             </StackLayout>
                                         </Frame>
 
-                                        <Frame Padding="0" BorderColor="White" HasShadow="False" CornerRadius="8" Margin="0,0,0,10" >
+                                        <Frame Padding="0" BorderColor="#18356F" HasShadow="False" CornerRadius="8" Margin="0,0,0,10" >
                                             <StackLayout Orientation="Horizontal" Margin="4" >
                                                 <Image Source="commentfood.png" WidthRequest="25" Margin="5"></Image>
                                                 <Editor Placeholder="Descripcion" TextTransform="Uppercase" VerticalOptions="Center" HorizontalOptions="FillAndExpand" Margin="0,0,10,0" HeightRequest="80" WidthRequest="50" x:Name="TxtDescripcion"  />
@@ -96,7 +88,7 @@
             <!--Layout Pedidos Empresa-->
             <StackLayout IsVisible="false" VerticalOptions="StartAndExpand" x:Name="StackLayoutPedidosEmpresa" BackgroundColor="#EEEEEE">
 
-                <Frame HasShadow="False" BackgroundColor="#18356F"  Padding="5">
+                <Frame HasShadow="False" BackgroundColor="#18356F" HeightRequest="50"  Padding="5">
 
                     <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" >
                         <Image Margin="5,0,0,0" HeightRequest="20" Source="searchnew.png"></Image>
@@ -110,8 +102,8 @@
                         </Picker>
                     </StackLayout>
                 </Frame>
-                
-                
+
+
                 <Label FontAttributes="Bold" HorizontalOptions="Center" x:Name="LblAunNoHasPedidoNadaEmpresa" IsVisible="false" TextColor="#18356F" Text="Aun no hay ningun pedido."></Label>
                 <Grid RowSpacing="0" BackgroundColor="#EEEEEE">
 
@@ -203,14 +195,13 @@
 
             </StackLayout>
 
-            <!--Layout Carrito-->
-            <StackLayout IsVisible="false" VerticalOptions="StartAndExpand" x:Name="StackLayoutTuCarrito" BackgroundColor="#EEEEEE">
-                <Label FontAttributes="Bold" HorizontalOptions="Center" x:Name="LblAunNoAgregasNada" IsVisible="false" TextColor="#18356F" Text="Aun no has agregado nada a tu carrito."></Label>
+            <!--Layout Money-->
+            <StackLayout IsVisible="false" VerticalOptions="StartAndExpand" x:Name="StackLayoutMoney" BackgroundColor="#EEEEEE">
 
                 <Grid RowSpacing="0" BackgroundColor="#EEEEEE">
 
                     <StackLayout VerticalOptions="FillAndExpand" Grid.Row="0" Grid.Column="0" Orientation="Vertical" Margin="0,0,0,0">
-                        <ListView VerticalOptions="FillAndExpand" x:Name="lsv_Carrito" Grid.Row="0" BackgroundColor="Transparent" HorizontalOptions="CenterAndExpand" SeparatorVisibility="Default"  SeparatorColor="White" HasUnevenRows="True" >
+                        <ListView SelectionMode="None" VerticalOptions="FillAndExpand" x:Name="lsv_money" Grid.Row="0" BackgroundColor="Transparent" HorizontalOptions="CenterAndExpand" SeparatorVisibility="Default"  SeparatorColor="White" HasUnevenRows="True" >
                             <ListView.ItemTemplate>
 
                                 <DataTemplate>
@@ -220,16 +211,22 @@
                                         <!--ITEM-->
                                         <Frame HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" HasShadow="False" Margin="8" CornerRadius="4" BackgroundColor="White">
 
-                                            <StackLayout Margin="0,0,0,5" Padding="5" Orientation="Horizontal" VerticalOptions="FillAndExpand">
+                                            <StackLayout Margin="0,0,0,5" Orientation="Horizontal" VerticalOptions="FillAndExpand">
                                                 <Image Margin="10,0,0,0" Source="{Binding foto}" HeightRequest="100"></Image>
 
                                                 <StackLayout Orientation="Vertical" Margin="10">
-                                                    <Label FontAttributes="Bold" TextColor="#333" Text="{Binding nombre_producto}"></Label>
-                                                    <Label TextColor="#333"  Text="{Binding descripcion}"></Label>
+                                                    <Label FontAttributes="Bold" TextColor="#333" Text="{Binding nombreusuario}"></Label>
+                                                    <StackLayout Orientation="Horizontal">
+                                                        <Label FontAttributes="Bold" TextColor="#333" Text="Numero de Pedido:"></Label>
+                                                        <Label TextColor="#333" Text="{Binding idpedidos_fast_food}"></Label>
+                                                    </StackLayout>
+                                                    <Label FontAttributes="Bold" TextColor="#333" Text="{Binding nombre}"></Label>
+
                                                     <StackLayout Orientation="Horizontal">
                                                         <Label FontAttributes="Bold" TextColor="#333" Text="Precio:"></Label>
                                                         <Label TextColor="#333" Text="{Binding precio}"></Label>
                                                     </StackLayout>
+
                                                     <StackLayout Orientation="Horizontal">
                                                         <Label FontAttributes="Bold" TextColor="#333" Text="Cantidad:"></Label>
                                                         <Label TextColor="#333" Text="{Binding cantidad}"></Label>
@@ -238,17 +235,15 @@
                                                         <Label FontAttributes="Bold" TextColor="#333" Text="Total:"></Label>
                                                         <Label TextColor="#333" Text="{Binding total_por_producto}"></Label>
                                                     </StackLayout>
+
                                                     <StackLayout Orientation="Horizontal">
-                                                        <Label FontAttributes="Bold" TextColor="#333" Text="Descripción:"></Label>
-                                                        <Label TextColor="#333" Text="{Binding descripcion}"></Label>
+                                                        <Label FontAttributes="Bold" TextColor="#333" Text="Devuelta:"></Label>
+                                                        <Label TextColor="#333" Text="{Binding devuelta}"></Label>
                                                     </StackLayout>
+
+
                                                 </StackLayout>
 
-                                                <!--<Label TextColor="#333" Text="{Binding direccion}"></Label>
-                                            <Label TextColor="#333" Text="{Binding estado_del_pedido}"></Label>
-                                            <Label TextColor="#333" Text="{Binding nombre_usuario}"></Label>-->
-
-                                                <!--<BoxView BackgroundColor="Black" HeightRequest="2"/>-->
                                             </StackLayout>
                                         </Frame>
                                     </ViewCell>
@@ -259,13 +254,14 @@
                             </ListView.ItemTemplate>
                         </ListView>
 
-                        <Frame HorizontalOptions="FillAndExpand" Padding="10" VerticalOptions="FillAndExpand" HasShadow="False" CornerRadius="4" BackgroundColor="#FFFFFF">
-                            <StackLayout BackgroundColor="#FFFFFF"  Spacing="0">
-                                <Button Text="Realizar Pedido" x:Name="BtnHacerPedido" VerticalOptions="EndAndExpand" Clicked="BtnHacerPedido_Clicked" FontSize="14" FontAttributes="Bold" CornerRadius="4"  BackgroundColor="#FFCC00" TextColor="#333"></Button>
-                                <Label x:Name="lblTotalSuma" TextColor="#333"></Label>
+                        <StackLayout Margin="10,0,0,0"  Orientation="Horizontal" >
+                            <Label FontSize="14" FontAttributes="Bold" TextColor="#18356F" Text="Total Dinero:" HorizontalOptions="Start" VerticalOptions="Center" />
+                            <Label x:Name="lblBalance" FontSize="14"  TextColor="#18356F" HorizontalOptions="Start" VerticalOptions="Center" />
 
-                            </StackLayout>
-                        </Frame>
+                            <Label FontSize="14" FontAttributes="Bold" TextColor="#18356F" Text="Cantidad Productos:" HorizontalOptions="Start" VerticalOptions="Center" />
+                            <Label x:Name="lblcantidad" FontSize="14"  TextColor="#18356F"  HorizontalOptions="Start" VerticalOptions="Center" />
+                        </StackLayout>
+
 
                     </StackLayout>
 
@@ -279,17 +275,17 @@
             <!--Layout Notificaciones-->
             <StackLayout IsVisible="false" VerticalOptions="StartAndExpand" x:Name="StackLayoutNotificacionesEmpresa" >
 
-                <Label Margin="0,5,0,0" HorizontalOptions="Center" FontAttributes="Bold" FontSize="18" Text="Enviar Notificaciones a los clientes"></Label>
+                <Label Margin="0,5,0,0" HorizontalOptions="Center" TextColor="#18356F" FontAttributes="Bold" FontSize="18" Text="Enviar Notificaciones a los clientes"></Label>
                 <!--ITEM-->
                 <Frame HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" HasShadow="False" CornerRadius="4" >
 
                     <StackLayout Margin="0,0,0,5" Orientation="Vertical" VerticalOptions="FillAndExpand">
                         <Frame HasShadow="False" Padding="10" BackgroundColor="White">
                             <StackLayout  Orientation="Vertical">
-                                <Frame Padding="0" BorderColor="#FFCC00" HasShadow="False" CornerRadius="8" Margin="0,0,0,15" x:Name="FrNotificacion" >
+                                <Frame Padding="0" BorderColor="#18356F" HasShadow="False" CornerRadius="8" Margin="0,0,0,10" >
                                     <StackLayout Orientation="Horizontal" Margin="4" >
                                         <Image Source="bellAmarillo.png" WidthRequest="25" Margin="5"></Image>
-                                        <customcontrol:CustomEntry HorizontalOptions="FillAndExpand" x:Name="TxtNotificaciones"  Keyboard="Default"  Placeholder="Enviar Notificaciones"/>
+                                        <Editor Placeholder="Mensaje" TextTransform="Uppercase" VerticalOptions="Center" HorizontalOptions="FillAndExpand" Margin="0,0,10,0" HeightRequest="80" WidthRequest="50" x:Name="TxtNotificaciones"  />
                                     </StackLayout>
                                 </Frame>
                             </StackLayout>
@@ -299,50 +295,22 @@
                 </Frame>
 
                 <Button Text="Enviar Notificación" HeightRequest="40" Margin="20,0,20,0"  CornerRadius="4"
-                        x:Name="BtnEnviarNotificacion"  Clicked="BtnEnviarNotificacion_Clicked" BackgroundColor="#18356F" TextColor="White" FontAttributes="Bold" />
-
-                <Label Text="Notificaciones Creadas" HorizontalOptions="Center" FontAttributes="Bold" TextColor="#333"></Label>
-
-                <ListView SelectionMode="Single" ItemSelected="lsv_notificaciones_ItemSelected" VerticalOptions="FillAndExpand" x:Name="lsv_notificaciones" Grid.Row="0" BackgroundColor="Transparent" HorizontalOptions="CenterAndExpand" SeparatorVisibility="Default"  SeparatorColor="White" HasUnevenRows="True" >
-                    <ListView.ItemTemplate>
-
-                        <DataTemplate>
-
-                            <ViewCell>
-
-
-                                <!--ITEM-->
-                                <Frame HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" HasShadow="False" Margin="8" CornerRadius="4" BackgroundColor="#FFCC00">
-
-                                    <StackLayout Orientation="Vertical" Margin="10">
-                                        <StackLayout Orientation="Horizontal">
-                                            <Label TextColor="#333" Text="{Binding mensaje}"></Label>
-                                        </StackLayout>
-                                        <Label FontAttributes="Bold" TextColor="#333" Text="{Binding disponibilidad}"></Label>
-                                    </StackLayout>
-                                </Frame>
-                            </ViewCell>
-
-                        </DataTemplate>
-
-
-                    </ListView.ItemTemplate>
-                </ListView>
-
-
-
-
+                        x:Name="BtnEnviarNotificacion"  Clicked="BtnEnviarNotificacion_Clicked" BackgroundColor="#18356F" TextColor="White" FontAttributes="Bold" /> 
+                
+                <Button Text="Ver Notificaciones" HeightRequest="40" Margin="20,0,20,0"  CornerRadius="4"
+                        x:Name="BtnVerNotificaciones"  Clicked="BtnVerNotificaciones_Clicked" BackgroundColor="#FFCC00" TextColor="White" FontAttributes="Bold" />
+               
             </StackLayout>
 
             <!--Layout Mi Perfil-->
             <StackLayout IsVisible="false" VerticalOptions="StartAndExpand" x:Name="StackLayoutMiPerfil" BackgroundColor="White">
 
-                <Frame HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand" HasShadow="False" Margin="10" CornerRadius="4" BackgroundColor="White">
+                <Frame HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand" HasShadow="False" CornerRadius="4" BackgroundColor="White">
                     <Grid RowSpacing="0" BackgroundColor="#EEEEEE">
 
                         <StackLayout VerticalOptions="FillAndExpand" Grid.Row="0" Grid.Column="0" Orientation="Vertical" Margin="0,0,0,0">
 
-                            <StackLayout BackgroundColor="White" Padding="10,0,5,5" Spacing="0">
+                            <StackLayout BackgroundColor="White"  Spacing="0">
 
                                 <StackLayout Orientation="Vertical" >
 
@@ -352,47 +320,66 @@
                                         <Image HeightRequest="20" IsVisible="false" x:Name="PickPhoto" Source="add.png"/>
                                     </StackLayout>
 
-                                    <StackLayout Margin="0,2,0,0" VerticalOptions="Center" HorizontalOptions="FillAndExpand" Orientation="Horizontal">
-                                        <Image HeightRequest="20" VerticalOptions="Center" Source="empresa.png"/>
-                                        <Entry Placeholder="Nombre Empresa" IsEnabled="False" x:Name="TxtNombreEmpresa" VerticalOptions="Center" HorizontalOptions="FillAndExpand"></Entry>
-                                    </StackLayout>
 
-
-                                    <StackLayout Margin="0,2,0,0" VerticalOptions="Center" HorizontalOptions="FillAndExpand" Orientation="Horizontal">
-                                        <Image HeightRequest="20" VerticalOptions="Center" Source="locationempresa.png"/>
-                                        <Entry Placeholder="Dirección" IsEnabled="False" x:Name="TxtDireccionEmpresa" VerticalOptions="Center" HorizontalOptions="FillAndExpand"></Entry>
-                                    </StackLayout>
+                                    <Frame Padding="0" BorderColor="#18356F" HasShadow="False" CornerRadius="8" Margin="0,7,0,0" >
+                                        <StackLayout Orientation="Horizontal">
+                                            <Image Source="empresa.png" WidthRequest="25" Margin="5"></Image>
+                                            <customcontrol:CustomEntry Placeholder="Nombre Empresa" IsEnabled="False" x:Name="TxtNombreEmpresa" VerticalOptions="Center" HorizontalOptions="FillAndExpand"/>
+                                        </StackLayout>
+                                    </Frame>
 
 
 
-                                    <StackLayout Margin="0,2,0,0" VerticalOptions="Center" HorizontalOptions="FillAndExpand" Orientation="Horizontal">
-                                        <Image HeightRequest="20" VerticalOptions="Center" Source="telephonenew2.png"/>
-                                        <Entry Placeholder="Telefono Empresa" IsEnabled="False" x:Name="TxtTelefonoEmpresa" VerticalOptions="Center" HorizontalOptions="FillAndExpand"></Entry>
-                                    </StackLayout>
+                                    <Frame Padding="0" BorderColor="#18356F" HasShadow="False" CornerRadius="8" Margin="0,7,0,0">
+                                        <StackLayout Orientation="Horizontal">
+                                            <Image Source="locationempresa.png" WidthRequest="25" Margin="5"></Image>
+                                            <customcontrol:CustomEntry IsEnabled="False" HorizontalOptions="FillAndExpand" x:Name="TxtDireccionEmpresa" Placeholder="Dirección"/>
+                                        </StackLayout>
+                                    </Frame>
 
 
-                                    <StackLayout Margin="0,2,0,0" VerticalOptions="Center" HorizontalOptions="FillAndExpand" Orientation="Horizontal">
-                                        <Image HeightRequest="20" VerticalOptions="Center" Source="whatsappnew.png"/>
-                                        <Entry Placeholder="Whatsapp" IsEnabled="False" x:Name="TxtWhatsappEmpresa" VerticalOptions="Center" HorizontalOptions="FillAndExpand"></Entry>
-                                    </StackLayout>
-
-                                    <StackLayout Margin="0,2,0,0" VerticalOptions="Center" HorizontalOptions="FillAndExpand" Orientation="Horizontal">
-                                        <Image HeightRequest="20" VerticalOptions="Center" Source="mailnew.png"/>
-                                        <Entry Placeholder="Correo Empresa" IsEnabled="False" x:Name="TxtCorreoEmpresa" VerticalOptions="Center" HorizontalOptions="FillAndExpand"></Entry>
-
-                                    </StackLayout>
-
-                                    <StackLayout Margin="0,2,0,0" VerticalOptions="Center" HorizontalOptions="FillAndExpand" Orientation="Horizontal">
-                                        <Image HeightRequest="20" VerticalOptions="Center" Source="locknew2.png"/>
-                                        <Entry Placeholder="Contraseña" IsEnabled="False" x:Name="TxtClaveEMpresa" VerticalOptions="Center" HorizontalOptions="FillAndExpand"></Entry>
-                                    </StackLayout>
+                                    <Frame Padding="0" BorderColor="#18356F" HasShadow="False" CornerRadius="8" Margin="0,7,0,0">
+                                        <StackLayout Orientation="Horizontal">
+                                            <Image Source="telephonenew2.png" WidthRequest="25" Margin="5"></Image>
+                                            <customcontrol:CustomEntry IsEnabled="False" HorizontalOptions="FillAndExpand" x:Name="TxtTelefonoEmpresa" Placeholder="Telefono Empresa"/>
+                                        </StackLayout>
+                                    </Frame>
 
 
-                                    <StackLayout Margin="0,2,0,0" VerticalOptions="Center" HorizontalOptions="FillAndExpand" Orientation="Horizontal">
-                                        <Image HeightRequest="20" VerticalOptions="Center" Source="envionew.png"/>
-                                        <Entry Placeholder="Precio Envio" IsEnabled="False" x:Name="TxtPrecioEnvio" VerticalOptions="Center" HorizontalOptions="FillAndExpand"></Entry>
 
-                                    </StackLayout>
+                                    <Frame Padding="0" BorderColor="#18356F" HasShadow="False" CornerRadius="8" Margin="0,7,0,0">
+                                        <StackLayout Orientation="Horizontal">
+                                            <Image Source="mailnew.png" WidthRequest="25" Margin="5"></Image>
+                                            <customcontrol:CustomEntry IsEnabled="False" HorizontalOptions="FillAndExpand" x:Name="TxtCorreoEmpresa" Placeholder="Correo Empresa"/>
+                                        </StackLayout>
+                                    </Frame>
+
+
+                                    <Frame Padding="0" BorderColor="#18356F" HasShadow="False" CornerRadius="8" Margin="0,7,0,0">
+                                        <StackLayout Orientation="Horizontal">
+                                            <Image Source="whatsappnew.png" WidthRequest="25" Margin="5"></Image>
+                                            <customcontrol:CustomEntry IsEnabled="False" HorizontalOptions="FillAndExpand" x:Name="TxtWhatsappEmpresa" Placeholder="Whatsapp"/>
+                                        </StackLayout>
+                                    </Frame>
+
+
+
+                                    <Frame Padding="0" BorderColor="#18356F" HasShadow="False" CornerRadius="8" Margin="0,7,0,0">
+                                        <StackLayout Orientation="Horizontal">
+                                            <Image Source="envionew.png" WidthRequest="25" Margin="5"></Image>
+                                            <customcontrol:CustomEntry IsEnabled="False" HorizontalOptions="FillAndExpand" x:Name="TxtPrecioEnvio" Placeholder="Precio Envio"/>
+                                        </StackLayout>
+                                    </Frame>
+
+
+                                    <Frame Padding="0" BorderColor="#18356F" HasShadow="False" CornerRadius="8" Margin="0,7,0,0">
+                                        <StackLayout Orientation="Horizontal">
+                                            <Image Source="locknew2.png" WidthRequest="25" Margin="5"></Image>
+                                            <customcontrol:CustomEntry IsPassword="True" IsEnabled="False" HorizontalOptions="FillAndExpand" x:Name="TxtClaveEMpresa" Placeholder="Contraseña"/>
+                                            <ImageButton BackgroundColor="Transparent" x:Name="eyebuttonnegro" Clicked="eyebuttonnegro_Clicked" Source="eyenegro.png" WidthRequest="25" Margin="5"/>
+                                            <ImageButton BackgroundColor="Transparent" x:Name="eyebuttonazul" Clicked="eyebuttonazul_Clicked" Source="eyeazul.png" IsVisible="false" WidthRequest="25" Margin="5"/>
+                                        </StackLayout>
+                                    </Frame>
 
 
                                     <StackLayout Margin="0,2,0,0">
@@ -437,12 +424,6 @@
                                 <Image Source="HamburgerSodaAmarillo.png" VerticalOptions="CenterAndExpand" HorizontalOptions="EndAndExpand" Margin="0,0,12,0" HeightRequest="30" x:Name="btnMenuEmpresa"/>
                             </StackLayout>
 
-                            <BoxView HeightRequest="40" WidthRequest="2" BackgroundColor="White" VerticalOptions="Center" HorizontalOptions="Start" Opacity="0.7" />
-
-                            <StackLayout Margin="10,0,10,0" BackgroundColor="#18356F" x:Name="gridAnotarPedidos">
-                                <Image Source="MiCarritoBlanco.png" Margin="12,0,12,0" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" HeightRequest="30" x:Name="btnImgAnotarPedidos"/>
-                            </StackLayout>
-
                             <BoxView HeightRequest="40" WidthRequest="2" BackgroundColor="White" VerticalOptions="Center" Opacity="0.7"/>
 
                             <StackLayout  Margin="10,0,10,0" BackgroundColor="#18356F" x:Name="gridPedidosEmpresa">
@@ -457,9 +438,17 @@
 
                             <BoxView HeightRequest="40" WidthRequest="2" BackgroundColor="White" VerticalOptions="Center" Opacity="0.7"/>
 
+                            <StackLayout Margin="10,0,10,0" BackgroundColor="#18356F" x:Name="gridMoney">
+                                <Image Source="moneyBlanco.png" Margin="12,0,12,0" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" HeightRequest="30" x:Name="btnMoney"/>
+                            </StackLayout>
+
+
+                            <BoxView HeightRequest="40" WidthRequest="2" BackgroundColor="White" VerticalOptions="Center" HorizontalOptions="Start" Opacity="0.7" />
+
                             <StackLayout Margin="10,0,10,0" Orientation="Horizontal" BackgroundColor="#18356F" HorizontalOptions="FillAndExpand" x:Name="gridMiPerfilEmpresa" Spacing="0">
                                 <Image Source="userBlanco.png" Margin="12,0,0,0" VerticalOptions="CenterAndExpand" HorizontalOptions="StartAndExpand" HeightRequest="30" x:Name="btnMiPerfil"/>
                             </StackLayout>
+
 
                         </StackLayout>
 
