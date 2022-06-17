@@ -36,6 +36,7 @@ namespace FastFoodApp.Pantallas
         string Picker = "";
         private bool busy;
         MediaFile mediaFile;
+        MediaFile mediaFileEmpresa;
 
         private object fileSelectedPath;
         public PrincipalPageEmpresa()
@@ -253,7 +254,7 @@ namespace FastFoodApp.Pantallas
                                     MaxWidthHeight = 600,
                                     SaveMetaData = false
                                 });
-                                mediaFile = file;
+                                mediaFileEmpresa = file;
 
 
                                 if (file == null)
@@ -264,7 +265,7 @@ namespace FastFoodApp.Pantallas
                                         fileSelectedPath = file.Path;
 
                                     EmpresaFoto.Source = ImageSource.FromStream(() => file.GetStreamWithImageRotatedForExternalStorage());
-                                    if (mediaFile != null)
+                                    if (mediaFileEmpresa != null)
                                     {
                                         BtnAgregarAlMenu.IsVisible = true;
                                     }
@@ -320,7 +321,7 @@ namespace FastFoodApp.Pantallas
                         MaxWidthHeight = 2000
                     });
 
-                    mediaFile = file;
+                    mediaFileEmpresa = file;
 
                     if (file == null)
                         return;
@@ -335,7 +336,7 @@ namespace FastFoodApp.Pantallas
                         return stream;
                     });
 
-                    if (mediaFile != null)
+                    if (mediaFileEmpresa != null)
                     {
                         BtnAgregarAlMenu.IsVisible = true;
                     }
@@ -738,6 +739,7 @@ namespace FastFoodApp.Pantallas
 
         }
 
+
         async private void GrabarImageApiEmpresa(Stream st)
         {
             try
@@ -747,11 +749,11 @@ namespace FastFoodApp.Pantallas
                 st.Seek(0, SeekOrigin.Begin);
                 st.Read(buffer, 0, buffer.Length);
                 var base64 = Convert.ToBase64String(buffer);
-                var result = await herramientas.SetPost<EMenu>("FastFood/GrabarImagenEmpresa", new EMenu() { idmenu_fast_food = id, foto = base64 });
+                var result = await herramientas.SetPost<EEmpresa>("FastFood/GrabarImagenEmpresa", new EEmpresa() { idempresa = App.idempresa, logo_empresa = base64 });
 
                 if (result.result == "OK")
                 {
-                    App.url_foto_menu = result.foto;
+                    App.url_foto_empresa = result.logo_empresa;
                 }
                 else
                 {
@@ -768,7 +770,6 @@ namespace FastFoodApp.Pantallas
             }
 
         }
-
 
         private async void TakePhotoAsync(Page senderPage, Image imgToWork)
         {
@@ -1202,7 +1203,7 @@ namespace FastFoodApp.Pantallas
             btnGuardarCambiosEmpresa.IsVisible = false;
 
             ActualizarEmpresa(TxtNombreEmpresa.Text, TxtDireccionEmpresa.Text, TxtTelefonoEmpresa.Text, TxtWhatsappEmpresa.Text, TxtCorreoEmpresa.Text, TxtPrecioEnvio.Text, TxtClaveEMpresa.Text, App.idempresa);
-            GrabarImageApi(mediaFile.GetStreamWithImageRotatedForExternalStorage());
+            GrabarImageApiEmpresa(mediaFileEmpresa.GetStreamWithImageRotatedForExternalStorage());
 
         }
 

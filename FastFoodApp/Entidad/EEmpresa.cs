@@ -21,5 +21,7 @@ namespace FastFoodApp.Entidad
         public string encargado_empresa { get; set; }
         public int envio { get; set; }
         public string logo_empresa { get; set; }
+        public string result { get; set; }
+        public string mensaje { get; set; }
     }
 }

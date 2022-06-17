@@ -16,6 +16,7 @@ namespace FastFoodApp
         public static int idusuarios { get; set; }
         public static int idProducto { get; set; }
         public static string url_foto_menu { get; set; }
+        public static string url_foto_empresa { get; set; }
         public static int NumeroOrdenGeneral { get; set; }
         public static string nombre { get; set; }
         public static string empresa { get; set; }
