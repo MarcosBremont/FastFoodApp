@@ -6,7 +6,7 @@
              BackgroundColor="#FFFFFF"
              xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core" xmlns:customcontrol="clr-namespace:FastFoodApp.ControlesPersonalizados"
              ios:Page.UseSafeArea="true">
-    <ContentPage.Content>
+    <ContentPage.Content> 
         <StackLayout IsVisible="true" Margin="0,0,0,-35" x:Name="StackLayoutEquipo1" BackgroundColor="#FFFFFF">
 
             <!--Layout Principal-->
@@ -14,7 +14,7 @@
 
                 <Grid RowSpacing="0" BackgroundColor="#FFFFFF">
 
-                    <ScrollView>
+                    <ScrollView >
                         <StackLayout VerticalOptions="FillAndExpand" Grid.Row="0" Grid.Column="0" Orientation="Vertical" Margin="0,0,0,0">
                             <!--ITEM-->
 
