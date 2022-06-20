@@ -92,7 +92,7 @@
 
                     <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" >
                         <Image Margin="5,0,0,0" HeightRequest="20" Source="searchnew.png"></Image>
-                        <Picker HorizontalOptions="FillAndExpand" SelectedIndexChanged="PickerProgreso_SelectedIndexChanged" TitleColor="#18356F" x:Name="PickerProgreso" TextColor="#18356F" Title="PROGRESO ORDEN">
+                        <Picker HorizontalOptions="FillAndExpand" SelectedIndexChanged="PickerProgreso_SelectedIndexChanged" TitleColor="#FFCC00" x:Name="PickerProgreso" TextColor="#FFCC00" Title="PROGRESO ORDEN">
                             <Picker.Items>
                                 <x:String>PENDIENTE</x:String>
                                 <x:String>EN PROCESO</x:String>

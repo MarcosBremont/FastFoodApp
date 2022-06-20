@@ -134,7 +134,7 @@ namespace FastFoodApp.Pantallas
                     btnMoney.Source = "moneyBlanco";
                     btnNotitifacionesEmpresa.Source = "bellWhite";
 
-                    LlenarMiPerfilEmpresa();
+                    LlenarEmpresa();
 
                 }),
                 NumberOfTapsRequired = 1
@@ -335,7 +335,7 @@ namespace FastFoodApp.Pantallas
             TxtClaveEMpresa.Text = App.claveEmpresa;
             TxtPrecioEnvio.Text = App.envio.ToString();
             TxtTelefonoEmpresa.Text = App.telefonoEmpresa;
-            EmpresaFoto.Source = App.logo_empresa;
+            EmpresaFoto.Source = App.url_foto_empresa;
         }
 
         public async Task LlenarMenu()
@@ -358,21 +358,24 @@ namespace FastFoodApp.Pantallas
                 FastFoodApp.Metodos.Metodos metodos = new FastFoodApp.Metodos.Metodos();
                 var datos = await metodos.ObtenerEmpresa();
                 App.envio = datos[0].envio;
-                App.NombreEmpresa = datos[0].nombre;
-                App.direccionEmpresa = datos[0].direccion;
+                TxtPrecioEnvio.Text = datos[0].envio.ToString();
+                TxtNombreEmpresa.Text = datos[0].nombre;
+                TxtDireccionEmpresa.Text = datos[0].direccion;
                 App.rncEmpresa = datos[0].rnc;
-                App.telefonoEmpresa = datos[0].telefono;
-                App.whatsappEmpresa = datos[0].whatsapp;
-                App.correoEmpresa = datos[0].correo;
+                TxtTelefonoEmpresa.Text = datos[0].telefono;
+                TxtWhatsappEmpresa.Text = datos[0].whatsapp;
+                TxtCorreoEmpresa.Text = datos[0].correo;
                 App.latitudEmpresa = datos[0].latitud;
                 App.longitudeEmpresa = datos[0].longitud;
-                App.claveEmpresa = datos[0].clave;
+                TxtClaveEMpresa.Text = datos[0].clave;
                 App.instagramEmpresa = datos[0].instagram;
                 App.facebookEmpresa = datos[0].facebook;
                 App.encargado_empresa = datos[0].encargado_empresa;
                 App.encargado_empresa = datos[0].encargado_empresa;
                 App.logo_empresa = datos[0].logo_empresa;
+                EmpresaFoto.Source = datos[0].logo_empresa;
                 App.idempresa = datos[0].idempresa;
+
             }
             catch (Exception ex)
             {
@@ -692,16 +695,14 @@ namespace FastFoodApp.Pantallas
                 var base64 = Convert.ToBase64String(buffer);
                 var result = await herramientas.SetPost<EEmpresa>("FastFood/GrabarImagenEmpesa", new EEmpresa() { idempresa = App.idempresa, logo_empresa = base64 });
 
-                if (result.result == "OK")
-                {
-                    App.url_foto_empresa = result.logo_empresa;
-                    EmpresaFoto.Source = result.logo_empresa;
-
-                }
-                else
-                {
-                    toastConfig.MostrarNotificacion($"No se pudo actualizar la foto del producto. Intente mas tarde.", ToastPosition.Top, 3, "#c82333");
-                }
+                //if (result.result == "OK")
+                //{
+                //    App.url_foto_empresa = result.logo_empresa;
+                //}
+                //else
+                //{
+                //    toastConfig.MostrarNotificacion($"No se pudo actualizar la foto del producto. Intente mas tarde.", ToastPosition.Top, 3, "#c82333");
+                //}
             }
             catch (Exception ex)
             {
@@ -1127,12 +1128,12 @@ namespace FastFoodApp.Pantallas
             btnGuardarCambiosEmpresa.IsVisible = false;
             btnEditarPerfilEmpresa.IsVisible = true;
 
-            ActualizarEmpresa(TxtNombreEmpresa.Text, TxtDireccionEmpresa.Text, TxtTelefonoEmpresa.Text, TxtWhatsappEmpresa.Text, TxtCorreoEmpresa.Text, TxtPrecioEnvio.Text, TxtClaveEMpresa.Text, App.idempresa);
             if (mediaFileEmpresa != null)
             {
                 GrabarImageApiEmpresa(mediaFileEmpresa.GetStreamWithImageRotatedForExternalStorage());
             }
-            LlenarEmpresa();
+
+            ActualizarEmpresa(TxtNombreEmpresa.Text, TxtDireccionEmpresa.Text, TxtTelefonoEmpresa.Text, TxtWhatsappEmpresa.Text, TxtCorreoEmpresa.Text, TxtPrecioEnvio.Text, TxtClaveEMpresa.Text, App.idempresa);
 
         }
 
@@ -1159,6 +1160,9 @@ namespace FastFoodApp.Pantallas
                 if (datos.Respuesta == "OK")
                 {
                     toastConfig.MostrarNotificacion($"Datos actualizados con exito", ToastPosition.Top, 3, "#51C560");
+                    PickPhoto.IsVisible = false;
+                    LlenarEmpresa();
+
                 }
             }
             catch (Exception ex)
