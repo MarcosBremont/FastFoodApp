@@ -43,7 +43,6 @@ namespace FastFoodApp.Pantallas
         {
             InitializeComponent();
             btnMenuEmpresa.Source = "hamburgerSodaAmarillo.png";
-
             _ = LlenarMenu();
 
             gridPedidosEmpresa.GestureRecognizers.Add(new TapGestureRecognizer
@@ -218,7 +217,7 @@ namespace FastFoodApp.Pantallas
                             //Check for Media Library Permisions
                             var status = await CrossPermissions.Current.CheckPermissionStatusAsync(Plugin.Permissions.Abstractions.Permission.MediaLibrary);
 
-                            PickPicture:
+                        PickPicture:
                             if (status == Plugin.Permissions.Abstractions.PermissionStatus.Granted)
                             {
 
@@ -559,7 +558,7 @@ namespace FastFoodApp.Pantallas
                             //Check for Media Library Permisions
                             var status = await CrossPermissions.Current.CheckPermissionStatusAsync(Plugin.Permissions.Abstractions.Permission.MediaLibrary);
 
-                            PickPicture:
+                        PickPicture:
                             if (status == Plugin.Permissions.Abstractions.PermissionStatus.Granted)
                             {
 
@@ -696,6 +695,8 @@ namespace FastFoodApp.Pantallas
                 if (result.result == "OK")
                 {
                     App.url_foto_empresa = result.logo_empresa;
+                    EmpresaFoto.Source = result.logo_empresa;
+
                 }
                 else
                 {
@@ -896,7 +897,7 @@ namespace FastFoodApp.Pantallas
                             //Check for Media Library Permisions
                             var status = await CrossPermissions.Current.CheckPermissionStatusAsync(Plugin.Permissions.Abstractions.Permission.MediaLibrary);
 
-                            PickPicture:
+                        PickPicture:
                             if (status == Plugin.Permissions.Abstractions.PermissionStatus.Granted)
                             {
 
@@ -1064,12 +1065,15 @@ namespace FastFoodApp.Pantallas
         private async void BtnEnviarNotificacion_Clicked(object sender, EventArgs e)
         {
             FastFoodApp.Metodos.Metodos metodos = new FastFoodApp.Metodos.Metodos();
-            var datos = await metodos.EnviarNotificacon(TxtNotificaciones.Text, "S");
+            string TxtNotificacionesArreglado = TxtNotificaciones.Text.Replace("\n", "").Replace("\r", "");
+
+            var datos = await metodos.EnviarNotificacon(TxtNotificacionesArreglado, "S");
 
             if (datos.Respuesta == "OK")
             {
                 toastConfig.MostrarNotificacion($"Notificación enviada a tus clientes", ToastPosition.Top, 3, "#51C560");
                 TxtNotificaciones.Text = "";
+
             }
             else
             {
@@ -1077,7 +1081,7 @@ namespace FastFoodApp.Pantallas
             }
         }
 
-      
+
 
         private async void lsv_pedidosEmpresa_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
@@ -1152,10 +1156,14 @@ namespace FastFoodApp.Pantallas
             {
                 FastFoodApp.Metodos.Metodos metodos = new FastFoodApp.Metodos.Metodos();
                 var datos = await metodos.ActualizarEmpresa(nombreEmpresa, DireccionEmpresa, TelefonoEmpresa, WhatsappEmpresa, CorreoEmpresa, PrecioEnvio, ClaveEMpresa, idempresa);
+                if (datos.Respuesta == "OK")
+                {
+                    toastConfig.MostrarNotificacion($"Datos actualizados con exito", ToastPosition.Top, 3, "#51C560");
+                }
             }
             catch (Exception ex)
             {
-
+                toastConfig.MostrarNotificacion($"Ocurrio un error, intenta nuevamente o comunicate con el administrador", ToastPosition.Top, 3, "#51C560");
             }
         }
 

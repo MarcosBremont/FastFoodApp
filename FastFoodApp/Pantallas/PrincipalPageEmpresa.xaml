@@ -88,11 +88,11 @@
             <!--Layout Pedidos Empresa-->
             <StackLayout IsVisible="false" VerticalOptions="StartAndExpand" x:Name="StackLayoutPedidosEmpresa" BackgroundColor="#EEEEEE">
 
-                <Frame HasShadow="False" BackgroundColor="#18356F" HeightRequest="50"  Padding="5">
+                <Frame HasShadow="False" BackgroundColor="#18356F" HeightRequest="50"  Padding="10">
 
                     <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" >
                         <Image Margin="5,0,0,0" HeightRequest="20" Source="searchnew.png"></Image>
-                        <Picker HorizontalOptions="FillAndExpand" SelectedIndexChanged="PickerProgreso_SelectedIndexChanged" TitleColor="White" x:Name="PickerProgreso" TextColor="White" Title="PROGRESO ORDEN">
+                        <Picker HorizontalOptions="FillAndExpand" SelectedIndexChanged="PickerProgreso_SelectedIndexChanged" TitleColor="#18356F" x:Name="PickerProgreso" TextColor="#18356F" Title="PROGRESO ORDEN">
                             <Picker.Items>
                                 <x:String>PENDIENTE</x:String>
                                 <x:String>EN PROCESO</x:String>
