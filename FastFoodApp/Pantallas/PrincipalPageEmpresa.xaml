@@ -4,6 +4,7 @@
              x:Class="FastFoodApp.Pantallas.PrincipalPageEmpresa"
              NavigationPage.HasNavigationBar="False"
              BackgroundColor="#FFFFFF"
+             x:Name="FondoLayout"
              xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core" xmlns:customcontrol="clr-namespace:FastFoodApp.ControlesPersonalizados"
              ios:Page.UseSafeArea="true">
     <ContentPage.Content>
@@ -88,9 +89,9 @@
             <!--Layout Pedidos Empresa-->
             <StackLayout IsVisible="false" VerticalOptions="StartAndExpand" x:Name="StackLayoutPedidosEmpresa" BackgroundColor="#EEEEEE">
 
-                <Frame HasShadow="False" BackgroundColor="#18356F" HeightRequest="50"  Padding="10">
+                <StackLayout  BackgroundColor="#18356F" HeightRequest="50" >
 
-                    <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" >
+                    <StackLayout Margin="10" Orientation="Horizontal" HorizontalOptions="FillAndExpand" >
                         <Image Margin="5,0,0,0" HeightRequest="20" Source="searchnew.png"></Image>
                         <Picker HorizontalOptions="FillAndExpand" SelectedIndexChanged="PickerProgreso_SelectedIndexChanged" TitleColor="#FFCC00" x:Name="PickerProgreso" TextColor="#FFCC00" Title="PROGRESO ORDEN">
                             <Picker.Items>
@@ -101,7 +102,7 @@
                             </Picker.Items>
                         </Picker>
                     </StackLayout>
-                </Frame>
+                </StackLayout>
 
 
                 <Label FontAttributes="Bold" HorizontalOptions="Center" x:Name="LblAunNoHasPedidoNadaEmpresa" IsVisible="false" TextColor="#18356F" Text="Aun no hay ningun pedido."></Label>
@@ -198,7 +199,33 @@
             <!--Layout Money-->
             <StackLayout IsVisible="false" VerticalOptions="StartAndExpand" x:Name="StackLayoutMoney" BackgroundColor="#EEEEEE">
 
+                <StackLayout  HeightRequest="50" BackgroundColor="#18356F" HorizontalOptions="FillAndExpand" >
+
+                    <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="Center" Orientation="Horizontal">
+
+                        <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="Center" Orientation="Horizontal">
+
+                            <Label VerticalOptions="Center" TextColor="White" Text="Desde"></Label>
+
+                            <DatePicker x:Name="DatePickerDesde" DateSelected="DatePickerDesde_DateSelected" VerticalOptions="Center"  Format="d" />
+
+                        </StackLayout>
+
+                        <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="Center" Orientation="Horizontal">
+
+                            <Label VerticalOptions="Center" TextColor="White" Text="Hasta"></Label>
+
+                            <DatePicker x:Name="DatePickerHasta" DateSelected="DatePickerHasta_DateSelected" VerticalOptions="Center"  Format="d" />
+
+                        </StackLayout>
+
+                    </StackLayout>
+
+                </StackLayout>
+
                 <Grid RowSpacing="0" BackgroundColor="#EEEEEE">
+
+
 
                     <StackLayout VerticalOptions="FillAndExpand" Grid.Row="0" Grid.Column="0" Orientation="Vertical" Margin="0,0,0,0">
                         <ListView SelectionMode="None" VerticalOptions="FillAndExpand" x:Name="lsv_money" Grid.Row="0" BackgroundColor="Transparent" HorizontalOptions="CenterAndExpand" SeparatorVisibility="Default"  SeparatorColor="White" HasUnevenRows="True" >
@@ -295,11 +322,11 @@
                 </Frame>
 
                 <Button Text="Enviar Notificación" HeightRequest="40" Margin="20,0,20,0"  CornerRadius="4"
-                        x:Name="BtnEnviarNotificacion"  Clicked="BtnEnviarNotificacion_Clicked" BackgroundColor="#18356F" TextColor="White" FontAttributes="Bold" /> 
-                
+                        x:Name="BtnEnviarNotificacion"  Clicked="BtnEnviarNotificacion_Clicked" BackgroundColor="#18356F" TextColor="White" FontAttributes="Bold" />
+
                 <Button Text="Ver Notificaciones" HeightRequest="40" Margin="20,0,20,0"  CornerRadius="4"
                         x:Name="BtnVerNotificaciones"  Clicked="BtnVerNotificaciones_Clicked" BackgroundColor="#FFCC00" TextColor="White" FontAttributes="Bold" />
-               
+
             </StackLayout>
 
             <!--Layout Mi Perfil-->
@@ -410,9 +437,9 @@
             </StackLayout>
 
             <!--Apartado del menu de abajo-->
-            <Frame CornerRadius="20" BackgroundColor="#18356F" HasShadow="True">
+            <Frame CornerRadius="20" BackgroundColor="#18356F" HasShadow="False">
 
-                <StackLayout  Spacing="0" VerticalOptions="End" HeightRequest="55"  Margin="0,0,0,0" BackgroundColor="White">
+                <StackLayout  Spacing="0" VerticalOptions="End" HeightRequest="55"  Margin="0,0,0,0" BackgroundColor="Transparent">
 
 
                     <StackLayout Grid.Row="1" Spacing="0" VerticalOptions="End"  Margin="0,0,0,0" BackgroundColor="#18356F">

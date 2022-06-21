@@ -44,6 +44,7 @@ namespace FastFoodApp.Pantallas
             InitializeComponent();
             btnMenuEmpresa.Source = "hamburgerSodaAmarillo.png";
             _ = LlenarMenu();
+            _ = LlenarEmpresa();
 
             gridPedidosEmpresa.GestureRecognizers.Add(new TapGestureRecognizer
             {
@@ -149,7 +150,7 @@ namespace FastFoodApp.Pantallas
                     StackLayoutMiPerfil.IsVisible = false;
                     StackLayoutMoney.IsVisible = true;
                     StackLayoutNotificacionesEmpresa.IsVisible = false;
-
+                    FondoLayout.BackgroundColor = Color.FromHex("#18356F");
                     btnPedidosEmpresa.Source = "TimeBlanco";
                     btnMenuEmpresa.Source = "hamburgerSodaWhite.png";
                     btnMiPerfil.Source = "userBlanco";
@@ -1194,6 +1195,21 @@ namespace FastFoodApp.Pantallas
         {
             modalNotificaciones = new ModalNotificaciones();
             await PopupNavigation.PushAsync(modalNotificaciones);
+        }
+
+        void DatePicker_DateSelected(System.Object sender, Xamarin.Forms.DateChangedEventArgs e)
+        {
+        }
+
+        void DatePickerDesde_DateSelected(System.Object sender, Xamarin.Forms.DateChangedEventArgs e)
+        {
+            DateTime fechaDesde = e.NewDate;
+
+        }
+
+        void DatePickerHasta_DateSelected(System.Object sender, Xamarin.Forms.DateChangedEventArgs e)
+        {
+            DateTime fechaHasta = e.NewDate;
         }
     }
 }
