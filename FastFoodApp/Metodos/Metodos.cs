@@ -18,9 +18,9 @@ namespace FastFoodApp.Metodos
             // constructor
         }
 
-        public async Task<List<EMenu>> ObtenerMenu()
+        public async Task<List<EMenu>> ObtenerMenu(string disponible)
         {
-            var result = await herramientas.EjecutarSentenciaEnApiLibre($"FastFood/ObtenerMenu");
+            var result = await herramientas.EjecutarSentenciaEnApiLibre($"FastFood/ObtenerMenu/{disponible}");
             var lista_menu = Newtonsoft.Json.JsonConvert.DeserializeObject<List<EMenu>>(result);
 
             return lista_menu;
@@ -185,6 +185,14 @@ namespace FastFoodApp.Metodos
         public async Task<Result> ActualizarEmpresa(string nombreEmpresa, string DireccionEmpresa, string TelefonoEmpresa, string WhatsappEmpresa, string CorreoEmpresa, string PrecioEnvio, string ClaveEMpresa, int idempresa)
         {
             var result = await herramientas.EjecutarSentenciaEnApiLibre($"FastFood/ActualizarEmpresa/{nombreEmpresa}/{DireccionEmpresa}/{TelefonoEmpresa}/{WhatsappEmpresa}/{CorreoEmpresa}/{PrecioEnvio}/{ClaveEMpresa}/{idempresa}");
+            var response = Newtonsoft.Json.JsonConvert.DeserializeObject<Result>(result);
+            return response;
+        }// Fin del método ObtenerEmpresa
+
+
+        public async Task<Result> ActualizarMenu(int idmenu_fast_food, string disponible)
+        {
+            var result = await herramientas.EjecutarSentenciaEnApiLibre($"FastFood/UMenu/{idmenu_fast_food}/{disponible}");
             var response = Newtonsoft.Json.JsonConvert.DeserializeObject<Result>(result);
             return response;
         }// Fin del método ObtenerEmpresa

@@ -31,7 +31,7 @@ namespace FastFoodApp.Pantallas
                 lsv_menu.IsVisible = false;
                 FastFoodApp.Metodos.Metodos metodos = new FastFoodApp.Metodos.Metodos();
                 lsv_menu.ItemsSource = null;
-                var datos = await metodos.ObtenerMenu();
+                var datos = await metodos.ObtenerMenu("S");
                 lsv_menu.ItemsSource = datos;
                 lsv_menu.IsVisible = true;
                 ListMenu = datos;
@@ -56,11 +56,29 @@ namespace FastFoodApp.Pantallas
             await PopupNavigation.PopAsync();
         }
 
-        void lsv_menu_ItemSelected(System.Object sender, Xamarin.Forms.SelectedItemChangedEventArgs e)
+
+
+        async void lsv_menu_ItemSelected(System.Object sender, Xamarin.Forms.SelectedItemChangedEventArgs e)
         {
+            if (await DisplayAlert("Información", "¿Desea ocultar este producto?", "SI", "NO"))
+            {
+                try
+                {
+                    var IDMenu = (EMenu)e.SelectedItem;
+                    FastFoodApp.Metodos.Metodos metodos = new FastFoodApp.Metodos.Metodos();
+                    var datos = await metodos.ActualizarMenu(IDMenu.idmenu_fast_food, "N");
+                    LlenarMenu();
+                }
+                catch (Exception ex)
+                {
 
+                }
+            }
+            else
+            {
+
+            }
         }
-
 
     }
 }

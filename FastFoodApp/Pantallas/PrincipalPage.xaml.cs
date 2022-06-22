@@ -153,7 +153,7 @@ namespace FastFoodApp.Pantallas
                 lsv_menu.IsVisible = false;
                 FastFoodApp.Metodos.Metodos metodos = new FastFoodApp.Metodos.Metodos();
                 lsv_menu.ItemsSource = null;
-                var datos = await metodos.ObtenerMenu();
+                var datos = await metodos.ObtenerMenu("S");
                 lsv_menu.ItemsSource = datos;
                 lsv_menu.IsVisible = true;
 
@@ -172,7 +172,15 @@ namespace FastFoodApp.Pantallas
                 lsv_notificaciones.IsVisible = false;
                 FastFoodApp.Metodos.Metodos metodos = new FastFoodApp.Metodos.Metodos();
                 lsv_notificaciones.ItemsSource = null;
-                var datos = await metodos.ObtenerNotificaciones(0,"S");
+                var datos = await metodos.ObtenerNotificaciones(0, "S");
+                if (datos.Count == 0)
+                {
+                    LblNoHayOfertasParaElDiaDeHoy.IsVisible = true;
+                }
+                else
+                {
+                    LblNoHayOfertasParaElDiaDeHoy.IsVisible = false;
+                }
                 lsv_notificaciones.ItemsSource = datos;
                 lsv_notificaciones.IsVisible = true;
 
@@ -222,6 +230,14 @@ namespace FastFoodApp.Pantallas
                 FastFoodApp.Metodos.Metodos metodos = new FastFoodApp.Metodos.Metodos();
                 lsv_pedidos.ItemsSource = null;
                 var datos = await metodos.ObtenerCarritoPorUsuario(0, App.idusuarios, "PENDIENTE");
+                if (datos.Count >= 0)
+                {
+                    LblAunNoHasPedidoNada.IsVisible = true;
+                }
+                else
+                {
+                    LblAunNoHasPedidoNada.IsVisible = false;
+                }
                 lsv_pedidos.ItemsSource = datos;
                 lsv_pedidos.IsVisible = true;
             }
@@ -241,7 +257,7 @@ namespace FastFoodApp.Pantallas
                 lsv_menu.IsVisible = false;
                 FastFoodApp.Metodos.Metodos metodos = new FastFoodApp.Metodos.Metodos();
                 lsv_menu.ItemsSource = null;
-                var datos = await metodos.ObtenerMenu();
+                var datos = await metodos.ObtenerMenu("S");
                 lsv_menu.ItemsSource = datos;
                 lsv_menu.IsVisible = true;
 

@@ -240,7 +240,7 @@
                 <StackLayout HorizontalOptions="Center">
                     <Label HorizontalOptions="Center" FontAttributes="Bold" FontSize="18" Text="Ofertas del día de hoy"></Label>
                     <Label HorizontalOptions="Center" Text="¡Aprovecha!"></Label>
-                    <Label HorizontalOptions="Center" Text="No hay ofertas para el día de hoy"></Label>
+                    <Label x:Name="LblNoHayOfertasParaElDiaDeHoy" HorizontalOptions="Center" Text="No hay ofertas para el día de hoy"></Label>
                 </StackLayout>
                 <!--ITEM-->
                 <ListView SelectionMode="None" VerticalOptions="FillAndExpand" x:Name="lsv_notificaciones" Grid.Row="0" BackgroundColor="Transparent" HorizontalOptions="CenterAndExpand" SeparatorVisibility="Default"  SeparatorColor="White" HasUnevenRows="True" >

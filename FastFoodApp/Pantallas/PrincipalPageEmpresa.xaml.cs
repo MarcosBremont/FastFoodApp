@@ -348,7 +348,7 @@ namespace FastFoodApp.Pantallas
             try
             {
                 FastFoodApp.Metodos.Metodos metodos = new FastFoodApp.Metodos.Metodos();
-                var datos = await metodos.ObtenerMenu();
+                var datos = await metodos.ObtenerMenu("S");
             }
             catch (Exception ex)
             {
@@ -416,7 +416,7 @@ namespace FastFoodApp.Pantallas
             try
             {
                 FastFoodApp.Metodos.Metodos metodos = new FastFoodApp.Metodos.Metodos();
-                var datos = await metodos.ObtenerMenu();
+                var datos = await metodos.ObtenerMenu("S");
             }
             catch (Exception ex)
             {
