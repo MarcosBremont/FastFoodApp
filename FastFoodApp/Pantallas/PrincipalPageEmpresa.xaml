@@ -207,7 +207,7 @@
 
                             <Label VerticalOptions="Center" TextColor="White" Text="Desde"></Label>
 
-                            <DatePicker x:Name="DatePickerDesde" DateSelected="DatePickerDesde_DateSelected" VerticalOptions="Center"  Format="d" />
+                            <DatePicker TextColor="White" x:Name="DatePickerDesde" DateSelected="DatePickerDesde_DateSelected" VerticalOptions="Center"  Format="d" />
 
                         </StackLayout>
 
@@ -215,7 +215,7 @@
 
                             <Label VerticalOptions="Center" TextColor="White" Text="Hasta"></Label>
 
-                            <DatePicker x:Name="DatePickerHasta" DateSelected="DatePickerHasta_DateSelected" VerticalOptions="Center"  Format="d" />
+                            <DatePicker TextColor="White" x:Name="DatePickerHasta" DateSelected="DatePickerHasta_DateSelected" VerticalOptions="Center"  Format="d" />
 
                         </StackLayout>
 

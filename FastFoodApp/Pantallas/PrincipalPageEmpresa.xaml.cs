@@ -35,6 +35,9 @@ namespace FastFoodApp.Pantallas
         int id = 0;
         string Picker = "";
         private bool busy;
+        String FechaDesde = DateTime.Now.ToString("yyyy-MM-dd 00:00:00");
+        String FechaHasta = DateTime.Now.ToString("yyyy-MM-dd 23:59:59");
+
         MediaFile mediaFile;
         MediaFile mediaFileEmpresa;
 
@@ -62,7 +65,7 @@ namespace FastFoodApp.Pantallas
                     btnMiPerfil.Source = "userBlanco";
                     btnMoney.Source = "moneyBlanco";
                     btnNotitifacionesEmpresa.Source = "bellWhite";
-                    _ = LlenarPedidos("PENDIENTE");
+                    _ = LlenarPedidos("PENDIENTE",Convert.ToDateTime(FechaDesde), Convert.ToDateTime(FechaHasta));
                     PickerProgreso.SelectedItem = "PENDIENTE";
                 }),
                 NumberOfTapsRequired = 1
@@ -167,10 +170,9 @@ namespace FastFoodApp.Pantallas
         {
             try
             {
-                String DATE = DateTime.Now.ToString("yyyy-MM-dd 00:00:00");
-                String DATE1 = DateTime.Now.ToString("yyyy-MM-dd 23:59:59");
                 FastFoodApp.Metodos.Metodos metodos = new FastFoodApp.Metodos.Metodos();
-                var datos = await metodos.ObtenerPedidos("TRABAJADA", 0, Convert.ToDateTime(DATE), Convert.ToDateTime(DATE1));
+                var datos = await metodos.ObtenerPedidos("TRABAJADA", 0, DatePickerDesde.Date, DatePickerHasta.Date);
+                lsv_money.ItemsSource = null;
                 lsv_money.ItemsSource = datos;
                 lblBalance.Text = string.Format("{0:N2}", datos.Sum(n => n.total_por_producto));
                 lblcantidad.Text = datos.Count.ToString();
@@ -386,13 +388,19 @@ namespace FastFoodApp.Pantallas
             }
         }
 
-        public async Task LlenarPedidos(string progresoorden)
+        public async Task LlenarPedidos(string progresoorden, DateTime fechadesde, DateTime fechahasta)
         {
             try
             {
                 FastFoodApp.Metodos.Metodos metodos = new FastFoodApp.Metodos.Metodos();
-                var datos = await metodos.ObtenerPedidos(progresoorden, 0, DateTime.Now, DateTime.Now);
+                lsv_pedidosEmpresa.IsVisible = false;
+                lsv_pedidosEmpresa.ItemsSource = null;
+                var datos = await metodos.ObtenerPedidos(progresoorden, 0, fechadesde, fechahasta);
                 lsv_pedidosEmpresa.ItemsSource = datos;
+                lsv_pedidosEmpresa.IsVisible = true;
+
+                lblBalance.Text = string.Format("{0:N2}", datos.Sum(n => n.total_por_producto));
+                lblcantidad.Text = datos.Count.ToString();
             }
             catch (Exception ex)
             {
@@ -1102,7 +1110,8 @@ namespace FastFoodApp.Pantallas
 
         private void ModalCambiarProgreso_Disappearing(object sender, EventArgs e)
         {
-            _ = LlenarPedidos("PENDIENTE");
+            _ = LlenarPedidos("PENDIENTE", Convert.ToDateTime(FechaDesde), Convert.ToDateTime(FechaHasta));
+
         }
 
         private void btnEditarPerfilEmpresa_Clicked(object sender, EventArgs e)
@@ -1190,7 +1199,8 @@ namespace FastFoodApp.Pantallas
         private void PickerProgreso_SelectedIndexChanged(object sender, EventArgs e)
         {
             App.ProgresoOrden = PickerProgreso.SelectedItem.ToString();
-            _ = LlenarPedidos(App.ProgresoOrden);
+            _ = LlenarPedidos(App.ProgresoOrden, Convert.ToDateTime(FechaDesde), Convert.ToDateTime(FechaHasta));
+
         }
 
         public async void BtnVerNotificaciones_Clicked(object sender, EventArgs e)
@@ -1203,15 +1213,23 @@ namespace FastFoodApp.Pantallas
         {
         }
 
-        void DatePickerDesde_DateSelected(System.Object sender, Xamarin.Forms.DateChangedEventArgs e)
+        async void DatePickerDesde_DateSelected(System.Object sender, Xamarin.Forms.DateChangedEventArgs e)
         {
             DateTime fechaDesde = e.NewDate;
+            App.FechaDesde = DatePickerDesde.Date;
+            App.FechaHasta = DatePickerHasta.Date;
+            LlenarMoney();
+
 
         }
 
-        void DatePickerHasta_DateSelected(System.Object sender, Xamarin.Forms.DateChangedEventArgs e)
+        async void DatePickerHasta_DateSelected(System.Object sender, Xamarin.Forms.DateChangedEventArgs e)
         {
             DateTime fechaHasta = e.NewDate;
+            App.FechaDesde = DatePickerDesde.Date;
+            App.FechaHasta = DatePickerHasta.Date;
+            LlenarMoney();
+
         }
     }
 }

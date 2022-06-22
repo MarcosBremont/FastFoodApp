@@ -47,6 +47,8 @@ namespace FastFoodApp
         public static string longitudPedido { get; set; }
         public static string latitudPedido { get; set; }
         public static string ProgresoOrden { get; set; }
+        public static DateTime FechaDesde { get; set; }
+        public static DateTime FechaHasta { get; set; }
 
 
         //DATOS EMPRESA
