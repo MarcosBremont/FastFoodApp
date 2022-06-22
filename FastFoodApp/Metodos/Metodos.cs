@@ -68,9 +68,9 @@ namespace FastFoodApp.Metodos
             return UsuarioResult;
         }
 
-        public async Task<List<EPedidos>> ObtenerPedidos(string estado_del_pedido, int idusuarios)
+        public async Task<List<EPedidos>> ObtenerPedidos(string estado_del_pedido, int idusuarios, DateTime fechadesde, DateTime fechahasta )
         {
-            var result = await herramientas.EjecutarSentenciaEnApiLibre($"FastFood/ObtenerPedidos/{estado_del_pedido.ToUpper()}/{idusuarios}");
+            var result = await herramientas.EjecutarSentenciaEnApiLibre($"FastFood/ObtenerPedidos/{estado_del_pedido.ToUpper()}/{idusuarios}/{fechadesde}/{fechahasta}");
             var lista_pedidos = Newtonsoft.Json.JsonConvert.DeserializeObject<List<EPedidos>>(result);
 
             return lista_pedidos;

@@ -167,8 +167,10 @@ namespace FastFoodApp.Pantallas
         {
             try
             {
+                String DATE = DateTime.Now.ToString("yyyy-MM-dd 00:00:00");
+                String DATE1 = DateTime.Now.ToString("yyyy-MM-dd 23:59:59");
                 FastFoodApp.Metodos.Metodos metodos = new FastFoodApp.Metodos.Metodos();
-                var datos = await metodos.ObtenerPedidos("TRABAJADA", 0);
+                var datos = await metodos.ObtenerPedidos("TRABAJADA", 0, Convert.ToDateTime(DATE), Convert.ToDateTime(DATE1));
                 lsv_money.ItemsSource = datos;
                 lblBalance.Text = string.Format("{0:N2}", datos.Sum(n => n.total_por_producto));
                 lblcantidad.Text = datos.Count.ToString();
@@ -389,7 +391,7 @@ namespace FastFoodApp.Pantallas
             try
             {
                 FastFoodApp.Metodos.Metodos metodos = new FastFoodApp.Metodos.Metodos();
-                var datos = await metodos.ObtenerPedidos(progresoorden, 0);
+                var datos = await metodos.ObtenerPedidos(progresoorden, 0, DateTime.Now, DateTime.Now);
                 lsv_pedidosEmpresa.ItemsSource = datos;
             }
             catch (Exception ex)
