@@ -4,6 +4,6 @@
 		<color android:color="#18356F"/>
 	</item>
 	<item android:gravity="center" android:width="180dp" android:height="190dp">
-		<bitmap android:src="@drawable/FastFood"/>
+		<bitmap android:src="@drawable/playstore"/>
 	</item>
 </layer-list>

@@ -351,7 +351,7 @@
                                     <Frame Padding="0" BorderColor="#18356F" HasShadow="False" CornerRadius="8" Margin="0,7,0,0" >
                                         <StackLayout Orientation="Horizontal">
                                             <Image Source="empresa.png" WidthRequest="25" Margin="5"></Image>
-                                            <customcontrol:CustomEntry Placeholder="Nombre Empresa" IsEnabled="False" x:Name="TxtNombreEmpresa" VerticalOptions="Center" HorizontalOptions="FillAndExpand"/>
+                                            <customcontrol:CustomEntry FontSize="8" Placeholder="Nombre Empresa" IsEnabled="False" x:Name="TxtNombreEmpresa" VerticalOptions="Center" HorizontalOptions="FillAndExpand"/>
                                         </StackLayout>
                                     </Frame>
 
@@ -360,7 +360,7 @@
                                     <Frame Padding="0" BorderColor="#18356F" HasShadow="False" CornerRadius="8" Margin="0,7,0,0">
                                         <StackLayout Orientation="Horizontal">
                                             <Image Source="locationempresa.png" WidthRequest="25" Margin="5"></Image>
-                                            <customcontrol:CustomEntry IsEnabled="False" HorizontalOptions="FillAndExpand" x:Name="TxtDireccionEmpresa" Placeholder="Dirección"/>
+                                            <customcontrol:CustomEntry FontSize="8" IsEnabled="False" HorizontalOptions="FillAndExpand" x:Name="TxtDireccionEmpresa" Placeholder="Dirección"/>
                                         </StackLayout>
                                     </Frame>
 
@@ -368,7 +368,7 @@
                                     <Frame Padding="0" BorderColor="#18356F" HasShadow="False" CornerRadius="8" Margin="0,7,0,0">
                                         <StackLayout Orientation="Horizontal">
                                             <Image Source="telephonenew2.png" WidthRequest="25" Margin="5"></Image>
-                                            <customcontrol:CustomEntry IsEnabled="False" HorizontalOptions="FillAndExpand" x:Name="TxtTelefonoEmpresa" Placeholder="Telefono Empresa"/>
+                                            <customcontrol:CustomEntry FontSize="8" IsEnabled="False" HorizontalOptions="FillAndExpand" x:Name="TxtTelefonoEmpresa" Placeholder="Telefono Empresa"/>
                                         </StackLayout>
                                     </Frame>
 
@@ -377,7 +377,7 @@
                                     <Frame Padding="0" BorderColor="#18356F" HasShadow="False" CornerRadius="8" Margin="0,7,0,0">
                                         <StackLayout Orientation="Horizontal">
                                             <Image Source="mailnew.png" WidthRequest="25" Margin="5"></Image>
-                                            <customcontrol:CustomEntry IsEnabled="False" HorizontalOptions="FillAndExpand" x:Name="TxtCorreoEmpresa" Placeholder="Correo Empresa"/>
+                                            <customcontrol:CustomEntry FontSize="8" IsEnabled="False" HorizontalOptions="FillAndExpand" x:Name="TxtCorreoEmpresa" Placeholder="Correo Empresa"/>
                                         </StackLayout>
                                     </Frame>
 
@@ -385,7 +385,7 @@
                                     <Frame Padding="0" BorderColor="#18356F" HasShadow="False" CornerRadius="8" Margin="0,7,0,0">
                                         <StackLayout Orientation="Horizontal">
                                             <Image Source="whatsappnew.png" WidthRequest="25" Margin="5"></Image>
-                                            <customcontrol:CustomEntry IsEnabled="False" HorizontalOptions="FillAndExpand" x:Name="TxtWhatsappEmpresa" Placeholder="Whatsapp"/>
+                                            <customcontrol:CustomEntry FontSize="10" IsEnabled="False" HorizontalOptions="FillAndExpand" x:Name="TxtWhatsappEmpresa" Placeholder="Whatsapp"/>
                                         </StackLayout>
                                     </Frame>
 
@@ -394,7 +394,7 @@
                                     <Frame Padding="0" BorderColor="#18356F" HasShadow="False" CornerRadius="8" Margin="0,7,0,0">
                                         <StackLayout Orientation="Horizontal">
                                             <Image Source="envionew.png" WidthRequest="25" Margin="5"></Image>
-                                            <customcontrol:CustomEntry IsEnabled="False" HorizontalOptions="FillAndExpand" x:Name="TxtPrecioEnvio" Placeholder="Precio Envio"/>
+                                            <customcontrol:CustomEntry FontSize="8" IsEnabled="False" HorizontalOptions="FillAndExpand" x:Name="TxtPrecioEnvio" Placeholder="Precio Envio"/>
                                         </StackLayout>
                                     </Frame>
 
@@ -402,7 +402,7 @@
                                     <Frame Padding="0" BorderColor="#18356F" HasShadow="False" CornerRadius="8" Margin="0,7,0,0">
                                         <StackLayout Orientation="Horizontal">
                                             <Image Source="locknew2.png" WidthRequest="25" Margin="5"></Image>
-                                            <customcontrol:CustomEntry IsPassword="True" IsEnabled="False" HorizontalOptions="FillAndExpand" x:Name="TxtClaveEMpresa" Placeholder="Contraseña"/>
+                                            <customcontrol:CustomEntry FontSize="8" IsPassword="True" IsEnabled="False" HorizontalOptions="FillAndExpand" x:Name="TxtClaveEMpresa" Placeholder="Contraseña"/>
                                             <ImageButton BackgroundColor="Transparent" x:Name="eyebuttonnegro" Clicked="eyebuttonnegro_Clicked" Source="eyenegro.png" WidthRequest="25" Margin="5"/>
                                             <ImageButton BackgroundColor="Transparent" x:Name="eyebuttonazul" Clicked="eyebuttonazul_Clicked" Source="eyeazul.png" IsVisible="false" WidthRequest="25" Margin="5"/>
                                         </StackLayout>

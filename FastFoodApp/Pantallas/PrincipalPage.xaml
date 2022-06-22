@@ -288,41 +288,55 @@
 
 
                                         <StackLayout  Background="Logo.jpg" Orientation="Vertical">
-                                            <Image HeightRequest="100" Source="man.png"/>
-                                            <Image HeightRequest="20" Source="add.png"/>
+                                            <Image x:Name="PerfilFoto" HeightRequest="100" Source="man.png"/>
+                                            <Image x:Name="ImgAgregarFoto" HeightRequest="20" Source="add.png"/>
                                         </StackLayout>
 
-                                        <StackLayout Margin="0,10,0,0" VerticalOptions="Center" HorizontalOptions="FillAndExpand" Orientation="Horizontal">
-                                            <Image HeightRequest="20" VerticalOptions="Center" Source="userIconApp.png"/>
-                                            <Entry Placeholder="Nombre" IsEnabled="False" x:Name="TxtNombre" VerticalOptions="Center" HorizontalOptions="FillAndExpand"></Entry>
-                                        </StackLayout>
+                                        <Frame Padding="0" BorderColor="#18356F" HasShadow="False" CornerRadius="8" Margin="0,7,0,0">
+                                            <StackLayout Orientation="Horizontal">
+                                                <Image Source="userNew1.png" WidthRequest="25" Margin="5"></Image>
+                                                <customcontrol:CustomEntry IsEnabled="False" HorizontalOptions="FillAndExpand" x:Name="TxtNombre" Placeholder="Nombre"/>
+                                            </StackLayout>
+                                        </Frame>
+
+                                        <Frame Padding="0" BorderColor="#18356F" HasShadow="False" CornerRadius="8" Margin="0,7,0,0">
+                                            <StackLayout Orientation="Horizontal">
+                                                <Image Source="userNew1.png" WidthRequest="25" Margin="5"></Image>
+                                                <customcontrol:CustomEntry IsEnabled="False" HorizontalOptions="FillAndExpand" x:Name="TxtApellido" Placeholder="Apellido"/>
+                                            </StackLayout>
+                                        </Frame>
+
+                                        <Frame Padding="0" BorderColor="#18356F" HasShadow="False" CornerRadius="8" Margin="0,7,0,0">
+                                            <StackLayout Orientation="Horizontal">
+                                                <Image Source="locationempresa.png" WidthRequest="25" Margin="5"></Image>
+                                                <customcontrol:CustomEntry IsEnabled="False" HorizontalOptions="FillAndExpand" x:Name="TxtDireccion" Placeholder="Dirección"/>
+                                            </StackLayout>
+                                        </Frame>
+
+                                        <Frame Padding="0" BorderColor="#18356F" HasShadow="False" CornerRadius="8" Margin="0,7,0,0">
+                                            <StackLayout Orientation="Horizontal">
+                                                <Image Source="mailnew.png" WidthRequest="25" Margin="5"></Image>
+                                                <customcontrol:CustomEntry IsEnabled="False" HorizontalOptions="FillAndExpand" x:Name="TxtEmail" Placeholder="Email"/>
+                                            </StackLayout>
+                                        </Frame>
 
 
-                                        <StackLayout Margin="0,2,0,0" VerticalOptions="Center" HorizontalOptions="FillAndExpand" Orientation="Horizontal">
-                                            <Image HeightRequest="20" VerticalOptions="Center" Source="userIconApp.png"/>
-                                            <Entry Placeholder="Apellido" IsEnabled="False" x:Name="TxtApellido" VerticalOptions="Center" HorizontalOptions="FillAndExpand"></Entry>
-                                        </StackLayout>
+                                        <Frame Padding="0" BorderColor="#18356F" HasShadow="False" CornerRadius="8" Margin="0,7,0,0">
+                                            <StackLayout Orientation="Horizontal">
+                                                <Image Source="telephonenew2.png" WidthRequest="25" Margin="5"></Image>
+                                                <customcontrol:CustomEntry IsEnabled="False" HorizontalOptions="FillAndExpand" x:Name="TxtTelefono" Placeholder="Telefono"/>
+                                            </StackLayout>
+                                        </Frame>
 
+                                        <Frame Padding="0" BorderColor="#18356F" HasShadow="False" CornerRadius="8" Margin="0,7,0,0">
+                                            <StackLayout Orientation="Horizontal">
+                                                <Image Source="locknew2.png" WidthRequest="25" Margin="5"></Image>
+                                                <customcontrol:CustomEntry IsPassword="True" IsEnabled="False" HorizontalOptions="FillAndExpand" x:Name="TxtClave" Placeholder="Contraseña"/>
+                                                <ImageButton BackgroundColor="Transparent" x:Name="eyebuttonnegro" Clicked="eyebuttonnegro_Clicked" Source="eyenegro.png" WidthRequest="25" Margin="5"/>
+                                                <ImageButton BackgroundColor="Transparent" x:Name="eyebuttonazul" Clicked="eyebuttonazul_Clicked" Source="eyeazul.png" IsVisible="false" WidthRequest="25" Margin="5"/>
+                                            </StackLayout>
+                                        </Frame>
 
-                                        <StackLayout Margin="0,2,0,0" VerticalOptions="Center" HorizontalOptions="FillAndExpand" Orientation="Horizontal">
-                                            <Image HeightRequest="20" VerticalOptions="Center" Source="mail.png"/>
-                                            <Entry Placeholder="Email" IsEnabled="False" x:Name="TxtEmail" VerticalOptions="Center" HorizontalOptions="FillAndExpand"></Entry>
-                                        </StackLayout>
-
-                                        <StackLayout Margin="0,2,0,0" VerticalOptions="Center" HorizontalOptions="FillAndExpand" Orientation="Horizontal">
-                                            <Image HeightRequest="20" VerticalOptions="Center" Source="marker.png"/>
-                                            <Editor Placeholder="Dirección"  x:Name="TxtDireccion" IsEnabled="False" TextTransform="Uppercase" VerticalOptions="Center" HorizontalOptions="FillAndExpand" Margin="0,0,0,0" HeightRequest="80" WidthRequest="50"/>
-                                        </StackLayout>
-
-                                        <StackLayout Margin="0,2,0,0" VerticalOptions="Center" HorizontalOptions="FillAndExpand" Orientation="Horizontal">
-                                            <Image HeightRequest="20" VerticalOptions="Center" Source="phone.png"/>
-                                            <Entry Placeholder="Telefono" IsEnabled="False" x:Name="TxtTelefono" VerticalOptions="Center" HorizontalOptions="FillAndExpand"></Entry>
-                                        </StackLayout>
-
-                                        <StackLayout Margin="0,2,0,0" VerticalOptions="Center" HorizontalOptions="FillAndExpand" Orientation="Horizontal">
-                                            <Image HeightRequest="20" VerticalOptions="Center" Source="passwordIconApp.png"/>
-                                            <Entry Placeholder="Contraseña" IsEnabled="False" x:Name="TxtClave" VerticalOptions="Center" HorizontalOptions="FillAndExpand"></Entry>
-                                        </StackLayout>
 
 
                                         <StackLayout Margin="0,2,0,0">

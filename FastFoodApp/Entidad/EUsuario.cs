@@ -20,5 +20,6 @@ namespace FastFoodApp.Entidad
         public string respuesta { get; set; }
         public string mensaje { get; set; }
         public string empresa { get; set; }
+        public string foto { get; set; }
     }
 }

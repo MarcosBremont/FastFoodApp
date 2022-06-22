@@ -54,7 +54,7 @@ namespace FastFoodApp.Pantallas
                 {
                     if (string.IsNullOrEmpty(TxtEmail.Text) || string.IsNullOrEmpty(TxtPassword.Text))
                     {
-                        Acr.UserDialogs.UserDialogs.Instance.Toast("El usuario y la contraseña son obligatorios");
+                        toastConfig.MostrarNotificacion($"El usuario y la contraseña son obligatorios.", ToastPosition.Top, 3, "#e63946");
                         return;
                     }
 
@@ -64,9 +64,9 @@ namespace FastFoodApp.Pantallas
                     if (result.respuesta == "OK")
                     {
                         App.empresa = result.empresa;
-                        InsertarIdPedido();
-                        SeleccionarNumeroDeOrdenGeneral();
-                        LlenarEmpresa();
+                        _ = InsertarIdPedido();
+                        _ = SeleccionarNumeroDeOrdenGeneral();
+                        _ = LlenarEmpresa();
 
                         toastConfig.MostrarNotificacion($"Bienvenido {result.nombre}", ToastPosition.Top, 3, "#51C560");
                         if (result.empresa == "S")
@@ -80,14 +80,12 @@ namespace FastFoodApp.Pantallas
                     }
                     else
                     {
-                        Acr.UserDialogs.UserDialogs.Instance.Alert($"Los datos no son correctos");
-
+                        toastConfig.MostrarNotificacion($"Los datos no son correctos, por favor verifique nuevamente.", ToastPosition.Top, 4, "#e63946");
                     }
                 }
                 catch (Exception ex)
                 {
-
-                    Acr.UserDialogs.UserDialogs.Instance.Toast($"No se pudo establecer la conexión, por favor verifique los datos nuevamente");
+                    toastConfig.MostrarNotificacion($"No se pudo establecer la conexión, por favor verifique los datos nuevamente.", ToastPosition.Top, 4, "#e63946");
                 }
 
             }
@@ -119,7 +117,7 @@ namespace FastFoodApp.Pantallas
             }
             catch (Exception ex)
             {
-
+                toastConfig.MostrarNotificacion($"No se pudo establecer la conexión, por favor intente nuevamente.", ToastPosition.Top, 4, "#e63946");
             }
         }
 
@@ -133,6 +131,7 @@ namespace FastFoodApp.Pantallas
             }
             catch (Exception ex)
             {
+                toastConfig.MostrarNotificacion($"No se pudo establecer la conexión, por favor intente nuevamente.", ToastPosition.Top, 4, "#e63946");
 
             }
         }
@@ -146,6 +145,7 @@ namespace FastFoodApp.Pantallas
             }
             catch (Exception ex)
             {
+                toastConfig.MostrarNotificacion($"No se pudo realizar dicha acción, por favor verifique nuevamente.", ToastPosition.Top, 4, "#e63946");
 
             }
         }
