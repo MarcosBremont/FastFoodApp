@@ -63,6 +63,7 @@ namespace FastFoodApp.Metodos
                 App.longitud = UsuarioResult.longitud;
                 App.clave = UsuarioResult.clave;
                 App.empresa = UsuarioResult.empresa;
+                App.foto = UsuarioResult.foto;
             }
 
             return UsuarioResult;
@@ -92,9 +93,9 @@ namespace FastFoodApp.Metodos
             return lista_pedidos;
         } // Fin del método ObtenerMenu
 
-        public async Task<List<EPedidos>> AgregarPedido(int idusuarios)
+        public async Task<List<EPedidos>> AgregarPedido(int idusuario)
         {
-            var result = await herramientas.EjecutarSentenciaEnApiLibre($"FastFood/AgregarPedido/{idusuarios}");
+            var result = await herramientas.EjecutarSentenciaEnApiLibre($"FastFood/AgregarPedido/{idusuario}");
             var lista_pedidos = Newtonsoft.Json.JsonConvert.DeserializeObject<List<EPedidos>>(result);
 
             return lista_pedidos;

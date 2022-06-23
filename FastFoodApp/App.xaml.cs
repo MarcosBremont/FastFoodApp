@@ -42,6 +42,9 @@ namespace FastFoodApp
         public static List<StringBuilder> listOfStrings = new List<StringBuilder>();
 
 
+        //Datos Usuario
+        public static string foto { get; set; }
+
 
         //Datos Pedido
         public static string longitudPedido { get; set; }

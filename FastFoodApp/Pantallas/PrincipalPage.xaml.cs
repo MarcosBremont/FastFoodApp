@@ -167,6 +167,7 @@ namespace FastFoodApp.Pantallas
             TxtTelefono.Text = App.telefono.ToUpper();
             TxtClave.Text = App.clave.ToUpper();
             TxtEmail.Text = App.correo.ToUpper();
+            ImgAgregarFoto.Source = App.foto;
 
         }
 
@@ -372,7 +373,7 @@ namespace FastFoodApp.Pantallas
             }
             catch (Exception ex)
             {
-                toastConfig.MostrarNotificacion($"No se pudo establecer la conexión, por favor intente nuevamente.", ToastPosition.Top, 4, "#e63946");
+                toastConfig.MostrarNotificacion($"Llenar Menu No se pudo establecer la conexión, por favor intente nuevamente.", ToastPosition.Top, 4, "#e63946");
             }
         }
 
@@ -399,7 +400,7 @@ namespace FastFoodApp.Pantallas
             }
             catch (Exception ex)
             {
-                toastConfig.MostrarNotificacion($"No se pudo establecer la conexión, por favor intente nuevamente.", ToastPosition.Top, 4, "#e63946");
+                toastConfig.MostrarNotificacion($"Llenar Notificaciones No se pudo establecer la conexión, por favor intente nuevamente.", ToastPosition.Top, 4, "#e63946");
             }
         }
 
@@ -428,7 +429,7 @@ namespace FastFoodApp.Pantallas
             }
             catch (Exception ex)
             {
-                toastConfig.MostrarNotificacion($"No se pudo establecer la conexión, por favor intente nuevamente.", ToastPosition.Top, 4, "#e63946");
+                toastConfig.MostrarNotificacion($"Llenar Carrito No se pudo establecer la conexión, por favor intente nuevamente.", ToastPosition.Top, 4, "#e63946");
 
             }
         }
@@ -455,7 +456,7 @@ namespace FastFoodApp.Pantallas
             }
             catch (Exception ex)
             {
-                toastConfig.MostrarNotificacion($"No se pudo establecer la conexión, por favor intente nuevamente.", ToastPosition.Top, 4, "#e63946");
+                toastConfig.MostrarNotificacion($"Carrito por usuario No se pudo establecer la conexión, por favor intente nuevamente.", ToastPosition.Top, 4, "#e63946");
 
             }
         }
