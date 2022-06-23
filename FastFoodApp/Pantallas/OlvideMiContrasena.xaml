@@ -24,7 +24,7 @@
                     </StackLayout>
                 </Frame>
 
-                <Button Clicked="BtnEnviarContrasena_Clicked" VerticalOptions="Center" x:Name="BtnEnviarContrasena" Text="Restablecer Contraseña" FontAttributes="Bold" CornerRadius="4" TextColor="#18356F" BackgroundColor="#FFCC00"/>
+                <Button Clicked="BtnEnviarContrasena_Clicked" VerticalOptions="Center" x:Name="BtnEnviarContrasena" Text="Restablecer Contraseña" FontAttributes="Bold" CornerRadius="4" TextColor="White" BackgroundColor="#FFCC00"/>
                 <Button Clicked="BtnVolverAtras_Clicked" VerticalOptions="Center" x:Name="BtnVolverAtras" Text="Volver Atras" FontAttributes="Bold" CornerRadius="4" TextColor="White" BackgroundColor="#18356F"/>
 
             </StackLayout>

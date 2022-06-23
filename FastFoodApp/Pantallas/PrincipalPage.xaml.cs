@@ -587,7 +587,7 @@ namespace FastFoodApp.Pantallas
                 var datos = await metodos.ActualizarUsuario(nombre, apellido, direccion, telefono, email, clave, idusuarios);
                 if (datos.Respuesta == "OK")
                 {
-                    toastConfig.MostrarNotificacion($"Datos actualizados con exito", ToastPosition.Top, 3, "#386641");
+                    toastConfig.MostrarNotificacion($"Datos actualizados con exito", ToastPosition.Top, 3, "#4bbd62");
                 }
                 else
                 {
