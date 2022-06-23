@@ -159,15 +159,20 @@ namespace FastFoodApp.Pantallas
             });
         }
 
-        private void LlenarMiPerfil()
+        private async void LlenarMiPerfil()
         {
-            TxtNombre.Text = App.nombre.ToUpper();
-            TxtApellido.Text = App.apellido.ToUpper();
-            TxtDireccion.Text = App.direccion.ToUpper();
-            TxtTelefono.Text = App.telefono.ToUpper();
-            TxtClave.Text = App.clave.ToUpper();
-            TxtEmail.Text = App.correo.ToUpper();
-            ImgAgregarFoto.Source = App.foto;
+
+            FastFoodApp.Metodos.Metodos metodos = new FastFoodApp.Metodos.Metodos();
+            var datos = await metodos.IniciarSesion(App.correo, App.clave);
+
+
+            TxtNombre.Text = datos.nombre.ToUpper();
+            TxtApellido.Text = datos.apellido.ToUpper();
+            TxtDireccion.Text = datos.direccion.ToUpper();
+            TxtTelefono.Text = datos.telefono.ToUpper();
+            TxtClave.Text = datos.clave.ToUpper();
+            TxtEmail.Text = datos.correo.ToUpper();
+            PerfilFoto.Source = datos.foto;
 
         }
 
@@ -443,7 +448,7 @@ namespace FastFoodApp.Pantallas
                 FastFoodApp.Metodos.Metodos metodos = new FastFoodApp.Metodos.Metodos();
                 lsv_pedidos.ItemsSource = null;
                 var datos = await metodos.ObtenerCarritoPorUsuario(0, App.idusuarios, "PENDIENTE");
-                if (datos.Count >= 0)
+                if (datos.Count == 0)
                 {
                     LblAunNoHasPedidoNada.IsVisible = true;
                 }
@@ -556,6 +561,7 @@ namespace FastFoodApp.Pantallas
             TxtApellido.IsEnabled = true;
             btnGuardarCambios.IsVisible = true;
             btnEditarPerfil.IsVisible = false;
+            ImgAgregarFoto.IsVisible = true;
 
         }
 
@@ -581,7 +587,7 @@ namespace FastFoodApp.Pantallas
                 var datos = await metodos.ActualizarUsuario(nombre, apellido, direccion, telefono, email, clave, idusuarios);
                 if (datos.Respuesta == "OK")
                 {
-                    toastConfig.MostrarNotificacion($"Datos actualizados con exito", ToastPosition.Top, 3, "#e63946");
+                    toastConfig.MostrarNotificacion($"Datos actualizados con exito", ToastPosition.Top, 3, "#386641");
                 }
                 else
                 {
@@ -603,16 +609,17 @@ namespace FastFoodApp.Pantallas
                 st.Seek(0, SeekOrigin.Begin);
                 st.Read(buffer, 0, buffer.Length);
                 var base64 = Convert.ToBase64String(buffer);
-                var result = await herramientas.SetPost<EEmpresa>("FastFood/GrabarImagenCliente", new EUsuario() { idusuarios = App.idusuarios, foto = base64 });
+                var result = await herramientas.SetPost<EUsuario>("FastFood/GrabarImagenCliente", new EUsuario() { idusuarios = App.idusuarios, foto = base64 });
 
-                //if (result.result == "OK")
-                //{
-                //    App.url_foto_empresa = result.logo_empresa;
-                //}
-                //else
-                //{
-                //    toastConfig.MostrarNotificacion($"No se pudo actualizar la foto del producto. Intente mas tarde.", ToastPosition.Top, 3, "#c82333");
-                //}
+                if (result.result == "OK")
+                {
+                    App.Foto = result.foto;
+                    LlenarMiPerfil();
+                }
+                else
+                {
+                    toastConfig.MostrarNotificacion($"No se pudo actualizar la foto del producto. Intente mas tarde.", ToastPosition.Top, 3, "#c82333");
+                }
             }
             catch (Exception ex)
             {
@@ -635,6 +642,8 @@ namespace FastFoodApp.Pantallas
             btnEditarPerfil.IsVisible = true;
             TxtClave.IsEnabled = false;
             btnGuardarCambios.IsVisible = false;
+            ImgAgregarFoto.IsVisible = false;
+
 
             if (mediaFileEmpresa != null)
             {

@@ -63,7 +63,7 @@ namespace FastFoodApp.Metodos
                 App.longitud = UsuarioResult.longitud;
                 App.clave = UsuarioResult.clave;
                 App.empresa = UsuarioResult.empresa;
-                App.foto = UsuarioResult.foto;
+                App.Foto = UsuarioResult.foto;
             }
 
             return UsuarioResult;

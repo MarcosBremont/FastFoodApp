@@ -278,7 +278,7 @@
 
 
                     <Frame HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand" HasShadow="False" Margin="10" CornerRadius="4" BackgroundColor="White">
-                        <Grid RowSpacing="0" BackgroundColor="#EEEEEE">
+                        <Grid RowSpacing="0" BackgroundColor="White">
 
                             <StackLayout VerticalOptions="FillAndExpand" Grid.Row="0" Grid.Column="0" Orientation="Vertical" Margin="0,0,0,0">
 
@@ -289,7 +289,7 @@
 
                                         <StackLayout  Background="Logo.jpg" Orientation="Vertical">
                                             <Image x:Name="PerfilFoto" HeightRequest="100" Source="man.png"/>
-                                            <Image x:Name="ImgAgregarFoto" HeightRequest="20" Source="add.png"/>
+                                            <Image x:Name="ImgAgregarFoto" IsVisible="false" HeightRequest="20" Source="add.png"/>
                                         </StackLayout>
 
                                         <Frame Padding="0" BorderColor="#18356F" HasShadow="False" CornerRadius="8" Margin="0,7,0,0">

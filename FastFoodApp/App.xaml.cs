@@ -43,7 +43,7 @@ namespace FastFoodApp
 
 
         //Datos Usuario
-        public static string foto { get; set; }
+        public static string Foto { get; set; }
 
 
         //Datos Pedido
