@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="1.0" package="com.bremont.fastfoodapp" android:installLocation="auto">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="1.0" package="com.bremont.LetsEatAgain" android:installLocation="auto">
 	<uses-sdk android:minSdkVersion="21" android:targetSdkVersion="30" />
-	<application android:label="FastFoodApp.Android" android:theme="@style/MainTheme" android:networkSecurityConfig="@xml/network_security_config" android:usesCleartextTraffic="true">
-		<provider android:name="android.support.v4.content.FileProvider" android:authorities="com.bremont.fastfoodapp.fileprovider" android:exported="false" android:grantUriPermissions="true">
+	<application android:label="LetsEatAgain.Android" android:theme="@style/MainTheme" android:networkSecurityConfig="@xml/network_security_config" android:usesCleartextTraffic="true">
+		<provider android:name="android.support.v4.content.FileProvider" android:authorities="com.bremont.LetsEatAgain.fileprovider" android:exported="false" android:grantUriPermissions="true">
 			<meta-data android:name="android.support.FILE_PROVIDER_PATHS" android:resource="@xml/file_paths"></meta-data>
 		</provider>
 	</application>

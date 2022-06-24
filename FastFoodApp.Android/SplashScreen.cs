@@ -11,7 +11,7 @@ using System.Text;
 
 namespace FastFoodApp.Droid
 {
-    [Activity(Label = "Fast Food App", MainLauncher = true, NoHistory = true, Theme = "@style/splashscreen")]
+    [Activity(Label = "Let's Eat Again", MainLauncher = true, NoHistory = true, Theme = "@style/splashscreen")]
     public class SplashScreen : Activity
     {
         protected override void OnCreate(Bundle savedInstanceState)
