@@ -281,7 +281,7 @@
                             </ListView.ItemTemplate>
                         </ListView>
 
-                        <StackLayout Margin="10,0,0,0"  Orientation="Horizontal" >
+                        <StackLayout HeightRequest="30" Margin="10,0,0,0"  Orientation="Horizontal" >
                             <Label FontSize="14" FontAttributes="Bold" TextColor="#18356F" Text="Total Dinero:" HorizontalOptions="Start" VerticalOptions="Center" />
                             <Label x:Name="lblBalance" FontSize="14"  TextColor="#18356F" HorizontalOptions="Start" VerticalOptions="Center" />
 
@@ -351,7 +351,7 @@
                                     <Frame Padding="0" BorderColor="#18356F" HasShadow="False" CornerRadius="8" Margin="0,7,0,0" >
                                         <StackLayout Orientation="Horizontal">
                                             <Image Source="empresa.png" WidthRequest="25" Margin="5"></Image>
-                                            <customcontrol:CustomEntry FontSize="8" Placeholder="Nombre Empresa" IsEnabled="False" x:Name="TxtNombreEmpresa" VerticalOptions="Center" HorizontalOptions="FillAndExpand"/>
+                                            <customcontrol:CustomEntry FontSize="12" Placeholder="Nombre Empresa" IsEnabled="False" x:Name="TxtNombreEmpresa" VerticalOptions="Center" HorizontalOptions="FillAndExpand"/>
                                         </StackLayout>
                                     </Frame>
 
@@ -360,7 +360,7 @@
                                     <Frame Padding="0" BorderColor="#18356F" HasShadow="False" CornerRadius="8" Margin="0,7,0,0">
                                         <StackLayout Orientation="Horizontal">
                                             <Image Source="locationempresa.png" WidthRequest="25" Margin="5"></Image>
-                                            <customcontrol:CustomEntry FontSize="8" IsEnabled="False" HorizontalOptions="FillAndExpand" x:Name="TxtDireccionEmpresa" Placeholder="Dirección"/>
+                                            <customcontrol:CustomEntry FontSize="12" IsEnabled="False" HorizontalOptions="FillAndExpand" x:Name="TxtDireccionEmpresa" Placeholder="Dirección"/>
                                         </StackLayout>
                                     </Frame>
 
@@ -368,7 +368,7 @@
                                     <Frame Padding="0" BorderColor="#18356F" HasShadow="False" CornerRadius="8" Margin="0,7,0,0">
                                         <StackLayout Orientation="Horizontal">
                                             <Image Source="telephonenew2.png" WidthRequest="25" Margin="5"></Image>
-                                            <customcontrol:CustomEntry FontSize="8" IsEnabled="False" HorizontalOptions="FillAndExpand" x:Name="TxtTelefonoEmpresa" Placeholder="Telefono Empresa"/>
+                                            <customcontrol:CustomEntry FontSize="12" IsEnabled="False" HorizontalOptions="FillAndExpand" x:Name="TxtTelefonoEmpresa" Placeholder="Telefono Empresa"/>
                                         </StackLayout>
                                     </Frame>
 
@@ -377,7 +377,7 @@
                                     <Frame Padding="0" BorderColor="#18356F" HasShadow="False" CornerRadius="8" Margin="0,7,0,0">
                                         <StackLayout Orientation="Horizontal">
                                             <Image Source="mailnew.png" WidthRequest="25" Margin="5"></Image>
-                                            <customcontrol:CustomEntry FontSize="8" IsEnabled="False" HorizontalOptions="FillAndExpand" x:Name="TxtCorreoEmpresa" Placeholder="Correo Empresa"/>
+                                            <customcontrol:CustomEntry FontSize="12" IsEnabled="False" HorizontalOptions="FillAndExpand" x:Name="TxtCorreoEmpresa" Placeholder="Correo Empresa"/>
                                         </StackLayout>
                                     </Frame>
 
