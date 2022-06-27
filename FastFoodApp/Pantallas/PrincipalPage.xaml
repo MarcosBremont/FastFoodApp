@@ -91,11 +91,10 @@
             <!--Layout Pedidos-->
             <StackLayout IsVisible="false" VerticalOptions="StartAndExpand" x:Name="StackLayoutPedidos" BackgroundColor="White">
                 <Label FontAttributes="Bold" HorizontalOptions="Center" x:Name="LblAunNoHasPedidoNada" IsVisible="false" TextColor="#18356F" Text="Aun no has realizado ningun pedido."></Label>
-
                 <Grid RowSpacing="0" BackgroundColor="White">
 
                     <StackLayout VerticalOptions="FillAndExpand" Grid.Row="0" Grid.Column="0" Orientation="Vertical" Margin="0,0,0,0">
-                        <ListView SelectionMode="None" RefreshControlColor="#18356F" Refreshing="lsv_pedidos_Refreshing" IsPullToRefreshEnabled="True"  VerticalOptions="FillAndExpand" x:Name="lsv_pedidos" Grid.Row="0" BackgroundColor="Transparent" HorizontalOptions="CenterAndExpand" SeparatorVisibility="None"  HasUnevenRows="True" >
+                        <ListView ItemSelected="lsv_pedidos_ItemSelected"  SelectionMode="Single" RefreshControlColor="#18356F" Refreshing="lsv_pedidos_Refreshing" IsPullToRefreshEnabled="True"  VerticalOptions="FillAndExpand" x:Name="lsv_pedidos" Grid.Row="0" BackgroundColor="Transparent" HorizontalOptions="CenterAndExpand" SeparatorVisibility="None"  HasUnevenRows="True" >
                             <ListView.ItemTemplate>
 
                                 <DataTemplate>
@@ -165,6 +164,7 @@
             <!--Layout Carrito-->
             <StackLayout IsVisible="false" VerticalOptions="StartAndExpand" x:Name="StackLayoutTuCarrito" BackgroundColor="White">
                 <Label FontAttributes="Bold" Margin="0,5,0,0" HorizontalOptions="Center" x:Name="LblAunNoAgregasNada" IsVisible="false" TextColor="#18356F" Text="Tu carrito esta vacio..."></Label>
+                <Image HeightRequest="150" x:Name="ImgCarEmpty" Source="emptycart"></Image>
 
                 <Grid RowSpacing="0" BackgroundColor="White">
 

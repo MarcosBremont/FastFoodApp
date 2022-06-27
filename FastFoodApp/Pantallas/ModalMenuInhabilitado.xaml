@@ -3,9 +3,9 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:popup="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup" xmlns:customcontrol="clr-namespace:FastFoodApp.ControlesPersonalizados"
-    x:Class="FastFoodApp.Pantallas.ModalMenu">
+    x:Class="FastFoodApp.Pantallas.ModalMenuInhabilitado">
     <ContentPage.Content>
-        <StackLayout x:Name="modalMenu" Margin="10,20,10,30" BackgroundColor="#EEEEEE" >
+        <StackLayout x:Name="modalMenuInhabilitado" Margin="10,20,10,30" BackgroundColor="#EEEEEE" >
 
             <StackLayout AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1">
                 <Grid>

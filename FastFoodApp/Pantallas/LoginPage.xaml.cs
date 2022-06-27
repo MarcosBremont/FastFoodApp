@@ -67,7 +67,6 @@ namespace FastFoodApp.Pantallas
                         _ = InsertarIdPedido();
                         _ = SeleccionarNumeroDeOrdenGeneral();
                         _ = LlenarEmpresa();
-
                         toastConfig.MostrarNotificacion($"Bienvenido {result.nombre}", ToastPosition.Top, 3, "#51C560");
                         if (result.empresa == "S")
                         {

@@ -26,6 +26,7 @@ namespace FastFoodApp.Pantallas
     {
         ModalCantidad modalCantidad = new ModalCantidad();
         ModalMenu modalMenu = new ModalMenu();
+        ModalMenuInhabilitado modalMenuInhabilitado = new ModalMenuInhabilitado();
         ModalHacerPedido modalHacerPedido = new ModalHacerPedido();
         ModalCambiarProgreso modalCambiarProgreso = new ModalCambiarProgreso();
         ModalNotificaciones modalNotificaciones = new ModalNotificaciones();
@@ -1230,6 +1231,20 @@ namespace FastFoodApp.Pantallas
             App.FechaHasta = DatePickerHasta.Date;
             LlenarMoney();
 
+        }
+
+        private async void BtnProductosInhabilitados_Clicked(object sender, EventArgs e)
+        {
+            modalMenuInhabilitado = new ModalMenuInhabilitado();
+            await PopupNavigation.PushAsync(modalMenuInhabilitado);
+            modalMenuInhabilitado.Disappearing += ModalMenuInhabilitado_Disappearing;
+
+        }
+
+        private async void ModalMenuInhabilitado_Disappearing(object sender, EventArgs e)
+        {
+            FastFoodApp.Metodos.Metodos metodos = new FastFoodApp.Metodos.Metodos();
+            var datos = await metodos.ObtenerMenu("S");
         }
     }
 }

@@ -60,7 +60,6 @@
 
                                         <StackLayout  x:Name="lytImageCliente" Margin="0,0,0,0" HorizontalOptions="CenterAndExpand">
                                             <Image x:Name="imgProducto" Source="DefaultFood.png" HeightRequest="80">
-
                                             </Image>
                                         </StackLayout>
 
@@ -68,6 +67,7 @@
                                             <Button Text="AGREGAR FOTO" HeightRequest="40" x:Name="BtnAgregarFoto"  Clicked="BtnAgregarFoto_Clicked" BackgroundColor="#FFCC00" TextColor="White" FontAttributes="Bold" />
                                             <Button Text="AGREGAR AL MENÚ" HeightRequest="40" x:Name="BtnAgregarAlMenu" IsVisible="false"  Clicked="BtnAgregarAlMenu_Clicked" BackgroundColor="#18356F" TextColor="White" FontAttributes="Bold" />
                                             <Button Text="VER MENÚ" HeightRequest="40" x:Name="BtnVermenu" Clicked="BtnVermenu_Clicked" BackgroundColor="#18356F" TextColor="White" FontAttributes="Bold" />
+                                            <Button Text="VER PRODUCTOS INHABILITADOS" HeightRequest="40" x:Name="BtnProductosInhabilitados" Clicked="BtnProductosInhabilitados_Clicked" BackgroundColor="#18356F" TextColor="White" FontAttributes="Bold" />
                                         </StackLayout>
 
 
@@ -207,7 +207,7 @@
 
                             <Label VerticalOptions="Center" TextColor="White" Text="Desde"></Label>
 
-                            <DatePicker TextColor="White" x:Name="DatePickerDesde" DateSelected="DatePickerDesde_DateSelected" VerticalOptions="Center"  Format="d" />
+                            <DatePicker TextColor="#d62828" x:Name="DatePickerDesde" DateSelected="DatePickerDesde_DateSelected" VerticalOptions="Center"  Format="d" />
 
                         </StackLayout>
 
@@ -215,7 +215,7 @@
 
                             <Label VerticalOptions="Center" TextColor="White" Text="Hasta"></Label>
 
-                            <DatePicker TextColor="White" x:Name="DatePickerHasta" DateSelected="DatePickerHasta_DateSelected" VerticalOptions="Center"  Format="d" />
+                            <DatePicker TextColor="#d62828" x:Name="DatePickerHasta" DateSelected="DatePickerHasta_DateSelected" VerticalOptions="Center"  Format="d" />
 
                         </StackLayout>
 

@@ -25,6 +25,10 @@
     <EmbeddedResource Update="Pantallas\LoginPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="Pantallas\ModalMenuInhabilitado.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Pantallas\PrincipalPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
@@ -40,6 +44,10 @@
   <ItemGroup>
     <Compile Update="Pantallas\ModalCambiarProgreso.xaml.cs">
       <DependentUpon>ModalCambiarProgreso.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Pantallas\ModalMenuInhabilitado.xaml.cs">
+      <SubType>Code</SubType>
+      <DependentUpon>ModalMenuInhabilitado.xaml</DependentUpon>
     </Compile>
     <Compile Update="Pantallas\ModalNotificaciones.xaml.cs">
       <DependentUpon>ModalNotificaciones.xaml</DependentUpon>

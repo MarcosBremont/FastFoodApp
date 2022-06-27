@@ -61,7 +61,7 @@ namespace FastFoodApp.Pantallas
                     StackLayoutMiPerfil.IsVisible = false;
                     StackLayoutTuCarrito.IsVisible = false;
                     StackLayoutNotificaciones.IsVisible = false;
-                    lsv_pedidos_Refreshing(null,null);
+                    lsv_pedidos_Refreshing(null, null);
                     btnPedidos.Source = "TimeAmarillo";
                     btnMenu.Source = "hamburgerSodaWhite.png";
                     btnMiPerfil.Source = "userBlanco";
@@ -102,7 +102,7 @@ namespace FastFoodApp.Pantallas
                     StackLayoutTuCarrito.IsVisible = false;
                     StackLayoutPedidos.IsVisible = false;
                     StackLayoutNotificaciones.IsVisible = true;
-                    lsv_notificaciones_Refreshing(null,null);
+                    lsv_notificaciones_Refreshing(null, null);
                     btnPedidos.Source = "TimeBlanco";
                     btnMenu.Source = "hamburgerSodaWhite.png";
                     btnMiPerfil.Source = "userBlanco";
@@ -420,11 +420,14 @@ namespace FastFoodApp.Pantallas
                 {
                     LblAunNoAgregasNada.IsVisible = true;
                     BtnHacerPedido.IsVisible = false;
+                    ImgCarEmpty.IsVisible = true;
                 }
                 else
                 {
                     LblAunNoAgregasNada.IsVisible = false;
                     BtnHacerPedido.IsVisible = true;
+                    ImgCarEmpty.IsVisible = false;
+
 
                 }
                 lsv_Carrito.ItemsSource = datos;
@@ -452,10 +455,12 @@ namespace FastFoodApp.Pantallas
                 if (datos.Count == 0)
                 {
                     LblAunNoHasPedidoNada.IsVisible = true;
+            
                 }
                 else
                 {
                     LblAunNoHasPedidoNada.IsVisible = false;
+        
                 }
                 lsv_pedidos.ItemsSource = datos;
                 lsv_pedidos.IsVisible = true;
@@ -587,7 +592,7 @@ namespace FastFoodApp.Pantallas
             {
                 FastFoodApp.Metodos.Metodos metodos = new FastFoodApp.Metodos.Metodos();
                 var datos = await metodos.ActualizarUsuario(nombre, apellido, direccion, telefono, email, clave, idusuarios);
-                
+
             }
             catch (Exception ex)
             {
@@ -635,7 +640,7 @@ namespace FastFoodApp.Pantallas
         }
 
         void btnGuardarCambios_Clicked(System.Object sender, System.EventArgs e)
-        {   
+        {
             TxtEmail.IsEnabled = false;
             TxtDireccion.IsEnabled = false;
             TxtNombre.IsEnabled = false;
@@ -683,6 +688,18 @@ namespace FastFoodApp.Pantallas
         {
             _ = LlenarNotificaciones();
             lsv_notificaciones.IsRefreshing = false;
+        }
+
+        private async void lsv_pedidos_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        {
+            var pedido = (EPedidos)e.SelectedItem;
+            if (pedido.estado_del_pedido == "PENDIENTE")
+            {
+                if (await DisplayAlert("Información", "¿Desea cancelar su pedido?", "SI", "NO"))
+                {
+
+                }
+            }
         }
     }
 }
