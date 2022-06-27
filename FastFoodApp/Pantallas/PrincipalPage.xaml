@@ -164,7 +164,7 @@
 
             <!--Layout Carrito-->
             <StackLayout IsVisible="false" VerticalOptions="StartAndExpand" x:Name="StackLayoutTuCarrito" BackgroundColor="White">
-                <Label FontAttributes="Bold" Margin="0,5,0,0" HorizontalOptions="Center" x:Name="LblAunNoAgregasNada" IsVisible="false" TextColor="#18356F" Text="Aun no has agregado nada a tu carrito."></Label>
+                <Label FontAttributes="Bold" Margin="0,5,0,0" HorizontalOptions="Center" x:Name="LblAunNoAgregasNada" IsVisible="false" TextColor="#18356F" Text="Tu carrito esta vacio..."></Label>
 
                 <Grid RowSpacing="0" BackgroundColor="White">
 

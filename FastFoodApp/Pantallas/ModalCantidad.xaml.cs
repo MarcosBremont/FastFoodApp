@@ -43,7 +43,7 @@ namespace FastFoodApp.Pantallas
                 //App.TodosLosProductosDeLaOrden = App.TodosLosProductosDeLaOrden.Append(TxtCantidad.Text + App.producto + "-");
 
                 await PopupNavigation.PopAsync();
-                toastConfig.MostrarNotificacion($"{App.producto} Agregada a tu orden.", ToastPosition.Top, 3, "#4bbd62");
+                toastConfig.MostrarNotificacion($"Producto agregado a tu orden.", ToastPosition.Top, 3, "#4bbd62");
 
             }
         }

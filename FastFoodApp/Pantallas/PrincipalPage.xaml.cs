@@ -419,10 +419,12 @@ namespace FastFoodApp.Pantallas
                 if (datos.Count == 0)
                 {
                     LblAunNoAgregasNada.IsVisible = true;
+                    BtnHacerPedido.IsVisible = false;
                 }
                 else
                 {
                     LblAunNoAgregasNada.IsVisible = false;
+                    BtnHacerPedido.IsVisible = true;
 
                 }
                 lsv_Carrito.ItemsSource = datos;
@@ -534,6 +536,7 @@ namespace FastFoodApp.Pantallas
 
         private void ModalHacerPedido_Disappearing(object sender, EventArgs e)
         {
+            lsv_Carrito_Refreshing(null, null);
 
         }
 

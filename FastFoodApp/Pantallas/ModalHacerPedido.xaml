@@ -19,35 +19,37 @@
 
             <ScrollView Padding="10">
 
-                    <StackLayout Orientation="Vertical">
-                        <StackLayout Orientation="Horizontal">
-                            <Label Text="Total:" Grid.Row="0" HorizontalTextAlignment="Center" TextColor="#333" FontAttributes="Bold"  FontSize="Medium"/>
-                            <Label Text="0" Grid.Row="0" x:Name="LblTotal" HorizontalTextAlignment="Center" TextColor="#333" FontSize="Medium"/>
+                <StackLayout Orientation="Vertical">
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="Total:" Grid.Row="0" HorizontalTextAlignment="Center" TextColor="#333" FontAttributes="Bold"  FontSize="Medium"/>
+                        <Label Text="0" Grid.Row="0" x:Name="LblTotal" HorizontalTextAlignment="Center" TextColor="#333" FontSize="Medium"/>
 
-
-                        </StackLayout>
-
-                        <StackLayout Orientation="Horizontal">
-                            <Label Text="El precio del envio es de:" Grid.Row="0"  TextColor="#333" FontAttributes="Bold" Padding="0"  FontSize="10"/>
-                            <Label Text="0" Grid.Row="0" x:Name="lblprecioenvio"  TextColor="#333" FontAttributes="Bold" Padding="0"  FontSize="10"/>
-                            <Label Text="y ya fueron incluidos en el total." Grid.Row="0" TextColor="#333" FontAttributes="Bold" Padding="0"  FontSize="10"/>
-                        </StackLayout>
-
-
-
-                        <StackLayout Orientation="Horizontal">
-                            <Label Text="Devuelta:" Grid.Row="0" HorizontalTextAlignment="Center" TextColor="#333" FontAttributes="Bold"  FontSize="Medium"/>
-                            <Label Text="0" Grid.Row="0" x:Name="lbldevuelta" HorizontalTextAlignment="Center" TextColor="#333" FontSize="Medium"/>
-                        </StackLayout>
-
-                        <Frame Padding="0" BorderColor="White" HasShadow="False" CornerRadius="8" Margin="0,0,0,15" x:Name="FrCantidad" >
-                            <StackLayout Orientation="Horizontal" Margin="4" >
-                                <Image Source="Dollar.png" WidthRequest="25" Margin="5"></Image>
-                                <customcontrol:CustomEntry  MaxLength="11" TextChanged="TxtDinero_TextChanged" HorizontalOptions="FillAndExpand" x:Name="TxtDinero"  Keyboard="Numeric"  Placeholder="¿Con cuanto pagaras?"/>
-                            </StackLayout>
-                        </Frame>
 
                     </StackLayout>
+
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="El precio del envio es de:" Grid.Row="0"  TextColor="#333" FontAttributes="Bold" Padding="0"  FontSize="10"/>
+                        <Label Text="0" Grid.Row="0" x:Name="lblprecioenvio"  TextColor="#333" FontAttributes="Bold" Padding="0"  FontSize="10"/>
+                        <Label Text="y ya fueron incluidos en el total." Grid.Row="0" TextColor="#333" FontAttributes="Bold" Padding="0"  FontSize="10"/>
+                    </StackLayout>
+
+
+
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="Devuelta:" Grid.Row="0" HorizontalTextAlignment="Center" TextColor="#333" FontAttributes="Bold"  FontSize="Medium"/>
+                        <Label Text="0" Grid.Row="0" x:Name="lbldevuelta" HorizontalTextAlignment="Center" TextColor="#333" FontSize="Medium"/>
+                    </StackLayout>
+
+                    <Frame Padding="0" BorderColor="White" HasShadow="False" CornerRadius="8" Margin="0,0,0,15" x:Name="FrCantidad" >
+                        <StackLayout Orientation="Horizontal" Margin="4" >
+                            <Image Source="Dollar.png" WidthRequest="25" Margin="5"></Image>
+                            <customcontrol:CustomEntry  MaxLength="11" TextChanged="TxtDinero_TextChanged" HorizontalOptions="FillAndExpand" x:Name="TxtDinero"  Keyboard="Numeric"  Placeholder="¿Con cuanto pagaras?"/>
+
+                        </StackLayout>
+                    </Frame>
+                    <Label x:Name="LblCantidadmenor" IsVisible="false" Text="El monto introducido es menor al precio total"  TextColor="DarkRed" FontAttributes="Bold" Padding="0"  FontSize="12"/>
+
+                </StackLayout>
 
             </ScrollView>
             <Button Text="REALIZAR PEDIDO" x:Name="BtnRealizarPedido" VerticalOptions="EndAndExpand" Clicked="BtnRealizarPedido_Clicked" FontSize="14" FontAttributes="Bold" CornerRadius="4"  BackgroundColor="#18356F" TextColor="white" Margin="10,0,10,10 "></Button>
