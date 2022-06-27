@@ -170,7 +170,7 @@ namespace FastFoodApp.Pantallas
             try
             {
                 FastFoodApp.Metodos.Metodos metodos = new FastFoodApp.Metodos.Metodos();
-                var datos = await metodos.ObtenerPedidos("TRABAJADA", 0, DatePickerDesde.Date, DatePickerHasta.Date);
+                var datos = await metodos.ObtenerPedidos("ENTREGADA", 0, DatePickerDesde.Date, DatePickerHasta.Date);
                 lsv_money.ItemsSource = null;
                 lsv_money.ItemsSource = datos;
                 lblBalance.Text = string.Format("{0:N2}", datos.Sum(n => n.total_por_producto));
