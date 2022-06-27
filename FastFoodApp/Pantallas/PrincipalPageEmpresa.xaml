@@ -98,7 +98,7 @@
                                 <x:String>PENDIENTE</x:String>
                                 <x:String>EN PROCESO</x:String>
                                 <x:String>EN CAMINO</x:String>
-                                <x:String>TRABAJADA</x:String>
+                                <x:String>ENTREGADA</x:String>
                             </Picker.Items>
                         </Picker>
                     </StackLayout>

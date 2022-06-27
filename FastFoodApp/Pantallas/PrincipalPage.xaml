@@ -373,7 +373,7 @@
             <!--Apartado del menu de abajo-->
             <Frame CornerRadius="20" BackgroundColor="#18356F" HasShadow="False">
 
-                <StackLayout  Spacing="0" VerticalOptions="End" HeightRequest="55"  Margin="0,0,0,0" BackgroundColor="Transparent">
+                <StackLayout  Spacing="0" VerticalOptions="End" HeightRequest="65"  Margin="0,0,0,0" BackgroundColor="Transparent">
 
 
                     <StackLayout Grid.Row="1" Spacing="0" VerticalOptions="End"  Margin="0,0,0,0" BackgroundColor="#18356F">

@@ -481,6 +481,7 @@ namespace FastFoodApp.Pantallas
             {
                 AgregarProductoAlMenu(TxtNombreProducto.Text, Convert.ToInt32(TxtPrecio.Text), Picker, "0", TxtDescripcion.Text);
                 toastConfig.MostrarNotificacion($"Producto agregado al menú", ToastPosition.Top, 3, "#51C560");
+                BtnAgregarAlMenu.IsVisible = false;
             }
             catch (Exception ex)
             {
@@ -1247,12 +1248,16 @@ namespace FastFoodApp.Pantallas
         private async void lsv_pedidosEmpresa_Refreshing(object sender, EventArgs e)
         {
             _ = LlenarPedidos("PENDIENTE", Convert.ToDateTime(FechaDesde), Convert.ToDateTime(FechaHasta));
+            lsv_pedidosEmpresa.IsRefreshing = false;
+
 
         }
 
         private void lsv_money_Refreshing(object sender, EventArgs e)
         {
             LlenarMoney();
+            lsv_money.IsRefreshing = false;
+
 
         }
     }
