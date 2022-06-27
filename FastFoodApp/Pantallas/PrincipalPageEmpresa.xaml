@@ -91,9 +91,9 @@
 
                 <StackLayout  BackgroundColor="#18356F" HeightRequest="50" >
 
-                    <StackLayout Margin="10" Orientation="Horizontal" HorizontalOptions="FillAndExpand" >
-                        <Image Margin="5,0,0,0" HeightRequest="20" Source="searchnew.png"></Image>
-                        <Picker HorizontalOptions="FillAndExpand" SelectedIndexChanged="PickerProgreso_SelectedIndexChanged" TitleColor="#FFCC00" x:Name="PickerProgreso" TextColor="#FFCC00" Title="PROGRESO ORDEN">
+                    <StackLayout Margin="10" Padding="-10" Orientation="Horizontal" HorizontalOptions="FillAndExpand" >
+                        <Image Margin="10,0,0,0" HeightRequest="20" Source="searchnew.png"></Image>
+                        <Picker HorizontalOptions="FillAndExpand" SelectedIndexChanged="PickerProgreso_SelectedIndexChanged" TitleColor="#d62828" x:Name="PickerProgreso" TextColor="#d62828" Title="PROGRESO ORDEN">
                             <Picker.Items>
                                 <x:String>PENDIENTE</x:String>
                                 <x:String>EN PROCESO</x:String>
@@ -109,7 +109,7 @@
                 <Grid RowSpacing="0" BackgroundColor="#EEEEEE">
 
                     <StackLayout VerticalOptions="FillAndExpand" Grid.Row="0" Grid.Column="0" Orientation="Vertical" Margin="0,0,0,0">
-                        <ListView SelectionMode="Single" ItemSelected="lsv_pedidosEmpresa_ItemSelected" VerticalOptions="FillAndExpand" x:Name="lsv_pedidosEmpresa" Grid.Row="0" BackgroundColor="Transparent" HorizontalOptions="CenterAndExpand" SeparatorVisibility="Default"  SeparatorColor="White" HasUnevenRows="True" >
+                        <ListView IsPullToRefreshEnabled="True" Refreshing="lsv_pedidosEmpresa_Refreshing" SelectionMode="Single" ItemSelected="lsv_pedidosEmpresa_ItemSelected" VerticalOptions="FillAndExpand" x:Name="lsv_pedidosEmpresa" Grid.Row="0" BackgroundColor="Transparent" HorizontalOptions="CenterAndExpand" SeparatorVisibility="Default"  SeparatorColor="White" HasUnevenRows="True" >
                             <ListView.ItemTemplate>
 
                                 <DataTemplate>
@@ -163,6 +163,12 @@
                                                     <StackLayout Orientation="Horizontal">
                                                         <Label FontAttributes="Bold" TextColor="#333" Text="Teléfono:"></Label>
                                                         <Label TextColor="#333" Text="{Binding telefono}"></Label>
+                                                    </StackLayout>
+
+
+                                                    <StackLayout Orientation="Horizontal">
+                                                        <Label FontAttributes="Bold" TextColor="#333" Text="Descripción:"></Label>
+                                                        <Label TextColor="#333" Text="{Binding descripcion}"></Label>
                                                     </StackLayout>
 
                                                     <Frame Padding="10" HasShadow="False" BackgroundColor="#18356F">
@@ -228,7 +234,7 @@
 
 
                     <StackLayout VerticalOptions="FillAndExpand" Grid.Row="0" Grid.Column="0" Orientation="Vertical" Margin="0,0,0,0">
-                        <ListView SelectionMode="None" VerticalOptions="FillAndExpand" x:Name="lsv_money" Grid.Row="0" BackgroundColor="Transparent" HorizontalOptions="CenterAndExpand" SeparatorVisibility="Default"  SeparatorColor="White" HasUnevenRows="True" >
+                        <ListView SelectionMode="None" VerticalOptions="FillAndExpand" IsPullToRefreshEnabled="True" Refreshing="lsv_money_Refreshing" x:Name="lsv_money" Grid.Row="0" BackgroundColor="Transparent" HorizontalOptions="CenterAndExpand" SeparatorVisibility="Default"  SeparatorColor="White" HasUnevenRows="True" >
                             <ListView.ItemTemplate>
 
                                 <DataTemplate>
@@ -394,7 +400,7 @@
                                     <Frame Padding="0" BorderColor="#18356F" HasShadow="False" CornerRadius="8" Margin="0,7,0,0">
                                         <StackLayout Orientation="Horizontal">
                                             <Image Source="envionew.png" WidthRequest="25" Margin="5"></Image>
-                                            <customcontrol:CustomEntry FontSize="8" IsEnabled="False" HorizontalOptions="FillAndExpand" x:Name="TxtPrecioEnvio" Placeholder="Precio Envio"/>
+                                            <customcontrol:CustomEntry FontSize="12" IsEnabled="False" HorizontalOptions="FillAndExpand" x:Name="TxtPrecioEnvio" Placeholder="Precio Envio"/>
                                         </StackLayout>
                                     </Frame>
 
@@ -402,7 +408,7 @@
                                     <Frame Padding="0" BorderColor="#18356F" HasShadow="False" CornerRadius="8" Margin="0,7,0,0">
                                         <StackLayout Orientation="Horizontal">
                                             <Image Source="locknew2.png" WidthRequest="25" Margin="5"></Image>
-                                            <customcontrol:CustomEntry FontSize="8" IsPassword="True" IsEnabled="False" HorizontalOptions="FillAndExpand" x:Name="TxtClaveEMpresa" Placeholder="Contraseña"/>
+                                            <customcontrol:CustomEntry FontSize="12" IsPassword="True" IsEnabled="False" HorizontalOptions="FillAndExpand" x:Name="TxtClaveEMpresa" Placeholder="Contraseña"/>
                                             <ImageButton BackgroundColor="Transparent" x:Name="eyebuttonnegro" Clicked="eyebuttonnegro_Clicked" Source="eyenegro.png" WidthRequest="25" Margin="5"/>
                                             <ImageButton BackgroundColor="Transparent" x:Name="eyebuttonazul" Clicked="eyebuttonazul_Clicked" Source="eyeazul.png" IsVisible="false" WidthRequest="25" Margin="5"/>
                                         </StackLayout>
@@ -439,7 +445,7 @@
             <!--Apartado del menu de abajo-->
             <Frame CornerRadius="20" BackgroundColor="#18356F" HasShadow="False">
 
-                <StackLayout  Spacing="0" VerticalOptions="End" HeightRequest="55"  Margin="0,0,0,0" BackgroundColor="Transparent">
+                <StackLayout  Spacing="0" VerticalOptions="End" HeightRequest="65"  Margin="0,0,0,0" BackgroundColor="Transparent">
 
 
                     <StackLayout Grid.Row="1" Spacing="0" VerticalOptions="End"  Margin="0,0,0,0" BackgroundColor="#18356F">

@@ -165,12 +165,12 @@ namespace FastFoodApp.Pantallas
             var datos = await metodos.IniciarSesion(App.correo, App.clave);
 
 
-            TxtNombre.Text = datos.nombre.ToUpper();
-            TxtApellido.Text = datos.apellido.ToUpper();
-            TxtDireccion.Text = datos.direccion.ToUpper();
-            TxtTelefono.Text = datos.telefono.ToUpper();
-            TxtClave.Text = datos.clave.ToUpper();
-            TxtEmail.Text = datos.correo.ToUpper();
+            TxtNombre.Text = datos.nombre;
+            TxtApellido.Text = datos.apellido;
+            TxtDireccion.Text = datos.direccion;
+            TxtTelefono.Text = datos.telefono;
+            TxtClave.Text = datos.clave;
+            TxtEmail.Text = datos.correo;
             PerfilFoto.Source = datos.foto;
 
         }
@@ -455,12 +455,12 @@ namespace FastFoodApp.Pantallas
                 if (datos.Count == 0)
                 {
                     LblAunNoHasPedidoNada.IsVisible = true;
-            
+
                 }
                 else
                 {
                     LblAunNoHasPedidoNada.IsVisible = false;
-        
+
                 }
                 lsv_pedidos.ItemsSource = datos;
                 lsv_pedidos.IsVisible = true;
@@ -542,7 +542,6 @@ namespace FastFoodApp.Pantallas
         private void ModalHacerPedido_Disappearing(object sender, EventArgs e)
         {
             lsv_Carrito_Refreshing(null, null);
-
         }
 
         private async void BtnCerrarSesion_Clicked(object sender, EventArgs e)
@@ -697,7 +696,14 @@ namespace FastFoodApp.Pantallas
             {
                 if (await DisplayAlert("Información", "¿Desea cancelar su pedido?", "SI", "NO"))
                 {
+                    FastFoodApp.Metodos.Metodos metodos = new FastFoodApp.Metodos.Metodos();
+                    var datos = await metodos.ActualizarProgresoPedido(pedido.idpedidos_fast_food, "CANCELADO");
+                    if (datos.Respuesta == "OK")
+                    {
+                        toastConfig.MostrarNotificacion($"Se ha cancelado la orden", ToastPosition.Top, 3, "#51C560");
+                        lsv_pedidos_Refreshing(null, null);
 
+                    }
                 }
             }
         }

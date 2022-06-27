@@ -21,7 +21,7 @@
                 <Frame Padding="0" BorderColor="White" HasShadow="False" CornerRadius="8" Margin="0,0,0,15" x:Name="FrEmail" >
                     <StackLayout Orientation="Horizontal" Margin="4" >
                         <Image Source="Email.png" WidthRequest="25" Margin="5"></Image>
-                        <customcontrol:CustomEntry HorizontalOptions="FillAndExpand" x:Name="TxtEmail" Text="chrisrdsxd@gmail.com" Keyboard="Email"  Placeholder="Email"/>
+                        <customcontrol:CustomEntry HorizontalOptions="FillAndExpand" x:Name="TxtEmail" Text="marcosbremont00@gmail.com" Keyboard="Email"  Placeholder="Email"/>
                     </StackLayout>
                 </Frame>
 

@@ -60,13 +60,12 @@ namespace FastFoodApp.Pantallas
                     StackLayoutMoney.IsVisible = false;
                     StackLayoutNotificacionesEmpresa.IsVisible = false;
 
-
+                    lsv_pedidosEmpresa_Refreshing(null, null);
                     btnPedidosEmpresa.Source = "TimeAmarillo";
                     btnMenuEmpresa.Source = "hamburgerSodaWhite.png";
                     btnMiPerfil.Source = "userBlanco";
                     btnMoney.Source = "moneyBlanco";
                     btnNotitifacionesEmpresa.Source = "bellWhite";
-                    _ = LlenarPedidos("PENDIENTE",Convert.ToDateTime(FechaDesde), Convert.ToDateTime(FechaHasta));
                     PickerProgreso.SelectedItem = "PENDIENTE";
                 }),
                 NumberOfTapsRequired = 1
@@ -160,8 +159,7 @@ namespace FastFoodApp.Pantallas
                     btnMiPerfil.Source = "userBlanco";
                     btnMoney.Source = "moneyAmarillo";
                     btnNotitifacionesEmpresa.Source = "bellWhite";
-
-                    LlenarMoney();
+                    lsv_money_Refreshing(null, null);
                 }),
                 NumberOfTapsRequired = 1
             });
@@ -1090,7 +1088,7 @@ namespace FastFoodApp.Pantallas
             }
             else
             {
-                toastConfig.MostrarNotificacion($"Ocurrio un error, intenta nuevamente o comunicate con el administrador", ToastPosition.Top, 3, "#51C560");
+                toastConfig.MostrarNotificacion($"Ocurrio un error, intenta nuevamente o comunicate con el administrador", ToastPosition.Top, 3, "#e63946");
             }
         }
 
@@ -1106,7 +1104,6 @@ namespace FastFoodApp.Pantallas
 
             modalCambiarProgreso = new ModalCambiarProgreso();
             await PopupNavigation.PushAsync(modalCambiarProgreso);
-
         }
 
         private void ModalCambiarProgreso_Disappearing(object sender, EventArgs e)
@@ -1180,7 +1177,7 @@ namespace FastFoodApp.Pantallas
             }
             catch (Exception ex)
             {
-                toastConfig.MostrarNotificacion($"Ocurrio un error, intenta nuevamente o comunicate con el administrador", ToastPosition.Top, 3, "#51C560");
+                toastConfig.MostrarNotificacion($"Ocurrio un error, intenta nuevamente o comunicate con el administrador", ToastPosition.Top, 3, "#e63946");
             }
         }
 
@@ -1245,6 +1242,18 @@ namespace FastFoodApp.Pantallas
         {
             FastFoodApp.Metodos.Metodos metodos = new FastFoodApp.Metodos.Metodos();
             var datos = await metodos.ObtenerMenu("S");
+        }
+
+        private async void lsv_pedidosEmpresa_Refreshing(object sender, EventArgs e)
+        {
+            _ = LlenarPedidos("PENDIENTE", Convert.ToDateTime(FechaDesde), Convert.ToDateTime(FechaHasta));
+
+        }
+
+        private void lsv_money_Refreshing(object sender, EventArgs e)
+        {
+            LlenarMoney();
+
         }
     }
 }
