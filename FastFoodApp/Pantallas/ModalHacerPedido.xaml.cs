@@ -1,4 +1,6 @@
-﻿using Rg.Plugins.Popup.Services;
+﻿using Acr.UserDialogs;
+using FastFoodApp.Modelo;
+using Rg.Plugins.Popup.Services;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -13,6 +15,7 @@ namespace FastFoodApp.Pantallas
     public partial class ModalHacerPedido : Rg.Plugins.Popup.Pages.PopupPage
     {
         public event EventHandler OnLLamarOtraPantalla;
+        ToastConfigClass toastConfig = new ToastConfigClass();
 
         string totaldeproductos = "";
         public ModalHacerPedido()
@@ -27,13 +30,19 @@ namespace FastFoodApp.Pantallas
         {
             if (await DisplayAlert("Información", "¿Desea hacer su pedido?", "SI", "NO"))
             {
+                int txtdinero = Convert.ToInt32(TxtDinero.Text);
+                int lbltotal = Convert.ToInt32(LblTotal.Text);
+                if (txtdinero > lbltotal)
+                {
+                    toastConfig.MostrarNotificacion($"La cantidad introducida es menor al precio total", ToastPosition.Top, 3, "#e63946");
+                }
 
                 if (string.IsNullOrEmpty(TxtDinero.Text))
                 {
-                    Acr.UserDialogs.UserDialogs.Instance.Alert("Por favor rellene todos los campos");
+                    toastConfig.MostrarNotificacion($"Por favor rellene todos los campos", ToastPosition.Top, 3, "#e63946");
                 }
 
-                EnviarPedido(Convert.ToInt32(TxtDinero.Text), Convert.ToInt32(lbldevuelta.Text), App.latitud, App.longitud, "PENDIENTE", App.idusuarios, App.NumeroOrdenGeneral);
+                _ = EnviarPedido(Convert.ToInt32(TxtDinero.Text), Convert.ToInt32(lbldevuelta.Text), App.latitud, App.longitud, "PENDIENTE", App.idusuarios, App.NumeroOrdenGeneral);
             }
             else
             {
@@ -48,6 +57,17 @@ namespace FastFoodApp.Pantallas
             {
                 FastFoodApp.Metodos.Metodos metodos = new FastFoodApp.Metodos.Metodos();
                 var datos = await metodos.AgregarPedido(concuantopagara, devuelta, latitud, longitud, estado_del_pedido, idusuarios, idpedidos_fast_food);
+
+                if (datos.Respuesta == "OK")
+                {
+                    toastConfig.MostrarNotificacion($"Gracias por realizar su pedido", ToastPosition.Top, 3, "#4bbd62");
+
+                }
+                else
+                {
+                    toastConfig.MostrarNotificacion($"No se pudo realizar su pedido, intente mas tarde", ToastPosition.Top, 3, "#e63946");
+
+                }
             }
             catch (Exception ex)
             {

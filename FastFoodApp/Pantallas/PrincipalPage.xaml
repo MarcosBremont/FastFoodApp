@@ -3,19 +3,19 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="FastFoodApp.Pantallas.PrincipalPage"
              NavigationPage.HasNavigationBar="False"
-             BackgroundColor="#EEEEEE"
+             BackgroundColor="White"
              xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core" xmlns:customcontrol="clr-namespace:FastFoodApp.ControlesPersonalizados"
              ios:Page.UseSafeArea="true">
     <ContentPage.Content>
-        <StackLayout IsVisible="true" Margin="0,0,0,-35" x:Name="StackLayoutEquipo1" BackgroundColor="#EEEEEE">
+        <StackLayout IsVisible="true" Margin="0,0,0,-35" x:Name="StackLayoutEquipo1" BackgroundColor="White">
 
             <!--Layout Principal-->
             <StackLayout IsVisible="true" VerticalOptions="StartAndExpand" x:Name="StackLayoutPaginaPrincipal" BackgroundColor="#EEEEEE">
 
-                <Grid RowSpacing="0" BackgroundColor="#EEEEEE">
+                <Grid RowSpacing="0" BackgroundColor="White">
 
                     <StackLayout VerticalOptions="FillAndExpand" Grid.Row="0" Grid.Column="0" Orientation="Vertical" Margin="0,0,0,0">
-                        <ListView VerticalOptions="FillAndExpand" ItemSelected="lsv_menu_ItemSelected" x:Name="lsv_menu" Grid.Row="0" BackgroundColor="Transparent" HorizontalOptions="CenterAndExpand" SeparatorVisibility="Default"  SeparatorColor="#18356F" HasUnevenRows="True" >
+                        <ListView RefreshControlColor="#18356F" Refreshing="lsv_menu_Refreshing" IsPullToRefreshEnabled="True" VerticalOptions="FillAndExpand" ItemSelected="lsv_menu_ItemSelected" x:Name="lsv_menu" Grid.Row="0" BackgroundColor="Transparent" HorizontalOptions="CenterAndExpand" SeparatorVisibility="None"  SeparatorColor="#18356F" HasUnevenRows="True" >
                             <ListView.ItemTemplate>
 
                                 <DataTemplate>
@@ -54,11 +54,11 @@
 
                                                         <StackLayout Orientation="Horizontal" VerticalOptions="Center" Margin="0,0,0,0">
 
-                                                            <Label Text="{Binding descripcion}" VerticalOptions="Center"  FontSize="14" TextColor="#333" />
+                                                            <Label Text="{Binding descripcion}"  VerticalOptions="Center"  FontSize="14" TextColor="#333" />
                                                         </StackLayout>
 
                                                         <StackLayout Margin="0,5,0,0">
-                                                            <Button Text="Agregar" HeightRequest="40" x:Name="BtnAgregar" CommandParameter="{Binding .}" Clicked="BtnAgregar_Clicked" BackgroundColor="#18356F" TextColor="White" FontAttributes="Bold" />
+                                                            <Button Text="AGREGAR AL CARRITO" HeightRequest="40" x:Name="BtnAgregar" CommandParameter="{Binding .}" Clicked="BtnAgregar_Clicked" BackgroundColor="#18356F" TextColor="White" FontAttributes="Bold" />
                                                         </StackLayout>
 
 
@@ -89,13 +89,13 @@
             </StackLayout>
 
             <!--Layout Pedidos-->
-            <StackLayout IsVisible="false" VerticalOptions="StartAndExpand" x:Name="StackLayoutPedidos" BackgroundColor="#EEEEEE">
+            <StackLayout IsVisible="false" VerticalOptions="StartAndExpand" x:Name="StackLayoutPedidos" BackgroundColor="White">
                 <Label FontAttributes="Bold" HorizontalOptions="Center" x:Name="LblAunNoHasPedidoNada" IsVisible="false" TextColor="#18356F" Text="Aun no has realizado ningun pedido."></Label>
 
-                <Grid RowSpacing="0" BackgroundColor="#EEEEEE">
+                <Grid RowSpacing="0" BackgroundColor="White">
 
                     <StackLayout VerticalOptions="FillAndExpand" Grid.Row="0" Grid.Column="0" Orientation="Vertical" Margin="0,0,0,0">
-                        <ListView SelectionMode="None" VerticalOptions="FillAndExpand" x:Name="lsv_pedidos" Grid.Row="0" BackgroundColor="Transparent" HorizontalOptions="CenterAndExpand" SeparatorVisibility="Default"  SeparatorColor="White" HasUnevenRows="True" >
+                        <ListView SelectionMode="None" RefreshControlColor="#18356F" Refreshing="lsv_pedidos_Refreshing" IsPullToRefreshEnabled="True"  VerticalOptions="FillAndExpand" x:Name="lsv_pedidos" Grid.Row="0" BackgroundColor="Transparent" HorizontalOptions="CenterAndExpand" SeparatorVisibility="None"  HasUnevenRows="True" >
                             <ListView.ItemTemplate>
 
                                 <DataTemplate>
@@ -163,13 +163,13 @@
             </StackLayout>
 
             <!--Layout Carrito-->
-            <StackLayout IsVisible="false" VerticalOptions="StartAndExpand" x:Name="StackLayoutTuCarrito" BackgroundColor="#EEEEEE">
-                <Label FontAttributes="Bold" HorizontalOptions="Center" x:Name="LblAunNoAgregasNada" IsVisible="false" TextColor="#18356F" Text="Aun no has agregado nada a tu carrito."></Label>
+            <StackLayout IsVisible="false" VerticalOptions="StartAndExpand" x:Name="StackLayoutTuCarrito" BackgroundColor="White">
+                <Label FontAttributes="Bold" Margin="0,5,0,0" HorizontalOptions="Center" x:Name="LblAunNoAgregasNada" IsVisible="false" TextColor="#18356F" Text="Aun no has agregado nada a tu carrito."></Label>
 
-                <Grid RowSpacing="0" BackgroundColor="#EEEEEE">
+                <Grid RowSpacing="0" BackgroundColor="White">
 
                     <StackLayout VerticalOptions="FillAndExpand" Grid.Row="0" Grid.Column="0" Orientation="Vertical" Margin="0,0,0,0">
-                        <ListView VerticalOptions="FillAndExpand" x:Name="lsv_Carrito" Grid.Row="0" BackgroundColor="Transparent" HorizontalOptions="CenterAndExpand" SeparatorVisibility="Default"  SeparatorColor="White" HasUnevenRows="True" >
+                        <ListView VerticalOptions="FillAndExpand" x:Name="lsv_Carrito" Refreshing="lsv_Carrito_Refreshing" IsPullToRefreshEnabled="True" Grid.Row="0" BackgroundColor="Transparent" HorizontalOptions="CenterAndExpand" SeparatorVisibility="Default"  SeparatorColor="White" HasUnevenRows="True" >
                             <ListView.ItemTemplate>
 
                                 <DataTemplate>
@@ -219,7 +219,7 @@
 
                         <Frame HorizontalOptions="FillAndExpand" Padding="10" VerticalOptions="FillAndExpand" HasShadow="False" CornerRadius="4" BackgroundColor="#FFFFFF">
                             <StackLayout BackgroundColor="#FFFFFF"  Spacing="0">
-                                <Button Text="Realizar Pedido" x:Name="BtnHacerPedido" VerticalOptions="EndAndExpand" Clicked="BtnHacerPedido_Clicked" FontSize="14" FontAttributes="Bold" CornerRadius="4"  BackgroundColor="#FFCC00" TextColor="#333"></Button>
+                                <Button Text="REALIZAR PEDIDO" x:Name="BtnHacerPedido" VerticalOptions="EndAndExpand" Clicked="BtnHacerPedido_Clicked" FontSize="14" FontAttributes="Bold" CornerRadius="4"  BackgroundColor="#FFCC00" TextColor="#333"></Button>
                                 <Label x:Name="lblTotalSuma" TextColor="#333"></Label>
 
                             </StackLayout>
@@ -235,15 +235,18 @@
             </StackLayout>
 
             <!--Layout Notificaciones-->
-            <StackLayout IsVisible="false" VerticalOptions="StartAndExpand" x:Name="StackLayoutNotificaciones" BackgroundColor="#EEEEEE">
+            <StackLayout IsVisible="false" VerticalOptions="StartAndExpand" x:Name="StackLayoutNotificaciones" BackgroundColor="White">
 
-                <StackLayout HorizontalOptions="Center">
+                <StackLayout Margin="0,5,0,0" HorizontalOptions="Center">
                     <Label HorizontalOptions="Center" FontAttributes="Bold" FontSize="18" Text="Ofertas del día de hoy"></Label>
                     <Label HorizontalOptions="Center" Text="¡Aprovecha!"></Label>
                     <Label x:Name="LblNoHayOfertasParaElDiaDeHoy" HorizontalOptions="Center" Text="No hay ofertas para el día de hoy"></Label>
                 </StackLayout>
                 <!--ITEM-->
-                <ListView SelectionMode="None" VerticalOptions="FillAndExpand" x:Name="lsv_notificaciones" Grid.Row="0" BackgroundColor="Transparent" HorizontalOptions="CenterAndExpand" SeparatorVisibility="Default"  SeparatorColor="White" HasUnevenRows="True" >
+                <ListView SelectionMode="None" IsPullToRefreshEnabled="True" Refreshing="lsv_notificaciones_Refreshing"
+                          VerticalOptions="FillAndExpand" x:Name="lsv_notificaciones" Grid.Row="0" BackgroundColor="Transparent"
+                          HorizontalOptions="CenterAndExpand" SeparatorVisibility="None"  SeparatorColor="White"
+                          HasUnevenRows="True" >
                     <ListView.ItemTemplate>
 
                         <DataTemplate>
@@ -251,9 +254,9 @@
                             <ViewCell>
 
 
-                                <Frame HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" HasShadow="False" CornerRadius="4" BackgroundColor="#EEEEEE">
+                                <Frame HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" HasShadow="False" CornerRadius="4" BackgroundColor="White">
 
-                                    <StackLayout Margin="0,0,0,5" Orientation="Vertical" VerticalOptions="FillAndExpand">
+                                    <StackLayout Margin="0,0,0,0" Orientation="Vertical" VerticalOptions="FillAndExpand">
                                         <Frame HasShadow="False" BackgroundColor="#FFCC00">
                                             <StackLayout  Orientation="Vertical">
                                                 <Label FontAttributes="Bold" Text="{Binding mensaje}"/>
@@ -309,7 +312,7 @@
                                         <Frame Padding="0" BorderColor="#18356F" HasShadow="False" CornerRadius="8" Margin="0,7,0,0">
                                             <StackLayout Orientation="Horizontal">
                                                 <Image Source="locationempresa.png" WidthRequest="25" Margin="5"></Image>
-                                                <customcontrol:CustomEntry IsEnabled="False" HorizontalOptions="FillAndExpand" x:Name="TxtDireccion" Placeholder="Dirección"/>
+                                                <customcontrol:CustomEntry IsEnabled="False" HorizontalOptions="Start"  x:Name="TxtDireccion" Placeholder="Dirección"/>
                                             </StackLayout>
                                         </Frame>
 
@@ -340,15 +343,15 @@
 
 
                                         <StackLayout Margin="0,2,0,0">
-                                            <Button Text="Editar Perfil" x:Name="btnEditarPerfil" Clicked="btnEditarPerfil_Clicked" FontAttributes="Bold" TextColor="White" BackgroundColor="#18356F" CornerRadius="4"/>
+                                            <Button Text="EDITAR PERFIL" x:Name="btnEditarPerfil" Clicked="btnEditarPerfil_Clicked" FontAttributes="Bold" TextColor="White" BackgroundColor="#18356F" CornerRadius="4"/>
                                         </StackLayout>
 
                                         <StackLayout Margin="0,2,0,0">
-                                            <Button Text="Guardar Cambios" IsVisible="False" x:Name="btnGuardarCambios" Clicked="btnGuardarCambios_Clicked" FontAttributes="Bold" TextColor="White" BackgroundColor="#18356F" CornerRadius="4"/>
+                                            <Button Text="GUARDAR CAMBIOS" IsVisible="False" x:Name="btnGuardarCambios" Clicked="btnGuardarCambios_Clicked" FontAttributes="Bold" TextColor="White" BackgroundColor="#18356F" CornerRadius="4"/>
                                         </StackLayout>
 
                                         <StackLayout Margin="0,2,0,0">
-                                            <Button Text="Cerrar Sesión" FontAttributes="Bold" x:Name="BtnCerrarSesion" Clicked="BtnCerrarSesion_Clicked" VerticalOptions="EndAndExpand" TextColor="#18356F" BackgroundColor="#FFCC00" CornerRadius="4"/>
+                                            <Button Text="CERRAR SESIÓN" FontAttributes="Bold" x:Name="BtnCerrarSesion" Clicked="BtnCerrarSesion_Clicked" VerticalOptions="EndAndExpand" TextColor="#18356F" BackgroundColor="#FFCC00" CornerRadius="4"/>
                                         </StackLayout>
 
                                     </StackLayout>
@@ -368,15 +371,15 @@
             </StackLayout>
 
             <!--Apartado del menu de abajo-->
-            <Frame CornerRadius="20" BackgroundColor="#18356F" HasShadow="True">
+            <Frame CornerRadius="20" BackgroundColor="#18356F" HasShadow="False">
 
-                <StackLayout  Spacing="0" VerticalOptions="End" HeightRequest="55"  Margin="0,0,0,0" BackgroundColor="White">
+                <StackLayout  Spacing="0" VerticalOptions="End" HeightRequest="55"  Margin="0,0,0,0" BackgroundColor="Transparent">
 
 
                     <StackLayout Grid.Row="1" Spacing="0" VerticalOptions="End"  Margin="0,0,0,0" BackgroundColor="#18356F">
 
 
-                        <StackLayout Orientation="Horizontal" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Spacing="0" Margin="0,1,0,18" >
+                        <StackLayout BackgroundColor="Transparent" Orientation="Horizontal" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Spacing="0" Margin="0,1,0,18" >
 
                             <StackLayout Orientation="Horizontal" BackgroundColor="#18356F" HorizontalOptions="FillAndExpand" x:Name="gridInicio" Spacing="0">
                                 <Image Source="HamburgerSodaAmarillo.png" VerticalOptions="CenterAndExpand" HorizontalOptions="EndAndExpand" Margin="0,0,12,0" HeightRequest="30" x:Name="btnMenu"/>

@@ -1,4 +1,6 @@
-﻿using Rg.Plugins.Popup.Services;
+﻿using Acr.UserDialogs;
+using FastFoodApp.Modelo;
+using Rg.Plugins.Popup.Services;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -15,6 +17,8 @@ namespace FastFoodApp.Pantallas
         public event EventHandler OnLLamarOtraPantalla;
 
         string totaldeproductos = "";
+        ToastConfigClass toastConfig = new ToastConfigClass();
+
         public ModalCantidad()
         {
             InitializeComponent();
@@ -38,8 +42,9 @@ namespace FastFoodApp.Pantallas
                 AgregarPedidoTemporal();
                 //App.TodosLosProductosDeLaOrden = App.TodosLosProductosDeLaOrden.Append(TxtCantidad.Text + App.producto + "-");
 
-                Acr.UserDialogs.UserDialogs.Instance.Toast(App.producto + " Agregada a tu orden.");
                 await PopupNavigation.PopAsync();
+                toastConfig.MostrarNotificacion($"{App.producto} Agregada a tu orden.", ToastPosition.Top, 3, "#4bbd62");
+
             }
         }
     
@@ -54,6 +59,7 @@ namespace FastFoodApp.Pantallas
                 }
                 FastFoodApp.Metodos.Metodos metodos = new FastFoodApp.Metodos.Metodos();
                 var datos = await metodos.AgregarPedidoTemporal(App.idProducto, App.idusuarios, Convert.ToInt32(TxtCantidad.Text), descripcion.ToUpper());
+
             }
             catch (Exception ex)
             {

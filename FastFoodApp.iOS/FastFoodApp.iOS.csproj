@@ -180,6 +180,8 @@
     <BundleResource Include="Resources\hamburguericonlight.png" />
     <BundleResource Include="Resources\check.png" />
     <BundleResource Include="Resources\commentfood.png" />
+    <BundleResource Include="Resources\Lets_Eat_Again_Logo.png" />
+    <BundleResource Include="Resources\playstore.png" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\man.png" />

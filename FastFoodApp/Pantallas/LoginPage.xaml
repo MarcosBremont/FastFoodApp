@@ -10,13 +10,13 @@
 
             <Frame BackgroundColor="Transparent" Padding="1">
                 <StackLayout HorizontalOptions="Center" Margin="0,0,0,0">
-                    <Image WidthRequest="254" Source="Lets_Eat_Again_Logo.png" ></Image>
+                    <Image WidthRequest="170" Source="Lets_Eat_Again_Logo.png" ></Image>
                 </StackLayout>
             </Frame>
 
             <StackLayout Margin="0,0,0,0" Padding="20" VerticalOptions="Center">
 
-                <Label Margin="0,0,0,10" Text="Login" FontSize="22" FontAttributes="Bold" TextColor="White"></Label>
+                <Label Margin="0,0,0,10" Text="INICIO DE SESIÓN" FontSize="22" FontAttributes="Bold" TextColor="White"></Label>
 
                 <Frame Padding="0" BorderColor="White" HasShadow="False" CornerRadius="8" Margin="0,0,0,15" x:Name="FrEmail" >
                     <StackLayout Orientation="Horizontal" Margin="4" >
@@ -34,7 +34,7 @@
                     </StackLayout>
                 </Frame>
 
-                <Button Clicked="BtnLogin_Clicked" VerticalOptions="Center" x:Name="BtnLogin" Text="Ingresar" FontAttributes="Bold" CornerRadius="4" TextColor="#18356F" BackgroundColor="#FFCC00"/>
+                <Button Clicked="BtnLogin_Clicked" VerticalOptions="Center" x:Name="BtnLogin" Text="INICIAR SESIÓN" FontAttributes="Bold" CornerRadius="4" TextColor="#18356F" BackgroundColor="#FFCC00"/>
 
                 <StackLayout x:Name="LayoutRegistrate" HorizontalOptions="Center" Orientation="Horizontal">
                     <Label HorizontalOptions="Center" TextColor="White" Margin="0,8,0,0" Text="¿No tienes una cuenta?"></Label>
@@ -47,6 +47,7 @@
                 </StackLayout>
             </StackLayout>
             <Label HorizontalOptions="Center" FontAttributes="Bold" VerticalOptions="EndAndExpand" TextColor="White" Margin="0,8,0,0" Text="Versión 1.0"></Label>
+            <Label HorizontalOptions="Center" FontAttributes="Bold" VerticalOptions="End" TextColor="White" FontSize="11" Margin="0,0,0,0" Text="MarcosBremont"></Label>
 
         </StackLayout>
     </ContentPage.Content>

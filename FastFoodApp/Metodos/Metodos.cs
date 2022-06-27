@@ -77,9 +77,18 @@ namespace FastFoodApp.Metodos
             return lista_pedidos;
         } // Fin del método ObtenerMenu
 
-        public async Task<Result> RegistrarUsuario(string nombre, string apellido, string direccion, string telefono, string email, string latitud, string longitud, string clave)
+        public async Task<Result> RegistrarUsuario(string nombre, string apellido, string direccion, string telefono, string correo, string latitud, string longitud, string clave)
         {
-            var result = await herramientas.EjecutarSentenciaEnApiLibre($"FastFood/RegistratUsuario/{nombre.ToUpper()}/{apellido.ToUpper()}/{direccion.ToUpper()}/{telefono}/{email.ToUpper()}/{direccion.ToUpper()}/{latitud}/{latitud}/{longitud}/{clave.ToUpper()}");
+            if (string.IsNullOrEmpty(latitud))
+            {
+                latitud = "0";
+            }
+            if (string.IsNullOrEmpty(longitud))
+            {
+                longitud = "0";
+            }
+
+            var result = await herramientas.EjecutarSentenciaEnApiLibre($"FastFood/RegistrarUsuario/{nombre.ToUpper()}/{apellido.ToUpper()}/{direccion.ToUpper()}/{telefono}/{correo.ToUpper()}/{latitud}/{longitud}/{clave.ToUpper()}");
             var response = Newtonsoft.Json.JsonConvert.DeserializeObject<Result>(result);
             return response;
         }// Fin del método ObtenerEmpresa
@@ -93,10 +102,10 @@ namespace FastFoodApp.Metodos
             return lista_pedidos;
         } // Fin del método ObtenerMenu
 
-        public async Task<List<EPedidos>> AgregarPedido(int idusuario)
+        public async Task<EPedidos>AgregarPedido(int idusuario)
         {
             var result = await herramientas.EjecutarSentenciaEnApiLibre($"FastFood/AgregarPedido/{idusuario}");
-            var lista_pedidos = Newtonsoft.Json.JsonConvert.DeserializeObject<List<EPedidos>>(result);
+            var lista_pedidos = Newtonsoft.Json.JsonConvert.DeserializeObject<EPedidos>(result);
 
             return lista_pedidos;
         } // Fin del método ObtenerMenu

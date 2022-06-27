@@ -38,6 +38,9 @@ namespace FastFoodApp.Pantallas
             btnMenu.Source = "hamburgerSodaAmarillo.png";
 
             _ = LlenarMenu();
+            _ = LlenarNotificaciones();
+            LlenarMiPerfil();
+            _ = LlenarCarrito();
 
             ImgAgregarFoto.GestureRecognizers.Add(new TapGestureRecognizer
             {
@@ -58,13 +61,12 @@ namespace FastFoodApp.Pantallas
                     StackLayoutMiPerfil.IsVisible = false;
                     StackLayoutTuCarrito.IsVisible = false;
                     StackLayoutNotificaciones.IsVisible = false;
-
+                    lsv_pedidos_Refreshing(null,null);
                     btnPedidos.Source = "TimeAmarillo";
                     btnMenu.Source = "hamburgerSodaWhite.png";
                     btnMiPerfil.Source = "userBlanco";
                     btnImgCarrito.Source = "MiCarritoBlanco";
                     btnNotitifaciones.Source = "bellWhite";
-                    _ = LlenarPedidos();
                 }),
                 NumberOfTapsRequired = 1
             });
@@ -78,8 +80,7 @@ namespace FastFoodApp.Pantallas
                     StackLayoutMiPerfil.IsVisible = false;
                     StackLayoutTuCarrito.IsVisible = false;
                     StackLayoutNotificaciones.IsVisible = false;
-
-
+                    lsv_menu_Refreshing(null, null);
                     StackLayoutPedidos.IsVisible = false;
                     btnPedidos.Source = "TimeBlanco";
                     btnMenu.Source = "hamburgerSodaAmarillo.png";
@@ -101,13 +102,12 @@ namespace FastFoodApp.Pantallas
                     StackLayoutTuCarrito.IsVisible = false;
                     StackLayoutPedidos.IsVisible = false;
                     StackLayoutNotificaciones.IsVisible = true;
-
+                    lsv_notificaciones_Refreshing(null,null);
                     btnPedidos.Source = "TimeBlanco";
                     btnMenu.Source = "hamburgerSodaWhite.png";
                     btnMiPerfil.Source = "userBlanco";
                     btnImgCarrito.Source = "MiCarritoBlanco";
                     btnNotitifaciones.Source = "bellAmarillo";
-                    _ = LlenarNotificaciones();
 
                 }),
                 NumberOfTapsRequired = 1
@@ -129,7 +129,6 @@ namespace FastFoodApp.Pantallas
                     btnImgCarrito.Source = "MiCarritoBlanco";
                     btnNotitifaciones.Source = "bellWhite";
 
-                    LlenarMiPerfil();
 
                 }),
                 NumberOfTapsRequired = 1
@@ -145,6 +144,7 @@ namespace FastFoodApp.Pantallas
                     StackLayoutMiPerfil.IsVisible = false;
                     StackLayoutTuCarrito.IsVisible = true;
                     StackLayoutNotificaciones.IsVisible = false;
+                    lsv_Carrito_Refreshing(null, null);
 
                     btnPedidos.Source = "TimeBlanco";
                     btnMenu.Source = "hamburgerSodaWhite.png";
@@ -152,7 +152,6 @@ namespace FastFoodApp.Pantallas
                     btnImgCarrito.Source = "MiCarritoAmarillo";
                     btnNotitifaciones.Source = "bellWhite";
 
-                    _ = LlenarCarrito();
 
                 }),
                 NumberOfTapsRequired = 1
@@ -378,7 +377,7 @@ namespace FastFoodApp.Pantallas
             }
             catch (Exception ex)
             {
-                toastConfig.MostrarNotificacion($"Llenar Menu No se pudo establecer la conexión, por favor intente nuevamente.", ToastPosition.Top, 4, "#e63946");
+                toastConfig.MostrarNotificacion($"No se pudo establecer la conexión, por favor intente nuevamente.", ToastPosition.Top, 4, "#e63946");
             }
         }
 
@@ -405,7 +404,7 @@ namespace FastFoodApp.Pantallas
             }
             catch (Exception ex)
             {
-                toastConfig.MostrarNotificacion($"Llenar Notificaciones No se pudo establecer la conexión, por favor intente nuevamente.", ToastPosition.Top, 4, "#e63946");
+                toastConfig.MostrarNotificacion($"No se pudo establecer la conexión, por favor intente nuevamente.", ToastPosition.Top, 4, "#e63946");
             }
         }
 
@@ -434,7 +433,7 @@ namespace FastFoodApp.Pantallas
             }
             catch (Exception ex)
             {
-                toastConfig.MostrarNotificacion($"Llenar Carrito No se pudo establecer la conexión, por favor intente nuevamente.", ToastPosition.Top, 4, "#e63946");
+                toastConfig.MostrarNotificacion($"No se pudo establecer la conexión, por favor intente nuevamente.", ToastPosition.Top, 4, "#e63946");
 
             }
         }
@@ -461,7 +460,7 @@ namespace FastFoodApp.Pantallas
             }
             catch (Exception ex)
             {
-                toastConfig.MostrarNotificacion($"Carrito por usuario No se pudo establecer la conexión, por favor intente nuevamente.", ToastPosition.Top, 4, "#e63946");
+                toastConfig.MostrarNotificacion($"No se pudo establecer la conexión, por favor intente nuevamente.", ToastPosition.Top, 4, "#e63946");
 
             }
         }
@@ -585,14 +584,7 @@ namespace FastFoodApp.Pantallas
             {
                 FastFoodApp.Metodos.Metodos metodos = new FastFoodApp.Metodos.Metodos();
                 var datos = await metodos.ActualizarUsuario(nombre, apellido, direccion, telefono, email, clave, idusuarios);
-                if (datos.Respuesta == "OK")
-                {
-                    toastConfig.MostrarNotificacion($"Datos actualizados con exito", ToastPosition.Top, 3, "#4bbd62");
-                }
-                else
-                {
-                    toastConfig.MostrarNotificacion($"No fue posible actualizar tu perfil, verifica tu conexión a internet o intentalo mas tarde.", ToastPosition.Top, 4, "#e63946");
-                }
+                
             }
             catch (Exception ex)
             {
@@ -615,15 +607,22 @@ namespace FastFoodApp.Pantallas
                 {
                     App.Foto = result.foto;
                     LlenarMiPerfil();
+                    toastConfig.MostrarNotificacion($"Datos actualizados con exito", ToastPosition.Top, 3, "#4bbd62");
+                    Acr.UserDialogs.UserDialogs.Instance.HideLoading();
+
                 }
                 else
                 {
-                    toastConfig.MostrarNotificacion($"No se pudo actualizar la foto del producto. Intente mas tarde.", ToastPosition.Top, 3, "#c82333");
+                    toastConfig.MostrarNotificacion($"No se pudo actualizar la foto de perfil. Intente mas tarde.", ToastPosition.Top, 3, "#c82333");
+                    Acr.UserDialogs.UserDialogs.Instance.HideLoading();
+
                 }
             }
             catch (Exception ex)
             {
                 toastConfig.MostrarNotificacion($"No se pudo actualizar la foto del producto. Revise la conexión a internet.", ToastPosition.Top, 3, "#c82333");
+                Acr.UserDialogs.UserDialogs.Instance.HideLoading();
+
             }
             finally
             {
@@ -652,6 +651,35 @@ namespace FastFoodApp.Pantallas
 
             ActualizarUsuario(TxtNombre.Text, TxtApellido.Text, TxtDireccion.Text, TxtTelefono.Text, TxtEmail.Text, TxtClave.Text, App.idusuarios);
 
+        }
+
+        async void lsv_menu_Refreshing(System.Object sender, System.EventArgs e)
+        {
+            FastFoodApp.Metodos.Metodos metodos = new FastFoodApp.Metodos.Metodos();
+            lsv_menu.ItemsSource = null;
+            var datos = await metodos.ObtenerMenu("S");
+            lsv_menu.ItemsSource = datos;
+            lsv_menu.IsRefreshing = false;
+
+        }
+
+        void lsv_pedidos_Refreshing(System.Object sender, System.EventArgs e)
+        {
+            _ = LlenarPedidos();
+            lsv_pedidos.IsRefreshing = false;
+
+        }
+
+        void lsv_Carrito_Refreshing(System.Object sender, System.EventArgs e)
+        {
+            _ = LlenarCarrito();
+            lsv_Carrito.IsRefreshing = false;
+        }
+
+        void lsv_notificaciones_Refreshing(System.Object sender, System.EventArgs e)
+        {
+            _ = LlenarNotificaciones();
+            lsv_notificaciones.IsRefreshing = false;
         }
     }
 }

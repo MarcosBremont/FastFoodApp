@@ -50,8 +50,8 @@
                     </StackLayout>
 
             </ScrollView>
-            <Button Text="Realizar Pedido" x:Name="BtnRealizarPedido" VerticalOptions="EndAndExpand" Clicked="BtnRealizarPedido_Clicked" FontSize="14" FontAttributes="Bold" CornerRadius="4"  BackgroundColor="#18356F" TextColor="white" Margin="10,0,10,10 "></Button>
-            <Button Text="Cancelar" x:Name="BtnCancelar" Clicked="BtnCancelar_Clicked"  FontSize="14" CornerRadius="4" FontAttributes="Bold" BackgroundColor="LightGray" TextColor="#333" Margin="10,0,10,10 "></Button>
+            <Button Text="REALIZAR PEDIDO" x:Name="BtnRealizarPedido" VerticalOptions="EndAndExpand" Clicked="BtnRealizarPedido_Clicked" FontSize="14" FontAttributes="Bold" CornerRadius="4"  BackgroundColor="#18356F" TextColor="white" Margin="10,0,10,10 "></Button>
+            <Button Text="CANCELAR" x:Name="BtnCancelar" Clicked="BtnCancelar_Clicked"  FontSize="14" CornerRadius="4" FontAttributes="Bold" BackgroundColor="LightGray" TextColor="#333" Margin="10,0,10,10 "></Button>
         </StackLayout>
     </ContentPage.Content>
 </popup:PopupPage>

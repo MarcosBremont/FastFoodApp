@@ -9,7 +9,7 @@
 
             <Frame BackgroundColor="Transparent" Padding="1">
                 <StackLayout HorizontalOptions="Center" Margin="0,0,0,0">
-                    <Image WidthRequest="254" Source="Fast_Food_Logo.png" ></Image>
+                    <Image WidthRequest="150" Source="Lets_Eat_Again_Logo.png" ></Image>
                 </StackLayout>
             </Frame>
 
@@ -17,7 +17,7 @@
 
                 <StackLayout Margin="0,0,0,0" Padding="20" VerticalOptions="Center">
 
-                    <Label Margin="0,0,0,10" Text="Registrar" FontSize="22" FontAttributes="Bold" TextColor="White"></Label>
+                    <Label Margin="0,0,0,10" Text="Registro" FontSize="22" FontAttributes="Bold" TextColor="White"></Label>
 
                     <Frame Padding="0" BorderColor="White" HasShadow="False" CornerRadius="8" Margin="0,0,0,15" x:Name="FrEmail" >
                         <StackLayout Orientation="Horizontal" Margin="4" >
@@ -28,14 +28,14 @@
 
                     <Frame Padding="0" BorderColor="White" HasShadow="False" CornerRadius="8" Margin="0,0,0,15">
                         <StackLayout Orientation="Horizontal" Margin="4" >
-                            <Image Source="Password.png" WidthRequest="25" Margin="5"></Image>
+                            <Image Source="userNew1.png" WidthRequest="25" Margin="5"></Image>
                             <customcontrol:CustomEntry HorizontalOptions="FillAndExpand" x:Name="TxtNombre"  Keyboard="Default"  Placeholder="Nombre"/>
                         </StackLayout>
                     </Frame>
 
                     <Frame Padding="0" BorderColor="White" HasShadow="False" CornerRadius="8" Margin="0,0,0,15">
                         <StackLayout Orientation="Horizontal" Margin="4" >
-                            <Image Source="Password.png" WidthRequest="25" Margin="5"></Image>
+                            <Image Source="userNew1.png" WidthRequest="25" Margin="5"></Image>
                             <customcontrol:CustomEntry HorizontalOptions="FillAndExpand" x:Name="TxtApellido" Keyboard="Default"  Placeholder="Apellido"/>
                         </StackLayout>
                     </Frame>
@@ -63,7 +63,8 @@
                     </Frame>
 
 
-                    <Button Clicked="BtnRegistrar_Clicked" VerticalOptions="Center" x:Name="BtnRegistrar" Text="Registrar" FontAttributes="Bold" CornerRadius="4" TextColor="#18356F" BackgroundColor="#FFCC00"/>
+                    <Button Clicked="BtnRegistrar_Clicked" VerticalOptions="Center" x:Name="BtnRegistrar" Text="REGISTRARME" FontAttributes="Bold" CornerRadius="4" TextColor="#18356F" BackgroundColor="#FFCC00"/>
+                    <Button Clicked="BtnVolver_Clicked" VerticalOptions="Center" x:Name="BtnVolver" Text="VOLVER ATRAS" FontAttributes="Bold" CornerRadius="4" TextColor="White" BackgroundColor="#18356F"/>
 
                     <StackLayout x:Name="LayoutIniciarSesion" Orientation="Horizontal" HorizontalOptions="Center">
                         <Label HorizontalOptions="Center" TextColor="White" Margin="0,8,0,0" Text="¿Ya tienes una cuenta?"></Label>
