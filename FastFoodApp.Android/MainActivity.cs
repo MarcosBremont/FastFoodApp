@@ -5,7 +5,14 @@ using Android.Content.PM;
 using Android.Runtime;
 using Android.OS;
 using Acr.UserDialogs;
+using Android.Views;
+using Android.Widget;
+using Plugin.Permissions;
 using Plugin.CurrentActivity;
+using Xamarin.Forms;
+using Android.Graphics;
+using Android.Gms.Common;
+using Xamarin.Essentials;
 
 namespace FastFoodApp.Droid
 {
@@ -17,6 +24,8 @@ namespace FastFoodApp.Droid
             Rg.Plugins.Popup.Popup.Init(this);
             UserDialogs.Init(this);
             base.OnCreate(savedInstanceState);
+            IsPlayServicesAvailable();
+
             CrossCurrentActivity.Current.Init(this, savedInstanceState);
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
@@ -30,6 +39,12 @@ namespace FastFoodApp.Droid
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
 
+        public void IsPlayServicesAvailable()
+        {
+            int resultCode = GoogleApiAvailability.Instance.IsGooglePlayServicesAvailable(this);
+            bool isGooglePlayService = resultCode != ConnectionResult.Success;
+            Preferences.Set("isGooglePlayService", isGooglePlayService);
+        }
 
     }
 }

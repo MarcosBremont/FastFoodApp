@@ -45,10 +45,10 @@ namespace FastFoodApp.Metodos
         }// Fin del método ObtenerEmpresa
 
 
-        public async Task<EUsuario> IniciarSesion(string email, string password)
+        public async Task<EUsuario> IniciarSesion(string email, string password, string Token_Firebase)
         {
 
-            var result = await herramientas.EjecutarSentenciaEnApiLibre($"FastFood/IniciarSesion/{email}/{password}");
+            var result = await herramientas.EjecutarSentenciaEnApiLibre($"FastFood/IniciarSesion/{email}/{password}/{App.Token_Firebase}");
             var UsuarioResult = Newtonsoft.Json.JsonConvert.DeserializeObject<EUsuario>(result);
 
             if (UsuarioResult.respuesta == "OK")
@@ -207,6 +207,13 @@ namespace FastFoodApp.Metodos
             return response;
         }// Fin del método ObtenerEmpresa
 
+        public async Task<List<EUsuario>> ObtenerTokens()
+        {
+            var result = await herramientas.EjecutarSentenciaEnApiLibre($"FastFood/STokensUsuarios");
+            var lista_tokens = Newtonsoft.Json.JsonConvert.DeserializeObject<List<EUsuario>>(result);
+
+            return lista_tokens;
+        } // Fin del método ObtenerMenu
 
     }
 }

@@ -3,6 +3,8 @@ using FastFoodApp.Modelo;
 using Rg.Plugins.Popup.Services;
 using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Net;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -46,6 +48,7 @@ namespace FastFoodApp.Pantallas
                     else
                     {
                         _ = EnviarPedido(Convert.ToInt32(TxtDinero.Text), Convert.ToInt32(lbldevuelta.Text), App.latitud, App.longitud, "PENDIENTE", App.idusuarios, App.NumeroOrdenGeneral);
+                        SendNotification();
                         await PopupNavigation.PopAsync();
                         LblCantidadmenor.IsVisible = true;
 
@@ -59,6 +62,59 @@ namespace FastFoodApp.Pantallas
             }
         }
 
+        public async void SendNotification()
+        {
+            try
+            {
+                string token = "";
+                string cliente = "";
+                FastFoodApp.Metodos.Metodos metodos = new FastFoodApp.Metodos.Metodos();
+
+                var datos = await metodos.ObtenerTokens();
+
+                foreach (var item in datos)
+                {
+                    token = item.token_firebase;
+                    cliente = item.nombre; 
+
+                    string serverKey = "AAAASjRa9I8:APA91bH_YuXdIGADCLI7GZ47-duGu11ZAiNyStVVGCnAAYxvMYIRaipGXVQZCUFn7wwo-yR-JIcLPmCu4un-OdGcpfYoFtNRlu77AfmrjVLRFfDjIWOJvJ3Xr1GRdbZchUvhO6zLM63Y";
+                    string token_tecnico = token;
+                    var result = "-1";
+                    var webAddr = "https://fcm.googleapis.com/fcm/send";
+                    string tittle, body;
+
+                    tittle = $"Let's Eat Again - Alerta";
+                    body = $"{cliente} ha realizado un pedido";
+
+
+                    var httpWebRequest = (HttpWebRequest)WebRequest.Create(webAddr);
+                    httpWebRequest.ContentType = "application/json";
+                    httpWebRequest.Headers.Add("Authorization:key=" + serverKey);
+                    httpWebRequest.Method = "POST";
+
+                    using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
+                    {
+
+                        string json = "{\"to\": \"" + token_tecnico + "\",\"notification\": {\"body\": \"" + body + "\",\"title\": \"" + tittle + "\"}}";
+                        streamWriter.Write(json);
+                        streamWriter.Flush();
+                    }
+
+                    var httpResponse = (HttpWebResponse)httpWebRequest.GetResponse();
+                    using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
+                    {
+                        result = streamReader.ReadToEnd();
+                    }
+
+                    // return result;
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+            }
+        }
 
         public async Task InsertarIdPedido()
         {

@@ -162,7 +162,7 @@ namespace FastFoodApp.Pantallas
         {
 
             FastFoodApp.Metodos.Metodos metodos = new FastFoodApp.Metodos.Metodos();
-            var datos = await metodos.IniciarSesion(App.correo, App.clave);
+            var datos = await metodos.IniciarSesion(App.correo, App.clave, App.Token_Firebase);
 
 
             TxtNombre.Text = datos.nombre;

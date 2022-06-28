@@ -3,10 +3,12 @@ using FastFoodApp.Entidad;
 using FastFoodApp.Modelo;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
-
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -15,11 +17,14 @@ namespace FastFoodApp.Pantallas
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class LoginPage : ContentPage
     {
+        public static string Token_Firebase { get; set; }
+
         ToastConfigClass toastConfig = new ToastConfigClass();
         public LoginPage()
         {
             InitializeComponent();
             _ = LlenarEmpresa();
+            
 
             LayoutRegistrate.GestureRecognizers.Add(new TapGestureRecognizer
             {
@@ -44,6 +49,26 @@ namespace FastFoodApp.Pantallas
 
         }
 
+
+        public async void Token()
+        {
+            while (App.Token_Firebase is null)
+            {
+                Thread.Sleep(1000);
+                string TokenFirebase = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "TokenFirebase.txt");
+                if (File.Exists(TokenFirebase))
+                {
+                    Console.WriteLine(File.ReadAllText(TokenFirebase));
+                    Token_Firebase = File.ReadAllText(TokenFirebase);
+                    App.Token_Firebase = Token_Firebase;
+                 }
+            }
+            MainThread.BeginInvokeOnMainThread(() =>
+            {
+
+            });
+        }
+
         public async void IniciarSesion()
         {
 
@@ -60,13 +85,18 @@ namespace FastFoodApp.Pantallas
 
 
                     FastFoodApp.Metodos.Metodos metodos = new FastFoodApp.Metodos.Metodos();
-                    var result = await metodos.IniciarSesion(TxtEmail.Text, TxtPassword.Text);
+                    Token();
+                    var result = await metodos.IniciarSesion(TxtEmail.Text, TxtPassword.Text,App.Token_Firebase);
                     if (result.respuesta == "OK")
                     {
                         App.empresa = result.empresa;
                         _ = InsertarIdPedido();
                         _ = SeleccionarNumeroDeOrdenGeneral();
                         _ = LlenarEmpresa();
+
+
+                       
+
                         toastConfig.MostrarNotificacion($"Bienvenido {result.nombre}", ToastPosition.Top, 3, "#51C560");
                         if (result.empresa == "S")
                         {

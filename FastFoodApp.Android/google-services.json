@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "318705955983",
+    "project_id": "fastfoodapp-95b3e",
+    "storage_bucket": "fastfoodapp-95b3e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:318705955983:android:389da770d871fefb286cfa",
+        "android_client_info": {
+          "package_name": "com.bremont.LetsEatAgain"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "318705955983-ee7sl63mic26nlcjnocmvd47l6tq8sdj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyASGsELAE-BGjow5j-FJYXjQfW7QDvLyUQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "318705955983-ee7sl63mic26nlcjnocmvd47l6tq8sdj.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "318705955983-1mo27gqm9t4f5hp4gmepefmfelpoug4c.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.bremont.FastFoodApp"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

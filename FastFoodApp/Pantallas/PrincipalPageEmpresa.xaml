@@ -91,7 +91,7 @@
 
                 <StackLayout  BackgroundColor="#18356F" HeightRequest="50" >
 
-                    <StackLayout Margin="10" Padding="-10" Orientation="Horizontal" HorizontalOptions="FillAndExpand" >
+                    <StackLayout Margin="10" Padding="0" Orientation="Horizontal" HorizontalOptions="FillAndExpand" >
                         <Image Margin="10,0,0,0" HeightRequest="20" Source="searchnew.png"></Image>
                         <Picker HorizontalOptions="FillAndExpand" SelectedIndexChanged="PickerProgreso_SelectedIndexChanged" TitleColor="#d62828" x:Name="PickerProgreso" TextColor="#d62828" Title="PROGRESO ORDEN">
                             <Picker.Items>

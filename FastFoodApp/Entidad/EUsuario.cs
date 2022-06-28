@@ -22,6 +22,7 @@ namespace FastFoodApp.Entidad
         public string empresa { get; set; }
         public string foto { get; set; }
         public string result { get; set; }
+        public string token_firebase { get; set; }
         public bool encontrado { get; set; }
     }
 }
