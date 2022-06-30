@@ -20,6 +20,7 @@
     <PackageReference Include="Rg.Plugins.Popup" Version="2.1.0" />
     <PackageReference Include="Acr.UserDialogs" Version="7.2.0.564" />
     <PackageReference Include="Plugin.MediaManager" Version="1.1.1" />
+    <PackageReference Include="Plugin.FirebasePushNotification" Version="3.4.25" />
   </ItemGroup>
 
   <ItemGroup>
@@ -41,6 +42,7 @@
     <None Remove="Rg.Plugins.Popup" />
     <None Remove="Acr.UserDialogs" />
     <None Remove="Plugin.MediaManager" />
+    <None Remove="Plugin.FirebasePushNotification" />
   </ItemGroup>
   <ItemGroup>
     <Compile Update="Pantallas\ModalCambiarProgreso.xaml.cs">

@@ -2,6 +2,7 @@
 using Microsoft.AppCenter;
 using Microsoft.AppCenter.Push;
 using System;
+using Plugin.FirebasePushNotification;
 using System.Collections.Generic;
 using System.Text;
 using Xamarin.Forms;
@@ -81,7 +82,16 @@ namespace FastFoodApp
             InitializeComponent();
 
             MainPage = new LoginPage();
+
+           CrossFirebasePushNotification.Current.Subscribe("all");
+            CrossFirebasePushNotification.Current.OnTokenRefresh += Current_OnTokenRefresh;
         }
+
+       /private void Current_OnTokenRefresh(object source, FirebasePushNotificationTokenEventArgs e)
+        {
+           System.Diagnostics.Debug.WriteLine($"Token: {e.Token}");
+        }
+
 
         protected override void OnStart()
         {

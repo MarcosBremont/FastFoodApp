@@ -29,6 +29,7 @@
     <MtouchDebug>true</MtouchDebug>
     <CodesignProvision>Automatic</CodesignProvision>
     <CodesignKey>iPhone Developer</CodesignKey>
+    <MtouchEnableSGenConc>true</MtouchEnableSGenConc>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
     <DebugType>none</DebugType>
@@ -143,6 +144,9 @@
   <ItemGroup>
     <PackageReference Include="Xamarin.Forms" Version="5.0.0.2401" />
     <PackageReference Include="Xamarin.Essentials" Version="1.7.3" />
+    <PackageReference Include="Plugin.FirebasePushNotification">
+      <Version>3.4.25</Version>
+    </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
@@ -182,6 +186,7 @@
     <BundleResource Include="Resources\commentfood.png" />
     <BundleResource Include="Resources\Lets_Eat_Again_Logo.png" />
     <BundleResource Include="Resources\playstore.png" />
+    <BundleResource Include="GoogleService-Info.plist" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\man.png" />
